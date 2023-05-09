@@ -35,10 +35,10 @@ namespace API
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5088");
             var requestContent = new MultipartFormDataContent();
-            requestContent.Add(new StringContent(request.IDrank), "ID");
+            requestContent.Add(new StringContent(request.IDrank), "IDrank");
             requestContent.Add(new StringContent(request.RankRoleID), "RankRoleID");
             requestContent.Add(new StringContent(request.Name), "Name");
-            var response = await client.PostAsync($"/api/Rank/", requestContent);
+            var response = await client.PostAsync($"/api/Rank", requestContent);
             return response.IsSuccessStatusCode;
         }
 
@@ -46,7 +46,7 @@ namespace API
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5088");
-            var response = await client.DeleteAsync($"/api/Rank/" + RankID);
+            var response = await client.DeleteAsync("/api/Rank/"+ RankID);
             return response.IsSuccessStatusCode;
         }
 
