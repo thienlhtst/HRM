@@ -39,6 +39,7 @@ namespace QLNSApiBackend.Controllers
                 return BadRequest("Cannot find Rank");
             return Ok(rank);
         }
+
         [HttpGet("Ed/{rankID}")]
         public async Task<IActionResult> GetByIdForEdit(string rankID)
         {
@@ -47,7 +48,8 @@ namespace QLNSApiBackend.Controllers
                 return BadRequest("Cannot find Rank");
             return Ok(rank);
         }
-        [HttpPost("createrank")]
+
+        [HttpPost]
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> Create([FromForm] RankCreateRequest rankCreateRequest)
         {
@@ -78,7 +80,7 @@ namespace QLNSApiBackend.Controllers
             var affectedResult = await _rankService.Delete(id);
             if (affectedResult == 0)
                 return BadRequest();
-            return Ok();
+            return Ok(affectedResult);
         }
     }
 }

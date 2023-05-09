@@ -38,7 +38,7 @@ namespace API
             requestContent.Add(new StringContent(request.IDrank), "ID");
             requestContent.Add(new StringContent(request.RankRoleID), "RankRoleID");
             requestContent.Add(new StringContent(request.Name), "Name");
-            var response = await client.PostAsync("/api/Rank/createrank", requestContent);
+            var response = await client.PostAsync("/api/Rank/", requestContent);
             return response.IsSuccessStatusCode;
         }
 
