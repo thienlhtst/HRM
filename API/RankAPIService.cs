@@ -38,7 +38,7 @@ namespace API
             requestContent.Add(new StringContent(request.IDrank), "ID");
             requestContent.Add(new StringContent(request.RankRoleID), "RankRoleID");
             requestContent.Add(new StringContent(request.Name), "Name");
-            var response = await client.PostAsync("/api/Rank/", requestContent);
+            var response = await client.PostAsync($"/api/Rank/", requestContent);
             return response.IsSuccessStatusCode;
         }
 
@@ -46,7 +46,7 @@ namespace API
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5088");
-            var response = await client.DeleteAsync("/api/Rank/" + RankID);
+            var response = await client.DeleteAsync($"/api/Rank/" + RankID);
             return response.IsSuccessStatusCode;
         }
 
@@ -54,7 +54,7 @@ namespace API
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5088");
-            var response = await client.GetAsync("/api/Rank/" + id);
+            var response = await client.GetAsync($"/api/Rank/" + id);
             var body = await response.Content.ReadAsStringAsync();
             var data = JsonConvert.DeserializeObject<RankVM>(body);
             return data;
@@ -64,7 +64,7 @@ namespace API
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5088");
-            var response = await client.GetAsync("/api/Rank/Ed/" + id);
+            var response = await client.GetAsync($"/api/Rank/Ed/" + id);
             var body = await response.Content.ReadAsStringAsync();
             var data = JsonConvert.DeserializeObject<RankEditRequest>(body);
             return data;
