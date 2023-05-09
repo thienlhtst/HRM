@@ -1,0 +1,109 @@
+﻿@model QLNS.ViewModel.Catalogs.Employees.EmployeeViewModel
+
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Detail</h1>
+
+<div class=" d-flex  justify-content-center">
+    <div class=""style="height:200px;width:150px">
+        <img src="@("https://localhost:5088"+Model.URLImage)"
+             class="img-fluid" style="height:200px;width:150px" />
+    </div>
+    <div style="width:60%;margin-left:10%" >
+        
+    <dl class="row">
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.MiddleName)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.MiddleName)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.DOB)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.DOB)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Sex)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Sex)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.CIC)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.CIC)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.NumberPhone)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.NumberPhone)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Rank)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Rank)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Position)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Position)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Account)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Account)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+        
+    </dl>
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
