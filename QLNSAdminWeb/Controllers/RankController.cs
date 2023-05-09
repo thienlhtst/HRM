@@ -37,20 +37,6 @@ namespace QLNSAdminWeb.Controllers
             return View(data);
         }
 
-        /*public async Task<IActionResult> Index(string keyword, int pageIndex = 1,int pageSize=10)
-        {
-            var request = new GetRankPagingRequest()
-            {
-                Keyword = keyword,
-                PageIndex = pageIndex,
-                PageSize = pageSize
-            };
-            var data = await _rankAPIService.GetRankPagings(request);
-            return View(data);
-        }*/
-
-        // [HttpGet]
-
         public async Task<IActionResult> Details(string id)
         {
             var result = await _rankAPIService.GetById(id);
