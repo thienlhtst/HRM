@@ -11,7 +11,7 @@ namespace QLNS.Entity.Entities
 	public class Allowance
 	{
 		
-		public string ID { get; set; }
+		public string IDdddd { get; set; }
 		public string Name { get;set; }
 		public int Money { get; set; }
 		public List<EmployeesWithAllowances> EWA { get; } = new();
