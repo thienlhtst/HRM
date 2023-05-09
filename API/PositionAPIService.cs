@@ -71,7 +71,7 @@ namespace API
         public async Task<PositionUpdateRequest> GetByIdForEdit(string id)
         {
             var client = _httpClientFactory.CreateClient();
-            client.BaseAddress = new Uri("https://localhost:5088"); s
+            client.BaseAddress = new Uri("https://localhost:5088");
             var response = await client.GetAsync($"/api/Position/" + id);
             var body = await response.Content.ReadAsStringAsync();
             var data = JsonConvert.DeserializeObject<PositionUpdateRequest>(body);
