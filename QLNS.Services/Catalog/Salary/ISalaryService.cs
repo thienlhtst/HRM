@@ -22,5 +22,7 @@ namespace QLNS.Services.Catalog.Salary
         Task<SalaryVM> GetById(string SalaryID);
 
         Task<List<QLNS.Entity.Entities.Salary>> GetList();
+
+        Task<SalaryEditRequest> GetByIdForId(string SalaryID);
     }
 }

@@ -111,5 +111,10 @@ namespace QLNS.Services.Catalog.Salary
             _context.Salaries.Update(rank);
             return await _context.SaveChangesAsync();
         }
+
+        public Task<SalaryEditRequest> GetByIdForId(string SalaryID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

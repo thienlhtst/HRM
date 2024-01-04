@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace QLNS.ViewModel.Catalogs.Salary
 {
-	public class SalaryEditRequest
-	{
-
+    public class SalaryEditRequest
+    {
         public string ID { get; set; }
         public string RankID { get; set; }
         public string PositionID { get; set; }

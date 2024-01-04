@@ -7,14 +7,16 @@ using QLNS.ViewModel.Dtos;
 
 namespace QLNSApiBackend.Controllers
 {
-	[Route("api/[controller]")]
-	[ApiController]
-	public class SalaryController : ControllerBase
-	{
-		private readonly ISalaryService _salaryService;
-		public SalaryController(ISalaryService salaryService) {
-		_salaryService = salaryService;
-		}
+    [Route("api/[controller]")]
+    [ApiController]
+    public class SalaryController : ControllerBase
+    {
+        private readonly ISalaryService _salaryService;
+
+        public SalaryController(ISalaryService salaryService)
+        {
+            _salaryService = salaryService;
+        }
 
         [HttpGet]
         public async Task<IActionResult> Get()
@@ -22,6 +24,7 @@ namespace QLNSApiBackend.Controllers
             var model = await _salaryService.GetList();
             return Ok(model);
         }
+
         [HttpGet("{salaryID}")]
         public async Task<IActionResult> GetById(string salaryID)
         {
@@ -30,9 +33,9 @@ namespace QLNSApiBackend.Controllers
                 return BadRequest("Cannot find Salary");
             return Ok(salary);
         }
+
         [HttpPost("createsalary")]
         [Consumes("multipart/form-data")]
-        //[Authorize]
         public async Task<IActionResult> Create([FromForm] SalaryCreateRequest salaryCreateRequest)
         {
             if (!ModelState.IsValid)
@@ -47,7 +50,6 @@ namespace QLNSApiBackend.Controllers
             // var salary = await _salaryService.GetById(salaryCreateRequest.ID);
             // return CreatedAtAction(nameof(GetById), new { id = salaryID }, salary);
             return Ok(new { token = salaryID });
-
         }
 
         [HttpPut("{id}")]
@@ -69,10 +71,10 @@ namespace QLNSApiBackend.Controllers
         }
 
         [HttpGet("paging")]
-		public async Task<IActionResult> GetAllPage([FromQuery]GetSalaryPagingRequest request)
-		{
-			var salary = await _salaryService.GetAllPage(request);
-			return Ok(salary);
-		}
-	}
+        public async Task<IActionResult> GetAllPage([FromQuery] GetSalaryPagingRequest request)
+        {
+            var salary = await _salaryService.GetAllPage(request);
+            return Ok(salary);
+        }
+    }
 }

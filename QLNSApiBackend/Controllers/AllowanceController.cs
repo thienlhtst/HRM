@@ -11,10 +11,12 @@ namespace QLNSApiBackend.Controllers
     public class AllowanceController : ControllerBase
     {
         private readonly IAllowanceService _allowanceService;
+
         public AllowanceController(IAllowanceService allowanceService)
         {
             _allowanceService = allowanceService;
         }
+
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -30,8 +32,7 @@ namespace QLNSApiBackend.Controllers
         }
 
         [HttpPost("createallowance")]
-        [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Create([FromForm] AllowanceCreateRequest request)
+        public async Task<IActionResult> Create([FromBody] AllowanceCreateRequest request)
         {
             var allowance = await _allowanceService.Create(request);
             return Ok(new { token = allowance });
@@ -52,7 +53,6 @@ namespace QLNSApiBackend.Controllers
             var result = await _allowanceService.Delete(id);
             return Ok();
         }
-
 
         [HttpGet("paging")]
         public async Task<IActionResult> GetAllPaging([FromQuery] GetAllowancePagingRequest request)
