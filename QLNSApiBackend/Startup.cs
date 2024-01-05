@@ -42,6 +42,7 @@ namespace QLNSApiBackend.BackendApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddDbContext<QLNSDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));       //Declare
 
@@ -84,7 +85,7 @@ namespace QLNSApiBackend.BackendApi
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseCors(m=> m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>

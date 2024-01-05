@@ -31,8 +31,8 @@ namespace QLNSApiBackend.Controllers
             return Ok(allowance);
         }
 
-        [HttpPost("createallowance")]
-        public async Task<IActionResult> Create([FromBody] AllowanceCreateRequest request)
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody]AllowanceCreateRequest request)
         {
             var allowance = await _allowanceService.Create(request);
             return Ok(new { token = allowance });

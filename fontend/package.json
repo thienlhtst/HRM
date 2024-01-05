@@ -1,5 +1,5 @@
 {
-  "name": "admin-web",
+  "name": "fontend",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:AdminWeb": "node dist/admin-web/server/server.mjs"
+    "serve:ssr:fontend": "node dist/fontend/server/server.mjs"
   },
   "private": true,
   "dependencies": {
