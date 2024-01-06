@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AllowanceService } from '../../../services/allowance.service';
 import { Allowancemodel } from '../../../Model/allowancemodel';
+import { Router, ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-login',
  
@@ -13,16 +15,15 @@ export class LoginComponent implements OnInit {
     name:"dcmmmmnr",
     money:30000,
  }
-constructor(private share:AllowanceService){
+constructor(private share:AllowanceService,private router:Router){
 }
 ngOnInit(): void {
     
 }
+
 testclick(){
-  this.share.createentity(this.a).subscribe({
-    next:(a)=>{
-      console.log(a);
-    }
-  })
+  console.log("asdasd")
+  this.router.navigate(['/home']);
+
 }
 }

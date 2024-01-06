@@ -9,11 +9,11 @@ import { Observable } from 'rxjs';
 })
 export class AllowanceService {
  
- apiurl :string =environment.apiurl
+// apiurl :string =environment.apiurl
 constructor(private http:HttpClient) { }
-createentity(model: Allowancemodel):Observable<Allowancemodel>{
+/*createentity(model: Allowancemodel):Observable<Allowancemodel>{
    
   return this.http.post<Allowancemodel>(this.apiurl+'/allowance',model)
-}
+}*/
 
 }
