@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { AllowanceService } from '../../../services/allowance.service';
 import { Allowancemodel } from '../../../Model/allowancemodel';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
- 
+  standalone:true,
+  imports:[CommonModule,
+    HttpClientModule,RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -22,8 +26,7 @@ ngOnInit(): void {
 }
 
 testclick(){
-  console.log("asdasd")
-  this.router.navigate(['/home']);
+  this.router.navigate(['']);
 
 }
 }

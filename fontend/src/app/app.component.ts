@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { LoginBaseModule } from './login-base/login-base.module';
 import { HomeModule } from './home/home.module';
 import { FooterComponent } from './components/footer/footer.component';
+import { LoginComponent } from './login-base/login/login.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,LoginBaseModule
+  imports: [CommonModule, RouterOutlet,LoginComponent
   ,HomeModule
 
   ],
