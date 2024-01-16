@@ -9,8 +9,13 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { CardComponent } from './components/card/card.component';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
+
 // bootstrap import
 import { NgbDropdownModule, NgbNavModule, NgbModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+
+
+
+
 
 @NgModule({
   imports: [
@@ -23,7 +28,9 @@ import { NgbDropdownModule, NgbNavModule, NgbModule, NgbCollapseModule } from '@
     NgbModule,
     NgbCollapseModule,
     NgScrollbarModule,
-    CardComponent
+    CardComponent,
+
+
   ],
   exports: [
     CommonModule,
@@ -36,7 +43,8 @@ import { NgbDropdownModule, NgbNavModule, NgbModule, NgbCollapseModule } from '@
     NgbNavModule,
     NgbCollapseModule,
     NgScrollbarModule,
-    CardComponent
+    CardComponent,
+
   ],
   declarations: [SpinnerComponent]
 })
