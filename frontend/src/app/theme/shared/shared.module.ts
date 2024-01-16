@@ -11,6 +11,9 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 
 // bootstrap import
 import { NgbDropdownModule, NgbNavModule, NgbModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from 'src/Services/auth.service';
+import { HttpClientModule } from '@angular/common/http';
+import { TokenService } from 'src/Services/token.service';
 
 @NgModule({
   imports: [
@@ -23,7 +26,8 @@ import { NgbDropdownModule, NgbNavModule, NgbModule, NgbCollapseModule } from '@
     NgbModule,
     NgbCollapseModule,
     NgScrollbarModule,
-    CardComponent
+    CardComponent,
+    HttpClientModule
   ],
   exports: [
     CommonModule,
@@ -38,6 +42,7 @@ import { NgbDropdownModule, NgbNavModule, NgbModule, NgbCollapseModule } from '@
     NgScrollbarModule,
     CardComponent
   ],
+  providers:[AuthService,TokenService],
   declarations: [SpinnerComponent]
 })
 export class SharedModule {}

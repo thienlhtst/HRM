@@ -5,15 +5,19 @@ import { RouterModule, Routes } from '@angular/router';
 // Project import
 import { AdminComponent } from './theme/layouts/admin/admin.component';
 import { GuestComponent } from './theme/layouts/guest/guest.component';
+import { guestGuard } from './demo/authentication/guards/guest.guard';
+import { authGuard } from './demo/authentication/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: '',
         redirectTo: '/dashboard/default',
+        
         pathMatch: 'full'
       },
       {
@@ -49,6 +53,7 @@ const routes: Routes = [
   {
     path: '',
     component: GuestComponent,
+    canActivate: [guestGuard],
     children: [
       {
         path: 'login',

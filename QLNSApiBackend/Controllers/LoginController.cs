@@ -11,7 +11,8 @@ namespace QLNSApiBackend.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private readonly  ILoginService _loginService;
+        private readonly ILoginService _loginService;
+
         public LoginController(ILoginService loginService)
         {
             _loginService = loginService;
@@ -23,9 +24,10 @@ namespace QLNSApiBackend.Controllers
             var model = await _loginService.GetAll();
             return Ok(model);
         }
-        [HttpPost("loginweb")]
+
+        [HttpPost()]
         [AllowAnonymous]
-        public async Task<IActionResult> Author(LoginModel loginModel)
+        public async Task<IActionResult> Author([FromBody] LoginModel loginModel)
         {
             var model = await _loginService.Login(loginModel);
             return Ok(model);
