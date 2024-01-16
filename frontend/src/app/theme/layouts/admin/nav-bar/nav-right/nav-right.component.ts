@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from 'src/Services/auth.service';
+import { TokenService } from 'src/Services/token.service';
 
 @Component({
   selector: 'app-nav-right',
@@ -10,23 +12,28 @@ export class NavRightComponent {
   profile = [
     {
       icon: 'ti ti-edit-circle',
-      title: 'Edit Profile'
+      title: 'Edit Profile',
+      event:'asd'
     },
     {
       icon: 'ti ti-user',
-      title: 'View Profile'
+      title: 'View Profile',
+      event:'asd'
     },
     {
       icon: 'ti ti-clipboard',
-      title: 'Social Profile'
+      title: 'Social Profile',
+      event:'asd'
     },
     {
       icon: 'ti ti-edit-circle',
-      title: 'Billing'
+      title: 'Billing',
+      event:'asd'
     },
     {
       icon: 'ti ti-power',
-      title: 'Logout'
+      title: 'Logout',
+      event:'logout'
     }
   ];
 
@@ -52,4 +59,14 @@ export class NavRightComponent {
       title: 'History'
     }
   ];
+  isAuthenticated$;
+  constructor( private tokenService: TokenService,private auth:AuthService){
+    this.isAuthenticated$ = this.tokenService.isAuthentication;
+  }
+  handleclick(event:any){
+    if(event =='logout')
+    this.auth.onLogout()
+  }
+
+
 }
