@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 export class RankServiceService {
 
 constructor(private http : HttpClient) { }
-  apiurl : string = environment.ApiUrl
+  apiurl : string = environment.apiurl
 
   GetRank():Observable<RankModel[]>{
     return this.http.get<RankModel[]>(this.apiurl + '/Rank')

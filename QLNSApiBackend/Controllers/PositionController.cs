@@ -41,7 +41,7 @@ namespace QLNS.BackendApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm] PositionCreateRequest request)
+        public async Task<IActionResult> Create([FromBody] PositionCreateRequest request)
         {
             var dayid = await _managePositionService.Create(request);
             if (dayid == 0)

@@ -4,7 +4,7 @@ import { RankListComponent } from './rank-list/rank-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { BreadcrumbComponent } from 'src/app/theme/shared/components/breadcrumb/breadcrumb.component';
 import { HttpClientModule } from '@angular/common/http';
-import { RankServiceService } from 'src/Service/Rank/RankService.service';
+import { RankServiceService } from 'src/Services/Rank/RankService.service';
 
 
 const route : Routes=[{

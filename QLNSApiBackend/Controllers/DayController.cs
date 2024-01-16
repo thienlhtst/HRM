@@ -38,7 +38,7 @@ namespace QLNS.BackendApi.Controllers
             return Ok(day);
         }
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm]DayCreateRequest request)
+        public async Task<IActionResult> Create([FromBody]DayCreateRequest request)
         {
             var dayid = await _manageDayService.Create(request);
             if (dayid == 0)
@@ -59,7 +59,7 @@ namespace QLNS.BackendApi.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromForm] DayUpdateRequest request)
+        public async Task<IActionResult> Update([FromBody] DayUpdateRequest request)
         {
             var affectedResult = await _manageDayService.Update(request);
             if (affectedResult == 0)

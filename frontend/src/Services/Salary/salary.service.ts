@@ -1,4 +1,4 @@
-import { SalaryModel } from './../../Model/SalaryModel';
+import { SalaryModel } from '../../Model/SalaryModel';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class SalaryService {
 
   constructor(private http : HttpClient) { }
-  apiurl : string = environment.ApiUrl
+  apiurl : string = environment.apiurl
 
   GetSalary():Observable<SalaryModel[]>{
     return this.http.get<SalaryModel[]>(this.apiurl +'/Salary')

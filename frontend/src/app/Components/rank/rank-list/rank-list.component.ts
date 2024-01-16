@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RankServiceService } from 'src/Service/Rank/RankService.service';
+import { RankServiceService } from 'src/Services/Rank/RankService.service';
 import { RankModule } from '../rank.module';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Allowancemodel } from 'src/Model/AllowanceModel';
-import { AllowanceServiceService } from 'src/Service/Allowance/AllowanceService.service';
+import { AllowanceServiceService } from 'src/Services/Allowance/AllowanceService.service';
 
 @Component({
   selector: 'app-allowance-list',

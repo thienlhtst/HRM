@@ -35,8 +35,7 @@ namespace QLNSApiBackend.Controllers
         }
 
         [HttpPost("createsalary")]
-        [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Create([FromForm] SalaryCreateRequest salaryCreateRequest)
+        public async Task<IActionResult> Create([FromBody] SalaryCreateRequest salaryCreateRequest)
         {
             if (!ModelState.IsValid)
             {
@@ -54,7 +53,7 @@ namespace QLNSApiBackend.Controllers
 
         [HttpPut("{id}")]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Update([FromRoute] string id, [FromForm] SalaryEditRequest request)
+        public async Task<IActionResult> Update([FromRoute] string id, [FromBody] SalaryEditRequest request)
         {
             request.ID = id;
             var salary = await _salaryService.Update(request);

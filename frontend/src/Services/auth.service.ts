@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs';
 import { TokenService } from './token.service';
-import {ILogin , ILoginResponse} from '../model/auth.mode';
+import {ILogin , ILoginResponse} from 'src/Model/auth.mode';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   onLogout() {
-    
+
         this.tokenService.removeToken();
   }
 }

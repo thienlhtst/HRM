@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SalaryListComponent } from './salary-list/salary-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { SalaryService } from 'src/Service/Salary/salary.service';
+import { SalaryService } from 'src/Services/Salary/salary.service';
 
 const route : Routes=[{
   path:'',

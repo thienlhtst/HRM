@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class PositionServiceService {
 
 constructor(private http : HttpClient) {}
-      ApiUrl : string = environment.ApiUrl
+      ApiUrl : string = environment.apiurl
 
 
       GetPosition(): Observable<PositionModel[]>{

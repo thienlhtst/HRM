@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SalaryModel } from 'src/Model/SalaryModel';
-import { SalaryService } from 'src/Service/Salary/salary.service';
+import { SalaryService } from 'src/Services/Salary/salary.service';
 
 @Component({
   selector: 'app-salary-list',

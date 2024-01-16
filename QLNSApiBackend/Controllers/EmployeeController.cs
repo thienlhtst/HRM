@@ -39,9 +39,8 @@ namespace QLNSApiBackend.Controllers
         }
 
         [HttpPost("createemployee")]
-        [Consumes("multipart/form-data")]
         //[Authorize]
-        public async Task<IActionResult> Create([FromForm] EmployeeCreateRequest employeeCreateRequest)
+        public async Task<IActionResult> Create([FromBody] EmployeeCreateRequest employeeCreateRequest)
         {
             if (!ModelState.IsValid)
             {
@@ -59,8 +58,7 @@ namespace QLNSApiBackend.Controllers
         }
 
         [HttpPut("{ID}")]
-        [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Update([FromRoute] string ID, [FromForm] EmployeeEditRequest request)
+        public async Task<IActionResult> Update([FromRoute] string ID, [FromBody] EmployeeEditRequest request)
         {
             ID = request.ID ;
             var employee = await _employeeService.Update(request);

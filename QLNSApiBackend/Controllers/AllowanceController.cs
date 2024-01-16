@@ -39,8 +39,7 @@ namespace QLNSApiBackend.Controllers
         }
 
         [HttpPut("{id}")]
-        [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Update([FromRoute] string id, [FromForm] AllowanceEditRequest request)
+        public async Task<IActionResult> Update([FromBody] string id, [FromForm] AllowanceEditRequest request)
         {
             request.ID = id;
             var allowance = await _allowanceService.Update(request);

@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class AllowanceServiceService {
 
 constructor(private http : HttpClient) { }
-  apiurl : string = environment.ApiUrl
+  apiurl : string = environment.apiurl
 
   getAllowance(): Observable<Allowancemodel[]> {
     return this.http.get<Allowancemodel[]>(this.apiurl+'/Allowance')

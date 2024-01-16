@@ -4,7 +4,7 @@ import { PositionListComponent } from './position-list/position-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { BreadcrumbComponent } from 'src/app/theme/shared/components/breadcrumb/breadcrumb.component';
 import { HttpClientModule } from '@angular/common/http';
-import { PositionServiceService } from 'src/Service/Position/PositionService.service';
+import { PositionServiceService } from 'src/Services/Position/PositionService.service';
 
 
 const route : Routes =[{
