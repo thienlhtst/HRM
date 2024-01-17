@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AllowanceListComponent } from './allowance-list.component';
+import { AllowanceListComponent } from './allowance-list/allowance-list.component';
 import { RouterModule, Routes } from '@angular/router';
-import { BreadcrumbComponent } from "../../../theme/shared/components/breadcrumb/breadcrumb.component";
+import { BreadcrumbComponent } from "../../theme/shared/components/breadcrumb/breadcrumb.component";
 import { AllowanceServiceService } from 'src/Services/Allowance/AllowanceService.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AllowanceAddComponent } from './allowance-add/allowance-add.component';
 
 
 const routes : Routes =[
   {
     path : '',
     children:[
-      {path: '',component:AllowanceListComponent}
+      {path: '',component:AllowanceListComponent},
+      {path:'add',component:AllowanceAddComponent}
     ]
   }
 ]
@@ -20,6 +22,7 @@ const routes : Routes =[
 @NgModule({
     declarations: [
         AllowanceListComponent,
+        AllowanceAddComponent,
     ],
     imports: [
         CommonModule,

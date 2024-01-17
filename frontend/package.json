@@ -12,7 +12,6 @@
     "test": "ng test",
     "lint": "ng lint",
     "lint-fix": "ng lint --fix"
-
   },
   "private": false,
   "dependencies": {
@@ -27,6 +26,7 @@
     "@angular/router": "16.1.6",
     "@ng-bootstrap/ng-bootstrap": "15.1.0",
     "@popperjs/core": "2.11.8",
+    "@zxing/ngx-scanner": "^17.0.0",
     "apexcharts": "3.41.0",
     "bootstrap": "5.2.3",
     "ng-apexcharts": "1.8.0",

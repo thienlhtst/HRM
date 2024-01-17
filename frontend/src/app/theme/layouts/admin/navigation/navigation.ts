@@ -150,10 +150,18 @@ const NavigationItems = [
           children :[
             {
               id :'allowance',
-              title:'Allowance-Create',
-              url:"/allowance/createallowance",
+              title:'Add',
+              type:'item',
+              url:"/allowance/add",
               classes:'nav-item',
-            }
+            },
+            {
+              id :'allowance',
+              title:'Update',
+              type:'item',
+              url:"/allowance/update/",
+              classes:'nav-item',
+            },
           ]
         },
         {
@@ -166,7 +174,7 @@ const NavigationItems = [
         },
         {
           id:'employee',
-          title:'Employee',
+          title:'Employee ',
           type:'item',
           url:'/employee',
           classes:'nav-item',
@@ -181,8 +189,13 @@ const NavigationItems = [
           icon:''
         },
         {
-          id:'workhour'
-        }
+          id:'workhour',
+          title:'Work Hour',
+          type:'item',
+          url:'/workhour',
+          classes :'nav-item',
+          icon :''
+        },
     ]
   }
 

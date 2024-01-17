@@ -1,6 +1,6 @@
 
 
-export interface WorkHour {
+export interface WorkHourModel {
   id : string
   employeeid : string
   lbdid : string

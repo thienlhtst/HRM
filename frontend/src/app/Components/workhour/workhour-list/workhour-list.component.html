@@ -1,0 +1,52 @@
+<div class="card">
+  <div class="card-header">
+      <h3>Position table</h3>
+      <div class="card-header-right">
+<ul class="list-unstyled card-option">
+<li><i class="fa fa-chevron-left"></i></li>
+<li><i class="fa fa-window-maximize full-card"></i></li>
+<li><i class="fa fa-minus minimize-card"></i></li>
+<li><i class="fa fa-refresh reload-card"></i></li>
+<li><i class="fa fa-times close-card"></i></li>
+</ul>
+</div>
+
+  </div>
+  <div class="card-block table-border-style" >
+      <div class="table-responsive" >
+          <table class="table table-inverse">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Employee Name</th>
+                      <th>LBDID</th>
+                      <th>Day</th>
+                      <th>Month</th>
+                      <th>Year</th>
+                      <th>Hour Check In</th>
+                      <th>Minute Check In</th>
+                      <th>Hour Check Out</th>
+                      <th>Minute Check Out</th>
+
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let item of datas">
+                      <td>{{item.id}}</td>
+                      <td>{{item.employeeid}}</td>
+                      <td>{{item.lbdid}}</td>
+                      <td>{{item.day}}</td>
+                      <td>{{item.month}}</td>
+                      <td>{{item.year}}</td>
+                      <td>{{item.hourcheckin}}</td>
+                      <td>{{item.minutecheckin}}</td>
+                      <td>{{item.hourcheckout}}</td>
+                      <td>{{item.minutecheckout}}</td>
+
+                  </tr>
+
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>

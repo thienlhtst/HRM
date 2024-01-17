@@ -17,7 +17,7 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: '/dashboard/default',
-        
+
         pathMatch: 'full'
       },
       {
@@ -50,7 +50,7 @@ const routes: Routes = [
       },
       {
         path:'allowance',
-        loadChildren : () => import('./Components/allowance/allowance-list/allowance.module').then(m=>m.AllowanceModule)
+        loadChildren : () => import('./Components/allowance/allowance.module').then(m=>m.AllowanceModule)
       },
       {
         path:'employee',
@@ -67,6 +67,10 @@ const routes: Routes = [
       {
         path:'salary',
         loadChildren:() => import ('./Components/salary/salary.module').then(m=>m.SalaryModule)
+      },
+      {
+        path:'workhour',
+        loadChildren:() => import ('./Components/workhour/workhour.module').then(m=>m.WorkhourModule)
       }
 
 

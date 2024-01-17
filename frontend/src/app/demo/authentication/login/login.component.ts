@@ -1,8 +1,10 @@
+
 // angular import
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from 'src/Services/auth.service';
+import {ZXingScannerModule} from '@zxing/ngx-scanner'
 import {
   FormBuilder,
   FormControl,
@@ -15,18 +17,23 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, RouterModule,ReactiveFormsModule,HttpClientModule],
+  imports: [CommonModule, RouterModule,ReactiveFormsModule,HttpClientModule,ZXingScannerModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   providers:[AuthService]
 })
 export default class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  message: any='';
+  message: unknown='';
   flag: number=0
-  constructor(private fb: FormBuilder,private authService:AuthService ) {
-    
+  QrCodeResult : string = ''
+  constructor(private fb: FormBuilder,private authService:AuthService ) {}
+
+  onCodeResult(result:string)
+  {
+    this.QrCodeResult = result
   }
+
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       account: new FormControl('', [Validators.required]),
@@ -37,7 +44,7 @@ export default class LoginComponent implements OnInit {
 
     this.flag=1
     if (this.loginForm.valid) {
-      
+
       this.authService.onLogin(this.loginForm.value).subscribe({
         next: (a) => {this.message=a, this.flag=0 },
      });
