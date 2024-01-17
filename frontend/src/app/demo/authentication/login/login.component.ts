@@ -1,5 +1,5 @@
 // angular import
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from 'src/Services/auth.service';
@@ -11,20 +11,32 @@ import {
   Validators,
 } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ModalComponent } from 'src/app/theme/shared/components/modal/modal/modal.component';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, RouterModule,ReactiveFormsModule,HttpClientModule],
+  imports: [CommonModule, RouterModule,ReactiveFormsModule,HttpClientModule,ModalComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers:[AuthService]
+  providers:[AuthService,MdbModalService,ModalComponent]
+})
+@Injectable({
+  providedIn: 'root',
 })
 export default class LoginComponent implements OnInit {
+
+
+
+
   loginForm!: FormGroup;
-  message: any='';
+  @Input() message: boolean=false;
+  @Output('checkedChange') change = new EventEmitter<boolean>();  // output
+
   flag: number=0
-  constructor(private fb: FormBuilder,private authService:AuthService ) {
+  constructor(private fb: FormBuilder,private authService:AuthService) {
     
   }
   ngOnInit(): void {
@@ -33,19 +45,24 @@ export default class LoginComponent implements OnInit {
       password: new FormControl('', [Validators.required]),
     });
   }
+  
   onSubmit() {
-
+    this.message=true
     this.flag=1
     if (this.loginForm.valid) {
       
       this.authService.onLogin(this.loginForm.value).subscribe({
-        next: (a) => {this.message=a, this.flag=0 },
+        next: (a) => {if(a==null)this.message=true , this.flag=0 },
+        
      });
    } else {
     this.flag=0
       this.validateAllFormFileds(this.loginForm)
     }
 
+  }
+  flagchangeHandler(flagchange: boolean){
+    this.message=flagchange
   }
   private validateAllFormFileds(formGroup: FormGroup){
     Object.keys(formGroup.controls).forEach(field=>{

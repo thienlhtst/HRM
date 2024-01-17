@@ -14,6 +14,8 @@ import { NgbDropdownModule, NgbNavModule, NgbModule, NgbCollapseModule } from '@
 import { AuthService } from 'src/Services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TokenService } from 'src/Services/token.service';
+import { ModalComponent } from './components/modal/modal/modal.component';
+
 
 @NgModule({
   imports: [
@@ -43,6 +45,6 @@ import { TokenService } from 'src/Services/token.service';
     CardComponent
   ],
   providers:[AuthService,TokenService],
-  declarations: [SpinnerComponent]
+  declarations: [SpinnerComponent],
 })
 export class SharedModule {}

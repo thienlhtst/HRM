@@ -1,9 +1,12 @@
+<app-modal  [flag]="message" (flagchange)='flagchangeHandler($event)'></app-modal>
+
 <div class="auth-main">
   <div class="auth-wrapper v3">
     <div class="auth-form">
       <div class="auth-header">
         <a href="javascript:"><img src="assets/images/logo-dark.svg" alt="logo" /></a>
       </div>
+
       <div class="card my-5">
         <div class="card-body">
           <form [formGroup]="loginForm">
@@ -29,7 +32,7 @@
             <h5 class="text-secondary f-w-400"><a href="javascript:">Forgot Password?</a></h5>
           </div>
           <div class="d-grid mt-4">
-            <button  (click)="onSubmit()"  type="submit" class="btn btn-primary">
+            <button  (click)="onSubmit()"   type="submit" class="btn btn-primary">
               <span class="spinner-border spinner-border-sm" role="status" *ngIf="flag==1"  ></span>
               <span *ngIf="flag==0" >Login</span></button>
           </div>
