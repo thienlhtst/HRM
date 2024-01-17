@@ -62,7 +62,35 @@ export class BreadcrumbComponent {
       } else {
         if (a.type === 'group' && 'children' in a) {
           a.children.forEach(function (b) {
-            if (b.type === 'item' && 'url' in b && b.url === activeLink) {
+            if(b.type ==='item' && 'children' in b){
+              b.children.forEach(function(c)
+              {
+                if (c.type === 'item' && 'url' in c && c.url === activeLink) {
+                  result = [
+                    {
+                      url: 'url' in a ? a.url : false,
+                      title: a.title,
+                      breadcrumbs: 'breadcrumbs' in a ? a.breadcrumbs : true,
+                      type: a.type
+                    },
+                    {
+                      url: 'url' in b ? b.url : false,
+                      title: b.title,
+                      breadcrumbs: 'breadcrumbs' in b ? a.breadcrumbs : true,
+                      type: b.type
+                    },
+                    {
+                      url: 'url' in c ? c.url : false,
+                      title: c.title,
+                      breadcrumbs: 'breadcrumbs' in c ? c.breadcrumbs : true,
+                      type: c.type
+                    },
+
+                  ];
+                }
+              })
+            }
+            if (b.type === 'item' && 'url' in b && b.url === activeLink ) {
               result = [
                 {
                   url: 'url' in a ? a.url : false,
@@ -120,6 +148,7 @@ export class BreadcrumbComponent {
                       });
                     }
                   }
+
                 });
               }
             }

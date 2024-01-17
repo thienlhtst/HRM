@@ -12,7 +12,7 @@
           <form [formGroup]="loginForm">
           <div class="d-flex justify-content-between align-items-end mb-4">
             <h3 class="mb-0 align-items-end"><b>Login</b></h3>
-          
+
           </div>
           <div class="form-group mb-3" [class.error]="loginForm.controls['account'].dirty && loginForm.hasError('required','account')">
             <label class="form-label" for="">Username</label>
@@ -34,23 +34,23 @@
           <div class="d-grid mt-4">
             <button  (click)="onSubmit()"   type="submit" class="btn btn-primary">
               <span class="spinner-border spinner-border-sm" role="status" *ngIf="flag==1"  ></span>
-              <span *ngIf="flag==0" >Login</span></button>
+              <span *ngIf="flag===0" >Login</span></button>
           </div>
         </form>
           <div class="row" style="height: 80px;">
             <div class="col-4">
               <div class="d-grid " >
-               
+
               </div>
             </div>
             <div class="col-4">
               <div class="d-grid">
-              
+
               </div>
             </div>
             <div class="col-4">
               <div class="d-grid">
-               
+
               </div>
             </div>
           </div>
@@ -72,4 +72,10 @@
       </div>
     </div>
   </div>
+
+  <zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner>
+  <p>
+    <small>Scan Result</small>
+    <strong> {{QrCodeResultQ`}}</strong>
+  </p>
 </div>

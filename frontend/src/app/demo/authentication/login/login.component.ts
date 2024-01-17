@@ -1,8 +1,10 @@
+
 // angular import
 import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from 'src/Services/auth.service';
+import {ZXingScannerModule} from '@zxing/ngx-scanner'
 import {
   FormBuilder,
   FormControl,
@@ -18,7 +20,7 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, RouterModule,ReactiveFormsModule,HttpClientModule,ModalComponent],
+  imports: [CommonModule, RouterModule,ReactiveFormsModule,HttpClientModule,ZXingScannerModule,ModalComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   providers:[AuthService,MdbModalService,ModalComponent]
@@ -32,13 +34,12 @@ export default class LoginComponent implements OnInit {
 
 
   loginForm!: FormGroup;
-  @Input() message: boolean=false;
-  @Output('checkedChange') change = new EventEmitter<boolean>();  // output
-
+  message: any='';
   flag: number=0
-  constructor(private fb: FormBuilder,private authService:AuthService) {
+  constructor(private fb: FormBuilder,private authService:AuthService ) {
     
   }
+
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       account: new FormControl('', [Validators.required]),
@@ -50,7 +51,7 @@ export default class LoginComponent implements OnInit {
     this.message=true
     this.flag=1
     if (this.loginForm.valid) {
-      
+
       this.authService.onLogin(this.loginForm.value).subscribe({
         next: (a) => {if(a==null)this.message=true , this.flag=0 },
         

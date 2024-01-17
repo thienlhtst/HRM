@@ -9,12 +9,17 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { CardComponent } from './components/card/card.component';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
+
 // bootstrap import
 import { NgbDropdownModule, NgbNavModule, NgbModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/Services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TokenService } from 'src/Services/token.service';
 import { ModalComponent } from './components/modal/modal/modal.component';
+
+
+
+
 
 
 @NgModule({
@@ -29,6 +34,8 @@ import { ModalComponent } from './components/modal/modal/modal.component';
     NgbCollapseModule,
     NgScrollbarModule,
     CardComponent,
+
+
     HttpClientModule
   ],
   exports: [
@@ -42,7 +49,8 @@ import { ModalComponent } from './components/modal/modal/modal.component';
     NgbNavModule,
     NgbCollapseModule,
     NgScrollbarModule,
-    CardComponent
+    CardComponent,
+
   ],
   providers:[AuthService,TokenService],
   declarations: [SpinnerComponent],

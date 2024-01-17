@@ -1,6 +1,5 @@
-import { Component, NgZone } from '@angular/core';
+import { Component } from '@angular/core';
 import { MantisConfig } from 'src/app/app-config';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-admin',

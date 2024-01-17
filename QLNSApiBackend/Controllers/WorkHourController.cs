@@ -32,7 +32,7 @@ namespace QLNSApiBackend.Controllers
             return Ok(model);
 		}
 		[HttpPost]
-		public async Task<IActionResult> Checkin([FromForm] CheckinModel model)
+		public async Task<IActionResult> Checkin([FromBody] CheckinModel model)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -42,7 +42,7 @@ namespace QLNSApiBackend.Controllers
 			return Ok(result);
 		}
 		[HttpPut("checkout")]
-		public async Task<IActionResult> Checkout([FromForm] CheckoutModel model)
+		public async Task<IActionResult> Checkout([FromBody] CheckoutModel model)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -53,7 +53,7 @@ namespace QLNSApiBackend.Controllers
 		}
         [HttpPut("{ID}")]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> UpdateAll([FromRoute] int ID, [FromForm] WorkHourUpdateRequest model)
+        public async Task<IActionResult> UpdateAll([FromRoute] int ID, [FromBody] WorkHourUpdateRequest model)
 		{
             if (!ModelState.IsValid)
             {

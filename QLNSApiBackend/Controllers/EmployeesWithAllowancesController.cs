@@ -29,8 +29,7 @@ namespace QLNSApiBackend.Controllers
             return Ok(emal);
         }
         [HttpPost("createemployeeswithallowances")]
-        [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Create([FromForm] CreateEWA request)
+        public async Task<IActionResult> Create([FromBody] CreateEWA request)
         {
             var emal = await _employeesWithAllowancesService.Create(request);
             return Ok(emal);
@@ -38,7 +37,7 @@ namespace QLNSApiBackend.Controllers
 
         [HttpPut("{id}")]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromForm] EmployeesWithAllowancesEditRequest request)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] EmployeesWithAllowancesEditRequest request)
         {
             request.ID = id;
             var emal = await _employeesWithAllowancesService.Update(request);
@@ -67,7 +66,7 @@ namespace QLNSApiBackend.Controllers
         }
 
         [HttpPost("auto")]
-        public async Task<IActionResult> auto([FromForm] EwaAutoCheckRequest request)
+        public async Task<IActionResult> auto([FromBody] EwaAutoCheckRequest request)
         {
             var emal = await _employeesWithAllowancesService.auto(request);
             return Ok(emal);

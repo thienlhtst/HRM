@@ -23,8 +23,7 @@ namespace QLNSApiBackend.Controllers
         }
 
         [HttpPost("CreateLabourContract")]
-        [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Create([FromForm] LabourContractCreateRequest request)
+        public async Task<IActionResult> Create([FromBody] LabourContractCreateRequest request)
         {
             var labour = await _labourContractService.Create(request);
             return Ok(new { token = labour });
@@ -38,8 +37,7 @@ namespace QLNSApiBackend.Controllers
         }
 
         [HttpPut("{id}")]
-        [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Update([FromRoute] string id,[FromForm] LabourContractEditRequest request)
+        public async Task<IActionResult> Update([FromRoute] string id,[FromBody] LabourContractEditRequest request)
         {
             request.ID = id;
             var lb = await _labourContractService.Update(request);

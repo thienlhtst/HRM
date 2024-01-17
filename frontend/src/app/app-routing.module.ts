@@ -17,7 +17,7 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: '/dashboard/default',
-        
+
         pathMatch: 'full'
       },
       {
@@ -47,7 +47,33 @@ const routes: Routes = [
       {
         path: 'sample-page',
         loadComponent: () => import('./demo/other/sample-page/sample-page.component')
+      },
+      {
+        path:'allowance',
+        loadChildren : () => import('./Components/allowance/allowance.module').then(m=>m.AllowanceModule)
+      },
+      {
+        path:'employee',
+        loadChildren:() => import('./Components/employee/employee.module').then(m=>m.EmployeeModule)
+      },
+      {
+        path:'position',
+        loadChildren:() => import('./Components/position/position.module').then(m=>m.PositionModule)
+      },
+      {
+        path:'rank',
+        loadChildren:() => import('./Components/rank/rank.module').then(m=>m.RankModule)
+      },
+      {
+        path:'salary',
+        loadChildren:() => import ('./Components/salary/salary.module').then(m=>m.SalaryModule)
+      },
+      {
+        path:'workhour',
+        loadChildren:() => import ('./Components/workhour/workhour.module').then(m=>m.WorkhourModule)
       }
+
+
     ]
   },
   {

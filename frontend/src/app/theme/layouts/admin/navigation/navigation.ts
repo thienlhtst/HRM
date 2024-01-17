@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 export interface NavigationItem {
   id: string;
   title: string;
@@ -134,24 +135,76 @@ const NavigationItems = [
     ]
   },
   {
-    id: 'other',
-    title: 'Other',
+    id: 'UI',
+    title: 'Pages',
     type: 'group',
     icon: 'icon-navigation',
     children: [
-      {
-        id: 'sample-page',
-        title: 'Sample Page',
-        type: 'item',
-        url: '/sample-page',
-        classes: 'nav-item',
-        icon: 'ti ti-brand-chrome'
-      }
+        {
+          id :'allowance',
+          title:'Allowance',
+          type:'item',
+          url:"/allowance",
+          classes:'nav-item',
+          icon:'',
+          children :[
+            {
+              id :'allowance',
+              title:'Add',
+              type:'item',
+              url:"/allowance/add",
+              classes:'nav-item',
+            },
+            {
+              id :'allowance',
+              title:'Update',
+              type:'item',
+              url:"/allowance/update/",
+              classes:'nav-item',
+            },
+          ]
+        },
+        {
+          id:'position',
+          title:'Position',
+          type:'item',
+          url:'/position',
+          classes:'nav-item',
+          icon:''
+        },
+        {
+          id:'employee',
+          title:'Employee ',
+          type:'item',
+          url:'/employee',
+          classes:'nav-item',
+          icon:''
+        },
+        {
+          id:'rank',
+          title:'Rank',
+          type:'item',
+          url:'/rank',
+          classes:'nav-item',
+          icon:''
+        },
+        {
+          id:'workhour',
+          title:'Work Hour',
+          type:'item',
+          url:'/workhour',
+          classes :'nav-item',
+          icon :''
+        },
     ]
   }
+
+
+
 ];
 
 @Injectable()
+// eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 export class NavigationItem {
   get() {
     return NavigationItems;
