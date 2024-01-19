@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -79,7 +79,7 @@ const routes: Routes = [
   {
     path: '',
     component: GuestComponent,
-    canActivate: [guestGuard],
+    //canActivate: [guestGuard],
     children: [
       {
         path: 'login',

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Allowancemodel } from 'src/Model/AllowanceModel';
 import { AllowanceServiceService } from 'src/Services/Allowance/AllowanceService.service';
+import { NotificationComponent } from 'src/app/theme/shared/components/Notification/Notification.component';
+import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pagingnav.component';
 
 @Component({
   selector: 'app-allowance-list',
@@ -8,18 +10,27 @@ import { AllowanceServiceService } from 'src/Services/Allowance/AllowanceService
   styleUrls: ['./allowance-list.component.scss']
 })
 export class AllowanceListComponent implements OnInit  {
-
   constructor(private service : AllowanceServiceService){}
   datas:Allowancemodel[];
+  pageindex:number =1;
+  messagerequest:string=''
+
+  @ViewChild(PagingnavComponent) child: PagingnavComponent;
+  @ViewChild(NotificationComponent) childnoti: NotificationComponent;
 
   ngOnInit(): void{
     this.GetAll();
+    
+  }
+  testclick(){
+    this.messagerequest= "test thu xem"
+    this.childnoti.showSuccess(this.childnoti.successTpl)
   }
   GetAll(){
-    this.service.getAllowance().subscribe((res)=>{
-      this.datas = res
+    //this.service.getAllowance().subscribe((res)=>{
+   //   this.datas = res
 
-    })
+   // })
   }
 
   buttonStyle = {

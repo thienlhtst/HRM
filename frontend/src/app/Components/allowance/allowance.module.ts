@@ -6,6 +6,8 @@ import { BreadcrumbComponent } from "../../theme/shared/components/breadcrumb/br
 import { AllowanceServiceService } from 'src/Services/Allowance/AllowanceService.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AllowanceAddComponent } from './allowance-add/allowance-add.component';
+import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pagingnav.component';
+import { NotificationComponent } from 'src/app/theme/shared/components/Notification/Notification.component';
 
 
 const routes : Routes =[
@@ -28,7 +30,7 @@ const routes : Routes =[
         CommonModule,
         RouterModule.forChild(routes),
         BreadcrumbComponent,
-        HttpClientModule,
+        HttpClientModule,PagingnavComponent,NotificationComponent
 
     ],
     providers: [AllowanceServiceService]

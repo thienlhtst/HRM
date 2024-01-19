@@ -4,7 +4,6 @@ import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@ang
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from 'src/Services/auth.service';
-import {ZXingScannerModule} from '@zxing/ngx-scanner'
 import {
   FormBuilder,
   FormControl,
@@ -15,12 +14,13 @@ import {
 import { HttpClientModule } from '@angular/common/http';
 import { ModalComponent } from 'src/app/theme/shared/components/modal/modal/modal.component';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
-
+import { AlertComponent } from 'src/app/theme/shared/components/alert/alert.component';
+import { Alert } from 'src/Model/Alert';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, RouterModule,ReactiveFormsModule,HttpClientModule,ZXingScannerModule,ModalComponent],
+  imports: [CommonModule, RouterModule,ReactiveFormsModule,HttpClientModule,ModalComponent,AlertComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   providers:[AuthService,MdbModalService,ModalComponent]
@@ -30,8 +30,8 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 })
 export default class LoginComponent implements OnInit {
 
-
-
+  
+  alert:Alert
 
   loginForm!: FormGroup;
   message: any='';
@@ -48,19 +48,26 @@ export default class LoginComponent implements OnInit {
   }
   
   onSubmit() {
+    this.alert={
+      type: 'success',
+		message: 'This is an success alert',
+	  }
+    
     this.message=true
     this.flag=1
     if (this.loginForm.valid) {
 
       this.authService.onLogin(this.loginForm.value).subscribe({
-        next: (a) => {if(a==null)this.message=true , this.flag=0 },
+        next: (a) => {
+          if(a==null){this.message=true,this.alert.type='success',this.message='asdasdsad'  };
+           this.flag=0 },
         
      });
    } else {
     this.flag=0
       this.validateAllFormFileds(this.loginForm)
     }
-
+    this.flag=0
   }
   flagchangeHandler(flagchange: boolean){
     this.message=flagchange

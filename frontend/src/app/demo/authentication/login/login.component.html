@@ -1,4 +1,3 @@
-<app-modal  [flag]="message" (flagchange)='flagchangeHandler($event)'></app-modal>
 
 <div class="auth-main">
   <div class="auth-wrapper v3">
@@ -30,6 +29,9 @@
               <label class="form-check-label text-muted" for="customCheckc1">Keep me sign in</label>
             </div>
             <h5 class="text-secondary f-w-400"><a href="javascript:">Forgot Password?</a></h5>
+          </div>
+          <div *ngIf="message==true">
+          <app-alert [alert]="alert" (flagchange)='flagchangeHandler($event)'></app-alert>
           </div>
           <div class="d-grid mt-4">
             <button  (click)="onSubmit()"   type="submit" class="btn btn-primary">
@@ -73,7 +75,7 @@
     </div>
   </div>
 
-  <zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner>
+  <!--zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner-->
   <p>
     <small>Scan Result</small>
     <strong> {{QrCodeResultQ`}}</strong>

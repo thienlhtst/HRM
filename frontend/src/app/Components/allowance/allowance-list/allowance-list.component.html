@@ -23,6 +23,8 @@
     <button >
       <img [style]="buttonStyle"   src="/frontend/src/img/circle-plus.png" />
     </button>
+    <button  (click)="testclick()" >dasdas</button>
+    <app-Notification [message]="messagerequest"></app-Notification>
       <div class="table-responsive" >
           <table class="table table-inverse">
               <thead>
@@ -41,7 +43,7 @@
 
               </tbody>
           </table>
-
+          <app-pagingnav class="d-flex justify-content-end"  [pagesize]="10"  #child></app-pagingnav>
       </div>
   </div>
 </div>
