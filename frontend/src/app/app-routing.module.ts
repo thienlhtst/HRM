@@ -25,6 +25,10 @@ const routes: Routes = [
         loadComponent: () => import('./demo/default/dashboard/dashboard.component')
       },
       {
+        path: 'home',
+        loadChildren : () => import('./Components/home/home.module').then(m=>m.HomeModule)
+      },
+      {
         path: 'typography',
         loadComponent: () => import('./demo/ui-component/typography/typography.component')
       },

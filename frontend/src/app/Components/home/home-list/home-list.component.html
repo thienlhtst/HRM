@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="row  d-flex justify-content-center">
+    <div class=" col-xl-3 col-md-6 flex-fill">
+        <div class="card bg-primary text-white mb-4">
+            <div class="card-body">Total Hours:</div>
+            <h2 class="text-center">2</h2>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" href="#">View Details</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6 flex-fill">
+        <div class="card bg-warning text-white mb-4">
+            <div class="card-body">Employee Work:</div>
+            <h2 class="text-center"> 3</h2>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" href="#">View Details</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6 flex-fill">
+        <div class="card bg-success text-white mb-4">
+            <div class="card-body">Employee Off</div>
+            <h2 class="text-center">2 </h2>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" href="#">View Details</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6 flex-fill">
+      <div class="card bg-success text-white mb-4">
+          <div class="card-body">Employee Late:</div>
+          <h2 class="text-center"> 2</h2>
+          <div class="card-footer d-flex align-items-center justify-content-between">
+              <a class="small text-white stretched-link" href="#">View Details</a>
+              <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+          </div>
+      </div>
+  </div>
+</div>
+  <div class="col-sm">
+    <div class="card">
+      <div class="card-header">List Work Hours Today</div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <app-home-list-details  [pagenumber]="pagenumber" ></app-home-list-details>
+          <app-pagingnav class="d-flex justify-content-end"  [pagesize]="10" (numberchange)="numberchange($event)"  #child></app-pagingnav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
