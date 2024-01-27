@@ -22,7 +22,7 @@ constructor(private http : HttpClient) { }
     return this.http.put(this.apiurl +'/Rank/'+data.idrank,data)
   }
 
-  DeleteRank(data:number){
+  DeleteRank(data:string){
     return this.http.delete(this.apiurl + '/Rank/'+ data)
   }
 }

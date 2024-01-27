@@ -30,12 +30,12 @@
             </div>
             <h5 class="text-secondary f-w-400"><a href="javascript:">Forgot Password?</a></h5>
           </div>
-          <div *ngIf="message==true">
+          <div *ngIf="message===true">
           <app-alert [alert]="alert" (flagchange)='flagchangeHandler($event)'></app-alert>
           </div>
           <div class="d-grid mt-4">
-            <button  (click)="onSubmit()"   type="submit" class="btn btn-primary">
-              <span class="spinner-border spinner-border-sm" role="status" *ngIf="flag==1"  ></span>
+            <button  (click)="onSubmit()"  type="submit" class="btn btn-primary">
+              <span class="spinner-border spinner-border-sm" role="status" *ngIf="flag===1"  ></span>
               <span *ngIf="flag===0" >Login</span></button>
           </div>
         </form>
@@ -75,9 +75,4 @@
     </div>
   </div>
 
-  <!--zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner-->
-  <p>
-    <small>Scan Result</small>
-    <strong> {{QrCodeResultQ`}}</strong>
-  </p>
 </div>

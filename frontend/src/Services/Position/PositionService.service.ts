@@ -20,12 +20,12 @@ constructor(private http : HttpClient) {}
         return this.http.post(this.ApiUrl + '/Position/createposition',data)
       }
 
-      UpdatePosition(data: PositionModel){
-        return this.http.put(this.ApiUrl + '/Position/'+data.iDposition,data)
+      UpdatePosition(id : string,data: PositionModel){
+        return this.http.put(this.ApiUrl + '/Position/'+id,data)
       }
 
-      DeletePosition(data : number){
-        return this.http.delete(this.ApiUrl + '/Position/' + data)
+      DeletePosition(id : string){
+        return this.http.delete(this.ApiUrl + '/Position/' + id)
       }
 }
 

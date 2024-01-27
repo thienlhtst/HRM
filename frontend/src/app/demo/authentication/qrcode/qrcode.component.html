@@ -1,0 +1,16 @@
+
+<div class="qr-code">
+<zxing-scanner (scanSuccess)="onCodeResult($event)"></zxing-scanner>
+  <p>
+    <small>Scan Result</small>
+    <strong> {{QrCodeResult}}</strong>
+
+  </p>
+  <div *ngIf="QrCodeResult">Scanned QR Code: {{ QrCodeResult }}
+    <div *ngIf="datas">
+      <p *ngFor="let item of datas">
+        Information : {{item.id}},{{item.firstname}}
+     </p>
+    </div>
+  </div>
+</div>

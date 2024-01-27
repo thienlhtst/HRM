@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // Angular Imports
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,6 +17,7 @@ import { AuthService } from 'src/Services/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TokenService } from 'src/Services/token.service';
 import { ModalComponent } from './components/modal/modal/modal.component';
+import { PipeSharePipe } from './components/Pipe/pipe-share.pipe';
 
 
 
@@ -34,8 +36,6 @@ import { ModalComponent } from './components/modal/modal/modal.component';
     NgbCollapseModule,
     NgScrollbarModule,
     CardComponent,
-
-
     HttpClientModule
   ],
   exports: [

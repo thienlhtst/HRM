@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-mixed-spaces-and-tabs */
 
 // angular import
 import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
@@ -30,38 +33,39 @@ import { Alert } from 'src/Model/Alert';
 })
 export default class LoginComponent implements OnInit {
 
-  
+
   alert:Alert
 
   loginForm!: FormGroup;
   message: any='';
   flag: number=0
   constructor(private fb: FormBuilder,private authService:AuthService ) {
-    
+
   }
 
+  // eslint-disable-next-line @angular-eslint/contextual-lifecycle
   ngOnInit(): void {
     this.loginForm = this.fb.group({
       account: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
     });
   }
-  
+
   onSubmit() {
     this.alert={
       type: 'success',
 		message: 'This is an success alert',
 	  }
-    
+
     this.message=true
     this.flag=1
     if (this.loginForm.valid) {
 
       this.authService.onLogin(this.loginForm.value).subscribe({
         next: (a) => {
-          if(a==null){this.message=true,this.alert.type='success',this.message='asdasdsad'  };
+          if(a==null){this.message=true,this.alert.type='success',this.message='asdasdsad'}
            this.flag=0 },
-        
+
      });
    } else {
     this.flag=0

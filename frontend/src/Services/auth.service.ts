@@ -1,15 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { map } from 'rxjs';
+import {  Observable, map } from 'rxjs';
 import { TokenService } from './token.service';
 import {ILogin , ILoginResponse} from 'src/Model/auth.mode';
+import { EmployeeModel } from 'src/Model/EmployeeModel';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   constructor(private http: HttpClient, private tokenService: TokenService) {}
+  apiurl : string = environment.apiurl
+
+
+  GetInforToLogin(EmployeeID : string):Observable<EmployeeModel[]>{
+    return this.http.get<EmployeeModel[]>(this.apiurl + '/Employee/' +EmployeeID)
+  }
+
 
   onLogin(data: ILogin) {
     return this.http

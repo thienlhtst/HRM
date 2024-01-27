@@ -12,33 +12,38 @@
 </div>
 
   </div>
+  <div class="search">
+        <input type="text" name="filter" [(ngModel)]="searchText" placeholder="Enter id" #fill>
+  </div>
 
   <div class="card-block table-border-style" >
-    <button >
-      <img [style]="buttonStyle"  src="/frontend/src/img/circle-plus.png" />
-    </button>
-    <button >
-      <img [style]="buttonStyle"   src="/frontend/src/img/circle-plus.png" />
-    </button>
-    <button >
-      <img [style]="buttonStyle"   src="/frontend/src/img/circle-plus.png" />
-    </button>
-    <button  (click)="testclick()" >dasdas</button>
     <app-Notification [message]="messagerequest"></app-Notification>
       <div class="table-responsive" >
+        <button (click)="ButtonClickToAdd()" >
+          <img   src="/frontend/src/assets/crud-img/plus.png" alt=" Add" />
+        </button>
           <table class="table table-inverse">
               <thead>
                   <tr>
                       <th>ID</th>
                       <th>Name</th>
                       <th>Money</th>
+                      <th>Options</th>
                   </tr>
               </thead>
               <tbody>
-                  <tr *ngFor="let item of datas">
+                  <tr *ngFor="let item of datas | filter : searchText ">
                       <td>{{item.id}}</td>
                       <td>{{item.name}}</td>
                       <td>{{item.money}}</td>
+                      <td>
+                      <button (click)="ButtonClickToUpdate(item.id)">
+                        <img   src="/frontend/src/img/plus.png" />
+                      </button>
+                      <button (click)="Delete($event,item.id)">
+                        <img   src="/frontend/src/img/plus.png" />
+                      </button>
+                    </td>
                   </tr>
 
               </tbody>

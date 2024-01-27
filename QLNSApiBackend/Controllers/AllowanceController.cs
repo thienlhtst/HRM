@@ -31,15 +31,15 @@ namespace QLNSApiBackend.Controllers
             return Ok(allowance);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody]AllowanceCreateRequest request)
+        [HttpPost("createallowance")]
+        public async Task<IActionResult> Create([FromBody] AllowanceCreateRequest request)
         {
             var allowance = await _allowanceService.Create(request);
             return Ok(new { token = allowance });
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromBody] string id, [FromForm] AllowanceEditRequest request)
+        public async Task<IActionResult> Update(string id, [FromBody] AllowanceEditRequest request)
         {
             request.ID = id;
             var allowance = await _allowanceService.Update(request);

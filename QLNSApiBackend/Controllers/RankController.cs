@@ -65,7 +65,6 @@ namespace QLNSApiBackend.Controllers
         }
 
         [HttpPut("{id}")]
-        [Consumes("multipart/form-data")]
         public async Task<IActionResult> Update([FromRoute] string id, [FromBody] RankEditRequest request)
         {
             request.IDrank = id;

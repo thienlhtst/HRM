@@ -17,14 +17,15 @@ constructor(private http : HttpClient) { }
   }
 
   CreateAllowance(data : Allowancemodel){
-    return this.http.post(this.apiurl + 'Allowance/createallowance',data)
+    console.log(data)
+    return this.http.post(this.apiurl + '/Allowance/createallowance',data)
   }
 
-  UpdateAllowance(data : Allowancemodel){
-      return this.http.put(this.apiurl+'/Allowance/'+data.id,data)
+  UpdateAllowance(id : string,data : Allowancemodel){
+      return this.http.put(this.apiurl+'/Allowance/'+id,data)
   }
 
-  DeleteAllowance(data:number){
+  DeleteAllowance(data:string){
     return this.http.delete(this.apiurl+'/Allowance/'+data)
   }
 }

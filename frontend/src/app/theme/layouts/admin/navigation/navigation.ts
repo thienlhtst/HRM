@@ -131,7 +131,17 @@ const NavigationItems = [
         icon: 'ti ti-user-plus',
         target: true,
         breadcrumbs: false
-      }
+      },
+      {
+        id: 'qrcode',
+        title: 'Qrcode',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/qrcode',
+        icon: 'ti ti-user-plus',
+        target: true,
+        breadcrumbs: false
+      },
     ]
   },
   {
@@ -159,7 +169,7 @@ const NavigationItems = [
               id :'allowance',
               title:'Update',
               type:'item',
-              url:"/allowance/update/",
+              url:"/allowance/update",
               classes:'nav-item',
             },
           ]

@@ -32,7 +32,7 @@ import { NavigationItem } from './theme/layouts/admin/navigation/navigation';
     NavCollapseComponent,
     NavGroupComponent,
     NavItemComponent,
-    
+
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule,],
   providers: [NavigationItem],

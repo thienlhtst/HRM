@@ -8,6 +8,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AllowanceAddComponent } from './allowance-add/allowance-add.component';
 import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pagingnav.component';
 import { NotificationComponent } from 'src/app/theme/shared/components/Notification/Notification.component';
+import { FormsModule } from '@angular/forms';
+import { AllowanceUpdateComponent } from './allowance-update/allowance-update.component';
+import { PipeSharePipe } from 'src/app/theme/shared/components/Pipe/pipe-share.pipe';
 
 
 const routes : Routes =[
@@ -15,7 +18,8 @@ const routes : Routes =[
     path : '',
     children:[
       {path: '',component:AllowanceListComponent},
-      {path:'add',component:AllowanceAddComponent}
+      {path:'add',component:AllowanceAddComponent},
+      {path:'update/:id',component:AllowanceUpdateComponent}
     ]
   }
 ]
@@ -25,12 +29,18 @@ const routes : Routes =[
     declarations: [
         AllowanceListComponent,
         AllowanceAddComponent,
+        AllowanceUpdateComponent,
+
     ],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
         BreadcrumbComponent,
-        HttpClientModule,PagingnavComponent,NotificationComponent
+        HttpClientModule,PagingnavComponent,NotificationComponent,
+        FormsModule,
+        PipeSharePipe
+
+
 
     ],
     providers: [AllowanceServiceService]
