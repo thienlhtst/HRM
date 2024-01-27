@@ -32,6 +32,15 @@ const NavigationItems = [
         url: '/dashboard/default',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
+        
+      },{
+        id: 'home',
+        title: 'Home',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/home',
+        icon: 'ti ti-dashboard',
+        breadcrumbs: false
       }
     ]
   },

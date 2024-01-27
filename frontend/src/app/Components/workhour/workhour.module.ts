@@ -5,6 +5,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { WorkHourService } from 'src/Services/WorkHour/WorkHour.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BreadcrumbComponent } from 'src/app/theme/shared/components/breadcrumb/breadcrumb.component';
+import { PagingnavComponent } from "../../theme/shared/components/pagingnav/pagingnav.component";
+import { WorkhourListDetailComponent } from './workhour-list-detail/workhour-list-detail.component';
 
 const route : Routes=[
   {
@@ -16,15 +18,17 @@ const route : Routes=[
 ]
 
 @NgModule({
-  declarations: [
-    WorkhourListComponent,
-  ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(route),
-    BreadcrumbComponent,
-    HttpClientModule
-  ],
-  providers :[WorkHourService]
+    declarations: [
+        WorkhourListComponent,
+        WorkhourListDetailComponent
+    ],
+    providers: [WorkHourService],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(route),
+        BreadcrumbComponent,
+        HttpClientModule,
+        PagingnavComponent
+    ]
 })
 export class WorkhourModule { }
