@@ -23,13 +23,18 @@ export class TokenService {
     this.updateToken(true);
     localStorage.setItem(environment.CURRENT_TOKEN, token);
   }
-
-  getToken(): string | null {
+  setTokenId(id: string) {
+    localStorage.setItem(environment.CURRENT_TOKEN_ID, id);
+  }
+  getToken( ): string | null {
     return localStorage.getItem(environment.CURRENT_TOKEN);
   }
-
+  getTokenId(): string | null {
+    return localStorage.getItem(environment.CURRENT_TOKEN_ID);
+  }
   removeToken() {
     this.updateToken(false);
     localStorage.removeItem(environment.CURRENT_TOKEN);
+    localStorage.removeItem(environment.CURRENT_TOKEN_ID);
   }
 }

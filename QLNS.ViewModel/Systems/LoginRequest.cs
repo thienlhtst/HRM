@@ -9,9 +9,9 @@ namespace QLNS.ViewModel.Systems
     public class LoginRequest
     {
         public string ID { get; set; }
+        public string Name { get; set; }
         public string Account { get; set; }
         public string Password { get; set; }
         public string? RankRole { get; set; }
-
     }
 }

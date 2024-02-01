@@ -9,6 +9,8 @@ export const environment = {
   production: false,
   apiurl : 'https://localhost:5088/api',
   CURRENT_TOKEN: 'CURRENT_TOKEN',
+  CURRENT_TOKEN_ID: 'CURRENT_TOKEN_ID',
+
 };
 
 /*

@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
-    //canActivate: [authGuard],
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -75,6 +75,10 @@ const routes: Routes = [
       {
         path:'workhour',
         loadChildren:() => import ('./Components/workhour/workhour.module').then(m=>m.WorkhourModule)
+      },
+      {
+        path:'statistic',
+        loadChildren:() => import ('./Components/statistics/statistics.module').then(m=>m.StatisticsModule)
       }
 
 
@@ -83,7 +87,7 @@ const routes: Routes = [
   {
     path: '',
     component: GuestComponent,
-    //canActivate: [guestGuard],
+    canActivate: [guestGuard],
     children: [
       {
         path: 'login',

@@ -76,6 +76,12 @@ export default class DashboardComponent implements OnInit {
       },
       series: [
         {
+          name:"employee work",
+          data: [80, 95, 70, 42, 65, 55, 78]
+        },
+        {
+          color:"#00FFFF",
+          name:"employee Off",
           data: [80, 95, 70, 42, 65, 55, 78]
         }
       ],
@@ -99,6 +105,10 @@ export default class DashboardComponent implements OnInit {
         show: false
       }
     };
+
+
+
+
     this.chartOptions_5 = {
       chart: {
         type: 'line',
@@ -123,7 +133,8 @@ export default class DashboardComponent implements OnInit {
       },
       series: [
         {
-          data: [58, 90, 38, 83, 63, 75, 35, 55]
+          data: [58, 90, 38, 83, 63, 75, 35, 55],
+          
         }
       ],
       xaxis: {

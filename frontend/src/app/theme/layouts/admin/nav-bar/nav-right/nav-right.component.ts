@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/Services/auth.service';
 import { TokenService } from 'src/Services/token.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-nav-right',
@@ -60,8 +61,10 @@ export class NavRightComponent {
     }
   ];
   isAuthenticated$;
+  name:string=''
   constructor( private tokenService: TokenService,private auth:AuthService){
     this.isAuthenticated$ = this.tokenService.isAuthentication;
+  this.name= this.tokenService.getToken();
   }
   handleclick(event:any){
     if(event =='logout')

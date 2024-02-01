@@ -24,9 +24,10 @@ namespace QLNS.Services.Catalog.Login
             var query = from p in _context.Employee
                         join pt in _context.Ranks on p.RankID equals pt.IDrank
                         select new { p, pt };
-            var data = await query.Select(x=> new LoginRequest()
+            var data = await query.Select(x => new LoginRequest()
             {
                 ID = x.p.ID,
+                Name=x.p.LastName+" "+x.p.FirstName,
                 Account = x.p.Account,
                 Password = x.p.Password,
                 RankRole =x.pt.RankRoleID
@@ -44,9 +45,6 @@ namespace QLNS.Services.Catalog.Login
                 return login;
             }
             return null;
-            
         }
-
-       
     }
 }
