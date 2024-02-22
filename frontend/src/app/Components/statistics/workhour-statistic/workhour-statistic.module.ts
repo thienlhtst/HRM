@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { WorkhourChartStatisticComponent } from './workhour-chart-statistic/workhour-chart-statistic.component';
+import { WorkhourStatisticsServiceService } from 'src/Services/Statistics/WorkhourStatisticsService.service';
 
 const routes : Routes =[
   {
@@ -27,6 +28,7 @@ const routes : Routes =[
 
   ],
   declarations:[WorkhourListStatisticComponent,WorkhourChartStatisticComponent],
-  exports:[WorkhourListStatisticComponent]
+  exports:[WorkhourListStatisticComponent],
+  providers: [WorkhourStatisticsServiceService]
 })
 export class WorkhourStatisticModule { }

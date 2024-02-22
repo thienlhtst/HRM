@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
-
+import { EmployeeWork } from 'src/Model/Statistics/EmployeeWork';
 // third party
 import ApexCharts from 'apexcharts';
 import {
@@ -16,6 +16,7 @@ import {
   ApexLegend
 } from 'ng-apexcharts';
 import { Options } from './Options';
+import { WorkhourStatisticsServiceService } from 'src/Services/Statistics/WorkhourStatisticsService.service';
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -39,17 +40,11 @@ export class WorkhourChartStatisticComponent implements OnInit {
   chartOptions_4: Partial<ChartOptions>;
   monthChart;
   weekChart;
-  testdata:any = [
-    {
-    name:"employee work",
-    data: [80, 95, 70, 42, 65, 55, 78]
-  },
-  {
-    color:"#00FFFF",
-    name:"employee Off",
-    data: [80, 95, 70, 42, 65, 55, 78]
-  }]
-  constructor() { 
+  testthu;
+  datamonthChart;
+
+  
+  constructor(private services:WorkhourStatisticsServiceService) { 
     this.chartOptions_4 = 
     {
       chart: {
@@ -69,7 +64,18 @@ export class WorkhourChartStatisticComponent implements OnInit {
       dataLabels: {
         enabled: false
       },
-      series:this.testdata,
+      series:[
+
+        {
+        name:"employee work",
+        data: [0,2,4,5,6,7]
+      },
+      {
+        color:"#00FFFF",
+        name:"employee Off",
+        data: [0,2,4,5,6,7]
+      }
+    ],
       stroke: {
         curve: 'smooth',
         width: 2
@@ -90,35 +96,76 @@ export class WorkhourChartStatisticComponent implements OnInit {
         show: false
       }
     };
-    
+     
+    this.services.GetEmployeeOff('2023-4-5').subscribe((res)=>{
+      this.chartOptions_4.series=[
+        {
+          name:"employee work",
+          data: res.employeeWork
+        },
+        {
+          color:"#00FFFF",
+          name:"employee Off",
+          data: res.employeeOff
+        }
+      ]
+    })
+
   }
-
-
-
-
-
-
-  ngOnInit() {
-    this.op.getweek()
-    
-    setTimeout(() => {
-      this.weekChart = new ApexCharts(document.querySelector('#visitor-chart'), this.op.getweek());
-      this.weekChart.render();
-    }, 500);
+   ngOnInit() {
+    this.testthu = this.op.getweek()
+    this.datamonthChart = this.op.getmonth();
+     this.services.GetWeekWorkhour(4, 2023).subscribe((res)=>{
+      this.testthu.series=[
+      ]
+      for (let i = 0; i < res.length; i++) {
+            let row = res[i];
+            let data :any={
+                name: 'Week '+i,
+                data: row,
+            } 
+            this.testthu.series.push(data)
+      }
+      setTimeout(() => {
+        this.weekChart = new ApexCharts(document.querySelector('#visitor-chart'), this.testthu);
+        this.weekChart.render();
+      }, 500);
+    })
   }
+  
   onNavChange(changeEvent: NgbNavChangeEvent) {
     if (changeEvent.nextId === 1) {
+      this.services.GetWeekWorkhour(4, 2023).subscribe((res)=>{
+      this.testthu.series=[
+      ]
+      for (let i = 0; i < res.length; i++) {
+            let row = res[i];
+            let data :any={
+                name: 'Week '+i,
+                data: row,
+            } 
+            this.testthu.series.push(data)
+      }
       setTimeout(() => {
-        this.weekChart = new ApexCharts(document.querySelector('#visitor-chart'), this.op.getweek());
+        this.weekChart = new ApexCharts(document.querySelector('#visitor-chart'), this.testthu);
         this.weekChart.render();
       }, 200);
-    }
-
-    if (changeEvent.nextId === 2) {
+    })
+  }
+  if (changeEvent.nextId === 2) {
+    this.services.GetMonthWorkhour(2023).subscribe((res)=>{
+      this.datamonthChart.series=[
+        {
+          name: 'workhour',
+          data:res
+        }
+      ]
       setTimeout(() => {
-        this.monthChart = new ApexCharts(document.querySelector('#visitor-chart-1'), this.op.getmonth());
+        this.monthChart = new ApexCharts(document.querySelector('#visitor-chart-1'), this.datamonthChart);
         this.monthChart.render();
       }, 200);
-    }
+    })
+  }
+    
   }
 }

@@ -1,0 +1,24 @@
+<div class="col-md-12 col-xl">
+<h5 class="mb-3">Employee's Salary Details</h5>
+
+  <div class="card">
+    <div class="card-body">
+      <div >
+        
+          
+        <apx-chart
+        [series]="datamonthChart.series"
+          [chart]="datamonthChart.chart"
+          [plotOptions]="datamonthChart.plotOptions"
+          [dataLabels]="datamonthChart.dataLabels"
+          [xaxis]="datamonthChart.xaxis"
+          [colors]="datamonthChart.colors"
+          [stroke]="datamonthChart.stroke"
+          [yaxis]="datamonthChart.yaxis"
+          [grid]="datamonthChart.grid">
+        </apx-chart>
+
+      </div>
+    </div>
+  </div>
+</div>

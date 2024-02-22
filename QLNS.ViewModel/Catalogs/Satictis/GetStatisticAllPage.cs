@@ -11,6 +11,6 @@ namespace QLNS.ViewModel.Catalogs.Satictis
     {
         public string Keyword { get; set; } = string.Empty;
         public int Month { get; set; }
-
+        public int Year { get; set; }
     }
 }

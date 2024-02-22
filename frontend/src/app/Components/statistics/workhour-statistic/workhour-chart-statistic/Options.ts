@@ -60,13 +60,10 @@ const monthOptions = {
     colors: ['#1890ff', '#13c2c2'],
     series: [
       {
-        name: 'Lask week',
+        name: 'workhour',
         data: [76, 85, 101, 98, 87, 105, 91, 114, 94, 86, 115, 35]
       },
-      {
-        name: 'This week',
-        data: [110, 60, 150, 35, 60, 36, 26, 45, 65, 52, 53, 41]
-      }
+      
     ],
     stroke: {
       curve: 'smooth',
