@@ -1,7 +1,7 @@
 import { environment } from './../../environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, pairwise } from 'rxjs';
+import { Observable } from 'rxjs';
 import { WorkHourModel } from 'src/Model/Relationship/WorkHourModel';
 import { Pagingreponse } from 'src/Model/other/pagingreponse';
 import { Requestpaging } from 'src/Model/other/requestpaging';

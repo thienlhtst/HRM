@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import {  Observable, map } from 'rxjs';
 import { TokenService } from './token.service';
 import {ILogin , ILoginResponse} from 'src/Model/auth.mode';
-import { EmployeeModel } from 'src/Model/EmployeeModel';
+import { EmployeeModel } from 'src/Model/Employee/EmployeeModel';
 
 @Injectable({
   providedIn: 'root',

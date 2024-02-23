@@ -34,7 +34,7 @@ import { NavigationItem } from './theme/layouts/admin/navigation/navigation';
     NavItemComponent,
 
   ],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule,],
+  imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule],
   providers: [NavigationItem],
   bootstrap: [AppComponent]
 })

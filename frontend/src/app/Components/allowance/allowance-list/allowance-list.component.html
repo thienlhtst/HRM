@@ -1,3 +1,4 @@
+
 <div class="card">
   <div class="card-header">
       <h3>Allowance table</h3>
@@ -10,18 +11,17 @@
 <li><i class="fa fa-times close-card"></i></li>
 </ul>
 </div>
-
+<app-Notification [message]="messagerequest"></app-Notification>
   </div>
   <div class="search">
         <input type="text" name="filter" [(ngModel)]="searchText" placeholder="Enter id" #fill>
   </div>
 
-  <div class="card-block table-border-style" >
+  <button class="col-md-12 col-xl-1" (click)=" ClicktoShowFormAdd()">Add</button>
+<div class="row">
+  <div [ngClass]="{'col-md-12': !ShowForm, 'col-md-12 col-xl-8': ShowForm}">
     <app-Notification [message]="messagerequest"></app-Notification>
       <div class="table-responsive" >
-        <button (click)="ButtonClickToAdd()" >
-          <img   src="/frontend/src/assets/crud-img/plus.png" alt=" Add" />
-        </button>
           <table class="table table-inverse">
               <thead>
                   <tr>
@@ -38,7 +38,7 @@
                       <td>{{item.money}}</td>
                       <td>
                       <button (click)="ButtonClickToUpdate(item.id)">
-                        <img   src="/frontend/src/img/plus.png" />
+                        <img class="ti ti-user-plus"  src="/frontend/src/img/plus.png" />
                       </button>
                       <button (click)="Delete($event,item.id)">
                         <img   src="/frontend/src/img/plus.png" />
@@ -48,7 +48,23 @@
 
               </tbody>
           </table>
-          <app-pagingnav class="d-flex justify-content-end"  [pagesize]="10"  #child></app-pagingnav>
+          <app-pagingnav class="d-flex justify-content-end" (numberchange)="pagechange($event)"  [pagesize]="pagecount"  #child></app-pagingnav>
       </div>
+      <div *ngIf="!spinner">
+        <h1 class="text-center text-primary"> Wait for Data </h1>
+      <app-spinner-beta></app-spinner-beta>
+      </div>
+    </div>
+
+
+        <div  class="col-md-12 col-xl-4">
+
+          <div [ngClass]="{'col-md-7': ShowFormAdd, 'd-none': !ShowFormAdd}" *ngIf="ShowFormAdd">
+          <app-allowance-add (onSuccess)="OnSuccess()"></app-allowance-add>
+          </div>
+          <div [ngClass]="{'col-md-7': ShowFormUpdate, 'd-none': !ShowFormUpdate}" *ngIf="ShowFormUpdate">
+            <app-allowance-update [selectedID]="selectedID" (onSuccess)="OnSuccess()"></app-allowance-update>
+           </div>
+        </div>
   </div>
 </div>

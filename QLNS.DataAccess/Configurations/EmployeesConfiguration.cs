@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace QLNS.DataAccess.Configurations
 {
     public class EmployeesConfiguration : IEntityTypeConfiguration<Employees>
-	{
+    {
         public void Configure(EntityTypeBuilder<Employees> builder)
         {
             builder.ToTable("Employees");
@@ -24,14 +24,11 @@ namespace QLNS.DataAccess.Configurations
             builder.Property(x => x.Sex).HasDefaultValue(Sex.Male);
             builder.Property(x => x.CIC).HasMaxLength(20);
             builder.Property(x => x.Address).HasMaxLength(20);
+            builder.HasOne(x => x.Salary).WithMany(x => x.Employees).HasForeignKey(x => x.SalaryID);
             builder.Property(x => x.Account).IsRequired().HasMaxLength(100);
-			builder.Property(x => x.Password).IsRequired().HasMaxLength(100);
-			builder.Property(x => x.Active).HasDefaultValue(Active.Yes);
+            builder.Property(x => x.Password).IsRequired().HasMaxLength(100);
+            builder.Property(x => x.Active).HasDefaultValue(Active.Yes);
             builder.Property(x => x.URLImage).HasMaxLength(200).IsRequired(true);
-            builder.HasOne(x => x.Rank).WithMany(x => x.Employees).HasForeignKey(x => x.RankID);
-			builder.HasOne(x => x.Position).WithMany(x => x.Employees).HasForeignKey(x => x.PositionID);
-
-
-		}
-	}
+        }
+    }
 }

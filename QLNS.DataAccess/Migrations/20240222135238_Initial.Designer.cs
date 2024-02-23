@@ -12,8 +12,8 @@ using QLNS.DataAccess;
 namespace QLNS.DataAccess.Migrations
 {
     [DbContext(typeof(QLNSDbContext))]
-    [Migration("20230527081144_DataSeeding")]
-    partial class DataSeeding
+    [Migration("20240222135238_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -178,7 +178,7 @@ namespace QLNS.DataAccess.Migrations
                     b.Property<DateTime>("DOB")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 5, 27, 15, 11, 44, 534, DateTimeKind.Local).AddTicks(843));
+                        .HasDefaultValue(new DateTime(2024, 2, 22, 20, 52, 38, 804, DateTimeKind.Local).AddTicks(8895));
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -204,11 +204,13 @@ namespace QLNS.DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("PositionID")
-                        .IsRequired()
+                    b.Property<string>("PositionIDposition")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("RankID")
+                    b.Property<string>("RankIDrank")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("SalaryID")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
@@ -224,9 +226,11 @@ namespace QLNS.DataAccess.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("PositionID");
+                    b.HasIndex("PositionIDposition");
 
-                    b.HasIndex("RankID");
+                    b.HasIndex("RankIDrank");
+
+                    b.HasIndex("SalaryID");
 
                     b.ToTable("Employees", (string)null);
 
@@ -244,8 +248,7 @@ namespace QLNS.DataAccess.Migrations
                             MiddleName = "Jonny",
                             NumberPhone = "111",
                             Password = "123456",
-                            PositionID = "1",
-                            RankID = "1",
+                            SalaryID = "1",
                             Sex = 1,
                             URLImage = ""
                         },
@@ -262,8 +265,7 @@ namespace QLNS.DataAccess.Migrations
                             MiddleName = "Khoa",
                             NumberPhone = "222",
                             Password = "admin",
-                            PositionID = "2",
-                            RankID = "2",
+                            SalaryID = "2",
                             Sex = 1,
                             URLImage = ""
                         });
@@ -974,19 +976,23 @@ namespace QLNS.DataAccess.Migrations
                 {
                     b.HasOne("QLNS.Entity.Entities.Position", "Position")
                         .WithMany("Employees")
-                        .HasForeignKey("PositionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PositionIDposition");
 
                     b.HasOne("QLNS.Entity.Entities.Rank", "Rank")
                         .WithMany("Employees")
-                        .HasForeignKey("RankID")
+                        .HasForeignKey("RankIDrank");
+
+                    b.HasOne("QLNS.Entity.Entities.Salary", "Salary")
+                        .WithMany("Employees")
+                        .HasForeignKey("SalaryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Position");
 
                     b.Navigation("Rank");
+
+                    b.Navigation("Salary");
                 });
 
             modelBuilder.Entity("QLNS.Entity.Entities.LabourContract", b =>
@@ -1121,6 +1127,11 @@ namespace QLNS.DataAccess.Migrations
                     b.Navigation("Description");
 
                     b.Navigation("Rank");
+                });
+
+            modelBuilder.Entity("QLNS.Entity.Entities.Salary", b =>
+                {
+                    b.Navigation("Employees");
                 });
 #pragma warning restore 612, 618
         }

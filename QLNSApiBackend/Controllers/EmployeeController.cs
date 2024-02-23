@@ -12,15 +12,19 @@ namespace QLNSApiBackend.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeService _employeeService;
-        public EmployeeController(IEmployeeService employeeService) { 
-            _employeeService = employeeService ;
+
+        public EmployeeController(IEmployeeService employeeService)
+        {
+            _employeeService = employeeService;
         }
+
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             var model = await _employeeService.GetemployeeVMStatistics();
             return Ok(model);
         }
+
         [HttpGet("{employeeID}")]
         public async Task<IActionResult> GetById(string employeeID)
         {
@@ -29,6 +33,7 @@ namespace QLNSApiBackend.Controllers
                 return BadRequest("Cannot find Employee");
             return Ok(employee);
         }
+
         [HttpGet("edit/{employeeID}")]
         public async Task<IActionResult> GetByIdEdit(string employeeID)
         {
@@ -39,7 +44,6 @@ namespace QLNSApiBackend.Controllers
         }
 
         [HttpPost("createemployee")]
-        //[Authorize]
         public async Task<IActionResult> Create([FromBody] EmployeeCreateRequest employeeCreateRequest)
         {
             if (!ModelState.IsValid)
@@ -47,20 +51,19 @@ namespace QLNSApiBackend.Controllers
                 return BadRequest(ModelState);
             }
             var employeeID = await _employeeService.Create(employeeCreateRequest);
-            if(employeeID ==0)
+            if (employeeID == 0)
             {
                 return BadRequest(ModelState);
             }
             // var employee = await _employeeService.GetById(employeeCreateRequest.ID);
             // return CreatedAtAction(nameof(GetById), new { id = employeeID }, employee);
             return Ok(new { token = employeeID });
-
         }
 
         [HttpPut("{ID}")]
-        public async Task<IActionResult> Update([FromRoute] string ID, [FromBody] EmployeeEditRequest request)
+        public async Task<IActionResult> Update(string ID, [FromBody] EmployeeEditRequest request)
         {
-            ID = request.ID ;
+            ID = request.ID;
             var employee = await _employeeService.Update(request);
             return Ok(employee);
         }
@@ -78,8 +81,5 @@ namespace QLNSApiBackend.Controllers
             var employees = await _employeeService.GetAllPage(request);
             return Ok(employees);
         }
-
-
-
     }
 }

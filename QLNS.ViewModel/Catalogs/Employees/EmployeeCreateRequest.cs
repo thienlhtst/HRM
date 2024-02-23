@@ -31,13 +31,12 @@ namespace QLNS.ViewModel.Catalogs.Employees
 
         [RegularExpression("^[0-9]+$"), Display(Name = "Citizen Identity Card")]
         public string CIC { get; set; }
-        [RegularExpression("^[0-9]+$")]
 
+        [RegularExpression("^[0-9]+$")]
         public string NumberPhone { get; set; }
 
         public string Address { get; set; }
-        public string RankID { get; set; }
-        public string PositionID { get; set; }
+        public string SalaryID { get; set; }
         public string Account { get; set; }
         public string Password { get; set; }
         public Active Active { get; set; }

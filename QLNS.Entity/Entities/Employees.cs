@@ -20,8 +20,7 @@ namespace QLNS.Entity.Entities
         public string CIC { get; set; }
         public string NumberPhone { get; set; }
         public string Address { get; set; }
-        public string RankID { get; set; }
-        public string PositionID { get; set; }
+        public string SalaryID { get; set; }
         public string Account { get; set; }
         public string Password { get; set; }
         public Active Active { get; set; }
@@ -29,6 +28,8 @@ namespace QLNS.Entity.Entities
 
         public Rank? Rank { get; set; }
         public Position? Position { get; set; }
+
+        public Salary? Salary { get; set; }
         public List<WorkHour> workHours { get; } = new();
         public List<EmployeesWithAllowances> EWA { get; } = new();
         public ICollection<LabourContract> LabourContracts { get; } = new List<LabourContract>();

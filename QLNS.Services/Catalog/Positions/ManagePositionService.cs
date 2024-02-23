@@ -33,7 +33,7 @@ namespace QLNS.Services.Catalog.Positions
             return 1;
         }
 
-        public async Task<int> Delete(int PositionID)
+        public async Task<int> Delete(string PositionID)
         {
             var position = await _context.Positions.FindAsync(PositionID);
             _context.Positions.Remove(position);
@@ -74,7 +74,7 @@ namespace QLNS.Services.Catalog.Positions
             return pagedResult;
         }
 
-        public async Task<PositionViewModel> GetByID(int PositionID)
+        public async Task<PositionViewModel> GetByID(string PositionID)
         {
             var rank = await _context.Positions.FindAsync(PositionID);
             var rankvm = new PositionViewModel()

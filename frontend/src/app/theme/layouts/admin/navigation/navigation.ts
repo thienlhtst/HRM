@@ -32,7 +32,7 @@ const NavigationItems = [
         url: '/dashboard/default',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
-        
+
       },{
         id: 'home',
         title: 'Home',
@@ -189,7 +189,23 @@ const NavigationItems = [
           type:'item',
           url:'/position',
           classes:'nav-item',
-          icon:''
+          icon:'',
+          children :[
+            {
+              id :'position',
+              title:'Add',
+              type:'item',
+              url:"/position/add",
+              classes:'nav-item',
+            },
+            {
+              id :'allowance',
+              title:'Update',
+              type:'item',
+              url:"/position/update",
+              classes:'nav-item',
+            },
+          ]
         },
         {
           id:'employee',
@@ -197,7 +213,23 @@ const NavigationItems = [
           type:'item',
           url:'/employee',
           classes:'nav-item',
-          icon:''
+          icon:'',
+          children :[
+            {
+              id :'employee',
+              title:'Add',
+              type:'item',
+              url:"/employee/add",
+              classes:'nav-item',
+            },
+            {
+              id :'employee',
+              title:'Update',
+              type:'item',
+              url:"/employee/update",
+              classes:'nav-item',
+            },
+          ]
         },
         {
           id:'rank',
@@ -205,7 +237,47 @@ const NavigationItems = [
           type:'item',
           url:'/rank',
           classes:'nav-item',
-          icon:''
+          icon:'',
+          children :[
+            {
+              id :'rank',
+              title:'Add',
+              type:'item',
+              url:"/rank/add",
+              classes:'nav-item',
+            },
+            {
+              id :'rank',
+              title:'Update',
+              type:'item',
+              url:"/rank/update",
+              classes:'nav-item',
+            },
+          ]
+        },
+        {
+          id:'salary',
+          title:'Salary',
+          type:'item',
+          url:'/salary',
+          classes :'nav-item',
+          icon :'',
+          children :[
+            {
+              id :'salary',
+              title:'Add',
+              type:'item',
+              url:"/salary/add",
+              classes:'nav-item',
+            },
+            {
+              id :'salary',
+              title:'Update',
+              type:'item',
+              url:"/salary/update",
+              classes:'nav-item',
+            },
+          ]
         },
         {
           id:'workhour',

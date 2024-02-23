@@ -1,19 +1,115 @@
+import { EmployeeCreateModel } from 'src/Model/Employee/EmployeeCreateModel';
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { EmployeeModel } from 'src/Model/EmployeeModel';
+import { PositionModel } from 'src/Model/PositionModel';
+import { RankModel } from 'src/Model/RankModel';
 import { EmployeeService } from 'src/Services/Employee/employee.service';
+import { GeneralService } from 'src/Services/General/general.service';
+import { NotificationComponent } from 'src/app/theme/shared/components/Notification/Notification.component';
+import { map } from 'rxjs/operators';
+import { SalaryModel } from 'src/Model/SalaryModel';
+import { EmployeeModel } from 'src/Model/Employee/EmployeeModel';
+import { SalaryModelList } from 'src/Model/SalaryModelList';
+import { SalaryAddComponent } from '../../salary/salary-add/salary-add.component';
 
 @Component({
   selector: 'app-employee-add',
   templateUrl: './employee-add.component.html',
   styleUrls: ['./employee-add.component.scss']
 })
-export class EmployeeAddComponent {
-  constructor(private service : EmployeeService,private router : Router){}
+export class EmployeeAddComponent implements OnInit {
+  constructor(private service : EmployeeService,private router : Router,private generalService : GeneralService){}
   datas : EmployeeModel
+  messageRequest : string = ''
+  selectedGender : string = ''
+  selectedDate: string
+  selectedFile : string
+  RanksData : any
+  PositionsData : any
+  SalarysData : SalaryModelList[]
+  selectedRankID : string
+  selectedPositionID : string
+  selectedSalaryID : string
+  selectedFilePath : string
 
-  Add(data: EmployeeModel){
+  @ViewChild(NotificationComponent) childnoti:NotificationComponent
 
+  ngOnInit(): void {
+    this.OnGenderChange()
+    this.GetRankAndPositionInfo()
+  }
+
+  GetRankAndPositionInfo(){
+    this.generalService.GetRank().subscribe((resrank)=>{
+      this.RanksData = resrank
+    })
+    this.generalService.GetPosition().subscribe((resposition)=>{
+      this.PositionsData = resposition
+    })
+  }
+
+  onRankChange(){
+    return this.selectedRankID
+
+  }
+  onPositionChange(){
+    return this.selectedPositionID
+  }
+
+  GetSalaryByRankAndPosition(){
+    this.generalService.GetSalary().subscribe((ressalary)=>{
+      this.SalarysData = ressalary
+      for(const salary of this.SalarysData){
+        if(salary.rankID == this.selectedRankID && salary.positionID == this.selectedPositionID)
+        {
+        this.selectedSalaryID = salary.id
+      }
+
+      }
+
+    })
+  }
+
+  OnchangeFile(event : any){
+    if(event.target.files.length > 0 ){
+      const file = event.target.files[0];
+      this.selectedFilePath = file
+    }
+  }
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0]; // Lấy tập tin được chọn từ đối tượng sự kiện
+    console.log('Đã chọn tập tin:', this.selectedFile);
+  }
+
+
+  OnGenderChange(){
+    console.log(this.selectedGender)
+    return this.selectedGender
+
+  }
+
+  onDateChange(event): void {
+    this.selectedDate = event.target.value;
+    console.log('Ngày được chọn:', this.selectedDate);
+  }
+
+  Add(data : EmployeeCreateModel){
+    data.salaryID = this.selectedSalaryID
+    console.log(data.salaryID)
+    data.urlImage = this.selectedFilePath
+    this.service.CreateEmployee(data).subscribe((response)=>{
+      if(response){
+        alert('Success')
+        this.router.navigate(['/employee'])
+      }
+      else{
+        this.messageRequest = "Fail"
+        this.childnoti.showSuccess(this.childnoti.successTpl)
+      }
+
+    })
   }
 }

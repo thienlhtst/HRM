@@ -18,9 +18,9 @@ namespace QLNS.Services.Catalog.Positions
 
         Task<int> Update(PositionUpdateRequest request);
 
-        Task<int> Delete(int PositionID);
+        Task<int> Delete(string PositionID);
 
-        Task<PositionViewModel> GetByID(int PositionID);
+        Task<PositionViewModel> GetByID(string PositionID);
 
         Task<List<PositionViewModel>> GetAll();
 

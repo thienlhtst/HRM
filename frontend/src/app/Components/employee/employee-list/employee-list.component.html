@@ -1,4 +1,7 @@
-
+<div *ngIf="!spinner">
+  <h1 class="text-center text-primary"> Wait for Data </h1>
+<app-spinner-beta></app-spinner-beta>
+</div>
 <div class="card">
   <div class="card-header">
       <h3>Employee table</h3>
@@ -11,7 +14,10 @@
 <li><i class="fa fa-times close-card"></i></li>
 </ul>
 </div>
-
+<div class="search">
+  <input type="text" name="filter" [(ngModel)]="searchText" placeholder="Enter id" #fill>
+</div>
+<button class="col-md-12 col-xl-1" (click)="ButtonCickToAdd()">Add</button>
   </div>
   <div class="card-block table-border-style" >
       <div class="table-responsive" >
@@ -36,26 +42,27 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr *ngFor="let item of datas">
+                  <tr *ngFor="let item of datas | filter : searchText">
                       <td>{{item.id}}</td>
-                      <td>{{item.firstname}}</td>
-                      <td>{{item.middlename}}</td>
-                      <td>{{item.lastname}}</td>
+                      <td>{{item.firstName}}</td>
+                      <td>{{item.middleName}}</td>
+                      <td>{{item.lastName}}</td>
                       <td>{{item.dob}}</td>
                       <td>{{item.sex}}</td>
                       <td>{{item.cic}}</td>
-                      <td>{{item.number}}</td>
+                      <td>{{item.numberPhone}}</td>
                       <td>{{item.address}}</td>
-                      <td>{{item.rankid}}</td>
-                      <td>{{item.positionid}}</td>
+                      <td>{{item.rank}}</td>
+                      <td>{{item.position}}</td>
                       <td>{{item.account}}</td>
                       <td>{{item.password}}</td>
                       <td>{{item.active}}</td>
-                      <td>{{item.urlimage}}</td>
+                      <td>{{item.urlImage}}</td>
                   </tr>
 
               </tbody>
           </table>
+          <app-pagingnav   class="d-flex justify-content-end" [pagesize]="PageCount" (numberchange)="PageChange($event)" #child></app-pagingnav>
       </div>
   </div>
 </div>

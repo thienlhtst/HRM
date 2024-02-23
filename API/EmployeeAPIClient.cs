@@ -65,8 +65,7 @@ namespace API
             requestContent.Add(new StringContent(employeeCreateRequest.CIC), "CIC");
             requestContent.Add(new StringContent(employeeCreateRequest.NumberPhone), "NumberPhone");
             requestContent.Add(new StringContent(employeeCreateRequest.Address), "Address");
-            requestContent.Add(new StringContent(employeeCreateRequest.RankID), "RankID");
-            requestContent.Add(new StringContent(employeeCreateRequest.PositionID), "PositionID");
+            requestContent.Add(new StringContent(employeeCreateRequest.SalaryID), "SalaryID");
             requestContent.Add(new StringContent(employeeCreateRequest.Account), "Account");
             requestContent.Add(new StringContent(employeeCreateRequest.Password), "Password");
             requestContent.Add(new StringContent(employeeCreateRequest.Active.ToString()), "Active");
@@ -141,8 +140,7 @@ namespace API
             requestContent.Add(new StringContent(employee.CIC), "CIC");
             requestContent.Add(new StringContent(employee.NumberPhone), "NumberPhone");
             requestContent.Add(new StringContent(employee.Address), "Address");
-            requestContent.Add(new StringContent(employee.RankID), "RankID");
-            requestContent.Add(new StringContent(employee.PositionID), "PositionID");
+            requestContent.Add(new StringContent(employee.SalaryID), "SalaryID");
             requestContent.Add(new StringContent(employee.Account), "Account");
             requestContent.Add(new StringContent(employee.Password), "Password");
             requestContent.Add(new StringContent(employee.Active.ToString()), "Active");

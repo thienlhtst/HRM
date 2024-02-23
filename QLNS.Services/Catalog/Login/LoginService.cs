@@ -22,14 +22,15 @@ namespace QLNS.Services.Catalog.Login
         public async Task<List<LoginRequest>> GetAll()
         {
             var query = from p in _context.Employee
-                        join pt in _context.Ranks on p.RankID equals pt.IDrank
+                        join ps in _context.Salaries on p.SalaryID equals ps.ID
+                        join pt in _context.Ranks on ps.RankID equals pt.IDrank
                         select new { p, pt };
-            var data = await query.Select(x=> new LoginRequest()
+            var data = await query.Select(x => new LoginRequest()
             {
                 ID = x.p.ID,
                 Account = x.p.Account,
                 Password = x.p.Password,
-                RankRole =x.pt.RankRoleID
+                RankRole = x.pt.RankRoleID
             }).ToListAsync();
 
             return data;
@@ -44,9 +45,6 @@ namespace QLNS.Services.Catalog.Login
                 return login;
             }
             return null;
-            
         }
-
-       
     }
 }

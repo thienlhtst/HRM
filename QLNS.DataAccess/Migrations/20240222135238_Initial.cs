@@ -124,43 +124,6 @@ namespace QLNS.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Employees",
-                columns: table => new
-                {
-                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    MiddleName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    DOB = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 5, 27, 15, 11, 30, 47, DateTimeKind.Local).AddTicks(9552)),
-                    Sex = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
-                    CIC = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    NumberPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    RankID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    PositionID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Account = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Active = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
-                    URLImage = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Employees", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Employees_Position_PositionID",
-                        column: x => x.PositionID,
-                        principalTable: "Position",
-                        principalColumn: "IDposition",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Employees_Rank_RankID",
-                        column: x => x.RankID,
-                        principalTable: "Rank",
-                        principalColumn: "IDrank",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Salary",
                 columns: table => new
                 {
@@ -183,6 +146,48 @@ namespace QLNS.DataAccess.Migrations
                         column: x => x.RankID,
                         principalTable: "Rank",
                         principalColumn: "IDrank",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Employees",
+                columns: table => new
+                {
+                    ID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    MiddleName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    DOB = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 2, 22, 20, 52, 38, 804, DateTimeKind.Local).AddTicks(8895)),
+                    Sex = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
+                    CIC = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    NumberPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    SalaryID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Account = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Active = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
+                    URLImage = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    RankIDrank = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    PositionIDposition = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employees", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Employees_Position_PositionIDposition",
+                        column: x => x.PositionIDposition,
+                        principalTable: "Position",
+                        principalColumn: "IDposition");
+                    table.ForeignKey(
+                        name: "FK_Employees_Rank_RankIDrank",
+                        column: x => x.RankIDrank,
+                        principalTable: "Rank",
+                        principalColumn: "IDrank");
+                    table.ForeignKey(
+                        name: "FK_Employees_Salary_SalaryID",
+                        column: x => x.SalaryID,
+                        principalTable: "Salary",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -352,15 +357,6 @@ namespace QLNS.DataAccess.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Employees",
-                columns: new[] { "ID", "Account", "Active", "Address", "CIC", "DOB", "FirstName", "LastName", "MiddleName", "NumberPhone", "Password", "PositionID", "RankID", "Sex", "URLImage" },
-                values: new object[,]
-                {
-                    { "1", "admin", 1, "Texas", "000001", new DateTime(2004, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nguyen", "Dang", "Jonny", "111", "123456", "1", "1", 1, "" },
-                    { "2", "admin", 1, "New York", "000002", new DateTime(2002, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nguyen", "Pug", "Khoa", "222", "admin", "2", "2", 1, "" }
-                });
-
-            migrationBuilder.InsertData(
                 table: "Salary",
                 columns: new[] { "ID", "Money", "PositionID", "RankID" },
                 values: new object[,]
@@ -377,6 +373,15 @@ namespace QLNS.DataAccess.Migrations
                     { "7", 17000000m, "2", "3" },
                     { "8", 15000000m, "2", "4" },
                     { "9", 10000000m, "3", "1" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Employees",
+                columns: new[] { "ID", "Account", "Active", "Address", "CIC", "DOB", "FirstName", "LastName", "MiddleName", "NumberPhone", "Password", "PositionIDposition", "RankIDrank", "SalaryID", "Sex", "URLImage" },
+                values: new object[,]
+                {
+                    { "1", "admin", 1, "Texas", "000001", new DateTime(2004, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nguyen", "Dang", "Jonny", "111", "123456", null, null, "1", 1, "" },
+                    { "2", "admin", 1, "New York", "000002", new DateTime(2002, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nguyen", "Pug", "Khoa", "222", "admin", null, null, "2", 1, "" }
                 });
 
             migrationBuilder.InsertData(
@@ -429,14 +434,19 @@ namespace QLNS.DataAccess.Migrations
                 column: "EmployeeID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employees_PositionID",
+                name: "IX_Employees_PositionIDposition",
                 table: "Employees",
-                column: "PositionID");
+                column: "PositionIDposition");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employees_RankID",
+                name: "IX_Employees_RankIDrank",
                 table: "Employees",
-                column: "RankID");
+                column: "RankIDrank");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employees_SalaryID",
+                table: "Employees",
+                column: "SalaryID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Labour Contract_EmployeeID",
@@ -493,9 +503,6 @@ namespace QLNS.DataAccess.Migrations
                 name: "Reward");
 
             migrationBuilder.DropTable(
-                name: "Salary");
-
-            migrationBuilder.DropTable(
                 name: "Work Hour");
 
             migrationBuilder.DropTable(
@@ -506,6 +513,9 @@ namespace QLNS.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Labour Hour");
+
+            migrationBuilder.DropTable(
+                name: "Salary");
 
             migrationBuilder.DropTable(
                 name: "Position");

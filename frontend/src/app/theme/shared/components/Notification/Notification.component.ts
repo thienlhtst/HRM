@@ -1,3 +1,6 @@
+/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
+/* eslint-disable @angular-eslint/component-selector */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, Input, OnDestroy, OnInit, TemplateRef, ViewChild, inject } from '@angular/core';
 import { ToastService } from './toast-service.service';
 import { ToastscontainerComponent} from './toastscontainer/toastscontainer.component';

@@ -1,8 +1,11 @@
+/* eslint-disable no-empty */
+import { OnChanges, SimpleChanges } from '@angular/core';
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Allowancemodel } from 'src/Model/AllowanceModel';
+import { Requestpaging } from 'src/Model/other/requestpaging';
 import { AllowanceServiceService } from 'src/Services/Allowance/AllowanceService.service';
 import { NotificationComponent } from 'src/app/theme/shared/components/Notification/Notification.component';
 import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pagingnav.component';
@@ -16,24 +19,59 @@ import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pa
 
 
 
-export class AllowanceListComponent implements OnInit  {
+export class AllowanceListComponent implements OnInit,OnChanges  {
   constructor(private service : AllowanceServiceService, private router : Router){}
   datas:Allowancemodel[];
-  pageindex:number =1;
   messagerequest:string=''
   searchText : any
+  pagecount : number = 1
+  ShowFormAdd : boolean = false
+  ShowFormUpdate : boolean = false
+  ShowForm : boolean = false
+  selectedID : string
+  spinner : boolean = false
+
+  paging : Requestpaging={
+    keyword : '',
+    pageindex : 1,
+    pagesize : 10
+
+  }
 
   @ViewChild(PagingnavComponent) child: PagingnavComponent;
   @ViewChild(NotificationComponent) childnoti: NotificationComponent;
 
   ngOnInit(): void{
-    this.GetAll();
+    this.GetPaging();
+
 
   }
-  testclick(){
-    this.messagerequest= "test thu xem"
-    this.childnoti.showSuccess(this.childnoti.successTpl)
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['datas']){
+
+    }
   }
+
+  ClicktoShowFormAdd(): void{
+    this.ShowFormAdd = !this.ShowFormAdd
+    this.ShowForm =!this.ShowForm
+  }
+
+  ButtonClickToUpdate(id : string){
+    this.ShowFormUpdate =! this.ShowFormUpdate
+    this.ShowForm =!this.ShowForm
+    this.selectedID = id
+
+  }
+
+
+
+  OnSuccess(){
+    this.ShowFormUpdate = false
+    this.ShowFormAdd = false
+  }
+
+
   GetAll(){
     this.service.getAllowance().subscribe((res)=>{
       this.datas = res
@@ -41,26 +79,37 @@ export class AllowanceListComponent implements OnInit  {
     })
   }
 
-  ButtonClickToAdd(){
-    this.router.navigate(['/allowance/add'])
+  GetPaging(){
+    this.service.getAllowancePaging(this.paging).subscribe((res)=>{
+        setTimeout(() => {
+          this.datas = res.items
+          this.pagecount = res.pageCount
+        }, 2000);
+        setTimeout(() => {
+          this.spinner = true
+        }, 2000);
+
+    })
   }
-  ButtonClickToUpdate(id : string){
-    this.router.navigate(['/allowance/update',id])
+
+
+  Delete(event:any,id : string){
+    if(confirm('Delete this data ?')){
+      this.service.DeleteAllowance(id).subscribe((res)=>{
+        if(res){
+          alert('Delete Success');
+          this.GetPaging();
+        } else{
+          alert('Fail')
+          this.GetPaging();
+        }
+      })
+    }
   }
 
-  Delete(event : any,id:string){
-      if(confirm(' Delete this data ? ')){
-        event.target.innertext="Deleting";
-        this.service.DeleteAllowance(id).subscribe((res)=>{
-          if(res){
-            alert('Delete Success');
-            this.GetAll()
-          }
-          else alert('Fail')
-        })
-
-
-      }
+  pagechange(pagenumber : number) : void{
+    this.paging.pageindex = pagenumber
+    this.GetPaging()
   }
 
   buttonStyle = {

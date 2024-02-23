@@ -32,7 +32,7 @@ namespace QLNS.BackendApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByID(int id)
+        public async Task<IActionResult> GetByID(string id)
         {
             var day = await _managePositionService.GetByID(id);
             if (day == null)
@@ -40,18 +40,15 @@ namespace QLNS.BackendApi.Controllers
             return Ok(day);
         }
 
-        [HttpPost]
+        [HttpPost("createposition")]
         public async Task<IActionResult> Create([FromBody] PositionCreateRequest request)
         {
-            var dayid = await _managePositionService.Create(request);
-            if (dayid == 0)
-                return BadRequest();
-            var day = await _managePositionService.GetByID(dayid);
-            return CreatedAtAction(nameof(GetByID), new { ID = dayid }, day);
+            var position = await _managePositionService.Create(request);
+            return Ok(new {token = position});
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
             var affectedResult = await _managePositionService.Delete(id);
             if (affectedResult == 0)
@@ -59,9 +56,10 @@ namespace QLNS.BackendApi.Controllers
             return Ok();
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Update([FromForm] PositionUpdateRequest request)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(string id,[FromBody] PositionUpdateRequest request)
         {
+            request.ID = id;
             var affectedResult = await _managePositionService.Update(request);
             if (affectedResult == 0)
                 return BadRequest();

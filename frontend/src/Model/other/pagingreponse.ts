@@ -1,4 +1,4 @@
-import { WorkHourModel } from "../Relationship/WorkHourModel"
+
 
 export interface Pagingreponse {
     items:any[]
@@ -6,6 +6,6 @@ export interface Pagingreponse {
     pageIndex:number
     pageSize:number
     totalRecords:number
-    
+
 
 }

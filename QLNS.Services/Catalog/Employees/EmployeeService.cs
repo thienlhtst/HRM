@@ -44,8 +44,7 @@ namespace QLNS.Services.Catalog.Employees
                 DOB = request.DOB,
                 Account = request.Account,
                 Password = request.Password,
-                PositionID = request.PositionID,
-                RankID = request.RankID,
+                SalaryID = request.SalaryID,
                 CIC = request.CIC,
                 NumberPhone = request.NumberPhone,
                 Address = request.Address,
@@ -89,9 +88,10 @@ namespace QLNS.Services.Catalog.Employees
         public async Task<PagedResult<EmployeeViewModel>> GetAllPage(GetEmployeePagingRequest request)
         {
             var query = from p in _context.Employee
-                        join pt in _context.Ranks on p.RankID equals pt.IDrank
-                        join pp in _context.Positions on p.PositionID equals pp.IDposition
-                        select new { p, pt, pp }
+                        join ps in _context.Salaries on p.SalaryID equals ps.ID
+                        join pr in _context.Ranks on ps.RankID equals pr.IDrank
+                        join pp in _context.Positions on ps.PositionID equals pp.IDposition
+                        select new { p, ps, pr, pp }
                         ;
             if (!string.IsNullOrEmpty(request.Keyword))
             {
@@ -111,7 +111,7 @@ namespace QLNS.Services.Catalog.Employees
                     DOB = x.p.DOB,
                     CIC = x.p.CIC,
                     Address = x.p.Address,
-                    Rank = x.pt.Name,
+                    Rank = x.pr.Name,
                     Position = x.pp.Name,
                     Account = x.p.Account,
                     Password = x.p.Password,
@@ -131,11 +131,13 @@ namespace QLNS.Services.Catalog.Employees
         public async Task<EmployeeViewModel> GetById(string EmployeeID)
         {
             var rank = (from p in _context.Employee
-                        join pt in _context.Ranks on p.RankID equals pt.IDrank
+                        join ps in _context.Salaries on p.SalaryID equals ps.ID
+                        join pr in _context.Ranks on ps.RankID equals pr.IDrank
                         where p.ID.Equals(EmployeeID)
-                        select pt.Name).First();
+                        select pr.Name).First();
             var position = (from p in _context.Employee
-                            join pp in _context.Positions on p.PositionID equals pp.IDposition
+                            join ps in _context.Salaries on p.SalaryID equals ps.ID
+                            join pp in _context.Positions on ps.PositionID equals pp.IDposition
                             where p.ID.Equals(EmployeeID)
                             select pp.Name).First();
 
@@ -176,8 +178,7 @@ namespace QLNS.Services.Catalog.Employees
                 CIC = x.CIC,
                 NumberPhone = x.NumberPhone,
                 Address = x.Address,
-                RankID = x.RankID,
-                PositionID = x.PositionID,
+                SalaryID = x.SalaryID,
                 Account = x.Account,
                 Active = x.Active,
                 Password = x.Password,
@@ -200,8 +201,7 @@ namespace QLNS.Services.Catalog.Employees
                 CIC = x.CIC,
                 NumberPhone = x.NumberPhone,
                 Address = x.Address,
-                RankID = x.RankID,
-                PositionID = x.PositionID,
+                SalaryID = x.SalaryID,
                 Account = x.Account,
                 Password = x.Password
             }).ToListAsync();
@@ -222,8 +222,7 @@ namespace QLNS.Services.Catalog.Employees
             employee.CIC = request.CIC;
             employee.NumberPhone = request.NumberPhone;
             employee.Address = request.Address;
-            employee.RankID = request.RankID;
-            employee.PositionID = request.PositionID;
+            employee.SalaryID = request.SalaryID;
             employee.Account = request.Account;
             employee.Password = request.Password;
             employee.Active = request.Active;

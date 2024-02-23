@@ -11,6 +11,8 @@ import { NotificationComponent } from 'src/app/theme/shared/components/Notificat
 import { FormsModule } from '@angular/forms';
 import { AllowanceUpdateComponent } from './allowance-update/allowance-update.component';
 import { PipeSharePipe } from 'src/app/theme/shared/components/Pipe/pipe-share.pipe';
+import { SpinnerBetaComponent } from 'src/app/theme/shared/components/spinner-beta/spinner-beta.component';
+import { SharedModule } from "../../theme/shared/shared.module";
 
 
 const routes : Routes =[
@@ -30,19 +32,17 @@ const routes : Routes =[
         AllowanceListComponent,
         AllowanceAddComponent,
         AllowanceUpdateComponent,
-
     ],
+    providers: [AllowanceServiceService],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
         BreadcrumbComponent,
-        HttpClientModule,PagingnavComponent,NotificationComponent,
+        HttpClientModule, PagingnavComponent, NotificationComponent,
         FormsModule,
-        PipeSharePipe
-
-
-
-    ],
-    providers: [AllowanceServiceService]
+        PipeSharePipe,
+        SpinnerBetaComponent,
+        SharedModule
+    ]
 })
 export class AllowanceModule { }

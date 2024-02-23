@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace QLNS.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class DataSeeding : Migration
+    public partial class DataSeed : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,10 +16,10 @@ namespace QLNS.DataAccess.Migrations
                 table: "Employees",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2023, 5, 27, 15, 11, 44, 534, DateTimeKind.Local).AddTicks(843),
+                defaultValue: new DateTime(2024, 2, 22, 20, 53, 49, 186, DateTimeKind.Local).AddTicks(4986),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2023, 5, 27, 15, 11, 30, 47, DateTimeKind.Local).AddTicks(9552));
+                oldDefaultValue: new DateTime(2024, 2, 22, 20, 52, 38, 804, DateTimeKind.Local).AddTicks(8895));
         }
 
         /// <inheritdoc />
@@ -30,10 +30,10 @@ namespace QLNS.DataAccess.Migrations
                 table: "Employees",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2023, 5, 27, 15, 11, 30, 47, DateTimeKind.Local).AddTicks(9552),
+                defaultValue: new DateTime(2024, 2, 22, 20, 52, 38, 804, DateTimeKind.Local).AddTicks(8895),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2023, 5, 27, 15, 11, 44, 534, DateTimeKind.Local).AddTicks(843));
+                oldDefaultValue: new DateTime(2024, 2, 22, 20, 53, 49, 186, DateTimeKind.Local).AddTicks(4986));
         }
     }
 }

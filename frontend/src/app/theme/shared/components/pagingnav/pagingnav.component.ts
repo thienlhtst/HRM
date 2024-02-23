@@ -15,8 +15,8 @@ export class PagingnavComponent implements OnInit,OnChanges  {
   page =1;
   totalpage:number=1
    @Output() numberchange: EventEmitter<number> =   new EventEmitter();
-  constructor() { 
-    
+  constructor() {
+
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['pagesize']) {
@@ -27,9 +27,10 @@ export class PagingnavComponent implements OnInit,OnChanges  {
   ngOnInit() {
 
     this.totalpage = this.pagesize*10
+    console.log(this.totalpage)
   }
   onchange(){
     this.numberchange.emit(this.page)
   }
-  
+
 }

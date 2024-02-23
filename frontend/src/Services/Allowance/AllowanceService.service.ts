@@ -1,9 +1,10 @@
+import { Pagingreponse } from './../../Model/other/pagingreponse';
 import { Injectable } from '@angular/core';
 import { Allowancemodel } from '../../Model/AllowanceModel';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
+import { Requestpaging } from 'src/Model/other/requestpaging';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,8 +17,13 @@ constructor(private http : HttpClient) { }
     return this.http.get<Allowancemodel[]>(this.apiurl+'/Allowance')
   }
 
+  getAllowancePaging(paging : Requestpaging) : Observable<Pagingreponse>{
+    if(paging.keyword!='')
+    return this.http.get<Pagingreponse>(this.apiurl + '/Allowance/paging?Keyword='+paging.keyword+'&PageIndex='+paging.pageindex+'&PageSize='+paging.pagesize+'');
+    return this.http.get<Pagingreponse>(this.apiurl + '/Allowance/paging?PageIndex='+paging.pageindex+'&PageSize='+paging.pagesize)
+  }
+
   CreateAllowance(data : Allowancemodel){
-    console.log(data)
     return this.http.post(this.apiurl + '/Allowance/createallowance',data)
   }
 

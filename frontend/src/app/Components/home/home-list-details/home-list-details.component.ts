@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./home-list-details.component.css']
 })
 export class HomeListDetailsComponent implements OnInit {
-  @Input() pagenumber:number  
+  @Input() pagenumber:number
   constructor() { }
 
   ngOnInit() {

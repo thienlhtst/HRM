@@ -49,7 +49,7 @@ namespace QLNSApiBackend.Controllers
             return Ok(rank);
         }
 
-        [HttpPost]
+       [HttpPost("createrank")]
         public async Task<IActionResult> Create([FromBody] RankCreateRequest rankCreateRequest)
         {
             if (!ModelState.IsValid)

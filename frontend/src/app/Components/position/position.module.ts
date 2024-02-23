@@ -9,6 +9,10 @@ import { PositionServiceService } from 'src/Services/Position/PositionService.se
 import { PositionAddComponent } from './position-add/position-add.component';
 import { PositionUpdateComponent } from './position-update/position-update.component';
 import { FormsModule } from '@angular/forms';
+import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pagingnav.component';
+import { NotificationComponent } from 'src/app/theme/shared/components/Notification/Notification.component';
+import { PipeSharePipe } from "../../theme/shared/components/Pipe/pipe-share.pipe";
+import { SpinnerBetaComponent } from 'src/app/theme/shared/components/spinner-beta/spinner-beta.component';
 
 
 const route : Routes =[{
@@ -21,18 +25,22 @@ const route : Routes =[{
 }]
 
 @NgModule({
-  declarations: [
-    PositionListComponent,
-    PositionAddComponent,
-    PositionUpdateComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(route),
-    BreadcrumbComponent,
-    HttpClientModule,
-    FormsModule
-  ],
-  providers: [PositionServiceService]
+    declarations: [
+        PositionListComponent,
+        PositionAddComponent,
+        PositionUpdateComponent
+    ],
+    providers: [PositionServiceService],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(route),
+        BreadcrumbComponent,
+        HttpClientModule,
+        FormsModule,
+        PagingnavComponent,
+        NotificationComponent,
+        PipeSharePipe,
+        SpinnerBetaComponent
+    ]
 })
 export class PositionModule { }

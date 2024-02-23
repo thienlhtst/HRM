@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+/* eslint-disable @angular-eslint/no-output-on-prefix */
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PositionModel } from 'src/Model/PositionModel';
 import { PositionServiceService } from 'src/Services/Position/PositionService.service';
@@ -10,20 +11,32 @@ import { PositionServiceService } from 'src/Services/Position/PositionService.se
 })
 export class PositionUpdateComponent implements OnInit {
   constructor(private Service:PositionServiceService,private router : Router,private route:ActivatedRoute){}
+  @Input() selectedID : string
+  @Output() onUpdate: EventEmitter<string> =   new EventEmitter();
+  @Output() onSuccess: EventEmitter<void> = new EventEmitter();
   id:string
 
 
   ngOnInit(): void {
-      this.id = `${this.route.snapshot.paramMap.get('id')}`;
+    this.id = `${this.route.snapshot.paramMap.get('id')}`;
   }
 
   Update(position : PositionModel){
-    this.Service.UpdatePosition(this.id,position).subscribe((res)=>{
+    this.onUpdate.emit(this.selectedID)
+    this.Service.UpdatePosition(this.selectedID,position).subscribe((res)=>{
       if(res){
-        alert('Update Success');
-        this.router.navigate(['/position'])
+        alert('Success')
+          setTimeout(() => {
+            this.onSuccess.emit()
+          }, 5);
+          window.location.reload()
       }
-      else alert ('Fail')
+      else{
+        alert('Fail')
+        setTimeout(() => {
+          this.onSuccess.emit()
+        }, 5);
+      }
     })
   }
 

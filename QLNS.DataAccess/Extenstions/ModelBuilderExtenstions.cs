@@ -21,8 +21,8 @@ namespace QLNS.DataAccess.Extenstions
                 new Allowance() { ID = "2", Name = "Tiền xăng", Money = 500000 }
                 );
             modelbuilder.Entity<Employees>().HasData(
-                new Employees() { ID = "1", FirstName = "Nguyen", MiddleName = "Jonny", LastName = "Dang", DOB = new DateTime(2004, 05, 01), Sex = Sex.Male, CIC = "000001", NumberPhone = "111", Address = "Texas", PositionID = "1", RankID = "1", Account = "admin", Password = "123456", Active = Active.Yes, URLImage = "" },
-                new Employees() { ID = "2", FirstName = "Nguyen", MiddleName = "Khoa", LastName = "Pug", DOB = new DateTime(2002, 09, 10), Sex = Sex.Male, CIC = "000002", NumberPhone = "222", Address = "New York", PositionID = "2", RankID = "2", Account = "admin", Password = "admin", Active = Active.Yes, URLImage = "" }
+                new Employees() { ID = "1", FirstName = "Nguyen", MiddleName = "Jonny", LastName = "Dang", DOB = new DateTime(2004, 05, 01), Sex = Sex.Male, CIC = "000001", NumberPhone = "111", Address = "Texas", SalaryID = "1", Account = "admin", Password = "123456", Active = Active.Yes, URLImage = "" },
+                new Employees() { ID = "2", FirstName = "Nguyen", MiddleName = "Khoa", LastName = "Pug", DOB = new DateTime(2002, 09, 10), Sex = Sex.Male, CIC = "000002", NumberPhone = "222", Address = "New York", SalaryID = "2", Account = "admin", Password = "admin", Active = Active.Yes, URLImage = "" }
                 );
             modelbuilder.Entity<RankRole>().HasData(
                 new RankRole() { ID = "1", Name = "Nhan Vien Binh Thuong" },

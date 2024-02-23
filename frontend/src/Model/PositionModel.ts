@@ -1,4 +1,4 @@
 export interface PositionModel {
-  iDposition: string
+  id: string
   name : string
 }

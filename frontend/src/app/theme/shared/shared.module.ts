@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TokenService } from 'src/Services/token.service';
 import { ModalComponent } from './components/modal/modal/modal.component';
 import { PipeSharePipe } from './components/Pipe/pipe-share.pipe';
+import { SpinnerBetaComponent } from './components/spinner-beta/spinner-beta.component';
 
 
 

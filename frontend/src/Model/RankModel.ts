@@ -1,6 +1,6 @@
 export interface RankModel {
-    idrank : string
-    rankroleid : string
+    id : string
     name : string
+    nameRankRole : string
 
 }

@@ -14,8 +14,8 @@ export class PipeSharePipe implements PipeTransform {
     }
 
     return items.filter(item => {
-      // Thực hiện logic lọc theo ID kiểu chuỗi
       return item.id.toString().includes(searchText);
+
     });
   }
 

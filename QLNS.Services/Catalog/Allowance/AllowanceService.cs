@@ -13,10 +13,12 @@ namespace QLNS.Services.Catalog.Allowance
     public class AllowanceService : IAllowanceService
     {
         private readonly QLNSDbContext _context;
+
         public AllowanceService(QLNSDbContext context)
         {
             _context = context;
         }
+
         public async Task<int> Create(AllowanceCreateRequest request)
         {
             var allowance = new QLNS.Entity.Entities.Allowance()
@@ -28,7 +30,6 @@ namespace QLNS.Services.Catalog.Allowance
             _context.Allowances.Add(allowance);
             await _context.SaveChangesAsync();
             return Convert.ToInt32(allowance.ID);
-
         }
 
         public async Task<int> Delete(string AllowanceId)
@@ -36,24 +37,24 @@ namespace QLNS.Services.Catalog.Allowance
             var allowance = await _context.Allowances.FindAsync(AllowanceId);
             _context.Allowances.Remove(allowance);
             return await _context.SaveChangesAsync();
-
         }
 
         public async Task<PagedResult<AllowanceViewModel>> GetAllPage(GetAllowancePagingRequest request)
         {
-            var query = from p in _context.Allowances select new { p};
+            var query = from p in _context.Allowances select new { p };
             if (!string.IsNullOrEmpty(request.Keyword))
             {
-                query = query.Where(x=>x.p.ID.Contains(request.Keyword));
+                query = query.Where(x => x.p.ID.Contains(request.Keyword));
             }
             int totalRow = await query.CountAsync();
             var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
                 .Take(request.PageSize)
-                .Select(x=> new AllowanceViewModel(){
+                .Select(x => new AllowanceViewModel()
+                {
                     ID = x.p.ID,
                     Name = x.p.Name,
                     Money = x.p.Money
-            }).ToListAsync();
+                }).ToListAsync();
             var pagedView = new PagedResult<AllowanceViewModel>()
             {
                 TotalRecords = totalRow,
@@ -72,7 +73,6 @@ namespace QLNS.Services.Catalog.Allowance
                 ID = allowance.ID,
                 Name = allowance.Name,
                 Money = allowance.Money
-
             };
             return allo;
         }
@@ -85,7 +85,6 @@ namespace QLNS.Services.Catalog.Allowance
                 ID = x.ID,
                 Name = x.Name,
                 Money = x.Money
-                
             }).ToListAsync();
             return data;
         }
@@ -94,10 +93,10 @@ namespace QLNS.Services.Catalog.Allowance
         {
             var allowance = await _context.Allowances.FindAsync(request.ID);
             if (allowance == null) return 0;
-            allowance.ID= request.ID;
-            allowance.Name= request.Name;
-            allowance.Money= request.Money;
-             _context.Allowances.Update(allowance);
+            allowance.ID = request.ID;
+            allowance.Name = request.Name;
+            allowance.Money = request.Money;
+            _context.Allowances.Update(allowance);
             return await _context.SaveChangesAsync();
         }
     }

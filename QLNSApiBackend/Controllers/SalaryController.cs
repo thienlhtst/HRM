@@ -46,14 +46,12 @@ namespace QLNSApiBackend.Controllers
             {
                 return BadRequest(ModelState);
             }
-            // var salary = await _salaryService.GetById(salaryCreateRequest.ID);
-            // return CreatedAtAction(nameof(GetById), new { id = salaryID }, salary);
+
             return Ok(new { token = salaryID });
         }
 
         [HttpPut("{id}")]
-        [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Update([FromRoute] string id, [FromBody] SalaryEditRequest request)
+        public async Task<IActionResult> Update(string id, [FromBody] SalaryEditRequest request)
         {
             request.ID = id;
             var salary = await _salaryService.Update(request);

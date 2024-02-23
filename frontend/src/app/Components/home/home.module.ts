@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeListComponent } from './home-list/home-list.component';
