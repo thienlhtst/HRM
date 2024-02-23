@@ -288,7 +288,32 @@ const NavigationItems = [
           icon :''
         },
     ]
-  }
+  },
+  {
+    id: '4',
+    title: 'Statistics',
+    type: 'group',
+    icon: 'icon-navigation',
+    children: [
+      {
+        id: '4-2',
+        title: 'Work Hour',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/statistic/workhour',
+        icon: 'bi bi-pie-chart',
+     
+      },{
+        id: '4-1',
+        title: 'Salary',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/statistic/salary',
+        icon: 'bi bi-currency-dollar',
+      }
+    ]
+  },
+  
 
 
 

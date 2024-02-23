@@ -57,6 +57,7 @@ namespace QLNSApiBackend.BackendApi
             services.AddTransient<IAllowanceService, AllowanceService>();
             services.AddTransient<ILabourContractService, LabourContractService>();
             services.AddTransient<IEmployeesWithAllowancesService, EmployeesWithAllowancesService>();
+            services.AddTransient<IStatisticSalaryService, StatisticSalaryService>();
             services.AddTransient<IStatisticWorkHourService, StatisticWorkHourService>();
             services.AddTransient<IStorageService, FileStorageService>();
             services.AddControllersWithViews();
@@ -85,7 +86,7 @@ namespace QLNSApiBackend.BackendApi
             app.UseRouting();
 
             app.UseAuthorization();
-            app.UseCors(m=> m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            app.UseCors(m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>

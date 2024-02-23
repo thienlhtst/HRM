@@ -23,9 +23,11 @@ export class AuthService {
     return this.http
       .post<ILoginResponse>(environment.apiurl+'/login', data)
       .pipe(
+        
         map((response) => {
           if (response) {
-            this.tokenService.setToken(response.token);
+            this.tokenService.setToken(response.name);
+            this.tokenService.setTokenId(response.id)
           }
           return response;
         })

@@ -10,7 +10,8 @@ export interface ILogin {
 }
 
 export interface ILoginResponse {
-  message: string;
+  id: string;
+  name: string;
   token: string;
   user: IUser;
 }

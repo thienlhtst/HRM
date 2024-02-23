@@ -28,6 +28,7 @@ namespace QLNS.Services.Catalog.Login
             var data = await query.Select(x => new LoginRequest()
             {
                 ID = x.p.ID,
+                Name=x.p.LastName+" "+x.p.FirstName,
                 Account = x.p.Account,
                 Password = x.p.Password,
                 RankRole = x.pt.RankRoleID
