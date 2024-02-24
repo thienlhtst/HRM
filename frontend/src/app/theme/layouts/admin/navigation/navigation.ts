@@ -199,7 +199,7 @@ const NavigationItems = [
               classes:'nav-item',
             },
             {
-              id :'allowance',
+              id :'position',
               title:'Update',
               type:'item',
               url:"/position/update",
@@ -302,7 +302,7 @@ const NavigationItems = [
         classes: 'nav-item',
         url: '/statistic/workhour',
         icon: 'bi bi-pie-chart',
-     
+
       },{
         id: '4-1',
         title: 'Salary',
@@ -313,7 +313,7 @@ const NavigationItems = [
       }
     ]
   },
-  
+
 
 
 

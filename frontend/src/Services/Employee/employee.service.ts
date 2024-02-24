@@ -6,6 +6,7 @@ import { EmployeeModel } from '../../Model/Employee/EmployeeModel';
 import { environment } from 'src/environments/environment';
 import { Requestpaging } from 'src/Model/other/requestpaging';
 import { Pagingreponse } from 'src/Model/other/pagingreponse';
+import { EmployeeUpdateModel } from 'src/Model/Employee/EmployeeUpdateModel';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export class EmployeeService {
       return this.http.post(this.ApiUrl + '/Employee/createemployee',data)
   }
 
-  UpdateEmployee(id : string,data : EmployeeModel){
+  UpdateEmployee(id : string,data : EmployeeUpdateModel){
     return this.http.put(this.ApiUrl + '/Employee/'+ id,data)
   }
 

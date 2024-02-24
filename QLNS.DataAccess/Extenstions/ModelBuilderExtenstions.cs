@@ -14,6 +14,8 @@ namespace QLNS.DataAccess.Extenstions
 {
     public static class ModelBuilderExtenstions
     {
+        private static DataSeeder Seeder = new DataSeeder();
+
         public static void Seed(this ModelBuilder modelbuilder)
         {
             modelbuilder.Entity<Allowance>().HasData(
@@ -22,7 +24,10 @@ namespace QLNS.DataAccess.Extenstions
                 );
             modelbuilder.Entity<Employees>().HasData(
                 new Employees() { ID = "1", FirstName = "Nguyen", MiddleName = "Jonny", LastName = "Dang", DOB = new DateTime(2004, 05, 01), Sex = Sex.Male, CIC = "000001", NumberPhone = "111", Address = "Texas", SalaryID = "1", Account = "admin", Password = "123456", Active = Active.Yes, URLImage = "" },
-                new Employees() { ID = "2", FirstName = "Nguyen", MiddleName = "Khoa", LastName = "Pug", DOB = new DateTime(2002, 09, 10), Sex = Sex.Male, CIC = "000002", NumberPhone = "222", Address = "New York", SalaryID = "2", Account = "admin", Password = "admin", Active = Active.Yes, URLImage = "" }
+                new Employees() { ID = "2", FirstName = "Nguyen", MiddleName = "Khoa", LastName = "Pug", DOB = new DateTime(2002, 09, 10), Sex = Sex.Male, CIC = "000002", NumberPhone = "222", Address = "New York", SalaryID = "2", Account = "admin", Password = "admin", Active = Active.Yes, URLImage = "" },
+                new Employees() { ID = "3", FirstName = "Nguyen", MiddleName = "Tri", LastName = "Thanh", DOB = new DateTime(2002, 03, 04), Sex = Sex.Male, CIC = "000002", NumberPhone = "222", Address = "Thailand", SalaryID = "2", Account = "admin", Password = "admin", Active = Active.Yes, URLImage = "" },
+                new Employees() { ID = "4", FirstName = "Tran", MiddleName = "Minh", LastName = "Thien", DOB = new DateTime(2002, 05, 10), Sex = Sex.Female, CIC = "000002", NumberPhone = "2211232", Address = "New York", SalaryID = "2", Account = "admin", Password = "admin", Active = Active.Yes, URLImage = "" },
+                new Employees() { ID = "5", FirstName = "Bui", MiddleName = "Manh", LastName = "Tgabg", DOB = new DateTime(2002, 07, 10), Sex = Sex.Female, CIC = "000002", NumberPhone = "212322", Address = "Dubai", SalaryID = "2", Account = "admin", Password = "admin", Active = Active.Yes, URLImage = "" }
                 );
             modelbuilder.Entity<RankRole>().HasData(
                 new RankRole() { ID = "1", Name = "Nhan Vien Binh Thuong" },
@@ -69,29 +74,9 @@ namespace QLNS.DataAccess.Extenstions
                 );
 
             modelbuilder.Entity<WorkHour>().HasData(
-                new WorkHour() { ID = 1, EmployeesID = "1", LBDID = "1", Day = 1, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 2, EmployeesID = "1", LBDID = "1", Day = 2, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 3, EmployeesID = "1", LBDID = "1", Day = 3, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 4, EmployeesID = "1", LBDID = "1", Day = 4, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 5, EmployeesID = "1", LBDID = "1", Day = 5, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 6, EmployeesID = "1", LBDID = "1", Day = 6, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 7, EmployeesID = "1", LBDID = "1", Day = 7, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 8, EmployeesID = "1", LBDID = "1", Day = 8, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 9, EmployeesID = "1", LBDID = "1", Day = 9, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 10, EmployeesID = "2", LBDID = "1", Day = 1, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 11, EmployeesID = "2", LBDID = "1", Day = 2, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 12, EmployeesID = "2", LBDID = "1", Day = 3, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 13, EmployeesID = "2", LBDID = "1", Day = 4, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 14, EmployeesID = "2", LBDID = "1", Day = 5, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 15, EmployeesID = "2", LBDID = "1", Day = 6, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 16, EmployeesID = "2", LBDID = "1", Day = 7, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 17, EmployeesID = "2", LBDID = "1", Day = 8, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 18, EmployeesID = "2", LBDID = "1", Day = 9, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 19, EmployeesID = "2", LBDID = "1", Day = 10, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 20, EmployeesID = "2", LBDID = "1", Day = 11, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 21, EmployeesID = "2", LBDID = "1", Day = 12, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 },
-                new WorkHour() { ID = 22, EmployeesID = "2", LBDID = "1", Day = 13, Month = 4, Year = 2023, HourCheckin = 7, MinuteCheckin = 0, HourCheckout = 16, MinuteCheckout = 0 }
-            );
+              Seeder.WorkHourSeedData());
+            modelbuilder.Entity<EmployeesWithAllowances>().HasData(
+                Seeder.EWASeedData());
         }
     }
 }

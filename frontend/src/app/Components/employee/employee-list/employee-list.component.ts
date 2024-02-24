@@ -42,6 +42,20 @@ export class EmployeeListComponent implements OnInit {
     })
   }
 
+  Delete(event:any,id : string){
+    if(confirm('Delete this data ?')){
+      this.service.DeleteEmployee(id).subscribe((res)=>{
+        if(res){
+          alert('Delete Success');
+          this.GetPaging();
+        } else{
+          alert('Fail')
+          this.GetPaging();
+        }
+      })
+    }
+  }
+
   GetPaging(){
     this.service.GetEmployeePaging(this.paging).subscribe((res)=>{
       setTimeout(() => {

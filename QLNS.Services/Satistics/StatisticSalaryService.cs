@@ -23,18 +23,20 @@ namespace QLNS.Services.Satistics
         public StatisticSalaryService(QLNSDbContext context)
         {
             _context = context;
-            _date= new DatetimeInDate();
+            _date = new DatetimeInDate();
         }
 
         public async Task<PagedResult<SalaryListStatistic>> GetAllPage(GetStatisticAllPage request)
         {
             var query_employee = from emp in _context.Employee
-                                 from sal in _context.Salaries
-                                 where emp.RankID == sal.RankID && emp.PositionID== sal.PositionID
+                                 join sal in _context.Salaries on emp.SalaryID equals sal.ID
+                                 join rank in _context.Ranks on sal.RankID equals rank.IDrank
+                                 join position in _context.Positions on sal.PositionID equals position.IDposition
+                                 where sal.RankID == rank.IDrank && sal.PositionID == position.IDposition
                                  select new
                                  {
                                      ID = emp.ID,
-                                     Name = emp.FirstName +" "+emp.LastName,
+                                     Name = emp.FirstName + " " + emp.LastName,
                                      Salary = sal.Money,
                                  };
             if (!string.IsNullOrEmpty(request.Keyword))
@@ -53,10 +55,10 @@ namespace QLNS.Services.Satistics
             foreach (var item in data)
             {
                 var query_workhour = await _context.WorkHours.Where(x => x.EmployeesID.Equals(item.ID) && x.Month.Equals(request.Month) && x.Year.Equals(request.Year)).ToListAsync();
-                item.Workhour=0;
-                if (query_workhour!=null)
-                    item.Workhour= query_workhour.Sum(x => Math.Round(((x.HourCheckout + ((double)x.MinuteCheckout / 60)) - (x.HourCheckin + ((double)x.MinuteCheckin / 60))), 2));
-                item.Salary= (double)item.BasicSalary * item.Workhour;
+                item.Workhour = 0;
+                if (query_workhour != null)
+                    item.Workhour = query_workhour.Sum(x => Math.Round(((x.HourCheckout + ((double)x.MinuteCheckout / 60)) - (x.HourCheckin + ((double)x.MinuteCheckin / 60))), 2));
+                item.Salary = (double)item.BasicSalary * item.Workhour;
             }
             var pagedView = new PagedResult<SalaryListStatistic>()
             {
@@ -71,8 +73,10 @@ namespace QLNS.Services.Satistics
         public async Task<SalaryToEmployeeInYear> SalaryInYear(int year)
         {
             var query_employee = from emp in _context.Employee
-                                 from sal in _context.Salaries
-                                 where emp.RankID == sal.RankID && emp.PositionID== sal.PositionID
+                                 join sal in _context.Salaries on emp.SalaryID equals sal.ID
+                                 join rank in _context.Ranks on sal.RankID equals rank.IDrank
+                                 join position in _context.Positions on sal.PositionID equals position.IDposition
+                                 where sal.RankID == rank.IDrank && sal.PositionID == position.IDposition
                                  select new
                                  {
                                      ID = emp.ID,
@@ -80,25 +84,25 @@ namespace QLNS.Services.Satistics
                                  };
             SalaryToEmployeeInYear result = new SalaryToEmployeeInYear
             {
-                total=0,
+                total = 0,
                 monthlyinyear = new double[12]
             };
-            for (int i = 0; i<12; i++)
+            for (int i = 0; i < 12; i++)
             {
                 double total_sumsalary = 0;
                 foreach (var item in query_employee)
                 {
-                    var query_workhour = await _context.WorkHours.Where(x => x.EmployeesID.Equals(item.ID) && x.Month.Equals(i+ 1) && x.Year.Equals(year)).ToListAsync();
+                    var query_workhour = await _context.WorkHours.Where(x => x.EmployeesID.Equals(item.ID) && x.Month.Equals(i + 1) && x.Year.Equals(year)).ToListAsync();
                     double sum_workhour = 0;
-                    if (query_workhour!=null)
+                    if (query_workhour != null)
                         sum_workhour = query_workhour.Sum(x => Math.Round(((x.HourCheckout + ((double)x.MinuteCheckout / 60)) - (x.HourCheckin + ((double)x.MinuteCheckin / 60))), 2));
                     double sumsalary = (double)item.Salary * sum_workhour;
-                    total_sumsalary+=sumsalary;
+                    total_sumsalary += sumsalary;
                 }
-                if (total_sumsalary<1000000 && total_sumsalary>10000)
-                    result.monthlyinyear[i]=total_sumsalary;
+                if (total_sumsalary < 1000000 && total_sumsalary > 10000)
+                    result.monthlyinyear[i] = total_sumsalary;
                 else
-                    result.monthlyinyear[i] =Math.Round(total_sumsalary/1000000, 2);
+                    result.monthlyinyear[i] = Math.Round(total_sumsalary / 1000000, 2);
             }
             result.total = result.monthlyinyear.Sum();
             return result;
@@ -112,9 +116,9 @@ namespace QLNS.Services.Satistics
                                       select new TopSalary
                                       {
                                           ID = sal.ID,
-                                          PositionName= pos.Name,
+                                          PositionName = pos.Name,
                                           RankName = rank.Name,
-                                          Salary= (double)sal.Money
+                                          Salary = (double)sal.Money
                                       }).ToListAsync();
             var result = query_salary.OrderByDescending(x => x.Salary).Take(top).ToList();
             return result;

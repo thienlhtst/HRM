@@ -60,10 +60,10 @@ namespace QLNSApiBackend.Controllers
             return Ok(new { token = employeeID });
         }
 
-        [HttpPut("{ID}")]
-        public async Task<IActionResult> Update(string ID, [FromBody] EmployeeEditRequest request)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(string id, [FromBody] EmployeeEditRequest request)
         {
-            ID = request.ID;
+            request.ID = id;
             var employee = await _employeeService.Update(request);
             return Ok(employee);
         }

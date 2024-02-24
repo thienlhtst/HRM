@@ -58,6 +58,14 @@
                       <td>{{item.password}}</td>
                       <td>{{item.active}}</td>
                       <td>{{item.urlImage}}</td>
+                      <td>
+                        <button (click)="ButtonClickToUpdate(item.id)">
+                          <img src="/frontend/src/img/plus.png" />
+                        </button>
+                        <button (click)="Delete($event,item.id)">
+                          <img   src="/frontend/src/img/plus.png" />
+                        </button>
+                      </td>
                   </tr>
 
               </tbody>

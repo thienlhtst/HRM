@@ -49,7 +49,7 @@ namespace QLNSApiBackend.Controllers
             return Ok(rank);
         }
 
-       [HttpPost("createrank")]
+        [HttpPost("createrank")]
         public async Task<IActionResult> Create([FromBody] RankCreateRequest rankCreateRequest)
         {
             if (!ModelState.IsValid)
@@ -65,7 +65,7 @@ namespace QLNSApiBackend.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromRoute] string id, [FromBody] RankEditRequest request)
+        public async Task<IActionResult> Update(string id, [FromBody] RankEditRequest request)
         {
             request.IDrank = id;
             var rank = await _rankService.Update(request);

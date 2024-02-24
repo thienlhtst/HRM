@@ -41,8 +41,6 @@ export default class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   message: any='';
   flag: number=0
-  constructor(private fb: FormBuilder,private authService:AuthService ) {
-
   constructor(private fb: FormBuilder,private authService:AuthService,private renderer: Renderer2 ) {
 
   }
@@ -60,25 +58,16 @@ export default class LoginComponent implements OnInit {
       type: 'success',
 		message: 'This is an success alert',
 	  }
-
-    this.message=true
-    this.flag=1
-
     if (this.loginForm.valid) {
       this.flag=1
 
       this.authService.onLogin(this.loginForm.value).subscribe({
         next: (a) => {
-          if(a==null){this.message=true,this.alert.type='success',this.message='asdasdsad'}
-           this.flag=0 },
-
           if(a==null){
             this.message=true,this.alert.type='danger',this.alert.message='User or password wrong'
             this.renderer.selectRootElement('#usernameInput').focus();
 
           }
-
-          ;
            },
 
      });

@@ -24,63 +24,57 @@ namespace QLNS.Services.Catalog.EmployeesWithAllowances
             _workHourService = workHourService;
         }
 
-        public async Task<List<QLNS.Entity.RelationShips.EmployeesWithAllowances>> check (EwaAutoCheckRequest request)
+        public async Task<List<QLNS.Entity.RelationShips.EmployeesWithAllowances>> check(EwaAutoCheckRequest request)
         {
             var t = from p in _context.EmployeesWithAllowances
                     where p.Date.Equals(DateTime.Parse(request.Year + "-" + request.Month + "-" + request.Day))
                     select p;
             var a = await t.ToListAsync();
             return a;
-           
         }
+
         public async Task<int> auto(EwaAutoCheckRequest request)
         {
             var a = 0;
-            var query = from p in _context.WorkHours 
+            var query = from p in _context.WorkHours
                         where p.Day.Equals(request.Day) && p.Month.Equals(request.Month) && p.Year.Equals(request.Year)
                         select p;
             var t = await (from p in _context.EmployeesWithAllowances
-                    where p.Date.Equals(DateTime.Parse(request.Year + "-" + request.Month + "-" + request.Day))
-                    select p).ToListAsync();
+                           where p.Date.Equals(DateTime.Parse(request.Year + "-" + request.Month + "-" + request.Day))
+                           select p).ToListAsync();
             foreach (var item in query)
             {
                 int kt = 0;
-                if(t != null)
-                foreach(var item2 in t)
+                if (t != null)
+                    foreach (var item2 in t)
+                    {
+                        if (item.EmployeesID.Equals(item2.EmployeeID) && request.AllowanceID.Equals(item2.AllowanceID))
+                            kt = 1;
+                    }
+                if (kt == 0)
                 {
-
-                    if (item.EmployeesID.Equals(item2.EmployeeID) && request.AllowanceID.Equals(item2.AllowanceID))
-                        kt = 1;
-                }
-              if(kt == 0)
-                {
-
                     var ewa = new QLNS.Entity.RelationShips.EmployeesWithAllowances()
                     {
                         AllowanceID = request.AllowanceID,
                         EmployeeID = item.EmployeesID,
                         Date = DateTime.Parse(request.Year + "-" + request.Month + "-" + request.Day)
-
                     };
                     _context.EmployeesWithAllowances.Add(ewa);
                 }
-                
             }
             a = await _context.SaveChangesAsync();
             return a;
-
-            
-		}
+        }
 
         // employee, allowance (name)
         public async Task<PagedResult<EwaAutoNow>> EWANow(GetEwaRequest request)
         {
             var t = 0;
-            var query = from p in _context.EmployeesWithAllowances 
+            var query = from p in _context.EmployeesWithAllowances
                         join pt in _context.Employee on p.EmployeeID equals pt.ID
                         join px in _context.Allowances on p.AllowanceID equals px.ID
-                        where p.Date.Equals(request.date) 
-                        select new {p, pt, px };
+                        where p.Date.Equals(request.date)
+                        select new { p, pt, px };
             if (!string.IsNullOrEmpty(request.Keyword))
             {
                 query = query.Where(x => x.p.EmployeeID.Contains(request.Keyword));
@@ -89,8 +83,8 @@ namespace QLNS.Services.Catalog.EmployeesWithAllowances
             var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
                 .Take(request.PageSize)
                 .Select(x => new EwaAutoNow()
-                {                
-                    EmployeeName = x.pt.FirstName+" "+ x.pt.MiddleName+" "+x.pt.LastName,
+                {
+                    EmployeeName = x.pt.FirstName + " " + x.pt.MiddleName + " " + x.pt.LastName,
                     AllowanceName = x.px.Name,
                     Money = x.px.Money
                 }).ToListAsync();
@@ -111,7 +105,6 @@ namespace QLNS.Services.Catalog.EmployeesWithAllowances
                 EmployeeID = request.EmployeeID,
                 AllowanceID = request.AllowanceID,
                 Date = request.Date
-                
             };
             _context.EmployeesWithAllowances.Add(ea);
             return await _context.SaveChangesAsync();
@@ -124,7 +117,6 @@ namespace QLNS.Services.Catalog.EmployeesWithAllowances
             return await _context.SaveChangesAsync();
         }
 
-        
         public async Task<PagedResult<EmployeesWithAllowancesViewModel>> GetAllPage(GetEmployeesWithAllowancesPagingRequest request)
         {
             var query = from p in _context.EmployeesWithAllowances
@@ -145,7 +137,7 @@ namespace QLNS.Services.Catalog.EmployeesWithAllowances
                     EmployeeID = x.pt.LastName,
                     AllowanceID = x.px.Name,
                     Date = x.p.Date
-				}).ToListAsync();
+                }).ToListAsync();
             var pagedView = new PagedResult<EmployeesWithAllowancesViewModel>()
             {
                 TotalRecords = totalRow,
