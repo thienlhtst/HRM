@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct, NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { EmployeeWork } from 'src/Model/Statistics/EmployeeWork';
 // third party
 import ApexCharts from 'apexcharts';
@@ -25,6 +25,7 @@ export type ChartOptions = {
   xaxis: ApexXAxis;
   colors: string[];
   stroke: ApexStroke;
+  tooltip: ApexTooltip;
   grid: ApexGrid;
   yaxis: ApexYAxis;
   legend: ApexLegend;
@@ -36,14 +37,32 @@ export type ChartOptions = {
 })
 export class WorkhourChartStatisticComponent implements OnInit {
   op = new Options()
+  yearOptions: number[];
+  currentYear: number;
+  currentMonth;
+  monthSelected;
+  yearSelected;
   @ViewChild('chart') chart: ChartComponent;
   chartOptions_4: Partial<ChartOptions>;
+  flagdate:number=0;
   monthChart;
   weekChart;
   testthu;
   datamonthChart;
 
-  
+  generateYearOptions(startYear: number, endYear: number): number[] {
+    const years = [];
+    for (let year = startYear; year >= endYear; year--) {
+      years.push(year);
+    }
+    return years;
+  }
+  getFormattedDate(date: Date): string {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${day}/${month}/${year}`;
+  }
   constructor(private services:WorkhourStatisticsServiceService) { 
     this.chartOptions_4 = 
     {
@@ -81,7 +100,7 @@ export class WorkhourChartStatisticComponent implements OnInit {
         width: 2
       },
       xaxis: {
-        categories: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+        categories: ['Mo ', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
         axisBorder: {
           show: false
         },
@@ -90,32 +109,67 @@ export class WorkhourChartStatisticComponent implements OnInit {
         }
       },
       yaxis: {
-        show: false
+        show: true
       },
       grid: {
         show: false
+      },
+      tooltip: {
+        y: {
+          formatter: (val) =>
+             val + " employee"
+        },
       }
     };
-     
-    this.services.GetEmployeeOff('2023-4-5').subscribe((res)=>{
+    let currentdate = new Date()
+    
+    this.services.GetEmployeeOff(currentdate.getFullYear()+'-'+(currentdate.getMonth()+1)+'-'+currentdate.getDate() ).subscribe((res)=>{
+      for(let i=0;i<7;i++){
+        let day= new Date(res.day[i])
+        if(currentdate < day){
+          res.employeeOff[i]=0
+          res.employeeWork[i]=0
+        }
+      }
       this.chartOptions_4.series=[
         {
-          name:"employee work",
+          name:"Work",
           data: res.employeeWork
         },
         {
           color:"#00FFFF",
-          name:"employee Off",
+          name:"Off",
           data: res.employeeOff
         }
       ]
+    
+      this.chartOptions_4.xaxis={
+        categories: ['Mo '+this.getFormattedDate(new Date(res.day[0])),
+                  'Tu '+this.getFormattedDate(new Date(res.day[1])),
+                  'We '+this.getFormattedDate(new Date(res.day[2])),
+                  'Th '+this.getFormattedDate(new Date(res.day[3])),
+                  'Fr '+this.getFormattedDate(new Date(res.day[4])),
+                  'Sa '+this.getFormattedDate(new Date(res.day[5])),
+                  'Su '+this.getFormattedDate(new Date(res.day[6]))],
+        axisBorder: {
+          show: false
+        },
+        axisTicks: {
+          show: false
+        }
+      }
+        
+      
     })
 
   }
    ngOnInit() {
+    this.currentYear = new Date().getFullYear();
+    this.currentMonth= new Date().getMonth();
+    this.yearOptions = this.generateYearOptions(this.currentYear, this.currentYear - 20);
     this.testthu = this.op.getweek()
     this.datamonthChart = this.op.getmonth();
-     this.services.GetWeekWorkhour(4, 2023).subscribe((res)=>{
+     this.services.GetWeekWorkhour(this.currentMonth, this.currentYear).subscribe((res)=>{
       this.testthu.series=[
       ]
       for (let i = 0; i < res.length; i++) {
@@ -135,7 +189,8 @@ export class WorkhourChartStatisticComponent implements OnInit {
   
   onNavChange(changeEvent: NgbNavChangeEvent) {
     if (changeEvent.nextId === 1) {
-      this.services.GetWeekWorkhour(4, 2023).subscribe((res)=>{
+      this.flagdate=0;
+      this.services.GetWeekWorkhour(this.currentMonth, this.currentYear).subscribe((res)=>{
       this.testthu.series=[
       ]
       for (let i = 0; i < res.length; i++) {
@@ -153,7 +208,8 @@ export class WorkhourChartStatisticComponent implements OnInit {
     })
   }
   if (changeEvent.nextId === 2) {
-    this.services.GetMonthWorkhour(2023).subscribe((res)=>{
+    this.flagdate=1;
+    this.services.GetMonthWorkhour(this.currentYear).subscribe((res)=>{
       this.datamonthChart.series=[
         {
           name: 'workhour',
@@ -167,5 +223,93 @@ export class WorkhourChartStatisticComponent implements OnInit {
     })
   }
     
+  }
+  onChangeMonth(event:any){
+    this.currentMonth = parseInt(event.target.value);
+    this.services.GetWeekWorkhour(this.currentMonth, this.currentYear).subscribe((res)=>{
+      this.testthu.series=[
+      ]
+      for (let i = 0; i < res.length; i++) {
+            let row = res[i];
+            let data :any={
+                name: 'Week '+i,
+                data: row,
+            } 
+            this.testthu.series.push(data)
+      }
+      setTimeout(() => {
+        this.weekChart = new ApexCharts(document.querySelector('#visitor-chart'), this.testthu);
+        this.weekChart.render();
+      }, 200);
+    })
+   
+  }
+  onChangeYear(event:any){
+    this.currentYear = parseInt(event.target.value);
+    if(this.flagdate==0){
+      this.services.GetWeekWorkhour(this.currentMonth, this.currentYear).subscribe((res)=>{
+        this.testthu.series=[
+        ]
+        for (let i = 0; i < res.length; i++) {
+              let row = res[i];
+              let data :any={
+                  name: 'Week '+i,
+                  data: row,
+              } 
+              this.testthu.series.push(data)
+        }
+        setTimeout(() => {
+          this.weekChart = new ApexCharts(document.querySelector('#visitor-chart'), this.testthu);
+          this.weekChart.render();
+        }, 200);
+      })
+    }else{
+      this.services.GetMonthWorkhour(this.currentYear).subscribe((res)=>{
+        this.datamonthChart.series=[
+          {
+            name: 'workhour',
+            data:res
+          }
+        ]
+        setTimeout(() => {
+          this.monthChart = new ApexCharts(document.querySelector('#visitor-chart-1'), this.datamonthChart);
+          this.monthChart.render();
+        }, 200);
+      })
+    }
+    
+  }
+  OnChangeDate(date : NgbDateStruct){
+     let currentdate= date.year+'-'+date.month+'-'+date.day 
+      this.services.GetEmployeeOff(currentdate).subscribe((res)=>{
+        
+        this.chartOptions_4.series=[
+          {
+            name:"Work",
+            data: res.employeeWork
+          },
+          {
+            color:"#00FFFF",
+            name:"Off",
+            data: res.employeeOff
+          }
+        ]
+        this.chartOptions_4.xaxis={
+          categories: ['Mo '+this.getFormattedDate(new Date(res.day[0])),
+                    'Tu '+this.getFormattedDate(new Date(res.day[1])),
+                    'We '+this.getFormattedDate(new Date(res.day[2])),
+                    'Th '+this.getFormattedDate(new Date(res.day[3])),
+                    'Fr '+this.getFormattedDate(new Date(res.day[4])),
+                    'Sa '+this.getFormattedDate(new Date(res.day[5])),
+                    'Su '+this.getFormattedDate(new Date(res.day[6]))],
+          axisBorder: {
+            show: false
+          },
+          axisTicks: {
+            show: false
+          }
+        }
+
+      })
   }
 }

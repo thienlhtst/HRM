@@ -26,9 +26,6 @@ namespace QLNS.Entity.Entities
         public Active Active { get; set; }
         public string URLImage { get; set; }
 
-        public Rank? Rank { get; set; }
-        public Position? Position { get; set; }
-
         public Salary? Salary { get; set; }
         public List<WorkHour> workHours { get; } = new();
         public List<EmployeesWithAllowances> EWA { get; } = new();

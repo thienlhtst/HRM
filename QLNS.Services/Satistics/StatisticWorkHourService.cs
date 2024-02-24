@@ -50,17 +50,13 @@ namespace QLNS.Services.Satistics
             return data;
         }
 
-        public async Task<PagedResult<WorkhourStatistic>> GetallPage(GetStatisticAllPage request)
+        public async Task<List<WorkhourStatistic>> GetallPage(int month, int year)
         {
             var query = from p in _context.WorkHours
                         join pt in _context.Employee on p.EmployeesID equals pt.ID
-                        where p.Month ==request.Month && p.Year ==request.Year
+                        where p.Month ==month && p.Year ==year
                         select new { p, pt };
-            if (!string.IsNullOrEmpty(request.Keyword))
-            {
-                query = query.Where(x => x.pt.LastName.Contains(request.Keyword) || x.pt.FirstName.Contains(request.Keyword));
-            }
-            int totalRow = await query.CountAsync();
+
             var data = await query
                 .Select(x => new WorkhourStatistic()
                 {
@@ -75,15 +71,7 @@ namespace QLNS.Services.Satistics
             foreach (WorkhourStatistic statistic in data)
                 if (statistic.Workhour < 0)
                     statistic.Workhour = 0;
-
-            var pagedView = new PagedResult<WorkhourStatistic>()
-            {
-                TotalRecords = totalRow,
-                PageIndex = request.PageIndex,
-                PageSize = request.PageSize,
-                Items = data
-            };
-            return pagedView;
+            return data;
         }
 
         public async Task<List<double[]>> GetAllWeeksinMonth(int month, int year)

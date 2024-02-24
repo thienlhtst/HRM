@@ -22,7 +22,7 @@ export default class QrcodeComponent {
         alert('Success')
         this.router.navigate(['http://localhost:4200/'])
       }
-      else{
+      else{ 
         alert('Fail')
         this.router.navigate(['http://localhost:4200/login'])
       }

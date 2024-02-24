@@ -19,7 +19,7 @@ constructor(private http : HttpClient) { }
   GetChartMonthlyinYear(year):Observable<any>{
     return this.http.get(this.apiurl+'/monthlyinyear?year='+year)
   }
-  GetTopSalary(top):Observable<any>{
+  GetTopSalary(top):Observable<any>{ 
     return this.http.get(this.apiurl+'/topsalary?top='+top)
   }
 

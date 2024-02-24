@@ -16,27 +16,27 @@ export class WorkhourStatisticsServiceService {
   GetpagingWorkhour(keyword,day,month,year):Observable<any>{
     let url:string;
      if(keyword==null)
-     url =this.apiurl+'/paging?Month='+month+'&PageIndex=1&PageSize=10'
+     url =this.apiurle+'/estatisticpaging?&PageIndex=1&PageSize=10'
     else
-    url=this.apiurl+'/paging?Keyword='+keyword+'&Month='+month+'&PageIndex=1&PageSize=10'
+    url=this.apiurle+'/estatisticpaging?Keyword='+keyword+'&PageIndex=1&PageSize=10'
     return forkJoin([
-      this.http.get(this.apiurle),
-      this.http.get(url)
+      this.http.get(url),
+      this.http.get(this.apiurl+'/paging?month='+month+'&year='+year)
     ]).pipe(
       map((data: any[]) => {
         
-        let employees: any[] = data[0];
-        let workhours: any = data[1];
+        let employees: any = data[0];
+        let workhours: any[] = data[1];
         let result:any={
           items:[],
-          pageIndex:workhours.pageIndex,
-          pageSize:workhours.pageSize,
-          totalRecords:workhours.totalRecords,
-          pageCount:workhours.pageCount
+          pageIndex:employees.pageIndex,
+          pageSize:employees.pageSize,
+          totalRecords:employees.totalRecords,
+          pageCount:employees.pageCount
         }
         let resultquery:any[]=[]
         
-        employees.forEach(employee => {
+        employees.items.forEach(employee => {
           let total=0
           let ResultInForeach :any={
             name:employee.name,
@@ -44,7 +44,7 @@ export class WorkhourStatisticsServiceService {
           }
            for(let i=1;i<=day;i++){
               let flag = 0;
-              workhours.items.forEach(workhour=>{
+              workhours.forEach(workhour=>{
                   if(employee.id==workhour.employeeID && i==workhour.day )
                   {
                     flag=1

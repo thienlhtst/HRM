@@ -2,43 +2,27 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 // bootstrap import
 import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
-// third party
-import ApexCharts from 'apexcharts';
-import {
-  ApexAxisChartSeries,
-  ApexChart,
-  ChartComponent,
-  ApexDataLabels,
-  ApexPlotOptions,
-  ApexXAxis,
-  ApexYAxis,
-  ApexStroke,
-  ApexGrid,
-  ApexLegend
-} from 'ng-apexcharts';
+
 import { WorkhourStatisticsServiceService } from 'src/Services/Statistics/WorkhourStatisticsService.service';
-export type ChartOptions = {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  plotOptions: ApexPlotOptions;
-  xaxis: ApexXAxis;
-  colors: string[];
-  stroke: ApexStroke;
-  grid: ApexGrid;
-  yaxis: ApexYAxis;
-  legend: ApexLegend;
-};
+
 @Component({
   selector: 'app-workhour-list-statistic',
   templateUrl: './workhour-list-statistic.component.html',
   styleUrls: ['./workhour-list-statistic.component.css']
 })
 export class WorkhourListStatisticComponent implements OnInit {
-  @ViewChild('chart') chart: ChartComponent;
-  chartOptions_4: Partial<ChartOptions>;
-  chartOptions_5: Partial<ChartOptions>;
-  chartOptions_6: Partial<ChartOptions>;
+  yearOptions: number[];
+  currentYear: number;
+  currentMonth;
+  monthSelected;
+  yearSelected;
+  generateYearOptions(startYear: number, endYear: number): number[] {
+    const years = [];
+    for (let year = startYear; year >= endYear; year--) {
+      years.push(year);
+    }
+    return years;
+  }
   today: Date = new Date();
   dayinmonth:number
    daysInMonth = (year, month) => new Date(year, month, 0).getDate();
@@ -47,11 +31,27 @@ export class WorkhourListStatisticComponent implements OnInit {
     
   }
   ngOnInit():void{
-    this.dayinmonth = this.daysInMonth(this.today.getFullYear(),this.today.getMonth()+1)
-    this.services.GetpagingWorkhour(null,30,4,2023).subscribe(res=>{
-      console.log(res.items)
+    this.currentYear = new Date().getFullYear();
+    this.currentMonth= new Date().getMonth()+1;
+    this.yearOptions = this.generateYearOptions(this.currentYear, this.currentYear - 20);
+    this.dayinmonth = this.daysInMonth(this.currentYear,this.currentMonth+1)
+    this.ChangeData(null,this.dayinmonth,this.currentMonth,this.currentYear)
+  }
+  ChangeData(keyword,day,month,year):void{
+    this.services.GetpagingWorkhour(keyword,day,month,year).subscribe(res=>{
      this.items=res.items
     })
   }
+
+  onChangeMonth(event:any){
+    this.currentMonth = parseInt(event.target.value);
+    this.dayinmonth = this.daysInMonth(this.currentYear,this.currentMonth+1)
+    this.ChangeData(null,this.dayinmonth,this.currentMonth,this.currentYear)
+  }
+  onChangeYear(event:any){
+    this.currentYear = parseInt(event.target.value);
+    this.dayinmonth = this.daysInMonth(this.currentYear,this.currentMonth+1)
+    this.ChangeData(null,this.dayinmonth,this.currentMonth,this.currentYear)
+    }
 
 }

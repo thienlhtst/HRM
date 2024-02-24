@@ -11,15 +11,17 @@
                 <th>NAME</th>
                 <th>Basic Salary</th>
                 <th>Total Workhour </th>
+                <th>Total Allowance </th>
                 <th>Total Salary</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of salaryemployee.items">
+              <tr *ngFor="let item of salaryemployee">
                 <td>{{item.id}}</td>
                 <td>{{item.name}}</td>
                 <td class="text-center">{{item.basicSalary}} </td>
                 <td class="text-center">{{item.workhour}}</td>
+                <td class="text-center">{{item.totalAlowance}}</td>
                 <td class="text-center">{{item.salary}}</td>
               </tr>
             </tbody>

@@ -30,9 +30,6 @@ namespace QLNS.Services.Satistics
         {
             var query_employee = from emp in _context.Employee
                                  join sal in _context.Salaries on emp.SalaryID equals sal.ID
-                                 join rank in _context.Ranks on sal.RankID equals rank.IDrank
-                                 join position in _context.Positions on sal.PositionID equals position.IDposition
-                                 where sal.RankID == rank.IDrank && sal.PositionID == position.IDposition
                                  select new
                                  {
                                      ID = emp.ID,
@@ -56,9 +53,17 @@ namespace QLNS.Services.Satistics
             {
                 var query_workhour = await _context.WorkHours.Where(x => x.EmployeesID.Equals(item.ID) && x.Month.Equals(request.Month) && x.Year.Equals(request.Year)).ToListAsync();
                 item.Workhour = 0;
+                item.TotalAlowance=0;
                 if (query_workhour != null)
                     item.Workhour = query_workhour.Sum(x => Math.Round(((x.HourCheckout + ((double)x.MinuteCheckout / 60)) - (x.HourCheckin + ((double)x.MinuteCheckin / 60))), 2));
-                item.Salary = (double)item.BasicSalary * item.Workhour;
+
+                var query_alowance = await (from eaw in _context.EmployeesWithAllowances
+                                            join allw in _context.Allowances on eaw.AllowanceID equals allw.ID
+                                            where eaw.EmployeeID.Equals(item.ID) && eaw.Date.Month.Equals(request.Month) && eaw.Date.Year.Equals(request.Year)
+                                            select allw).ToListAsync();
+                if (query_alowance !=null)
+                    item.TotalAlowance = query_alowance.Sum(x => x.Money);
+                item.Salary = ((double)item.BasicSalary * item.Workhour) +item.TotalAlowance;
             }
             var pagedView = new PagedResult<SalaryListStatistic>()
             {
@@ -74,9 +79,6 @@ namespace QLNS.Services.Satistics
         {
             var query_employee = from emp in _context.Employee
                                  join sal in _context.Salaries on emp.SalaryID equals sal.ID
-                                 join rank in _context.Ranks on sal.RankID equals rank.IDrank
-                                 join position in _context.Positions on sal.PositionID equals position.IDposition
-                                 where sal.RankID == rank.IDrank && sal.PositionID == position.IDposition
                                  select new
                                  {
                                      ID = emp.ID,
@@ -97,7 +99,14 @@ namespace QLNS.Services.Satistics
                     if (query_workhour != null)
                         sum_workhour = query_workhour.Sum(x => Math.Round(((x.HourCheckout + ((double)x.MinuteCheckout / 60)) - (x.HourCheckin + ((double)x.MinuteCheckin / 60))), 2));
                     double sumsalary = (double)item.Salary * sum_workhour;
-                    total_sumsalary += sumsalary;
+                    double TotalAllowance = 0;
+                    var query_alowance = await (from eaw in _context.EmployeesWithAllowances
+                                                join allw in _context.Allowances on eaw.AllowanceID equals allw.ID
+                                                where eaw.EmployeeID.Equals(item.ID) && eaw.Date.Month.Equals(i + 1) && eaw.Date.Year.Equals(year)
+                                                select allw).ToListAsync();
+                    if (query_alowance !=null)
+                        TotalAllowance = query_alowance.Sum(x => x.Money);
+                    total_sumsalary += sumsalary+TotalAllowance;
                 }
                 if (total_sumsalary < 1000000 && total_sumsalary > 10000)
                     result.monthlyinyear[i] = total_sumsalary;
