@@ -11,7 +11,7 @@ namespace QLNS.Services.Satistics
 {
     public interface IStatisticWorkHourService
     {
-        Task<PagedResult<WorkhourStatistic>> GetallPage(GetStatisticAllPage request);
+        Task<List<WorkhourStatistic>> GetallPage(int month, int year);
 
         Task<List<WorkhourStatistic>> GetAll(int month, int year);
 

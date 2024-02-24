@@ -19,9 +19,9 @@ namespace QLNSApiBackend.Controllers
         }
 
         [HttpGet("paging")]
-        public async Task<IActionResult> GetAllpage([FromQuery] GetStatisticAllPage request)
+        public async Task<IActionResult> GetAllpage(int month, int year)
         {
-            var workhour = await _StatisticWorkHourService.GetallPage(request);
+            var workhour = await _StatisticWorkHourService.GetallPage(month, year);
 
             return Ok(workhour);
         }

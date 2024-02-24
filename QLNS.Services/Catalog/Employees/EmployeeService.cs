@@ -69,15 +69,28 @@ namespace QLNS.Services.Catalog.Employees
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<List<EmployeeVMStatistic>> GetemployeeVMStatistics()
+        public async Task<PagedResult<EmployeeVMStatistic>> GetemployeeVMStatistics(GetEmployeePagingRequest request)
         {
             var query = from p in _context.Employee select p;
-            var data = await query.Select(x => new EmployeeVMStatistic()
+            if (!string.IsNullOrEmpty(request.Keyword))
             {
-                ID = x.ID,
-                Name = x.FirstName + " " + x.MiddleName + " " + x.LastName,
-            }).ToListAsync();
-            return data;
+                query = query.Where(x => x.ID.Contains(request.Keyword) || x.LastName.Contains(request.Keyword));
+            }
+            int totalRow = await query.CountAsync();
+            var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
+                .Take(request.PageSize).Select(x => new EmployeeVMStatistic()
+                {
+                    ID = x.ID,
+                    Name = x.FirstName + " " + x.MiddleName + " " + x.LastName,
+                }).ToListAsync();
+            var pagedView = new PagedResult<EmployeeVMStatistic>()
+            {
+                TotalRecords = totalRow,
+                PageIndex = request.PageIndex,
+                PageSize = request.PageSize,
+                Items = data
+            };
+            return pagedView;
         }
 
         public async Task<IEnumerable<Entity.Entities.Employees>> GetAll()

@@ -19,7 +19,7 @@ export class SalaryStatisticListComponent implements OnInit {
     this.services.Getpagingsalary('',4,2023)
   ]).subscribe(([data1,data2])=>{
     this.top5salary=data1
-    this.salaryemployee = data2
+    this.salaryemployee = data2.items
   })
     
   }

@@ -18,10 +18,10 @@ namespace QLNSApiBackend.Controllers
             _employeeService = employeeService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
+        [HttpGet("estatisticpaging")]
+        public async Task<IActionResult> Get([FromQuery] GetEmployeePagingRequest request)
         {
-            var model = await _employeeService.GetemployeeVMStatistics();
+            var model = await _employeeService.GetemployeeVMStatistics(request);
             return Ok(model);
         }
 

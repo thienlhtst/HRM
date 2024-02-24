@@ -36,12 +36,25 @@ export class SalaryStatisticChartComponent implements OnInit {
   op = new Options()
   
   monthChart;
+  TotalSalary:number
+  datafromapi:any
   datamonthChart;
 nav: NgbNav;
   constructor(private services:SalaryStatisticServiceService) { }
 
   ngOnInit() {
     this.datamonthChart = this.op.getmonth();
+    this.services.GetChartMonthlyinYear(2023).subscribe((res)=>{
+      this.datafromapi= [
+        {
+          name: 'Salary /Tr',
+          data: res.monthlyinyear
+        },
+        
+      ];
+      this.TotalSalary=res.total
+      this.datamonthChart.series= this.datafromapi
+    })
     
   }
   onNavChange(changeEvent: NgbNavChangeEvent) {}
