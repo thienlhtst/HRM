@@ -38,7 +38,7 @@ export class WorkhourListStatisticComponent implements OnInit {
     this.ChangeData(null,this.dayinmonth,this.currentMonth,this.currentYear)
   }
   ChangeData(keyword,day,month,year):void{
-    this.services.GetpagingWorkhour(keyword,day,month,year).subscribe(res=>{
+    this.services.GetpagingWorkhour(keyword,day,month+1,year).subscribe(res=>{
      this.items=res.items
     })
   }
