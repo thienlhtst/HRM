@@ -1,8 +1,29 @@
 <div class="row">
   <div class="col-md-12 col-xl-8">
-    <h5 class="mb-3">Salary Last Month</h5>
+    <h5 class="mb-3">Salary's Employee</h5>
     <div class="card tbl-card">
       <div class="card-body">
+        <div class="d-flex  justify-content-between ">
+          <div class=" p-2 flex-grow-1 ">
+            <h5>Month {{currentMonth}}/{{currentYear}} </h5>
+          </div>
+          <div class="p-2" >
+            <select class="form-select" (change)="onChangeMonth($event)">
+              <ng-container
+                *ngFor="let number of [].constructor(12); let i = index">
+                <option [value]="i+1"  [selected]="i+1 === currentMonth" >{{i+1}}</option>
+              </ng-container>
+            </select>
+          </div>
+          <div class="p-2 ">
+            <select class="form-select" (change)="onChangeYear($event)">
+              <option selected disabled>Select Year</option>
+              <ng-container *ngFor="let year of yearOptions">
+                <option [value]="year" [selected]="year === currentYear">{{ year}}</option>
+              </ng-container>
+            </select>
+          </div>
+        </div>
         <div class="table-responsive">
           <table class="table table-hover table-borderless mb-0">
             <thead>
@@ -26,6 +47,7 @@
               </tr>
             </tbody>
           </table>
+          <app-pagingnav   class="d-flex justify-content-end" [pagesize]="PageCount" (numberchange)="PageChange($event)" #child></app-pagingnav>
         </div>
       </div>
     </div>

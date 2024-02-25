@@ -7,6 +7,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { SalaryStatisticChartComponent } from './salary-statistic-chart/salary-statistic-chart.component';
 import { SalaryStatisticServiceService } from 'src/Services/Statistics/SalaryStatisticService.service';
+import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pagingnav.component';
 const routes : Routes =[
   {
     path : '',
@@ -21,6 +22,7 @@ const routes : Routes =[
     CommonModule,
     RouterModule.forChild(routes),
     NgApexchartsModule,NgbNavModule,
+    PagingnavComponent
   ],
   declarations:[SalaryStatisticComponent,SalaryStatisticListComponent,SalaryStatisticChartComponent],
   exports:[SalaryStatisticComponent],

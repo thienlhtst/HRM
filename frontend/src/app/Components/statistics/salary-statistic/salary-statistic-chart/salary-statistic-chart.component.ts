@@ -33,29 +33,42 @@ export type ChartOptions = {
   styleUrls: ['./salary-statistic-chart.component.css']
 })
 export class SalaryStatisticChartComponent implements OnInit {
-  op = new Options()
-  
-  monthChart;
-  TotalSalary:number
-  datafromapi:any
-  datamonthChart;
-nav: NgbNav;
-  constructor(private services:SalaryStatisticServiceService) { }
+  op = new Options();
 
+  monthChart;
+  TotalSalary: number;
+  datafromapi: any;
+  datamonthChart;
+  yearOptions: number[];
+  currentYear: number;
+  constructor(private services: SalaryStatisticServiceService) { }
+  generateYearOptions(startYear: number, endYear: number): number[] {
+    const years = [];
+    for (let year = startYear; year >= endYear; year--) {
+      years.push(year);
+    }
+    return years;
+  }
   ngOnInit() {
+    this.currentYear = new Date().getFullYear();
+    this.yearOptions = this.generateYearOptions(this.currentYear, this.currentYear - 20);
     this.datamonthChart = this.op.getmonth();
-    this.services.GetChartMonthlyinYear(2023).subscribe((res)=>{
-      this.datafromapi= [
+    this.ChangeData(this.currentYear);
+  }
+  ChangeData(year): void {
+    this.services.GetChartMonthlyinYear(year).subscribe((res) => {
+      this.datafromapi = [
         {
           name: 'Salary /Tr',
           data: res.monthlyinyear
-        },
-        
+        }
       ];
-      this.TotalSalary=res.total
-      this.datamonthChart.series= this.datafromapi
-    })
-    
+      this.TotalSalary = res.total;
+      this.datamonthChart.series = this.datafromapi;
+    });
   }
-  onNavChange(changeEvent: NgbNavChangeEvent) {}
+  onChangeYear(event: any) {
+    this.currentYear = parseInt(event.target.value);
+    this.ChangeData(this.currentYear);
+  }
 }

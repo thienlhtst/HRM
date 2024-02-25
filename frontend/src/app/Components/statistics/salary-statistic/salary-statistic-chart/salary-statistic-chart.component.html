@@ -1,12 +1,21 @@
 <div class="col-md-12 col-xl">
 <h5 class="mb-3">Employee's Salary Details</h5>
-
   <div class="card">
     <div class="card-body">
-      <h6 class="mb-2 f-w-400 text-muted">Total: {{TotalSalary}} for year</h6>
-      <div >
-        
-          
+      <div class="d-flex  justify-content-between"> 
+        <div class=" p-2 flex-grow-1 ">
+          <h6 class="mb-2 f-w-400 text-muted">Total: {{TotalSalary}} for year</h6>
+      </div>
+      <div class="p-2">
+        <select class="form-select" (change)="onChangeYear($event)">
+          <option selected disabled>Select Year</option>
+          <ng-container *ngFor="let year of yearOptions">
+            <option [value]="year" [selected]="year === currentYear">{{ year}}</option>
+          </ng-container>
+        </select>
+      </div>
+      </div>
+      <div>
         <apx-chart
         [series]="datamonthChart.series"
           [chart]="datamonthChart.chart"
