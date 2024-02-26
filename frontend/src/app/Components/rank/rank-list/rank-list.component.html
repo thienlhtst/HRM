@@ -1,66 +1,67 @@
-
 <div class="card">
   <div class="card-header">
-      <h3>Position table</h3>
-      <div class="card-header-right">
-<ul class="list-unstyled card-option">
-<li><i class="fa fa-chevron-left"></i></li>
-<li><i class="fa fa-window-maximize full-card"></i></li>
-<li><i class="fa fa-minus minimize-card"></i></li>
-<li><i class="fa fa-refresh reload-card"></i></li>
-<li><i class="fa fa-times close-card"></i></li>
-</ul>
-</div>
-<div class="search">
-  <input type="text" name="filter" [(ngModel)]="searchText" placeholder="Enter id" #fill>
-</div>
-  <button class="col-md-12 col-xl-1" (click)=" ClicktoShowFormAdd()">Add</button>
-  <div class="row">
-  <div [ngClass]="{'col-md-12': !ShowForm, 'col-md-12 col-xl-8': ShowForm}" >
-      <div class="table-responsive" >
-          <table class="table table-inverse">
-              <thead>
-                  <tr>
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Rank Role</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let item of datas | filter : searchText">
-                      <td>{{item.id}}</td>
-                      <td>{{item.name}}</td>
-                      <td>{{item.nameRankRole}}</td>
-
-                      <td>
-                        <button (click)="ButtonClickToUpdate(item.id)">
-                          <img   src="/frontend/src/img/plus.png" />
-                        </button>
-                        <button (click)="Delete($event,item.id)">
-                          <img   src="/frontend/src/img/plus.png" />
-                        </button>
-                      </td>
-                  </tr>
-
-              </tbody>
-          </table>
-          <app-pagingnav class="d-flex justify-content-end" [pagesize]="PageCount" (numberchange)="PageChange($event)" #child></app-pagingnav>
-      </div>
-      <div *ngIf="!spinner">
-        <h1 class="text-center text-primary"> Wait for Data </h1>
-      <app-spinner-beta></app-spinner-beta>
-      </div>
-  </div>
-  <div  class="col-md-12 col-xl-4">
-
-    <div [ngClass]="{'col-md-7': ShowFormAdd, 'd-none': !ShowFormAdd}" *ngIf="ShowFormAdd">
-    <app-rank-add (onSuccess)="OnSuccess()"></app-rank-add>
+    <h3>Position table</h3>
+    <div class="card-header-right">
+      <ul class="list-unstyled card-option">
+        <li><i class="fa fa-chevron-left"></i></li>
+        <li><i class="fa fa-window-maximize full-card"></i></li>
+        <li><i class="fa fa-minus minimize-card"></i></li>
+        <li><i class="fa fa-refresh reload-card"></i></li>
+        <li><i class="fa fa-times close-card"></i></li>
+      </ul>
     </div>
-    <div [ngClass]="{'col-md-7': ShowFormUpdate, 'd-none': !ShowFormUpdate}" *ngIf="ShowFormUpdate">
-      <app-rank-update [selectedID]="selectedID" (onSuccess)="OnSuccess()"></app-rank-update>
-     </div>
+    <div class="search">
+      <input type="text" name="filter" [(ngModel)]="searchText" placeholder="Enter id" #fill />
+    </div>
+    <button class="col-md-12 col-xl-1" (click)="ClicktoShowFormAdd()">Add</button>
+    <div class="row">
+      <div [ngClass]="{ 'col-md-12': !ShowForm, 'col-md-12 col-xl-8': ShowForm }">
+        <div class="table-responsive">
+          <table class="table table-inverse">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Rank Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of datas | filter: searchText">
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.nameRankRole }}</td>
+
+                <td>
+                  <button (click)="ButtonClickToUpdate(item.id)">
+                    <img src="/frontend/src/img/plus.png" />
+                  </button>
+                  <button (click)="Delete($event, item.id)">
+                    <img src="/frontend/src/img/plus.png" />
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <app-pagingnav
+            class="d-flex justify-content-end"
+            [pagesize]="PageCount"
+            (numberchange)="PageChange($event)"
+            #child
+          ></app-pagingnav>
+        </div>
+        <div *ngIf="!spinner">
+          <h1 class="text-center text-primary"> Wait for Data </h1>
+          <app-spinner-beta></app-spinner-beta>
+        </div>
+      </div>
+      <div class="col-md-12 col-xl-4">
+        <div [ngClass]="{ 'col-md-7': ShowFormAdd, 'd-none': !ShowFormAdd }" *ngIf="ShowFormAdd">
+          <app-rank-add (onSuccess)="OnSuccess()"></app-rank-add>
+        </div>
+        <div [ngClass]="{ 'col-md-7': ShowFormUpdate, 'd-none': !ShowFormUpdate }" *ngIf="ShowFormUpdate">
+          <app-rank-update [selectedID]="selectedID" (onSuccess)="OnSuccess()"></app-rank-update>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-</div>
-</div>
-

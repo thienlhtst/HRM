@@ -51,11 +51,18 @@ namespace QLNS.Services.Satistics
                 }).ToListAsync();
             foreach (var item in data)
             {
-                var query_workhour = await _context.WorkHours.Where(x => x.EmployeesID.Equals(item.ID) && x.Month.Equals(request.Month) && x.Year.Equals(request.Year)).ToListAsync();
+                var query_workhour = await (from wh in _context.WorkHours
+                                            join lb in _context.LabourHours on wh.LBDID equals lb.ID
+                                            where wh.EmployeesID.Equals(item.ID)  && wh.Month.Equals(request.Month) && wh.Year.Equals(request.Year)
+                                            select new
+                                            {
+                                                wh,
+                                                lb
+                                            }).ToListAsync();
                 item.Workhour = 0;
                 item.TotalAlowance=0;
                 if (query_workhour != null)
-                    item.Workhour = query_workhour.Sum(x => Math.Round(((x.HourCheckout + ((double)x.MinuteCheckout / 60)) - (x.HourCheckin + ((double)x.MinuteCheckin / 60))), 2));
+                    item.Workhour = query_workhour.Sum(x => Math.Round(((x.wh.HourCheckout + ((double)x.wh.MinuteCheckout / 60)) - (x.wh.HourCheckin + ((double)x.wh.MinuteCheckin / 60)))*x.lb.Factor, 2));
 
                 var query_alowance = await (from eaw in _context.EmployeesWithAllowances
                                             join allw in _context.Allowances on eaw.AllowanceID equals allw.ID
@@ -94,10 +101,19 @@ namespace QLNS.Services.Satistics
                 double total_sumsalary = 0;
                 foreach (var item in query_employee)
                 {
-                    var query_workhour = await _context.WorkHours.Where(x => x.EmployeesID.Equals(item.ID) && x.Month.Equals(i + 1) && x.Year.Equals(year)).ToListAsync();
+                    var query_workhour = await (from wh in _context.WorkHours
+                                                join lb in _context.LabourHours on wh.LBDID equals lb.ID
+                                                where wh.EmployeesID.Equals(item.ID)  && wh.Month.Equals(i + 1) && wh.Year.Equals(year)
+                                                select new
+                                                {
+                                                    wh,
+                                                    lb
+                                                }
+                                                ).ToListAsync();
+
                     double sum_workhour = 0;
                     if (query_workhour != null)
-                        sum_workhour = query_workhour.Sum(x => Math.Round(((x.HourCheckout + ((double)x.MinuteCheckout / 60)) - (x.HourCheckin + ((double)x.MinuteCheckin / 60))), 2));
+                        sum_workhour = query_workhour.Sum(x => Math.Round(((x.wh.HourCheckout + ((double)x.wh.MinuteCheckout / 60)) - (x.wh.HourCheckin + ((double)x.wh.MinuteCheckin / 60)))*x.lb.Factor, 2));
                     double sumsalary = (double)item.Salary * sum_workhour;
                     double TotalAllowance = 0;
                     var query_alowance = await (from eaw in _context.EmployeesWithAllowances

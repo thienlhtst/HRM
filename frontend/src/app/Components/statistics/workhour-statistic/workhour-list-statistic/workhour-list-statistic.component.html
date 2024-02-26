@@ -5,13 +5,13 @@
       <div class="card-body">
         <div class="d-flex  justify-content-between ">
           <div class=" p-2 flex-grow-1 ">
-            <h5>Month {{currentMonth}}/{{currentYear}} </h5>
+            <h5>Month {{paging.month}}/{{paging.year}} </h5>
           </div>
           <div class="p-2" >
             <select class="form-select" (change)="onChangeMonth($event)">
               <ng-container
                 *ngFor="let number of [].constructor(12); let i = index">
-                <option [value]="i+1"  [selected]="i+1 === currentMonth" >{{i+1}}</option>
+                <option [value]="i+1"  [selected]="i+1 === paging.month" >{{i+1}}</option>
               </ng-container>
             </select>
           </div>
@@ -19,7 +19,7 @@
             <select class="form-select" (change)="onChangeYear($event)">
               <option selected disabled>Select Year</option>
               <ng-container *ngFor="let year of yearOptions">
-                <option [value]="year" [selected]="year === currentYear">{{ year}}</option>
+                <option [value]="year" [selected]="year === paging.year">{{ year}}</option>
               </ng-container>
             </select>
           </div>
@@ -35,14 +35,23 @@
                 <th>Total</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="spinner; else loaddata">
               <tr *ngFor="let item of items">
                 <td>{{item.name}}</td>
                 <td *ngFor="let workhour of item.workhour"> {{workhour}}</td>
               </tr>
             </tbody>
+            <ng-template #loaddata>
+        
+              <div class="d-flex justify-content-center">
+                <app-spinner-beta  ></app-spinner-beta>
+              </div>
+            </ng-template>
+
           </table>
+         
         </div>
+        <app-pagingnav   class="d-flex justify-content-end" [pagesize]="PageCount" (numberchange)="PageChange($event)" #child></app-pagingnav>
       </div>
     </div>
   </div>

@@ -59,17 +59,14 @@ export class PositionListComponent implements OnInit,OnChanges{
   }
 
 
-  getAll(){
-    this.service.GetPosition().subscribe((res)=>{
-      this.datas = res
-    })
-  }
+ 
 
   GetPaging(){
     this.service.GetPositionPaging(this.paging).subscribe((res)=>{
+      this.PageCount = res.pageCount
       setTimeout(() => {
         this.datas = res.items
-        this.PageCount = res.pageCount
+       
       }, 2000);
       setTimeout(() => {
         this.spinner = true

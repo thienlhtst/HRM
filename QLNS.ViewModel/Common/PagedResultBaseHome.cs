@@ -16,7 +16,8 @@ namespace QLNS.ViewModel.Common
 
         public int EmployeeWork { get; set; }
         public int EmployeeOff { get; set; }
-        public string  Totalworkhour { get; set; }
+        public int EmployyLate { get; set; }
+        public string Totalworkhour { get; set; }
 
         public int PageCount
         {
@@ -26,6 +27,5 @@ namespace QLNS.ViewModel.Common
                 return (int)Math.Ceiling(pageCount);
             }
         }
-
     }
 }

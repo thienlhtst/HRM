@@ -4,7 +4,7 @@
     <div class="card-body">
       <div class="d-flex  justify-content-between"> 
         <div class=" p-2 flex-grow-1 ">
-          <h6 class="mb-2 f-w-400 text-muted">Total: {{TotalSalary}} for year</h6>
+          <h6 class="mb-2 f-w-400 text-muted">Total: {{TotalSalary | number: '1.2-2'}} for year</h6>
       </div>
       <div class="p-2">
         <select class="form-select" (change)="onChangeYear($event)">

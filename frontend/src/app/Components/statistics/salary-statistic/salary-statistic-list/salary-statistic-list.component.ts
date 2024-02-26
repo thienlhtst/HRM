@@ -12,8 +12,7 @@ export class SalaryStatisticListComponent implements OnInit {
   salaryemployee;
   top5salary;
   yearOptions: number[];
-  currentYear: number;
-  currentMonth;
+  spinner : boolean = false
   PageCount : number = 1
   paging :RequestpagingStatistic = {
     keyword: '',
@@ -31,36 +30,38 @@ export class SalaryStatisticListComponent implements OnInit {
     return years;
   }
   ngOnInit() {
-    this.currentYear = new Date().getFullYear();
-    this.currentMonth= new Date().getMonth();
-    if(this.currentMonth==0){
-      this.currentYear=this.currentYear-1
-      this.currentMonth=12
+    this.paging.year = new Date().getFullYear();
+    this.paging.month= new Date().getMonth()+1;
+    if(this.paging.month==1){
+      this.paging.year=this.paging.year-1
+      this.paging.month=12
     }
-    this.yearOptions = this.generateYearOptions(this.currentYear, this.currentYear - 20);
-    this.paging.month= this.currentMonth
-    this.paging.year=this.currentYear
+    this.yearOptions = this.generateYearOptions(this.paging.year, this.paging.year - 20);
+    this.paging.month= this.paging.month-1
   forkJoin([
     this.services.GetTopSalary(5),
     this.services.Getpagingsalary(this.paging)
   ]).subscribe(([data1,data2])=>{
     this.top5salary=data1
     this.salaryemployee = data2.items
+    this.spinner =true
+
   })
   }
   ChangeData(request:RequestpagingStatistic ):void{
+    
     this.services.Getpagingsalary(request).subscribe((res)=>{
+      this.spinner =false
       this.salaryemployee = res.items
+      this.spinner =true
     })
   }  
   onChangeMonth(event:any){
-    this.currentMonth = parseInt(event.target.value);
-    this.paging.month=this.currentMonth
+    this.paging.month = parseInt(event.target.value);
     this.ChangeData(this.paging)
   }
   onChangeYear(event:any){
-    this.currentYear = parseInt(event.target.value);
-    this.paging.year= this.currentYear
+    this.paging.year = parseInt(event.target.value);
     this.ChangeData(this.paging)
     }
     PageChange(pagenumber : number) : void{

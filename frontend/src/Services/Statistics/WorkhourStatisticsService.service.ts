@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, forkJoin, map } from 'rxjs';
 import { EmployeeWork } from 'src/Model/Statistics/EmployeeWork';
+import { RequestpagingStatistic } from 'src/Model/other/requestpaingstatistic';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,15 +14,15 @@ export class WorkhourStatisticsServiceService {
   apiurl : string = environment.apiurl +'/Statistic'
   apiurle : string = environment.apiurl +'/Employee'
 
-  GetpagingWorkhour(keyword,day,month,year):Observable<any>{
+  GetpagingWorkhour(day,requestpaing: RequestpagingStatistic):Observable<any>{
     let url:string;
-     if(keyword==null)
-     url =this.apiurle+'/estatisticpaging?&PageIndex=1&PageSize=10'
+     if(requestpaing.keyword=='')
+     url =this.apiurle+'/estatisticpaging?&PageIndex='+requestpaing.pageindex+'&PageSize='+requestpaing.year
     else
-    url=this.apiurle+'/estatisticpaging?Keyword='+keyword+'&PageIndex=1&PageSize=10'
+    url=this.apiurle+'/estatisticpaging?Keyword='+requestpaing.keyword+'&PageIndex='+requestpaing.pageindex+'&PageSize='+requestpaing.year
     return forkJoin([
       this.http.get(url),
-      this.http.get(this.apiurl+'/paging?month='+month+'&year='+year)
+      this.http.get(this.apiurl+'/paging?month='+requestpaing.month+'&year='+requestpaing.year)
     ]).pipe(
       map((data: any[]) => {
         

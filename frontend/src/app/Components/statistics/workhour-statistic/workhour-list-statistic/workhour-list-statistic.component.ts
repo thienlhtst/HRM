@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 // bootstrap import
 import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import { RequestpagingStatistic } from 'src/Model/other/requestpaingstatistic';
 
 
 import { WorkhourStatisticsServiceService } from 'src/Services/Statistics/WorkhourStatisticsService.service';
@@ -12,10 +13,15 @@ import { WorkhourStatisticsServiceService } from 'src/Services/Statistics/Workho
 })
 export class WorkhourListStatisticComponent implements OnInit {
   yearOptions: number[];
-  currentYear: number;
-  currentMonth;
-  monthSelected;
-  yearSelected;
+  PageCount : number = 1
+  spinner : boolean = false
+  paging :RequestpagingStatistic = {
+    keyword: '',
+    pageindex: 1,
+    pagesize: 8,
+    month: 0,
+    year: 0
+  }
   generateYearOptions(startYear: number, endYear: number): number[] {
     const years = [];
     for (let year = startYear; year >= endYear; year--) {
@@ -31,27 +37,38 @@ export class WorkhourListStatisticComponent implements OnInit {
     
   }
   ngOnInit():void{
-    this.currentYear = new Date().getFullYear();
-    this.currentMonth= new Date().getMonth()+1;
-    this.yearOptions = this.generateYearOptions(this.currentYear, this.currentYear - 20);
-    this.dayinmonth = this.daysInMonth(this.currentYear,this.currentMonth+1)
-    this.ChangeData(null,this.dayinmonth,this.currentMonth,this.currentYear)
+    this.paging.year = new Date().getFullYear();
+    this.paging.month= new Date().getMonth();
+    if(this.paging.month==0){
+      this.paging.year=this.paging.year-1
+      this.paging.month=12
+    }
+    this.yearOptions = this.generateYearOptions(this.paging.year, this.paging.year - 20);
+    this.dayinmonth = this.daysInMonth(this.paging.year,this.paging.month)
+    this.ChangeData(this.dayinmonth,this.paging)
   }
-  ChangeData(keyword,day,month,year):void{
-    this.services.GetpagingWorkhour(keyword,day,month+1,year).subscribe(res=>{
+  
+  ChangeData(day,requestpaing:RequestpagingStatistic ):void{
+    this.services.GetpagingWorkhour(day,requestpaing).subscribe(res=>{
+      this.spinner=false
      this.items=res.items
+     this.spinner=true
     })
   }
 
   onChangeMonth(event:any){
-    this.currentMonth = parseInt(event.target.value);
-    this.dayinmonth = this.daysInMonth(this.currentYear,this.currentMonth+1)
-    this.ChangeData(null,this.dayinmonth,this.currentMonth,this.currentYear)
+    this.paging.month = parseInt(event.target.value);
+    this.dayinmonth = this.daysInMonth(this.paging.year,this.paging.month)
+    this.ChangeData(this.dayinmonth,this.paging)
   }
   onChangeYear(event:any){
-    this.currentYear = parseInt(event.target.value);
-    this.dayinmonth = this.daysInMonth(this.currentYear,this.currentMonth+1)
-    this.ChangeData(null,this.dayinmonth,this.currentMonth,this.currentYear)
+    this.paging.year = parseInt(event.target.value);
+    this.dayinmonth = this.daysInMonth(this.paging.year,this.paging.month)
+    this.ChangeData(this.dayinmonth,this.paging)
+    }
+    PageChange(pagenumber : number) : void{
+      this.paging.pageindex = pagenumber
+      this.ChangeData(this.dayinmonth,this.paging)
     }
 
 }

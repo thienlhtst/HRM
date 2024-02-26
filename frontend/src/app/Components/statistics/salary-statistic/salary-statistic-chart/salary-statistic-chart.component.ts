@@ -37,7 +37,10 @@ export class SalaryStatisticChartComponent implements OnInit {
 
   monthChart;
   TotalSalary: number;
-  datafromapi: any;
+  datafromapi: any=[{
+    name: 'Salary /Tr',
+    data: []
+  }];
   datamonthChart;
   yearOptions: number[];
   currentYear: number;
@@ -50,9 +53,10 @@ export class SalaryStatisticChartComponent implements OnInit {
     return years;
   }
   ngOnInit() {
-    this.currentYear = new Date().getFullYear();
-    this.yearOptions = this.generateYearOptions(this.currentYear, this.currentYear - 20);
+    this.currentYear = new Date().getFullYear()-1;
+    this.yearOptions = this.generateYearOptions(this.currentYear+1, this.currentYear - 20);
     this.datamonthChart = this.op.getmonth();
+    this.datamonthChart.series = this.datafromapi;
     this.ChangeData(this.currentYear);
   }
   ChangeData(year): void {

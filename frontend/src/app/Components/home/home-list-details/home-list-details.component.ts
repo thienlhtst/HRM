@@ -8,6 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HomeListDetailsComponent implements OnInit {
   @Input() pagenumber:number
+  @Input() items:any[]
+
   constructor() { }
 
   ngOnInit() {

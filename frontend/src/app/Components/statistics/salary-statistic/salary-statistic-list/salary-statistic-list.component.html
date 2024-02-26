@@ -3,23 +3,27 @@
     <h5 class="mb-3">Salary's Employee</h5>
     <div class="card tbl-card">
       <div class="card-body">
-        <div class="d-flex  justify-content-between ">
-          <div class=" p-2 flex-grow-1 ">
-            <h5>Month {{currentMonth}}/{{currentYear}} </h5>
+        <div class="d-flex justify-content-between">
+          <div class="p-2 flex-grow-1">
+            <h5>Month {{ paging.month }}/{{ [paging.year] }} </h5>
+            <div  class="form align-items-center">
+              <i class="fa fa-search"></i>
+              <input type="text" class="form-control form-input" placeholder="Search anything...">
+            </div>
           </div>
-          <div class="p-2" >
+          
+          <div class="p-2">
             <select class="form-select" (change)="onChangeMonth($event)">
-              <ng-container
-                *ngFor="let number of [].constructor(12); let i = index">
-                <option [value]="i+1"  [selected]="i+1 === currentMonth" >{{i+1}}</option>
+              <ng-container *ngFor="let number of [].constructor(12); let i = index">
+                <option [value]="i + 1" [selected]="i + 1 === paging.month">{{ i + 1 }}</option>
               </ng-container>
             </select>
           </div>
-          <div class="p-2 ">
+          <div class="p-2">
             <select class="form-select" (change)="onChangeYear($event)">
               <option selected disabled>Select Year</option>
               <ng-container *ngFor="let year of yearOptions">
-                <option [value]="year" [selected]="year === currentYear">{{ year}}</option>
+                <option [value]="year" [selected]="year === paging.year">{{ year }}</option>
               </ng-container>
             </select>
           </div>
@@ -36,18 +40,32 @@
                 <th>Total Salary</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="spinner; else loaddata">
               <tr *ngFor="let item of salaryemployee">
-                <td>{{item.id}}</td>
-                <td>{{item.name}}</td>
-                <td class="text-center">{{item.basicSalary}} </td>
-                <td class="text-center">{{item.workhour}}</td>
-                <td class="text-center">{{item.totalAlowance}}</td>
-                <td class="text-center">{{item.salary}}</td>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td class="text-center">{{ item.basicSalary | number: '1.0-0'}} </td>
+                <td class="text-center">{{ item.workhour }}</td>
+                <td class="text-center">{{ item.totalAlowance | number: '1.0-0' }}</td>
+                <td class="text-center">{{ item.salary| number: '1.0-0' }}</td>
               </tr>
             </tbody>
+            <ng-template #loaddata>
+              <td></td>
+                <td></td>
+                <td></td>
+              <div class="d-flex justify-content-center">
+                <app-spinner-beta  ></app-spinner-beta>
+              </div>
+             
+            </ng-template>
           </table>
-          <app-pagingnav   class="d-flex justify-content-end" [pagesize]="PageCount" (numberchange)="PageChange($event)" #child></app-pagingnav>
+          <app-pagingnav
+            class="d-flex justify-content-end"
+            [pagesize]="PageCount"
+            (numberchange)="PageChange($event)"
+            #child
+          ></app-pagingnav>
         </div>
       </div>
     </div>
@@ -57,20 +75,26 @@
     <h5 class="mb-3">Top 5 Salary</h5>
     <div class="card">
       <div class="card-body">
-        <div class="list-group list-group-flush">
-          <a href="javascript:" class="list-group-item list-group-item-action" *ngFor="let item of top5salary;let i = index">
-            <div class="d-flex" >
-              <div class="flex-shrink-0 align-self-center" >
-                <div class="avtar avtar-s rounded-circle text-success bg-light-success "> {{i+1}} </div>
+        <div class="list-group list-group-flush" *ngIf="spinner; else loaddata1">
+          <a href="javascript:" class="list-group-item list-group-item-action" *ngFor="let item of top5salary; let i = index">
+            <div class="d-flex">
+              <div class="flex-shrink-0 align-self-center">
+                <div class="avtar avtar-s rounded-circle text-success bg-light-success"> {{ i + 1 }} </div>
               </div>
               <div class="flex-grow-1 ms-3 align-self-center">
-                <h6 class="mb-1">{{item.salary}}vnd/H</h6>
-                <p class="mb-0 text-muted">Position: {{item.positionName}}   </p> 
-                <p class="mb-0 text-muted">Rank: {{item.rankName}}</p>
+                <h6 class="mb-1">{{ item.salary | number: '1.0-0' }}vnd/H</h6>
+                <p class="mb-0 text-muted">Position: {{ item.positionName }} </p>
+                <p class="mb-0 text-muted">Rank: {{ item.rankName }}</p>
               </div>
             </div>
           </a>
         </div>
+        <ng-template #loaddata1>
+        
+          <div class="d-flex justify-content-center">
+            <app-spinner-beta  ></app-spinner-beta>
+          </div>
+        </ng-template>
       </div>
     </div>
   </div>

@@ -27,8 +27,8 @@ namespace QLNS.Services.Satistics
             DateTime lastDayOfWeek = firstDayOfWeek.AddDays(6);
             WeekDays weekDays = new WeekDays
             {
-                firstDayOfWeek = firstDayOfWeek,
-                lastDayOfWeek = lastDayOfWeek
+                firstDayOfWeek = firstDayOfWeek.AddDays(1),
+                lastDayOfWeek = lastDayOfWeek.AddDays(1)
             };
             return weekDays;
         }

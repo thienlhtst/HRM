@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BreadcrumbComponent } from 'src/app/theme/shared/components/breadcrumb/breadcrumb.component';
 import { PagingnavComponent } from "../../theme/shared/components/pagingnav/pagingnav.component";
 import { HomeListDetailsComponent } from './home-list-details/home-list-details.component';
+import { HomeService } from 'src/Services/Home/homeService.service';
 
 const routes : Routes =[
   {
@@ -26,5 +27,6 @@ const routes : Routes =[
         RouterModule.forChild(routes),
         PagingnavComponent,
     ]
+    ,providers:[HomeService]
 })
 export class HomeModule { }
