@@ -29,6 +29,8 @@ namespace QLNS.Services.Catalog.Employees
 
         Task<PagedResult<EmployeeViewModel>> GetAllPage(GetEmployeePagingRequest request);
 
+        Task<PagedResult<EmployeeViewModel>> GetAllHomePage(GetEmployeePagingRequest request);
+
         Task<List<QLNS.Entity.Entities.Employees>> GetList();
 
         Task<PagedResult<EmployeeVMStatistic>> GetemployeeVMStatistics(GetEmployeePagingRequest request);

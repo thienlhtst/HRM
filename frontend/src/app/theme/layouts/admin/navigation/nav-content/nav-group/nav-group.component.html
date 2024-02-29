@@ -1,5 +1,5 @@
 <li class="nav-item coded-menu-caption">
-  <label>{{ item.title }}</label>
+  <label>{{ item.title }} </label>
 </li>
 <ng-container *ngFor="let item of item.children">
   <app-nav-group *ngIf="item.type === 'group'" [item]="item"></app-nav-group>

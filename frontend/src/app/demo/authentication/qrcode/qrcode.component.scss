@@ -1,4 +1,40 @@
-.qr-code{
-  width: 800px;
-  height: 800px;
+zxing-scanner {
+  width: 100%; /* Đặt chiều rộng của khung quét */
+  height: 100%; /* Đặt chiều cao của khung quét */
+  position: relative; /* Đặt vị trí tương đối để có thể sử dụng top và left */
+}
+.test {
+  width: 100%; /* Đặt chiều rộng của khung quét */
+  height: 100%; /* Đặt chiều cao của khung quét */
+  position: relative; /* Đặt vị trí tương đối để có thể sử dụng top và left */
+}
+.zxing-scanner__preview {
+  width: 100%; /* Đặt chiều rộng của khung hiển thị video */
+  height: 100%; /* Đặt chiều cao của khung hiển thị video */
+}
+zxing-scanner {
+  background-color: #f0f0f0; /* Màu nền của khung quét */
+}
+
+.zxing-scanner__preview {
+  border: 2px solid #ccc; /* Màu viền của khung hiển thị video */
+}
+.zxing-scanner__overlay__flash-button {
+  background-color: #007bff; /* Màu nền của nút quét */
+  color: #fff; /* Màu chữ của nút quét */
+  padding: 10px 20px; /* Khoảng cách giữa nút và văn bản */
+  border-radius: 5px; /* Bo góc cho nút */
+}
+.text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 5px;
 }

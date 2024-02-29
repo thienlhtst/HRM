@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WorkHourModel } from 'src/Model/Relationship/WorkHourModel';
+import { CheckOut, TimeKeeping } from 'src/Model/Workhours/TimeKeeping';
 import { Pagingreponse } from 'src/Model/other/pagingreponse';
 import { Requestpaging } from 'src/Model/other/requestpaging';
 
@@ -24,6 +25,12 @@ constructor(private http : HttpClient) { }
   }
   GetWorkHourHome():Observable<WorkHourModel[]>{
     return this.http.get<WorkHourModel[]>(this.apiurl + '/WorkHour');
+  }
+  Checkin(Checkin:TimeKeeping):Observable<any>{
+    return this.http.post<any>(this.apiurl + '/WorkHour',Checkin);
+  }
+  Checkout(Checkin:CheckOut):Observable<any>{
+    return this.http.put<any>(this.apiurl + '/WorkHour/checkout',Checkin);
   }
 
 }

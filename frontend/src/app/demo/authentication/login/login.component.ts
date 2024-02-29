@@ -59,22 +59,22 @@ export default class LoginComponent implements OnInit {
 		message: 'This is an success alert',
 	  }
     if (this.loginForm.valid) {
-      this.flag=1
-
+    
       this.authService.onLogin(this.loginForm.value).subscribe({
         next: (a) => {
+          this.flag=1
           if(a==null){
             this.message=true,this.alert.type='danger',this.alert.message='User or password wrong'
             this.renderer.selectRootElement('#usernameInput').focus();
-
           }
+          this.flag=0
            },
 
      });
 
 
    } else {
-    this.flag=0
+    
       this.validateAllFormFileds(this.loginForm)
     }
     this.flag=0

@@ -17,7 +17,7 @@ export class NavContentComponent implements OnInit {
   @Output() NavCollapsedMob: EventEmitter<string> = new EventEmitter();
 
   // version
-  title = 'Demo application for version numbering';
+  title = '';
   currentApplicationVersion = environment.appVersion;
 
   navigation;

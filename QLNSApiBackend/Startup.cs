@@ -27,6 +27,7 @@ using QLNS.Services.Catalog.WorkHour;
 using QLNS.Services.Common;
 using QLNS.Services.Satistics;
 using QLNS.Utilities.Constants;
+using QLNSApiBackend.Hub;
 
 namespace QLNSApiBackend.BackendApi
 {
@@ -65,6 +66,7 @@ namespace QLNSApiBackend.BackendApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger eShop Solution", Version = "v1" });
             });
+            services.AddSignalR(options => { options.KeepAliveInterval = TimeSpan.FromSeconds(5); }).AddMessagePackProtocol();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,6 +89,7 @@ namespace QLNSApiBackend.BackendApi
 
             app.UseAuthorization();
             app.UseCors(m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>
@@ -99,6 +102,7 @@ namespace QLNSApiBackend.BackendApi
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapHub<SignalrHub>("/signar");
             });
         }
     }

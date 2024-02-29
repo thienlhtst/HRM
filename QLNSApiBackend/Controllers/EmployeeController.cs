@@ -81,5 +81,12 @@ namespace QLNSApiBackend.Controllers
             var employees = await _employeeService.GetAllPage(request);
             return Ok(employees);
         }
+
+        [HttpGet("paginghome")]
+        public async Task<IActionResult> GetAllHomePaging([FromQuery] GetEmployeePagingRequest request)
+        {
+            var employees = await _employeeService.GetAllHomePage(request);
+            return Ok(employees);
+        }
     }
 }
