@@ -9,6 +9,7 @@ import { HomeListDetailsComponent } from './home-list-details/home-list-details.
 import { HomeService } from 'src/Services/Home/homeService.service';
 import { HomeListemployeeDetailsComponent } from './home-listemployee-details/home-listemployee-details.component';
 import { SpinnerBetaComponent } from "../../theme/shared/components/spinner-beta/spinner-beta.component";
+import { EmployeeService } from 'src/Services/Employee/employee.service';
 
 const routes : Routes =[
   {
@@ -24,7 +25,7 @@ const routes : Routes =[
 @NgModule({
     declarations: [HomeListComponent, HomeListDetailsComponent, HomeListemployeeDetailsComponent],
     exports: [HomeListComponent],
-    providers: [HomeService],
+    providers: [HomeService,EmployeeService],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),

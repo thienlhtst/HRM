@@ -5,6 +5,6 @@ namespace QLNSApiBackend.Hub
 {
     public interface IHubClient
     {
-        Task BroadcastMessage(PagedResultHome<WorkhourVMHome> msg);
+        Task BroadcastMessage(RealtimeWH msg);
     }
 }

@@ -6,7 +6,7 @@ namespace QLNSApiBackend.Hub
 {
     public class SignalrHub : Hub<IHubClient>
     {
-        public async Task BroadcastMessage(PagedResultHome<WorkhourVMHome> msg)
+        public async Task BroadcastMessage(RealtimeWH msg)
         {
             await Clients.All.BroadcastMessage(msg);
         }

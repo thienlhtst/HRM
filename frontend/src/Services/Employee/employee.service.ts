@@ -19,7 +19,9 @@ export class EmployeeService {
   GetEmployee() : Observable<EmployeeModel[]>{
       return this.http.get<EmployeeModel[]>(this.ApiUrl + '/Employee');
   }
-
+  GetEmployeebyID(id):Observable<EmployeeModel>{
+    return this.http.get<EmployeeModel>(this.ApiUrl + '/Employee/'+id);
+  }
   GetEmployeePaging(paging : Requestpaging) : Observable<Pagingreponse>{
     if(paging.keyword != '')
     return this.http.get<Pagingreponse>(this.ApiUrl +'/Employee/paging?Keyword='+paging.keyword+'&PageIndex='+paging.pageindex+'&PageSize='+paging.pagesize+'');

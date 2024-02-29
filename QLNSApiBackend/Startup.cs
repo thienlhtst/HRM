@@ -66,6 +66,12 @@ namespace QLNSApiBackend.BackendApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger eShop Solution", Version = "v1" });
             });
+            services.AddCors(o => o.AddPolicy("CorsPolicy", b =>
+            {
+                b.AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowAnyOrigin();
+            }));
             services.AddSignalR(options => { options.KeepAliveInterval = TimeSpan.FromSeconds(5); }).AddMessagePackProtocol();
         }
 
@@ -88,7 +94,8 @@ namespace QLNSApiBackend.BackendApi
             app.UseRouting();
 
             app.UseAuthorization();
-            app.UseCors(m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            app.UseCors("CorsPolicy");
+            app.UseWebSockets();
 
             app.UseSwagger();
 

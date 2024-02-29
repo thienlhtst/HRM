@@ -48,6 +48,17 @@ namespace QLNSApiBackend.Controllers
             }
 
             var result = await _workHourService.Checkin(model);
+            RealtimeWH request = new RealtimeWH()
+            {
+                EmployeesID= model.EmployeesID,
+                flag=1,
+                Day= model.Day,
+                Month= model.Month,
+                Year= model.Year,
+                Hour= model.HourCheckin,
+                Minute= model.MinuteCheckin,
+            };
+            await _signalrHub.Clients.All.BroadcastMessage(request);
             return Ok(result);
         }
 
@@ -59,6 +70,17 @@ namespace QLNSApiBackend.Controllers
                 return BadRequest(ModelState);
             }
             var result = await _workHourService.Checkout(model);
+            RealtimeWH request = new RealtimeWH()
+            {
+                EmployeesID= model.EmployeesID,
+                flag=2,
+                Day= model.Day,
+                Month= model.Month,
+                Year= model.Year,
+                Hour= model.HourCheckout,
+                Minute= model.MinuteCheckout,
+            };
+            await _signalrHub.Clients.All.BroadcastMessage(request);
             return Ok(result);
         }
 
