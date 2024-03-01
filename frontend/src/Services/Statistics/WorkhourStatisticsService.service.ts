@@ -1,3 +1,5 @@
+/* eslint-disable prefer-const */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, forkJoin, map } from 'rxjs';
@@ -13,6 +15,7 @@ export class WorkhourStatisticsServiceService {
   apiurl : string = environment.apiurl +'/Statistic'
   apiurle : string = environment.apiurl +'/Employee'
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   GetpagingWorkhour(keyword,day,month,year):Observable<any>{
     let url:string;
      if(keyword==null)
@@ -24,7 +27,7 @@ export class WorkhourStatisticsServiceService {
       this.http.get(this.apiurl+'/paging?month='+month+'&year='+year)
     ]).pipe(
       map((data: any[]) => {
-        
+
         let employees: any = data[0];
         let workhours: any[] = data[1];
         let result:any={
@@ -35,7 +38,7 @@ export class WorkhourStatisticsServiceService {
           pageCount:employees.pageCount
         }
         let resultquery:any[]=[]
-        
+
         employees.items.forEach(employee => {
           let total=0
           let ResultInForeach :any={
@@ -53,9 +56,9 @@ export class WorkhourStatisticsServiceService {
                   }
               })
               if (flag == 0)
-                ResultInForeach.workhour.push(0)   
+                ResultInForeach.workhour.push(0)
            }
-           ResultInForeach.workhour.push(total)   
+           ResultInForeach.workhour.push(total)
            resultquery.push(ResultInForeach)
         });
         result.items=resultquery
@@ -63,9 +66,9 @@ export class WorkhourStatisticsServiceService {
       })
     );
   }
-  
 
-  
+
+
 
     GetWeekWorkhour(month:number, year:number):Observable<number[][]>{
     return  this.http.get<number[][]>(this.apiurl +'/week?month='+month+'&year='+year+'')

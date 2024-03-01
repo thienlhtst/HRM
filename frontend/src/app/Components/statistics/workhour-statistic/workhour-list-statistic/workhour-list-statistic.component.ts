@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Component, OnInit } from '@angular/core';
 // bootstrap import
-import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import {  } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { WorkhourStatisticsServiceService } from 'src/Services/Statistics/WorkhourStatisticsService.service';
@@ -27,8 +28,8 @@ export class WorkhourListStatisticComponent implements OnInit {
   dayinmonth:number
    daysInMonth = (year, month) => new Date(year, month, 0).getDate();
   items:any[]=[]
-  constructor(private services : WorkhourStatisticsServiceService) { 
-    
+  constructor(private services : WorkhourStatisticsServiceService) {
+
   }
   ngOnInit():void{
     this.currentYear = new Date().getFullYear();

@@ -47,7 +47,21 @@ namespace API
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5088");
             var requestContent = new MultipartFormDataContent();
-            if (employeeCreateRequest.ThumbnailImage != null)
+            requestContent.Add(new StringContent(employeeCreateRequest.ID), "ID");
+            requestContent.Add(new StringContent(employeeCreateRequest.FirstName), "FirstName");
+            requestContent.Add(new StringContent(employeeCreateRequest.LastName), "LastName");
+            requestContent.Add(new StringContent(employeeCreateRequest.MiddleName), "MiddleName");
+            requestContent.Add(new StringContent(employeeCreateRequest.DOB.ToString()), "DOB");
+            requestContent.Add(new StringContent(employeeCreateRequest.Sex.ToString()), "Sex");
+            requestContent.Add(new StringContent(employeeCreateRequest.CIC), "CIC");
+            requestContent.Add(new StringContent(employeeCreateRequest.NumberPhone), "NumberPhone");
+            requestContent.Add(new StringContent(employeeCreateRequest.Address), "Address");
+            requestContent.Add(new StringContent(employeeCreateRequest.SalaryID), "SalaryID");
+            requestContent.Add(new StringContent(employeeCreateRequest.Account), "Account");
+            requestContent.Add(new StringContent(employeeCreateRequest.Password), "Password");
+            requestContent.Add(new StringContent(employeeCreateRequest.Active.ToString()), "Active");
+            requestContent.Add(new StringContent(employeeCreateRequest.URLImage), "URLImage");
+            /*if (employeeCreateRequest.ThumbnailImage != null)
             {
                 byte[] data;
                 using (var br = new BinaryReader(employeeCreateRequest.ThumbnailImage.OpenReadStream()))
@@ -56,19 +70,7 @@ namespace API
                 }
                 ByteArrayContent bytes = new ByteArrayContent(data);
                 requestContent.Add(bytes, "thumbnailImage", employeeCreateRequest.ThumbnailImage.FileName);
-            }
-            requestContent.Add(new StringContent(employeeCreateRequest.ID), "ID");
-            requestContent.Add(new StringContent(employeeCreateRequest.FirstName), "FirstName");
-            requestContent.Add(new StringContent(employeeCreateRequest.LastName), "LastName");
-            requestContent.Add(new StringContent(employeeCreateRequest.MiddleName), "MiddleName");
-            requestContent.Add(new StringContent(employeeCreateRequest.DOB.ToString()), "DOB");
-            requestContent.Add(new StringContent(employeeCreateRequest.CIC), "CIC");
-            requestContent.Add(new StringContent(employeeCreateRequest.NumberPhone), "NumberPhone");
-            requestContent.Add(new StringContent(employeeCreateRequest.Address), "Address");
-            requestContent.Add(new StringContent(employeeCreateRequest.SalaryID), "SalaryID");
-            requestContent.Add(new StringContent(employeeCreateRequest.Account), "Account");
-            requestContent.Add(new StringContent(employeeCreateRequest.Password), "Password");
-            requestContent.Add(new StringContent(employeeCreateRequest.Active.ToString()), "Active");
+            }*/
             var response = await client.PostAsync("/api/Employee/createemployee", requestContent);
 
             return response.IsSuccessStatusCode;
@@ -137,6 +139,7 @@ namespace API
             requestContent.Add(new StringContent(employee.LastName), "LastName");
             requestContent.Add(new StringContent(employee.MiddleName), "MiddleName");
             requestContent.Add(new StringContent(employee.DOB.ToString()), "DOB");
+            requestContent.Add(new StringContent(employee.Sex.ToString()), "Sex");
             requestContent.Add(new StringContent(employee.CIC), "CIC");
             requestContent.Add(new StringContent(employee.NumberPhone), "NumberPhone");
             requestContent.Add(new StringContent(employee.Address), "Address");

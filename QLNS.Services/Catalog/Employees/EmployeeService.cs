@@ -42,20 +42,21 @@ namespace QLNS.Services.Catalog.Employees
                 LastName = request.LastName,
                 MiddleName = request.MiddleName,
                 DOB = request.DOB,
-                Account = request.Account,
-                Password = request.Password,
-                SalaryID = request.SalaryID,
+                Sex = request.Sex,
                 CIC = request.CIC,
                 NumberPhone = request.NumberPhone,
                 Address = request.Address,
+                Account = request.Account,
+                Password = request.Password,
+                SalaryID = request.SalaryID,
                 Active = request.Active,
-                Sex = request.Sex,
+                URLImage = request.URLImage,
             };
-            if (request.ThumbnailImage != null)
+            /*if (request.ThumbnailImage != null)
             {
                 Employee.URLImage = await this.SaveFile(request.ThumbnailImage);
             }
-            else Employee.URLImage = "";
+            else Employee.URLImage = "";*/
 
             _context.Employee.Add(Employee);
             await _context.SaveChangesAsync();

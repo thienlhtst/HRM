@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable prefer-const */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbDateStruct, NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
-import { EmployeeWork } from 'src/Model/Statistics/EmployeeWork';
 // third party
 import ApexCharts from 'apexcharts';
 import {
@@ -63,8 +64,8 @@ export class WorkhourChartStatisticComponent implements OnInit {
     const day = String(date.getDate()).padStart(2, '0');
     return `${day}/${month}/${year}`;
   }
-  constructor(private services:WorkhourStatisticsServiceService) { 
-    this.chartOptions_4 = 
+  constructor(private services:WorkhourStatisticsServiceService) {
+    this.chartOptions_4 =
     {
       chart: {
         type: 'bar',
@@ -122,7 +123,7 @@ export class WorkhourChartStatisticComponent implements OnInit {
       }
     };
     let currentdate = new Date()
-    
+
     this.services.GetEmployeeOff(currentdate.getFullYear()+'-'+(currentdate.getMonth()+1)+'-'+currentdate.getDate() ).subscribe((res)=>{
       for(let i=0;i<7;i++){
         let day= new Date(res.day[i])
@@ -142,7 +143,7 @@ export class WorkhourChartStatisticComponent implements OnInit {
           data: res.employeeOff
         }
       ]
-    
+
       this.chartOptions_4.xaxis={
         categories: ['Mo '+this.getFormattedDate(new Date(res.day[0])),
                   'Tu '+this.getFormattedDate(new Date(res.day[1])),
@@ -158,8 +159,8 @@ export class WorkhourChartStatisticComponent implements OnInit {
           show: false
         }
       }
-        
-      
+
+
     })
 
   }
@@ -177,7 +178,7 @@ export class WorkhourChartStatisticComponent implements OnInit {
             let data :any={
                 name: 'Week '+i,
                 data: row,
-            } 
+            }
             this.testthu.series.push(data)
       }
       setTimeout(() => {
@@ -186,7 +187,7 @@ export class WorkhourChartStatisticComponent implements OnInit {
       }, 500);
     })
   }
-  
+
   onNavChange(changeEvent: NgbNavChangeEvent) {
     if (changeEvent.nextId === 1) {
       this.flagdate=0;
@@ -198,7 +199,7 @@ export class WorkhourChartStatisticComponent implements OnInit {
             let data :any={
                 name: 'Week '+i,
                 data: row,
-            } 
+            }
             this.testthu.series.push(data)
       }
       setTimeout(() => {
@@ -222,7 +223,7 @@ export class WorkhourChartStatisticComponent implements OnInit {
       }, 200);
     })
   }
-    
+
   }
   onChangeMonth(event:any){
     this.currentMonth = parseInt(event.target.value);
@@ -234,7 +235,7 @@ export class WorkhourChartStatisticComponent implements OnInit {
             let data :any={
                 name: 'Week '+i,
                 data: row,
-            } 
+            }
             this.testthu.series.push(data)
       }
       setTimeout(() => {
@@ -242,7 +243,7 @@ export class WorkhourChartStatisticComponent implements OnInit {
         this.weekChart.render();
       }, 200);
     })
-   
+
   }
   onChangeYear(event:any){
     this.currentYear = parseInt(event.target.value);
@@ -255,7 +256,7 @@ export class WorkhourChartStatisticComponent implements OnInit {
               let data :any={
                   name: 'Week '+i,
                   data: row,
-              } 
+              }
               this.testthu.series.push(data)
         }
         setTimeout(() => {
@@ -277,12 +278,12 @@ export class WorkhourChartStatisticComponent implements OnInit {
         }, 200);
       })
     }
-    
+
   }
   OnChangeDate(date : NgbDateStruct){
-     let currentdate= date.year+'-'+date.month+'-'+date.day 
+     let currentdate= date.year+'-'+date.month+'-'+date.day
       this.services.GetEmployeeOff(currentdate).subscribe((res)=>{
-        
+
         this.chartOptions_4.series=[
           {
             name:"Work",

@@ -78,6 +78,10 @@ const routes: Routes = [
         loadChildren:() => import ('./Components/workhour/workhour.module').then(m=>m.WorkhourModule)
       },
       {
+        path:'ewa',
+        loadChildren:() => import ('./Components/employeewithallowance/ewa.module').then(m=>m.EwaModule)
+      },
+      {
         path:'statistic',
         loadChildren:() => import ('./Components/statistics/statistics.module').then(m=>m.StatisticsModule)
       }

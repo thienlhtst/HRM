@@ -24,7 +24,8 @@ export class EmployeeAddComponent implements OnInit {
   constructor(private service : EmployeeService,private router : Router,private generalService : GeneralService){}
   datas : EmployeeModel
   messageRequest : string = ''
-  selectedGender : string = ''
+  selectedGender : number
+  selectedActive : number
   selectedDate: string
   selectedFile : string
   RanksData : any
@@ -86,20 +87,22 @@ export class EmployeeAddComponent implements OnInit {
 
 
   OnGenderChange(){
-    console.log(this.selectedGender)
     return this.selectedGender
+
+  }
+  OnActiveChange(){
+    console.log(this.selectedActive)
+    return this.selectedActive.toString()
 
   }
 
   onDateChange(event): void {
     this.selectedDate = event.target.value;
-    console.log('Ngày được chọn:', this.selectedDate);
   }
 
   Add(data : EmployeeCreateModel){
     data.salaryID = this.selectedSalaryID
-    console.log(data.salaryID)
-    data.urlImage = this.selectedFilePath
+    console.log(data)
     this.service.CreateEmployee(data).subscribe((response)=>{
       if(response){
         alert('Success')

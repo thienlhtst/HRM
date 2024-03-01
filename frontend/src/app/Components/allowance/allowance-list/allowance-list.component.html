@@ -1,28 +1,16 @@
 
-<div class="card">
-  <div class="card-header">
-      <h3>Allowance table</h3>
-      <div class="card-header-right">
-<ul class="list-unstyled card-option">
-<li><i class="fa fa-chevron-left"></i></li>
-<li><i class="fa fa-window-maximize full-card"></i></li>
-<li><i class="fa fa-minus minimize-card"></i></li>
-<li><i class="fa fa-refresh reload-card"></i></li>
-<li><i class="fa fa-times close-card"></i></li>
-</ul>
-</div>
-<app-Notification [message]="messagerequest"></app-Notification>
-  </div>
   <div class="search">
         <input type="text" name="filter" [(ngModel)]="searchText" placeholder="Enter id" #fill>
   </div>
+  <button class="btn btn-secondary btn-sm" (click)=" ClicktoShowFormAdd()">Add</button>
 
-  <button class="col-md-12 col-xl-1" (click)=" ClicktoShowFormAdd()">Add</button>
 <div class="row">
   <div [ngClass]="{'col-md-12': !ShowForm, 'col-md-12 col-xl-8': ShowForm}">
-    <app-Notification [message]="messagerequest"></app-Notification>
-      <div class="table-responsive" >
-          <table class="table table-inverse">
+    <div class="mb-5"></div>
+      <div class="card tbl-card">
+        <div class="card-body">
+          <div class="table-responsive" >
+            <table class="table table-hover table-borderless mb-0">
               <thead>
                   <tr>
                       <th>ID</th>
@@ -47,9 +35,12 @@
                   </tr>
 
               </tbody>
-          </table>
+            </table>
           <app-pagingnav class="d-flex justify-content-end" (numberchange)="pagechange($event)"  [pagesize]="pagecount"  #child></app-pagingnav>
+          </div>
+        </div>
       </div>
+
       <div *ngIf="!spinner">
         <h1 class="text-center text-primary"> Wait for Data </h1>
       <app-spinner-beta></app-spinner-beta>
@@ -57,14 +48,27 @@
     </div>
 
 
-        <div  class="col-md-12 col-xl-4">
-
-          <div [ngClass]="{'col-md-7': ShowFormAdd, 'd-none': !ShowFormAdd}" *ngIf="ShowFormAdd">
+ <div class="col-md-12 col-xl-4" [ngClass]="{'col-md-7': ShowFormAdd, 'd-none': !ShowFormAdd}" *ngIf="ShowFormAdd">
+  <h5 class="mb-4">Add</h5>
+    <div class="card">
+      <div class="card-body">
+        <div class="list-group list-group-flush">
           <app-allowance-add (onSuccess)="OnSuccess()"></app-allowance-add>
-          </div>
-          <div [ngClass]="{'col-md-7': ShowFormUpdate, 'd-none': !ShowFormUpdate}" *ngIf="ShowFormUpdate">
-            <app-allowance-update [selectedID]="selectedID" (onSuccess)="OnSuccess()"></app-allowance-update>
-           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="col-md-12 col-xl-4" [ngClass]="{'col-md-7': ShowFormUpdate, 'd-none': !ShowFormUpdate}" *ngIf="ShowFormUpdate">
+    <h5 class="mb-4">Update</h5>
+    <div class="card">
+      <div class="card-body">
+        <div class="list-group list-group-flush">
+            <app-allowance-update [selectedID]="selectedID" (onSuccess)="OnSuccess()"></app-allowance-update>
+       </div>
+      </div>
+    </div>
   </div>
 </div>

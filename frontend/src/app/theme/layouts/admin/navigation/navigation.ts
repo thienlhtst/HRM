@@ -287,6 +287,23 @@ const NavigationItems = [
           classes :'nav-item',
           icon :''
         },
+        {
+          id:'ewa',
+          title:'Employee With Allowance',
+          type:'item',
+          url:'/ewa',
+          classes:'nav-item',
+          icon:'',
+          children:[
+            {
+              id :'ewa',
+              title:'Auto',
+              type:'item',
+              url:"/ewa/add",
+              classes:'nav-item',
+            },
+          ]
+        },
     ]
   },
   {

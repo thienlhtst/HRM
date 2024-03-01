@@ -14,9 +14,9 @@ import { EmployeeUpdateModel } from 'src/Model/Employee/EmployeeUpdateModel';
 export class EmployeeUpdateComponent implements OnInit {
   constructor(private service : EmployeeService,private generalService : GeneralService,private router : Router,private route : ActivatedRoute ){}
   id : string
-  selectedGender : string = ''
+  selectedGender : number
   selectedDate: string
-  selectedFile : string
+  selectedActive : number
   RanksData : any
   PositionsData : any
   SalarysData : SalaryModelList[]
@@ -43,6 +43,7 @@ export class EmployeeUpdateComponent implements OnInit {
 
   }
   onPositionChange(){
+    this.GetSalaryByRankAndPosition()
     return this.selectedPositionID
   }
 
@@ -66,30 +67,33 @@ export class EmployeeUpdateComponent implements OnInit {
       this.selectedFilePath = file
     }
   }
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
-    console.log('Đã chọn tập tin:', this.selectedFile);
-  }
+
 
 
   OnGenderChange(){
     console.log(this.selectedGender)
-    return this.selectedGender
+    return this.selectedGender.toString()
+
+  }
+
+  OnActiveChange(){
+    console.log(this.selectedActive)
+    return this.selectedActive.toString()
 
   }
 
   onDateChange(event): void {
-    this.selectedDate = event.target.value;
-    console.log('Ngày được chọn:', this.selectedDate);
+    this.selectedDate = event.target.value.toString();
   }
 
   Update(employee : EmployeeUpdateModel){
+    console.log(employee)
     employee.salaryID = this.selectedSalaryID
-    console.log(employee.salaryID)
     this.service.UpdateEmployee(this.id,employee).subscribe((res)=>{
-      if(res)
-      alert('Add Success')
+      if(res){
+      alert('Update Success')
       this.router.navigate(['/employee'])
+      }
     })
   }
 

@@ -1,0 +1,18 @@
+
+      <form class="form" #form="ngForm" (ngSubmit)="AutoGetAllowance(form.value)"  >
+        <div class="form-group row">
+          <label class="col-sm-5 col-form-label">Auto</label>
+          <div class="col-sm-10">
+            <select [(ngModel)]="SelectedAllowance" name="allowanceID" (change)="OnAllowanceChange()" class="form-control">
+              <option  *ngFor="let data of DataofAllowance" [value]="data.id"  >{{ data.name }}</option>
+            </select>
+          </div>
+      </div>
+        <button >
+            Add
+      </button>
+      <button>
+        Cancel
+      </button>
+    </form>
+

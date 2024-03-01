@@ -81,13 +81,10 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
 
   GetPaging(){
     this.service.getAllowancePaging(this.paging).subscribe((res)=>{
-        setTimeout(() => {
           this.datas = res.items
           this.pagecount = res.pageCount
-        }, 2000);
-        setTimeout(() => {
           this.spinner = true
-        }, 2000);
+
 
     })
   }
