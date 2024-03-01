@@ -157,6 +157,6 @@ export class BreadcrumbComponent {
       }
     });
     this.navigationList = result;
-    this.titleService.setTitle(title + ' | Mantis Angular Template');
+    this.titleService.setTitle(title + ' | Management');
   }
 }

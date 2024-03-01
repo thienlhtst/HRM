@@ -3,7 +3,7 @@
     <span *ngIf="item.icon" class="coded-micon"><i class="" [ngClass]="item.icon"></i></span>
     <span class="coded-mtext" *ngIf="item.icon; else directTitle">{{ item.title }}</span>
     <ng-template #directTitle>
-      {{ item.title }}
+      {{ item.title }} 
     </ng-template>
   </a>
 </li>

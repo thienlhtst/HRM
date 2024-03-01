@@ -25,9 +25,7 @@ export class PagingnavComponent implements OnInit,OnChanges  {
   }
 
   ngOnInit() {
-
     this.totalpage = this.pagesize*10
-    console.log(this.totalpage)
   }
   onchange(){
     this.numberchange.emit(this.page)

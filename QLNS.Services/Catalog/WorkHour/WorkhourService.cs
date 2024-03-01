@@ -220,6 +220,7 @@ namespace QLNS.Services.Catalog.WorkHour
                     MinuteCheckout = x.p.MinuteCheckout,
                 }).ToListAsync();
             int totalem = 0;
+            int emplate = 0;
             string a = "";
             double workhour = 0;
             foreach (WorkhourVMHome work in data)
@@ -229,6 +230,12 @@ namespace QLNS.Services.Catalog.WorkHour
                 if (!work.Employee.Equals(a))
                 {
                     totalem++;
+                    if (work.HourCheckin>8 || (work.HourCheckin==8   && work.MinuteCheckin>30))
+                    {
+                        emplate++;
+                        totalem--;
+                    }
+
                     a = work.Employee;
                 }
                 if (work.HourCheckout != 0)
@@ -238,13 +245,14 @@ namespace QLNS.Services.Catalog.WorkHour
                 workhour += totalday;
             }
             var listem = await _context.Employee.ToListAsync();
-            int employoff = listem.Count - totalem;
+            int employoff = listem.Count - totalem-emplate;
             var pagedView = new PagedResultHome<WorkhourVMHome>()
             {
                 TotalRecords = totalRow,
                 PageIndex = request.PageIndex,
                 PageSize = request.PageSize,
                 EmployeeOff= employoff,
+                EmployyLate= emplate,
                 EmployeeWork= totalem,
                 Totalworkhour = workhour.ToString("N2"),
                 Items = data

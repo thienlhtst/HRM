@@ -8,6 +8,7 @@ import { AdminComponent } from './theme/layouts/admin/admin.component';
 import { GuestComponent } from './theme/layouts/guest/guest.component';
 import { guestGuard } from './demo/authentication/guards/guest.guard';
 import { authGuard } from './demo/authentication/guards/auth.guard';
+import QrcodeComponent from './demo/authentication/qrcode/qrcode.component';
 
 const routes: Routes = [
   {
@@ -102,10 +103,23 @@ const routes: Routes = [
         path: 'register',
         loadComponent: () => import('./demo/authentication/register/register.component')
       },
+      
+       
+    ]
+  },
+  {
+    path:'qrcode',component:QrcodeComponent
+  
+  },
+  {
+    path: "**",
+    component: GuestComponent,
+    canActivate: [guestGuard],
+    children: [
       {
-        path:'qrcode',
-        loadComponent: () => import('./demo/authentication/qrcode/qrcode.component')
-      }
+        path: 'login',
+        loadComponent: () => import('./demo/authentication/login/login.component')
+      },
     ]
   }
 ];

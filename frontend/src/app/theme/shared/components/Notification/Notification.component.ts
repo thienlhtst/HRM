@@ -19,6 +19,7 @@ export class NotificationComponent implements OnInit,OnDestroy {
     @Input() message:string='test'
 
     @ViewChild("successTpl") public successTpl: TemplateRef<any>;
+    @ViewChild("dangerTpl") public dangerTpl: TemplateRef<any>;
 
   constructor() { }
   showStandard(template: TemplateRef<any>) {

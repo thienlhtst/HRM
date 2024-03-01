@@ -13,10 +13,13 @@ import { JsonPipe } from '@angular/common';
 })
 export class DatePickerComponent implements OnInit {
   model: NgbDateStruct;
+  today= new Date()
   @Output() Datechange: EventEmitter<NgbDateStruct> =   new EventEmitter();
   constructor() { }
 
   ngOnInit() {
+
+    
   }
   onchange(){
     this.Datechange.emit(this.model)

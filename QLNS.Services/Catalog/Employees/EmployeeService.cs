@@ -252,5 +252,96 @@ namespace QLNS.Services.Catalog.Employees
             await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
             return "/" + USER_CONTENT_FOLDER_NAME + "/" + fileName;
         }
+
+        public async Task<PagedResult<EmployeeViewModel>> GetAllHomePage(GetEmployeePagingRequest request)
+        {
+            var query = from p in _context.Employee
+                        join ps in _context.Salaries on p.SalaryID equals ps.ID
+                        join pr in _context.Ranks on ps.RankID equals pr.IDrank
+                        join pp in _context.Positions on ps.PositionID equals pp.IDposition
+                        select new EmployeeViewModel()
+                        {
+                            ID = p.ID,
+                            FirstName = p.FirstName,
+                            MiddleName =p.MiddleName,
+                            LastName = p.LastName,
+                            Sex = p.Sex,
+                            NumberPhone = p.NumberPhone,
+                            DOB = p.DOB,
+                            CIC = p.CIC,
+                            Address = p.Address,
+                            Rank = pr.Name,
+                            Position = pp.Name,
+                            Account = p.Account,
+                            Password = p.Password,
+                            Active = p.Active,
+                            URLImage = p.URLImage
+                        }
+                       ;
+            if (!string.IsNullOrEmpty(request.Keyword))
+            {
+                query = query.Where(x => x.ID.Contains(request.Keyword) || x.NumberPhone.Contains(request.Keyword));
+            }
+            var today = DateTime.Now;
+            var data_request = new List<EmployeeViewModel>();
+            var query_workhour = await _context.WorkHours.Where(x => x.Day.Equals(today.Day)&&x.Month.Equals(today.Month)&&x.Day.Equals(today.Year)).ToListAsync();
+            if (request.flag==1)
+            {
+                foreach (var item in query)
+                {
+                    var employee_off = query_workhour.Find(x => x.EmployeesID.Equals(item.ID));
+                    if (employee_off == null)
+                        data_request.Add(item);
+                }
+            }
+            else if (request.flag==2)
+            {
+                foreach (var item in query)
+                {
+                    var employee_off = query_workhour.Find(x => x.EmployeesID.Equals(item.ID));
+                    if (employee_off != null)
+                        data_request.Add(item);
+                }
+            }
+            else if (request.flag==3)
+            {
+                foreach (var item in query)
+                {
+                    var employee_off = query_workhour.Find(x => x.EmployeesID.Equals(item.ID) &&(x.HourCheckin>8 || x.HourCheckin==8 && x.MinuteCheckin>30));
+                    if (employee_off != null)
+                        data_request.Add(item);
+                }
+            }
+
+            int totalRow = data_request.Count();
+            var data = data_request.OrderBy(x => x.ID).Skip((request.PageIndex - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .Select(x => new EmployeeViewModel()
+                {
+                    ID = x.ID,
+                    FirstName = x.FirstName,
+                    MiddleName = x.MiddleName,
+                    LastName = x.LastName,
+                    Sex = x.Sex,
+                    NumberPhone = x.NumberPhone,
+                    DOB = x.DOB,
+                    CIC = x.CIC,
+                    Address = x.Address,
+                    Rank = x.Rank,
+                    Position = x.Position,
+                    Account = x.Account,
+                    Password = x.Password,
+                    Active = x.Active,
+                    URLImage = x.URLImage
+                }).ToList();
+            var pagedView = new PagedResult<EmployeeViewModel>()
+            {
+                TotalRecords = totalRow,
+                PageIndex = request.PageIndex,
+                PageSize = request.PageSize,
+                Items = data
+            };
+            return pagedView;
+        }
     }
 }

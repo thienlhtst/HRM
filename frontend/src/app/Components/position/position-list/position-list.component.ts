@@ -59,11 +59,7 @@ export class PositionListComponent implements OnInit,OnChanges{
   }
 
 
-  getAll(){
-    this.service.GetPosition().subscribe((res)=>{
-      this.datas = res
-    })
-  }
+
 
   GetPaging(){
     this.service.GetPositionPaging(this.paging).subscribe((res)=>{

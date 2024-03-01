@@ -9,16 +9,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr >
-      <td>
-        {{pagenumber}}
-      </td>
-      <td>sds</td>
-      <td>sd</td>
-      <td>
-        sd
-      </td>
-      <td >sd</td>
+    <tr *ngFor="let item of items">
+      <td>{{item.name}}</td>
+      <td>{{item.hourCheckin}}</td>
+      <td>{{item.minuteCheckin}}</td>
+      <td>{{item.hourCheckout}}</td>
+      <td>{{item.minuteCheckout}}</td>
+     
     </tr>
   </tbody>
 </table>

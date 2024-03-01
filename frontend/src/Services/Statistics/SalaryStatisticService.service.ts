@@ -2,6 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { RequestpagingStatistic } from 'src/Model/other/requestpaingstatistic';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,10 +12,10 @@ export class SalaryStatisticServiceService {
 
 constructor(private http : HttpClient) { }
   apiurl : string = environment.apiurl +'/Statistic'
-  Getpagingsalary(keyword,month,year):Observable<any>{
-    let apiurlpaing= this.apiurl+'/salarypaging?Month='+month+'&Year='+year+'&PageIndex=1&PageSize=10'
-    if(keyword!='')
-      apiurlpaing= this.apiurl+'/salarypaging?Keyword='+keyword+'&Month='+month+'&Year='+year+'&PageIndex=1&PageSize=10'
+  Getpagingsalary(request: RequestpagingStatistic):Observable<any>{
+    let apiurlpaing= this.apiurl+'/salarypaging?Month='+request.month+'&Year='+request.year+'&PageIndex='+request.pageindex+'&PageSize='+request.pagesize
+    if(request.keyword!='')
+      apiurlpaing= this.apiurl+'/salarypaging?Keyword='+request.keyword+'&Month='+request.month+'&Year='+request.year+'&PageIndex='+request.pageindex+'&PageSize='+request.pagesize
     return this.http.get(apiurlpaing)
   }
   GetChartMonthlyinYear(year):Observable<any>{

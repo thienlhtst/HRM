@@ -14,8 +14,8 @@ export class AuthService {
   apiurl : string = environment.apiurl
 
 
-  GetInforToLogin(EmployeeID : string):Observable<EmployeeModel[]>{
-    return this.http.get<EmployeeModel[]>(this.apiurl + '/Employee/' +EmployeeID)
+  GetInforToLogin(EmployeeID : string):Observable<EmployeeModel>{
+    return this.http.get<EmployeeModel>(this.apiurl + '/Employee/' +EmployeeID)
   }
 
 

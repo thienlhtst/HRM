@@ -34,7 +34,6 @@ export class WorkhourListComponent implements OnInit{
       this.listitems=res.items
 
       this.pageCount = res.pageCount
-      console.log(this.pageCount)
     })
 
   }
