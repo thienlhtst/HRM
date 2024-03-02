@@ -50,23 +50,28 @@ export class HomeListComponent implements OnInit {
 
     this._hubConnection.on('BroadcastMessage', (data:any) => {
       console.log(data)
-      this.service_employee.GetEmployeebyID(data.employeesid).subscribe((res)=>{
+      this.service_employee.GetEmployeebyID(data.employeesID).subscribe((res)=>{
         
         if(data.flag==1){
-          let newdata:any={
-            employee:data.employeesid,
+          let newdata:any={ 
+            employee:data.employeesID,
             name:res.firstName+' '+res.middleName+' '+res.lastName,
             hourCheckin:data.hour,
             minuteCheckin:data.minute,
             hourCheckout:0,
             minuteCheckout:0
           }
+          if (newdata.hourCheckin >8|| (newdata.hourCheckin==8 &&newdata.minuteCheckin>30) )
+          this.HomeDetail.employyLate+=1
+          else this.HomeDetail.employeeWork+=1
+          this.HomeDetail.employeeOff-=1
           this.reponsedata.items.push(newdata)
         }else{
-          let finditem= this.reponsedata.items.findIndex(x=> x.employee ==data.employeesid && x.hourCheckin!=0 )
+          let finditem= this.reponsedata.items.findIndex(x=> x.employee ==data.employeesID && x.hourCheckin!=0 )
           if (finditem !== -1) {
-            this.reponsedata[finditem].hourCheckout = data.hour;
-            this.reponsedata[finditem].minuteCheckout = data.minute;
+            this.reponsedata.items[finditem].hourCheckout = data.hour;
+            this.reponsedata.items[finditem].minuteCheckout = data.minute;
+            this.HomeDetail.totalworkhour+=(this.reponsedata.items[finditem].hourCheckout + (this.reponsedata.items[finditem].minuteCheckout / 60)) - (this.reponsedata.items[finditem].hourCheckin + (this.reponsedata.items[finditem].minuteCheckin / 60));
           }
         }
       })

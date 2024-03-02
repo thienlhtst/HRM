@@ -56,7 +56,8 @@ namespace QLNS.Services.Catalog.WorkHour
                 x =>
                 x.EmployeesID == checkin.EmployeesID &&
                 x.MinuteCheckout == 0 &&
-                x.HourCheckout ==0
+                x.HourCheckout ==0 && x.Day==checkin.Day &&
+                x.Month==checkin.Month && x.Year == checkin.Year
                 );
             if (check == null)
             {
@@ -85,7 +86,7 @@ namespace QLNS.Services.Catalog.WorkHour
                 _context.WorkHours.Add(workhour);
                 return await _context.SaveChangesAsync();
             }
-            return -1;
+            return -2;
         }
 
         public async Task<int> Checkout(CheckoutModel checkout)
