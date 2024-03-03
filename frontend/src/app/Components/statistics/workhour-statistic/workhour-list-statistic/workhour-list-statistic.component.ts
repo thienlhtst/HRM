@@ -14,6 +14,7 @@ import { WorkhourStatisticsServiceService } from 'src/Services/Statistics/Workho
 export class WorkhourListStatisticComponent implements OnInit {
   yearOptions: number[];
   PageCount : number = 1
+  searchText:any
   spinner : boolean = false
   paging :RequestpagingStatistic = {
     keyword: '',

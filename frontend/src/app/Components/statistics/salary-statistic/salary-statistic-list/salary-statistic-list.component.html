@@ -8,7 +8,7 @@
             <h5>Month {{ paging.month }}/{{ [paging.year] }} </h5>
             <div  class="form align-items-center">
               <i class="fa fa-search"></i>
-              <input type="text" class="form-control form-input" placeholder="Search anything...">
+              <input type="text" name="filter" [(ngModel)]="searchText" class="form-control form-input" placeholder="Search anything..." #fill>
             </div>
           </div>
           
@@ -41,7 +41,7 @@
               </tr>
             </thead>
             <tbody *ngIf="spinner; else loaddata">
-              <tr *ngFor="let item of salaryemployee">
+              <tr *ngFor="let item of salaryemployee | filter : searchText" >
                 <td>{{ item.id }}</td>
                 <td>{{ item.name }}</td>
                 <td class="text-center">{{ item.basicSalary | number: '1.0-0'}} </td>

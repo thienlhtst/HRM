@@ -18,6 +18,20 @@ constructor(private http : HttpClient) { }
   GetWorkHour():Observable<WorkHourModel[]>{
     return this.http.get<WorkHourModel[]>(this.apiurl + '/WorkHour');
   }
+  GetbyId(id:any):Observable<any>{
+    return this.http.get<WorkHourModel[]>(this.apiurl + '/WorkHour/'+id);
+  }
+  CreateWorkhour(data : any){
+    return this.http.post(this.apiurl + '/WorkHour/',data)
+  }
+  EditWorkhour(id,data:any){
+    return this.http.put(this.apiurl +'/WorkHour/'+id,data)
+  }
+  DeleteWorkhour(data:string){
+    return this.http.delete(this.apiurl + '/WorkHour/'+data)
+  }
+
+
   GetWorkHourPaging(paging:Requestpaging):Observable<Pagingreponse>{
     if(paging.keyword!='')
     return this.http.get<Pagingreponse>(this.apiurl + '/WorkHour/paging?Keyword='+paging.keyword+'&PageIndex='+paging.pageindex+'&PageSize='+paging.pagesize+'');

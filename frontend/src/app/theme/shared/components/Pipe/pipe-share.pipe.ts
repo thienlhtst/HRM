@@ -14,9 +14,13 @@ export class PipeSharePipe implements PipeTransform {
     }
 
     return items.filter(item => {
-      return item.id.toString().includes(searchText);
+      return item.id.toString().includes(searchText )||item.name.toString().includes(searchText ) ;
 
     });
+
+
+
+
   }
 
 }

@@ -9,6 +9,8 @@ import { SalaryStatisticChartComponent } from './salary-statistic-chart/salary-s
 import { SalaryStatisticServiceService } from 'src/Services/Statistics/SalaryStatisticService.service';
 import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pagingnav.component';
 import { SpinnerBetaComponent } from "../../../theme/shared/components/spinner-beta/spinner-beta.component";
+import { FormsModule } from '@angular/forms';
+import { PipeSharePipe } from "../../../theme/shared/components/Pipe/pipe-share.pipe";
 const routes : Routes =[
   {
     path : '',
@@ -21,13 +23,15 @@ const routes : Routes =[
 @NgModule({
     declarations: [SalaryStatisticComponent, SalaryStatisticListComponent, SalaryStatisticChartComponent],
     exports: [SalaryStatisticComponent],
-    providers: [SalaryStatisticServiceService,DecimalPipe],
+    providers: [SalaryStatisticServiceService, DecimalPipe],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
         NgApexchartsModule, NgbNavModule,
         PagingnavComponent,
-        SpinnerBetaComponent
+        FormsModule,
+        SpinnerBetaComponent,
+        PipeSharePipe
     ]
 })
 export class SalaryStatisticModule { }

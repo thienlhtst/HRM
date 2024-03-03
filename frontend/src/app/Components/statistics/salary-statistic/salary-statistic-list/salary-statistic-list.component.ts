@@ -14,6 +14,7 @@ export class SalaryStatisticListComponent implements OnInit {
   yearOptions: number[];
   spinner : boolean = false
   PageCount : number = 1
+  searchText:any
   paging :RequestpagingStatistic = {
     keyword: '',
     pageindex: 1,

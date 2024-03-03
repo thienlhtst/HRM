@@ -9,6 +9,8 @@ import { WorkhourStatisticsServiceService } from 'src/Services/Statistics/Workho
 import { DatePickerComponent } from 'src/app/theme/shared/components/date-picker/date-picker.component';
 import { PagingnavComponent } from "../../../theme/shared/components/pagingnav/pagingnav.component";
 import { SpinnerBetaComponent } from "../../../theme/shared/components/spinner-beta/spinner-beta.component";
+import { FormsModule } from '@angular/forms';
+import { PipeSharePipe } from "../../../theme/shared/components/Pipe/pipe-share.pipe";
 
 const routes : Routes =[
   {
@@ -32,7 +34,9 @@ const routes : Routes =[
         NgApexchartsModule, NgbNavModule,
         DatePickerComponent,
         PagingnavComponent,
-        SpinnerBetaComponent
+        FormsModule,
+        SpinnerBetaComponent,
+        PipeSharePipe
     ]
 })
 export class WorkhourStatisticModule { }
