@@ -1,1 +1,12 @@
-https://docs.google.com/spreadsheets/d/1kRhfoz4r-UVOxTxusI7sLJvAoXYW72PfHFxptG9jut8/edit?usp=sharing
+To run a project, we have  6 Step to run
+
+Step 1: go a appsettings.json in QLNS.DataAccess and QLNS.WEBAPI  to change ConnectionStrings
+
+ "QLNSDb": "Data Source=your name database;Database=QLNS;User ID=sa;Password=your password;TrustServerCertificate=True;MultipleActiveResultSets=true"
+
+Step 2: Set QLNS.DataAccess to Starup project and open Package Manager Console 
+Step 3: Set QLNS.DataAccess to Default Project and run code update-database
+Step 4 Set QLNSApiBackend to starup project and run it
+Step 5: go folder frontend and open terminal 
+Step 6: run npm i --legacy-peer-deps and wait for it
+Step 6: run ng serve and enjoy it
