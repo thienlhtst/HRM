@@ -18,12 +18,11 @@ namespace QLNS.DataAccess.Extenstions
         private Faker<EmployeesWithAllowances> EWAFake;
         private List<EmployeesWithAllowances> EWAList = new List<EmployeesWithAllowances>();
 
-        private int idWork = 1; // T đã đưa thử 2 thằng id này vào hàm nhưng khi đưa vào nó lại bị lỗi trùng ID
+        private int idWork = 1; 
         private int idEWA = 1;
 
         public List<WorkHour> WorkHourSeedData()
         {
-            // T đã cố gắng đưa idWork vào đây
             for (int i = 1; i <= 12; i++)
             {
                 int maxDay = (i == 2) ? 28 : (i == 4 || i == 6 || i == 9 || i == 11) ? 30 : 31;
@@ -34,7 +33,7 @@ namespace QLNS.DataAccess.Extenstions
                         WorkHourFake = new Faker<WorkHour>()
                         .RuleFor(u => u.ID, f => idWork++)
                         .RuleFor(u => u.EmployeesID, f => z.ToString())
-                        .RuleFor(u => u.LBDID, f => f.Random.Int(min: 1, max: 2).ToString())
+                        .RuleFor(u => u.LBDID, f => 1.ToString())
                         .RuleFor(u => u.Day, f => j)
                         .RuleFor(u => u.Month, f => i)
                         .RuleFor(u => u.Year, f => 2023)

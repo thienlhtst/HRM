@@ -2,7 +2,7 @@
   <div class="row  d-flex justify-content-center">
     <div class=" col-xl-3 col-md-6 flex-fill">
         <div class="card bg-primary text-white mb-4">
-            <div class="card-body">Total Hours:</div> 
+            <div class="card-body">Total Hours:</div>
             <h2  *ngIf="spinner" class="text-center" #loaddata>{{HomeDetail.totalworkhour.toFixed(2)}}</h2>
             <ng-template #loaddata>
               <app-spinner-beta class="d-flex justify-content-center "></app-spinner-beta>
@@ -37,14 +37,14 @@
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
-    </div> 
+    </div>
     <div class="col-xl-3 col-md-6 flex-fill">
       <div class="card bg-success text-white mb-4">
           <div class="card-body">Employee Late:</div>
           <div *ngIf="spinner"  #loaddata3>
             <h2  class="text-center"> {{HomeDetail.employyLate}}</h2>
           </div>
-          
+
           <ng-template #loaddata3>
             <app-spinner-beta class="d-flex justify-content-center "></app-spinner-beta>
           </ng-template>
@@ -61,8 +61,8 @@
       </div>
       <div class="card-body">
         <div class="table-responsive">
-          <app-home-list-details   [items]="reponsedata.items" *ngIf="flagdetail==0" ></app-home-list-details>
-          <app-home-listemployee-details *ngIf="flagdetail!=0" [items]="reponsedata.items"></app-home-listemployee-details>
+          <app-home-list-details   [items]="reponsedata.items" *ngIf="flagdetail===0" ></app-home-list-details>
+          <app-home-listemployee-details *ngIf="flagdetail!==0" [items]="reponsedata.items"></app-home-listemployee-details>
           <app-pagingnav class="d-flex justify-content-end"  [pagesize]="pagecount" (numberchange)="numberchange($event)"  #child></app-pagingnav>
         </div>
       </div>

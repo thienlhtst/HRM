@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -20,7 +21,7 @@ constructor(private http : HttpClient) { }
   GetChartMonthlyinYear(year):Observable<any>{
     return this.http.get(this.apiurl+'/monthlyinyear?year='+year)
   }
-  GetTopSalary(top):Observable<any>{ 
+  GetTopSalary(top):Observable<any>{
     return this.http.get(this.apiurl+'/topsalary?top='+top)
   }
 

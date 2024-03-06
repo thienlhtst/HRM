@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using NuGet.Common;
 using QLNS.Services.Catalog.Allowance;
 using QLNS.ViewModel.Catalogs.Allowance;
+using QLNS.ViewModel.Catalogs.AllowanceRules;
 
 namespace QLNSApiBackend.Controllers
 {
@@ -38,6 +39,13 @@ namespace QLNSApiBackend.Controllers
             return Ok(new { token = allowance });
         }
 
+        [HttpPost("createallowancerules")]
+        public async Task<IActionResult> CreateAllowanceRules([FromBody] AllowanceRulesCreateViewModel request)
+        {
+            var allowancerules = await _allowanceService.CreateAllowanceRules(request);
+            return Ok(new { token = allowancerules });
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, [FromBody] AllowanceEditRequest request)
         {
@@ -58,6 +66,13 @@ namespace QLNSApiBackend.Controllers
         {
             var allowance = await _allowanceService.GetAllPage(request);
             return Ok(allowance);
+        }
+
+        [HttpGet("rulespaging")]
+        public async Task<IActionResult> GetRulesPaging([FromQuery] GetAllowanceRulesPagingRequest request)
+        {
+            var rules = await _allowanceService.GetAllPageRules(request);
+            return Ok(rules);
         }
     }
 }

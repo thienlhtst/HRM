@@ -1,0 +1,43 @@
+
+<button class="btn btn-secondary btn-sm" (click)=" ClicktoShowFormAdd()">Add</button>
+<div class="row">
+  <div [ngClass]="{'col-md-12': !ShowForm, 'col-md-12 col-xl-8': ShowForm}">
+    <div class="mb-5"></div>
+      <div class="card tbl-card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-hover table-borderless mb-0">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Employee</th>
+                  <th>Allowance</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of datas">
+                  <td>{{item.id}}</td>
+                  <td>{{item.employeeID}}</td>
+                  <td>{{item.allowanceID}}</td>
+                  <td>{{item.date}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <app-pagingnav class="d-flex justify-content-end" (numberchange)="pagechange($event)" [pagesize]="PageCount"></app-pagingnav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 col-xl-4" [ngClass]="{'col-md-7': ShowFormAdd, 'd-none': !ShowFormAdd}" *ngIf="ShowFormAdd">
+      <h5 class="mb-4">Add</h5>
+        <div class="card">
+          <div class="card-body">
+            <div class="list-group list-group-flush">
+              <app-ewa-add (onSuccess)="OnSuccess()"></app-ewa-add>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using QLNS.ViewModel.Catalogs.Allowance;
+using QLNS.ViewModel.Catalogs.AllowanceRules;
 using QLNS.ViewModel.Dtos;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,18 @@ namespace API
             requestContent.Add(new StringContent(request.Name), "Name");
             requestContent.Add(new StringContent(request.Money.ToString()), "Money");
             var response = await client.PostAsync("/api/Allowance/createallowance", requestContent);
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> CreateAllowanceRules(AllowanceRulesCreateViewModel request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri("https://localhost:5088");
+            var requestContent = new MultipartFormDataContent();
+            requestContent.Add(new StringContent(request.AllowanceID), "AllowanceID");
+            requestContent.Add(new StringContent(request.EmployeeID), "EmployeeID");
+            requestContent.Add(new StringContent(request.Date.ToString()), "Date");
+            var response = await client.PostAsync("/api/Allowance/createallowancerules", requestContent);
             return response.IsSuccessStatusCode;
         }
 
@@ -65,6 +78,28 @@ namespace API
             var body = await response.Content.ReadAsStringAsync();
             var allowance = JsonConvert.DeserializeObject<PagedResult<AllowanceViewModel>>(body);
             return allowance;
+        }
+
+        public async Task<PagedResult<AllowanceRulesViewModel>> GetAllowanceRulesPaging(AllowanceRulesPaging request)
+        {
+            string page = $"/api/Allowance/rulespaging?Keyword=" +
+                          $"{request.Keyword}&PageIndex={request.PageIndex}&PageSize={request.PageSize}";
+            if (request.Keyword.IsNullOrEmpty())
+            {
+                page = $"/api/Allowance/rulespaging?" +
+                          $"PageIndex={request.PageIndex}&PageSize={request.PageSize}";
+            }
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri("https://localhost:5088");
+            var response = await client.GetAsync(page);
+            var body = await response.Content.ReadAsStringAsync();
+            var allowancerules = JsonConvert.DeserializeObject<PagedResult<AllowanceRulesViewModel>>(body);
+            return allowancerules;
+        }
+
+        public Task<PagedResult<AllowanceRulesViewModel>> GetAllowanceRulesPaging(GetAllowancePaging request)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<AllowanceViewModel> GetByID(string id)

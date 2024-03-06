@@ -66,12 +66,14 @@ namespace QLNS.Services.Catalog.Positions
                     IDposition = x.IDposition,
                     Name = x.Name
                 }).ToListAsync();
-            var pagedResult = new PagedResult<PositionViewModel>()
+            var pagedView = new PagedResult<PositionViewModel>()
             {
                 TotalRecords = totalRow,
+                PageIndex = request.PageIndex,
+                PageSize = request.PageSize,
                 Items = data
             };
-            return pagedResult;
+            return pagedView;
         }
 
         public async Task<PositionViewModel> GetByID(string PositionID)

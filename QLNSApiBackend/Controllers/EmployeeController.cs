@@ -34,6 +34,20 @@ namespace QLNSApiBackend.Controllers
             return Ok(employee);
         }
 
+        [HttpGet("bypositionandrank/{salaryID}")]
+        public async Task<IActionResult> GetEmployeeBySalary(string salaryID)
+        {
+            var employee = await _employeeService.GetByRankAndPosition(salaryID);
+            return Ok(employee);
+        }
+
+        [HttpGet("byallowance/{allowanceID}")]
+        public async Task<IActionResult> GetEmployeeByAllowance(string allowanceID)
+        {
+            var employee = await _employeeService.GetByAllowance(allowanceID);
+            return Ok(employee);
+        }
+
         [HttpGet("edit/{employeeID}")]
         public async Task<IActionResult> GetByIdEdit(string employeeID)
         {

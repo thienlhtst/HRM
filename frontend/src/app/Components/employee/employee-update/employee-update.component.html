@@ -10,52 +10,55 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">First Name</label>
             <div class="col-sm-10">
-                <input type="text" id="firstname"  ngModel name="firstname"  class="form-control" >
+                <input type="text" id="firstname"  ngModel name="firstname" [ngModel]="data.firstName"  class="form-control" >
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Middle Name</label>
             <div class="col-sm-10">
-                <input type="text" id="middlename"  ngModel name="middlename"  class="form-control" >
+                <input type="text" id="middlename"  ngModel name="middlename" [ngModel]="data.middleName"  class="form-control" >
             </div>
         </div>
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Last Name</label>
           <div class="col-sm-10">
-              <input type="text" id="lastname"  ngModel name="lastname"  class="form-control" >
+              <input type="text" id="lastname"  ngModel name="lastname" [ngModel]="data.lastName"  class="form-control" >
           </div>
         </div>
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Date of Birth</label>
           <div class="col-sm-10">
-            <input type="date" [(ngModel)]="selectedDate" (change)="onDateChange($event)" id="dob" name="dob">
+            <input type="date" [(ngModel)]="selectedDate" (change)="onDateChange($event)" id="dob" name="dob" [ngModel]="data.dob">
           </div>
         </div>
-        <div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label"> Sex </label>
+          <div  class="col-sm-10">
           <label>
-            <input type="radio" name="sex" value="1" [(ngModel)]="selectedGender" (change)="OnGenderChange()"> Nam
+            <input type="radio" name="sex" [value]="1" [(ngModel)]="selectedGender" (change)="OnGenderChange()"> Nam
           </label>
 
           <label>
-            <input type="radio" name="sex" value="0" [(ngModel)]="selectedGender"  (change)=" OnGenderChange()"> Nữ
+            <input type="radio" name="sex" [value]="0" [(ngModel)]="selectedGender"  (change)=" OnGenderChange()"> Nữ
           </label>
+        </div>
         </div>
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Identity Card</label>
           <div class="col-sm-10">
-              <input type="text" id="cic" ngModel name="cic" class="form-control">
+              <input type="text" id="cic" ngModel name="cic" [ngModel]="data.cic" class="form-control">
           </div>
       </div>
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Phone Number</label>
           <div class="col-sm-10">
-              <input type="text" id="number" ngModel name="number" class="form-control">
+              <input type="text" id="numberPhone" ngModel name="numberPhone" [ngModel]="data.numberPhone" class="form-control">
           </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Address</label>
         <div class="col-sm-10">
-            <input type="text" id="address" ngModel name="address" class="form-control">
+            <input type="text" id="address" ngModel name="address" [ngModel]="data.address" class="form-control">
         </div>
     </div>
     <div class="form-group row">
@@ -77,31 +80,37 @@
     <div class="form-group row">
       <label class="col-sm-2 col-form-label">Account</label>
       <div class="col-sm-10">
-          <input type="text" id="account" ngModel name="account" class="form-control">
+          <input type="text" id="account" ngModel name="account" [ngModel]="data.account" class="form-control">
       </div>
   </div>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Password</label>
     <div class="col-sm-10">
-        <input type="text" id="password" ngModel name="password" class="form-control">
+        <input type="text" id="password" ngModel name="password" [ngModel]="data.password" class="form-control">
     </div>
 </div>
 <div class="form-group row">
-  <label class="col-sm-2 col-form-label">Active</label>
-  <div class="col-sm-10">
-      <input type="text" id="active" ngModel name="active" class="form-control">
-  </div>
+  <label class="col-sm-2 col-form-label"> Active </label>
+  <div  class="col-sm-10">
+  <label>
+    <input type="radio" name="active" [value]="1" [(ngModel)]="selectedActive" (change)="OnActiveChange()"> Yes
+  </label>
+
+  <label>
+    <input type="radio" name="active" [value]="0" [(ngModel)]="selectedActive"  (change)="OnActiveChange()"> No
+  </label>
+</div>
 </div>
     <div class="form-group row">
       <label class="col-sm-2 col-form-label">Url Image</label>
       <div class="col-sm-10">
-        <input type="file" (change)="OnchangeFile($event)" id="urlImage" ngModel name="urlImage" />
+        <input type="file" (change)="OnchangeFile($event)" id="urlImage" ngModel name="urlImage" [ngModel]="data.urlImage" />
       </div>
   </div>
 
 
         <button>
-            Add
+            Update
       </button>
     </form>
 

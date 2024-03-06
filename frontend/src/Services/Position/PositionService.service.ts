@@ -18,6 +18,10 @@ constructor(private http : HttpClient) {}
     return this.http.get<PositionModel[]>(this.ApiUrl + '/Position')
   }
 
+  GetPositionByID(id:string) : Observable<PositionModel>{
+    return this.http.get<PositionModel>(this.ApiUrl +'/Position/'+id)
+  }
+
   GetPositionPaging(paging : Requestpaging):Observable<Pagingreponse>{
     if(paging.keyword !='')
     return this.http.get<Pagingreponse>(this.ApiUrl +'/Position/paging?Keyword='+paging.keyword+'&PageIndex='+paging.pageindex+'&PageSize='+paging.pagesize+'')

@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { Requestpaging } from 'src/Model/other/requestpaging';
 import { Pagingreponse } from 'src/Model/other/pagingreponse';
 import { EmployeeUpdateModel } from 'src/Model/Employee/EmployeeUpdateModel';
+import { EmployeeRulesModel } from 'src/Model/Employee/EmployeeRulesModel';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,13 @@ export class EmployeeService {
     return this.http.get<Pagingreponse>(this.ApiUrl + '/Employee/paging?&PageIndex='+paging.pageindex+'&PageSize='+paging.pagesize+'')
   }
 
+  GetEmployeeByPositionAndRank(id : string):Observable<EmployeeRulesModel[]>{
+    return this.http.get<EmployeeRulesModel[]>(this.ApiUrl + '/Employee/bypositionandrank/' + id)
+  }
+
+  GetEmployeeByAllowance(id : string) : Observable<EmployeeRulesModel[]>{
+    return this.http.get<EmployeeRulesModel[]>(this.ApiUrl +'/Employee/byallowance/'+id)
+  }
 
   CreateEmployee(data : EmployeeCreateModel){
       return this.http.post(this.ApiUrl + '/Employee/createemployee',data)

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using QLNS.ViewModel.Catalogs.Allowance;
+using QLNS.ViewModel.Catalogs.AllowanceRules;
 using QLNS.ViewModel.Dtos;
 using System;
 using System.Collections.Generic;
@@ -22,5 +23,9 @@ namespace QLNS.Services.Catalog.Allowance
         Task<PagedResult<AllowanceViewModel>> GetAllPage(GetAllowancePagingRequest request);
 
         Task<List<AllowanceViewModel>> GetList();
+
+        Task<int> CreateAllowanceRules(AllowanceRulesCreateViewModel request);
+
+        Task<PagedResult<AllowanceRulesViewModel>> GetAllPageRules(GetAllowanceRulesPagingRequest request);
     }
 }

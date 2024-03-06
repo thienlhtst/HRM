@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Allowancemodel } from 'src/Model/AllowanceModel';
 import { PositionModel } from 'src/Model/PositionModel';
 import { RankModel } from 'src/Model/RankModel';
 import { SalaryModelList } from 'src/Model/SalaryModelList';
@@ -25,6 +26,10 @@ export class GeneralService {
 
   GetSalary():Observable<SalaryModelList[]>{
     return this.http.get<SalaryModelList[]>(this.ApiUrl + '/Salary')
+  }
+
+  GetAllowance():Observable<Allowancemodel[]>{
+    return this.http.get<Allowancemodel[]>(this.ApiUrl+'/Allowance')
   }
 
 

@@ -21,11 +21,17 @@ export class SalaryUpdateComponent implements OnInit {
   selectedRankID : string
   selectedPositionID : string
   id:string
+  data : SalaryModel
 
 
   ngOnInit(): void {
       this.GetRankAndPositionInfo()
-      this.id = `${this.route.snapshot.paramMap.get('id')}`;
+  }
+
+  GetSalaryID(){
+    this.Service.GetSalaryByID(this.selectedID).subscribe((res)=>{
+      this.data = res
+    })
   }
 
   onRankchange(){

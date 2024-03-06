@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QLNS.DataAccess;
 using QLNS.ViewModel.Catalogs.Allowance;
+using QLNS.ViewModel.Catalogs.AllowanceRules;
 using QLNS.ViewModel.Dtos;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,19 @@ namespace QLNS.Services.Catalog.Allowance
             return Convert.ToInt32(allowance.ID);
         }
 
+        public async Task<int> CreateAllowanceRules(AllowanceRulesCreateViewModel request)
+        {
+            var allowancerules = new QLNS.Entity.RelationShips.AllowanceRules()
+            {
+                AllowanceID = request.AllowanceID,
+                EmployeeID = request.EmployeeID,
+                Date = request.Date,
+            };
+            _context.AllowanceRules.Add(allowancerules);
+            await _context.SaveChangesAsync();
+            return Convert.ToInt32(allowancerules.AllowanceID);
+        }
+
         public async Task<int> Delete(string AllowanceId)
         {
             var allowance = await _context.Allowances.FindAsync(AllowanceId);
@@ -56,6 +70,36 @@ namespace QLNS.Services.Catalog.Allowance
                     Money = x.p.Money
                 }).ToListAsync();
             var pagedView = new PagedResult<AllowanceViewModel>()
+            {
+                TotalRecords = totalRow,
+                PageIndex = request.PageIndex,
+                PageSize = request.PageSize,
+                Items = data
+            };
+            return pagedView;
+        }
+
+        public async Task<PagedResult<AllowanceRulesViewModel>> GetAllPageRules(GetAllowanceRulesPagingRequest request)
+        {
+            var query = from p in _context.Allowances
+                        join pp in _context.AllowanceRules on p.ID equals pp.AllowanceID
+                        join px in _context.Employee on pp.EmployeeID equals px.ID
+
+                        select new { p, px, pp };
+            if (!string.IsNullOrEmpty(request.Keywork))
+            {
+                query = query.Where(x => x.px.ID == request.Keywork);
+            }
+            int totalRow = query.Count();
+            var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .Select(x => new AllowanceRulesViewModel()
+                {
+                    AllowanceName = x.p.Name,
+                    EmployeeName = x.px.FirstName + " " + x.px.MiddleName + " " + x.px.LastName,
+                    Date = x.pp.Date
+                }).ToListAsync();
+            var pagedView = new PagedResult<AllowanceRulesViewModel>()
             {
                 TotalRecords = totalRow,
                 PageIndex = request.PageIndex,

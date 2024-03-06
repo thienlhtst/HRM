@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Component, OnInit } from '@angular/core';
 // bootstrap import
-import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+//import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { RequestpagingStatistic } from 'src/Model/other/requestpaingstatistic';
 
 
@@ -34,8 +35,8 @@ export class WorkhourListStatisticComponent implements OnInit {
   dayinmonth:number
    daysInMonth = (year, month) => new Date(year, month, 0).getDate();
   items:any[]=[]
-  constructor(private services : WorkhourStatisticsServiceService) { 
-    
+  constructor(private services : WorkhourStatisticsServiceService) {
+
   }
   ngOnInit():void{
     this.paging.year = new Date().getFullYear();
@@ -48,7 +49,7 @@ export class WorkhourListStatisticComponent implements OnInit {
     this.dayinmonth = this.daysInMonth(this.paging.year,this.paging.month)
     this.ChangeData(this.dayinmonth,this.paging)
   }
-  
+
   ChangeData(day,requestpaing:RequestpagingStatistic ):void{
     this.services.GetpagingWorkhour(day,requestpaing).subscribe(res=>{
       this.spinner=false

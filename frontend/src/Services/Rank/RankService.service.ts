@@ -17,6 +17,10 @@ constructor(private http : HttpClient) { }
     return this.http.get<RankModel[]>(this.apiurl + '/Rank')
   }
 
+  GetRankByID(id: string) :Observable<RankModel>{
+    return this.http.get<RankModel>(this.apiurl +'/Rank/' + id)
+  }
+
 
   GetRankPaging(paging : Requestpaging) : Observable<Pagingreponse>{
     if(paging.keyword !='')

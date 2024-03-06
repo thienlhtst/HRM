@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable prefer-const */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -37,7 +40,7 @@ export class HomeListComponent implements OnInit {
     this.textHeader="List Work Hours Today"
     this.ChangeDataWorkhour(this.paging)
     this._hubConnection = new signalR.HubConnectionBuilder()
-    .withUrl('https://localhost:5088/signar', {
+    .withUrl('https://localhost:3333/signar', {
       skipNegotiation: true,
       transport: signalR.HttpTransportType.WebSockets
     })
@@ -51,9 +54,9 @@ export class HomeListComponent implements OnInit {
     this._hubConnection.on('BroadcastMessage', (data:any) => {
       console.log(data)
       this.service_employee.GetEmployeebyID(data.employeesID).subscribe((res)=>{
-        
+
         if(data.flag==1){
-          let newdata:any={ 
+          let newdata:any={
             employee:data.employeesID,
             name:res.firstName+' '+res.middleName+' '+res.lastName,
             hourCheckin:data.hour,
@@ -121,18 +124,18 @@ export class HomeListComponent implements OnInit {
     else{
       this.ChangeDataEmployee(this.paginghome)
     }
-  
+
   }
   changeFlag(flag:number):void{
     this.flagdetail=flag
     this.paginghome.flag=flag
-    
+
     if(flag==0){
       this.textHeader="List Work Hours Today"
 
       this.ChangeDataWorkhour(this.paging)
     }else {
-      
+
       this.textHeader=flag===1? "List Employee Off Today":
                       flag===2? "List Employee Late Today":
                       flag===3? "List Employee Work Today":
@@ -140,6 +143,6 @@ export class HomeListComponent implements OnInit {
       this.ChangeDataEmployee(this.paginghome)
     }
 
-    
+
   }
 }

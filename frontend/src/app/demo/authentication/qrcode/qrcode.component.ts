@@ -1,3 +1,7 @@
+/* eslint-disable prefer-const */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { EWAServiceService } from './../../../../Services/EmployeeWithAllowance/ewaservice.service';
 import { CommonModule } from '@angular/common';
 import { ThisReceiver } from '@angular/compiler';
 import { Component, ViewChild } from '@angular/core';
@@ -11,6 +15,10 @@ import { WorkHourService } from 'src/Services/WorkHour/WorkHour.service';
 import { AuthService } from 'src/Services/auth.service';
 import { NotificationComponent } from "../../../theme/shared/components/Notification/Notification.component";
 import { SpinnerBetaComponent } from "../../../theme/shared/components/spinner-beta/spinner-beta.component";
+import { AllowanceServiceService } from 'src/Services/Allowance/AllowanceService.service';
+import { EwaAddComponent } from 'src/app/Components/employeewithallowance/ewa-add/ewa-add.component';
+import { EWAModel } from 'src/Model/EmployeeWithAllowance/EWAModel';
+import { EwaAutoModel } from 'src/Model/EmployeeWithAllowance/EwaAutoModel';
 @Component({
     selector: 'app-qrcode',
     templateUrl: './qrcode.component.html',
@@ -25,7 +33,7 @@ throw new Error('Method not implemented.');
 availableDevices: MediaDeviceInfo[];
 deviceCurrent: MediaDeviceInfo;
 deviceSelected: string;
-messageRequest 
+messageRequest
 
 formatsEnabled: BarcodeFormat[] = [
   BarcodeFormat.CODE_128,
@@ -42,10 +50,11 @@ formatsEnabled: BarcodeFormat[] = [
   timekeeping:TimeKeeping
   data:any={}
   spinner : boolean = true
+  EWAData : EwaAutoModel
 
   @ViewChild(NotificationComponent) childnoti:NotificationComponent
 
-  constructor(private service : AuthService,private services_workhour:WorkHourService, private router : Router) {
+  constructor(private service : AuthService,private ewaService : EWAServiceService,private services_workhour:WorkHourService,private AllowanceService : AllowanceServiceService, private router : Router) {
     this.data.id=''
 
   }
@@ -88,7 +97,7 @@ formatsEnabled: BarcodeFormat[] = [
       }, 3000);
       })
     }
-    
+
   }
   Confirm(){
     if(this.flagchange==1){
@@ -117,6 +126,20 @@ formatsEnabled: BarcodeFormat[] = [
         if(res==1){
           this.messageRequest=' Check Out Successed'
           this.childnoti.showSuccess(this.childnoti.successTpl)
+          let date = new Date()
+          this.AllowanceService.getAllowance().subscribe((AlloRes)=>{
+            AlloRes.forEach((item)=>{
+              const id = item.id
+              this.EWAData ={
+                AllowanceID : id,
+                Day : date.getDate(),
+                Month : date.getMonth() + 1 ,
+                Year : date.getFullYear()
+              }
+              console.log(this.EWAData)
+              this.ewaService.AutoEWA(this.EWAData).subscribe()
+            })
+          })
         }else{
           this.messageRequest=' Check Out Fail'
           this.childnoti.showDanger(this.childnoti.dangerTpl)

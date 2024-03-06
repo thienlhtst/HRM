@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using QLNS.ViewModel.Catalogs.AllowanceRules;
 using QLNS.ViewModel.Catalogs.Employees;
 using QLNS.ViewModel.Common;
 using QLNS.ViewModel.Dtos;
@@ -47,7 +48,21 @@ namespace API
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5088");
             var requestContent = new MultipartFormDataContent();
-            if (employeeCreateRequest.ThumbnailImage != null)
+            requestContent.Add(new StringContent(employeeCreateRequest.ID), "ID");
+            requestContent.Add(new StringContent(employeeCreateRequest.FirstName), "FirstName");
+            requestContent.Add(new StringContent(employeeCreateRequest.LastName), "LastName");
+            requestContent.Add(new StringContent(employeeCreateRequest.MiddleName), "MiddleName");
+            requestContent.Add(new StringContent(employeeCreateRequest.DOB.ToString()), "DOB");
+            requestContent.Add(new StringContent(employeeCreateRequest.Sex.ToString()), "Sex");
+            requestContent.Add(new StringContent(employeeCreateRequest.CIC), "CIC");
+            requestContent.Add(new StringContent(employeeCreateRequest.NumberPhone), "NumberPhone");
+            requestContent.Add(new StringContent(employeeCreateRequest.Address), "Address");
+            requestContent.Add(new StringContent(employeeCreateRequest.SalaryID), "SalaryID");
+            requestContent.Add(new StringContent(employeeCreateRequest.Account), "Account");
+            requestContent.Add(new StringContent(employeeCreateRequest.Password), "Password");
+            requestContent.Add(new StringContent(employeeCreateRequest.Active.ToString()), "Active");
+            requestContent.Add(new StringContent(employeeCreateRequest.URLImage), "URLImage");
+            /*if (employeeCreateRequest.ThumbnailImage != null)
             {
                 byte[] data;
                 using (var br = new BinaryReader(employeeCreateRequest.ThumbnailImage.OpenReadStream()))
@@ -56,19 +71,7 @@ namespace API
                 }
                 ByteArrayContent bytes = new ByteArrayContent(data);
                 requestContent.Add(bytes, "thumbnailImage", employeeCreateRequest.ThumbnailImage.FileName);
-            }
-            requestContent.Add(new StringContent(employeeCreateRequest.ID), "ID");
-            requestContent.Add(new StringContent(employeeCreateRequest.FirstName), "FirstName");
-            requestContent.Add(new StringContent(employeeCreateRequest.LastName), "LastName");
-            requestContent.Add(new StringContent(employeeCreateRequest.MiddleName), "MiddleName");
-            requestContent.Add(new StringContent(employeeCreateRequest.DOB.ToString()), "DOB");
-            requestContent.Add(new StringContent(employeeCreateRequest.CIC), "CIC");
-            requestContent.Add(new StringContent(employeeCreateRequest.NumberPhone), "NumberPhone");
-            requestContent.Add(new StringContent(employeeCreateRequest.Address), "Address");
-            requestContent.Add(new StringContent(employeeCreateRequest.SalaryID), "SalaryID");
-            requestContent.Add(new StringContent(employeeCreateRequest.Account), "Account");
-            requestContent.Add(new StringContent(employeeCreateRequest.Password), "Password");
-            requestContent.Add(new StringContent(employeeCreateRequest.Active.ToString()), "Active");
+            }*/
             var response = await client.PostAsync("/api/Employee/createemployee", requestContent);
 
             return response.IsSuccessStatusCode;
@@ -127,6 +130,26 @@ namespace API
             return employees;
         }
 
+        public async Task<List<EmployeeViewModel>> GetByRankAndPosition(string SalaryID)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri("https://localhost:5088");
+            var response = await client.GetAsync("/api/Employee/bypositionandrank/" + SalaryID);
+            var body = await response.Content.ReadAsStringAsync();
+            var data = JsonConvert.DeserializeObject<List<EmployeeViewModel>>(body);
+            return data;
+        }
+
+        public async Task<List<EmployeeRulesViewModel>> GetByAllowance(string AllowanceID)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri("https://localhost:5088");
+            var response = await client.GetAsync("/api/Employee/byallowance/" + AllowanceID);
+            var body = await response.Content.ReadAsStringAsync();
+            var data = JsonConvert.DeserializeObject<List<EmployeeRulesViewModel>>(body);
+            return data;
+        }
+
         public async Task<bool> Update(EmployeeEditRequest employee)
         {
             var client = _httpClientFactory.CreateClient();
@@ -137,6 +160,7 @@ namespace API
             requestContent.Add(new StringContent(employee.LastName), "LastName");
             requestContent.Add(new StringContent(employee.MiddleName), "MiddleName");
             requestContent.Add(new StringContent(employee.DOB.ToString()), "DOB");
+            requestContent.Add(new StringContent(employee.Sex.ToString()), "Sex");
             requestContent.Add(new StringContent(employee.CIC), "CIC");
             requestContent.Add(new StringContent(employee.NumberPhone), "NumberPhone");
             requestContent.Add(new StringContent(employee.Address), "Address");

@@ -18,6 +18,10 @@ export class SalaryService {
     return this.http.get<SalaryModel[]>(this.apiurl +'/Salary')
   }
 
+  GetSalaryByID(id: string) : Observable<SalaryModel>{
+    return this.http.get<SalaryModel>(this.apiurl +'/Salary/'+id)
+  }
+
   GetSalaryPaging(paging : Requestpaging) : Observable<Pagingreponse>{
     if(paging.keyword != '')
     return this.http.get<Pagingreponse>(this.apiurl + '/Salary/paging?Keyword='+paging.keyword+'&PageIndex='+paging.pageindex+'&PageSize='+paging.pagesize+'')
