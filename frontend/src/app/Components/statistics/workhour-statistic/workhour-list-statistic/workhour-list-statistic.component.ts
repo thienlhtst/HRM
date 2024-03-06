@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core';
 // bootstrap import
-import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+//import { NgbNavChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 import { RequestpagingStatistic } from 'src/Model/other/requestpaingstatistic';
 
 

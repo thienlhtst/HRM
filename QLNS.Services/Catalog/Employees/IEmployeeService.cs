@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using QLNS.Services.Catalog.Positions.Dtos;
 using QLNS.ViewModel.Dtos;
 using QLNS.ViewModel.Common;
+using QLNS.ViewModel.Catalogs.AllowanceRules;
 
 namespace QLNS.Services.Catalog.Employees
 {
@@ -28,6 +29,10 @@ namespace QLNS.Services.Catalog.Employees
         Task<IEnumerable<Entity.Entities.Employees>> GetAll();
 
         Task<PagedResult<EmployeeViewModel>> GetAllPage(GetEmployeePagingRequest request);
+
+        Task<List<EmployeeViewModel>> GetByRankAndPosition(string SalaryID);
+
+        Task<List<EmployeeInAllowanceRulesViewModel>> GetByAllowance(string AllowanceID);
 
         Task<PagedResult<EmployeeViewModel>> GetAllHomePage(GetEmployeePagingRequest request);
 

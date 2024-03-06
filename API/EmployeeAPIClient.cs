@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using QLNS.ViewModel.Catalogs.AllowanceRules;
 using QLNS.ViewModel.Catalogs.Employees;
 using QLNS.ViewModel.Common;
 using QLNS.ViewModel.Dtos;
@@ -127,6 +128,26 @@ namespace API
             var body = await response.Content.ReadAsStringAsync();
             var employees = JsonConvert.DeserializeObject<PagedResult<EmployeeViewModel>>(body);
             return employees;
+        }
+
+        public async Task<List<EmployeeViewModel>> GetByRankAndPosition(string SalaryID)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri("https://localhost:5088");
+            var response = await client.GetAsync("/api/Employee/bypositionandrank/" + SalaryID);
+            var body = await response.Content.ReadAsStringAsync();
+            var data = JsonConvert.DeserializeObject<List<EmployeeViewModel>>(body);
+            return data;
+        }
+
+        public async Task<List<EmployeeRulesViewModel>> GetByAllowance(string AllowanceID)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri("https://localhost:5088");
+            var response = await client.GetAsync("/api/Employee/byallowance/" + AllowanceID);
+            var body = await response.Content.ReadAsStringAsync();
+            var data = JsonConvert.DeserializeObject<List<EmployeeRulesViewModel>>(body);
+            return data;
         }
 
         public async Task<bool> Update(EmployeeEditRequest employee)

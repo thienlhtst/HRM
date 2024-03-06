@@ -15,11 +15,19 @@ export class PositionUpdateComponent implements OnInit {
   @Output() onUpdate: EventEmitter<string> =   new EventEmitter();
   @Output() onSuccess: EventEmitter<void> = new EventEmitter();
   id:string
+  data : PositionModel
 
 
   ngOnInit(): void {
-    this.id = `${this.route.snapshot.paramMap.get('id')}`;
+    this.GetPositionID()
   }
+
+  GetPositionID(){
+    this.Service.GetPositionByID(this.selectedID).subscribe((res)=>{
+      this.data = res
+    })
+  }
+
 
   Update(position : PositionModel){
     this.onUpdate.emit(this.selectedID)

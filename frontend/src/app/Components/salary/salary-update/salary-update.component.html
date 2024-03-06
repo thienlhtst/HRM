@@ -4,7 +4,7 @@
 <form class="form" #form="ngForm" (ngSubmit)="Update(form.value)">
     <div class="form-group row">
         <div class="col-sm-10">
-          <p [(ngModel)]="selectedID" name="id"> ID : {{selectedID}}</p>
+          <p [(ngModel)]="selectedID" name="id"> ID : {{data.id}}</p>
         </div>
     </div>
     <div class="form-group row">
@@ -26,7 +26,7 @@
     <div class="form-group row">
       <label class="col-sm-5 col-form-label">Money</label>
       <div class="col-sm-10">
-          <input type="text" id="money"  ngModel name="money"  class="form-control" >
+          <input type="text" id="money"  ngModel name="money" [ngModel]="data.money"  class="form-control" >
       </div>
   </div>
     <button >

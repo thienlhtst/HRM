@@ -18,6 +18,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Http;
 using QLNS.Services.Common;
 using System.Net.Http.Headers;
+using QLNS.ViewModel.Catalogs.AllowanceRules;
+using Bogus;
 
 namespace QLNS.Services.Catalog.Employees
 {
@@ -142,6 +144,33 @@ namespace QLNS.Services.Catalog.Employees
             return pagedView;
         }
 
+        public async Task<List<EmployeeViewModel>> GetByRankAndPosition(string SalaryID)
+        {
+            var query = from p in _context.Employee
+                        join ps in _context.Salaries on p.SalaryID equals ps.ID
+                        join pr in _context.Ranks on ps.RankID equals pr.IDrank
+                        join pp in _context.Positions on ps.PositionID equals pp.IDposition
+                        where ps.ID == SalaryID
+                        select new { p, ps, pr, pp };
+            var employeerules = await query.Select(x => new EmployeeViewModel()
+            {
+                ID = x.p.ID,
+                FirstName = x.p.FirstName,
+                LastName = x.p.LastName,
+                MiddleName = x.p.MiddleName,
+                DOB = x.p.DOB,
+                Sex = x.p.Sex,
+                CIC = x.p.CIC,
+                NumberPhone = x.p.NumberPhone,
+                Address = x.p.Address,
+                Position = x.ps.PositionID,
+                Rank = x.ps.RankID,
+                Account = x.p.Account,
+                Password = x.p.Password
+            }).ToListAsync();
+            return employeerules;
+        }
+
         public async Task<EmployeeViewModel> GetById(string EmployeeID)
         {
             var rank = (from p in _context.Employee
@@ -263,7 +292,7 @@ namespace QLNS.Services.Catalog.Employees
                         {
                             ID = p.ID,
                             FirstName = p.FirstName,
-                            MiddleName =p.MiddleName,
+                            MiddleName = p.MiddleName,
                             LastName = p.LastName,
                             Sex = p.Sex,
                             NumberPhone = p.NumberPhone,
@@ -284,8 +313,8 @@ namespace QLNS.Services.Catalog.Employees
             }
             var today = DateTime.Now;
             var data_request = new List<EmployeeViewModel>();
-            var query_workhour = await _context.WorkHours.Where(x => x.Day.Equals(today.Day)&&x.Month.Equals(today.Month)&&x.Day.Equals(today.Year)).ToListAsync();
-            if (request.flag==1)
+            var query_workhour = await _context.WorkHours.Where(x => x.Day.Equals(today.Day) && x.Month.Equals(today.Month) && x.Day.Equals(today.Year)).ToListAsync();
+            if (request.flag == 1)
             {
                 foreach (var item in query)
                 {
@@ -294,7 +323,7 @@ namespace QLNS.Services.Catalog.Employees
                         data_request.Add(item);
                 }
             }
-            else if (request.flag==2)
+            else if (request.flag == 2)
             {
                 foreach (var item in query)
                 {
@@ -303,11 +332,11 @@ namespace QLNS.Services.Catalog.Employees
                         data_request.Add(item);
                 }
             }
-            else if (request.flag==3)
+            else if (request.flag == 3)
             {
                 foreach (var item in query)
                 {
-                    var employee_off = query_workhour.Find(x => x.EmployeesID.Equals(item.ID) &&(x.HourCheckin>8 || x.HourCheckin==8 && x.MinuteCheckin>30));
+                    var employee_off = query_workhour.Find(x => x.EmployeesID.Equals(item.ID) && (x.HourCheckin > 8 || x.HourCheckin == 8 && x.MinuteCheckin > 30));
                     if (employee_off != null)
                         data_request.Add(item);
                 }
@@ -342,6 +371,34 @@ namespace QLNS.Services.Catalog.Employees
                 Items = data
             };
             return pagedView;
+        }
+
+        public async Task<List<EmployeeInAllowanceRulesViewModel>> GetByAllowance(string AllowanceID)
+        {
+            var query = from p in _context.Employee
+                        join pt in _context.EmployeesWithAllowances on p.ID equals pt.EmployeeID
+                        join px in _context.Allowances on pt.AllowanceID equals px.ID
+                        where !pt.AllowanceID.Equals(AllowanceID)
+                        select new { p };
+
+            var data = await query.Select(x => new EmployeeInAllowanceRulesViewModel()
+            {
+                ID = x.p.ID,
+                FirstName = x.p.FirstName,
+                MiddleName = x.p.MiddleName,
+                LastName = x.p.LastName,
+                Sex = x.p.Sex,
+                NumberPhone = x.p.NumberPhone,
+                DOB = x.p.DOB,
+                CIC = x.p.CIC,
+                Address = x.p.Address,
+                SalaryID = x.p.SalaryID,
+                Account = x.p.Account,
+                Password = x.p.Password,
+                Active = x.p.Active,
+                URLImage = x.p.URLImage
+            }).ToListAsync();
+            return data;
         }
     }
 }

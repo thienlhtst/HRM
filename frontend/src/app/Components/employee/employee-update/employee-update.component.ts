@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { SalaryModelList } from 'src/Model/SalaryModelList';
 import { GeneralService } from 'src/Services/General/general.service';
 import { EmployeeUpdateModel } from 'src/Model/Employee/EmployeeUpdateModel';
+import { EmployeeModel } from 'src/Model/Employee/EmployeeModel';
 
 @Component({
   selector: 'app-employee-update',
@@ -24,9 +25,11 @@ export class EmployeeUpdateComponent implements OnInit {
   selectedPositionID : string
   selectedSalaryID : string
   selectedFilePath : string
+  data : EmployeeModel
   ngOnInit(): void {
     this.id = `${this.route.snapshot.paramMap.get('id')}`
     this.GetRankAndPositionInfo()
+    this.GetEmployeeID()
   }
 
   GetRankAndPositionInfo(){
@@ -35,6 +38,12 @@ export class EmployeeUpdateComponent implements OnInit {
     })
     this.generalService.GetPosition().subscribe((resposition)=>{
       this.PositionsData = resposition
+    })
+  }
+
+  GetEmployeeID(){
+    this.service.GetEmployeebyID(this.id).subscribe((res)=>{
+      this.data = res
     })
   }
 

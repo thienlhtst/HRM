@@ -157,7 +157,7 @@ namespace QLNS.DataAccess.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     MiddleName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    DOB = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 2, 29, 13, 50, 40, 673, DateTimeKind.Local).AddTicks(5175)),
+                    DOB = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 3, 6, 13, 26, 32, 959, DateTimeKind.Local).AddTicks(2641)),
                     Sex = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
                     CIC = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     NumberPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -175,6 +175,32 @@ namespace QLNS.DataAccess.Migrations
                         name: "FK_Employees_Salary_SalaryID",
                         column: x => x.SalaryID,
                         principalTable: "Salary",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AllowanceRules",
+                columns: table => new
+                {
+                    AllowanceID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    EmployeeID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", maxLength: 20, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AllowanceRules", x => new { x.AllowanceID, x.EmployeeID });
+                    table.ForeignKey(
+                        name: "FK_AllowanceRules_Allowance_AllowanceID",
+                        column: x => x.AllowanceID,
+                        principalTable: "Allowance",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AllowanceRules_Employees_EmployeeID",
+                        column: x => x.EmployeeID,
+                        principalTable: "Employees",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -383,6 +409,11 @@ namespace QLNS.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_AllowanceRules_EmployeeID",
+                table: "AllowanceRules",
+                column: "EmployeeID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_DayOfHoliday_IDLB",
                 table: "DayOfHoliday",
                 column: "IDLB");
@@ -446,6 +477,9 @@ namespace QLNS.DataAccess.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AllowanceRules");
+
             migrationBuilder.DropTable(
                 name: "DayOfHoliday");
 

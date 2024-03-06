@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @angular-eslint/no-output-on-prefix */
 import { Component, Input, OnInit, Output, ViewChild,EventEmitter } from '@angular/core';
@@ -16,14 +17,20 @@ export class AllowanceUpdateComponent implements OnInit {
   @Input() selectedID : string
   @Output() onUpdate: EventEmitter<string> =   new EventEmitter();
   @Output() onSuccess: EventEmitter<void> = new EventEmitter();
-  id : string
   messageRequest : string = ''
+  data : Allowancemodel
 
   @ViewChild(NotificationComponent) childnoti : NotificationComponent
   ngOnInit(): void {
-    this.id = `${this.route.snapshot.paramMap.get('id')}`;
-
+  this.GetAllowanceID()
   }
+
+  GetAllowanceID(){
+    this.service.getAllowanceByID(this.selectedID).subscribe((res)=>{
+      this.data = res
+    })
+  }
+
   Update(allowance : Allowancemodel){
       this.onUpdate.emit(this.selectedID)
       this.service.UpdateAllowance(this.selectedID,allowance).subscribe((response)=>{

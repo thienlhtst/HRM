@@ -5,19 +5,19 @@
     <div class="form-group row">
         <label class="col-sm-5 col-form-label">ID</label>
         <div class="col-sm-10">
-          <p [(ngModel)]="selectedID" name="idrank"> ID : {{selectedID}}</p>
+          <p [(ngModel)]="selectedID" name="idrank"> ID : {{data.id}}</p>
         </div>
     </div>
     <div class="form-group row">
       <label class="col-sm-5 col-form-label">Name</label>
       <div class="col-sm-10">
-          <input type="text" id="name"  ngModel name="name"  class="form-control" >
+          <input type="text" id="name"  ngModel name="name" [ngModel]="data.name" class="form-control" >
       </div>
   </div>
   <div class="form-group row">
     <label class="col-sm-5 col-form-label">Rank Role</label>
     <div class="col-sm-10">
-        <input type="text" id="rankroleid"  ngModel name="rankroleid"  class="form-control" >
+        <input type="text" id="rankroleid"  ngModel name="rankroleid" [ngModel]="data.nameRankRole"  class="form-control" >
     </div>
 </div>
     <button >

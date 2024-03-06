@@ -12,8 +12,8 @@ using QLNS.DataAccess;
 namespace QLNS.DataAccess.Migrations
 {
     [DbContext(typeof(QLNSDbContext))]
-    [Migration("20240229065109_DataSeed")]
-    partial class DataSeed
+    [Migration("20240306062633_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -178,7 +178,7 @@ namespace QLNS.DataAccess.Migrations
                     b.Property<DateTime>("DOB")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 2, 29, 13, 51, 9, 522, DateTimeKind.Local).AddTicks(4964));
+                        .HasDefaultValue(new DateTime(2024, 3, 6, 13, 26, 32, 959, DateTimeKind.Local).AddTicks(2641));
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -629,6 +629,28 @@ namespace QLNS.DataAccess.Migrations
                         });
                 });
 
+            modelBuilder.Entity("QLNS.Entity.RelationShips.AllowanceRules", b =>
+                {
+                    b.Property<string>("AllowanceID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("EmployeeID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("Date")
+                        .HasMaxLength(20)
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AllowanceID", "EmployeeID");
+
+                    b.HasIndex("EmployeeID");
+
+                    b.ToTable("AllowanceRules", (string)null);
+                });
+
             modelBuilder.Entity("QLNS.Entity.RelationShips.EmployeesWithAllowances", b =>
                 {
                     b.Property<int>("ID")
@@ -788,6 +810,25 @@ namespace QLNS.DataAccess.Migrations
                     b.Navigation("Rank");
                 });
 
+            modelBuilder.Entity("QLNS.Entity.RelationShips.AllowanceRules", b =>
+                {
+                    b.HasOne("QLNS.Entity.Entities.Allowance", "Allowance")
+                        .WithMany("Rules")
+                        .HasForeignKey("AllowanceID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("QLNS.Entity.Entities.Employees", "Employee")
+                        .WithMany("Rules")
+                        .HasForeignKey("EmployeeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Allowance");
+
+                    b.Navigation("Employee");
+                });
+
             modelBuilder.Entity("QLNS.Entity.RelationShips.EmployeesWithAllowances", b =>
                 {
                     b.HasOne("QLNS.Entity.Entities.Allowance", "Allowance")
@@ -829,6 +870,8 @@ namespace QLNS.DataAccess.Migrations
             modelBuilder.Entity("QLNS.Entity.Entities.Allowance", b =>
                 {
                     b.Navigation("EWA");
+
+                    b.Navigation("Rules");
                 });
 
             modelBuilder.Entity("QLNS.Entity.Entities.Employees", b =>
@@ -838,6 +881,8 @@ namespace QLNS.DataAccess.Migrations
                     b.Navigation("LabourContracts");
 
                     b.Navigation("Rewards");
+
+                    b.Navigation("Rules");
 
                     b.Navigation("workHours");
                 });

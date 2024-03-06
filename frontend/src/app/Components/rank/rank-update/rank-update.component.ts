@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 /* eslint-disable @angular-eslint/no-output-on-prefix */
 import { RankModel } from 'src/Model/RankModel';
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
@@ -15,10 +16,17 @@ export class RankUpdateComponent implements OnInit {
   @Output() onUpdate: EventEmitter<string> =   new EventEmitter();
   @Output() onSuccess: EventEmitter<void> = new EventEmitter();
   id:string
+  data : RankModel
 
 
   ngOnInit(): void {
-      this.id = `${this.route.snapshot.paramMap.get('id')}`;
+
+  }
+
+  GetRankID(){
+    this.Service.GetRankByID(this.selectedID).subscribe((res)=>{
+      this.data = res
+    })
   }
 
   Update(rank : RankModel){

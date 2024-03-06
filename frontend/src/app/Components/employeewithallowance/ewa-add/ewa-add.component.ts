@@ -33,8 +33,8 @@ export class EwaAddComponent implements OnInit {
   }
 
   AutoGetAllowance(data : EwaAutoModel){
-    data.Day = this.CurrentTime.getDay()
-    data.Month = this.CurrentTime.getMonth()
+    data.Day = this.CurrentTime.getDate()
+    data.Month = this.CurrentTime.getMonth()+1
     data.Year = this.CurrentTime.getFullYear()
     console.log(data)
     this.ewaService.AutoEWA(data).subscribe()
