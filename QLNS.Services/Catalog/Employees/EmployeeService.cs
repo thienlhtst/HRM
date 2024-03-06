@@ -323,21 +323,21 @@ namespace QLNS.Services.Catalog.Employees
                         data_request.Add(item);
                 }
             }
-            else if (request.flag == 2)
+            if (request.flag==2)
             {
                 foreach (var item in query)
                 {
-                    var employee_off = query_workhour.Find(x => x.EmployeesID.Equals(item.ID));
-                    if (employee_off != null)
+                    var employee_work = query_workhour.Find(x => x.EmployeesID.Equals(item.ID));
+                    if (employee_work != null)
                         data_request.Add(item);
                 }
             }
-            else if (request.flag == 3)
+            if (request.flag==3)
             {
                 foreach (var item in query)
                 {
-                    var employee_off = query_workhour.Find(x => x.EmployeesID.Equals(item.ID) && (x.HourCheckin > 8 || x.HourCheckin == 8 && x.MinuteCheckin > 30));
-                    if (employee_off != null)
+                    var employee_late = query_workhour.Find(x => x.EmployeesID.Equals(item.ID) &&(x.HourCheckin>8 || x.HourCheckin==8 && x.MinuteCheckin>30));
+                    if (employee_late != null)
                         data_request.Add(item);
                 }
             }
