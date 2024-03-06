@@ -22,7 +22,7 @@ constructor(private http : HttpClient) { }
     return this.http.get<WorkHourModel[]>(this.apiurl + '/WorkHour/'+id);
   }
   CreateWorkhour(data : any){
-    return this.http.post(this.apiurl + '/WorkHour/',data)
+    return this.http.post(this.apiurl + '/WorkHour/create',data)
   }
   EditWorkhour(id,data:any){
     return this.http.put(this.apiurl +'/WorkHour/'+id,data)

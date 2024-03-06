@@ -1,8 +1,10 @@
 ﻿using Azure.Core;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.IdentityModel.Tokens;
 using QLNS.DataAccess;
 using QLNS.DataAccess.Extenstions;
+using QLNS.Entity.Entities;
 using QLNS.Entity.RelationShips;
 using QLNS.ViewModel.Catalogs.Ranks;
 using QLNS.ViewModel.Catalogs.WorkHour;
@@ -259,6 +261,13 @@ namespace QLNS.Services.Catalog.WorkHour
                 Items = data
             };
             return pagedView;
+        }
+
+        public async Task<Entity.RelationShips.WorkHour> Create(Entity.RelationShips.WorkHour request)
+        {
+            var result = _context.WorkHours.Add(request);
+            await _context.SaveChangesAsync();
+            return result.Entity;
         }
     }
 }

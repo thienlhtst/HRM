@@ -39,6 +39,13 @@ namespace QLNSApiBackend.Controllers
             return Ok(model);
         }
 
+        [HttpPost("create")]
+        public async Task<IActionResult> Create([FromBody] QLNS.Entity.RelationShips.WorkHour model)
+        {
+            var result = await _workHourService.Create(model);
+            return Ok(result);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Checkin([FromBody] CheckinModel model)
         {
@@ -85,7 +92,6 @@ namespace QLNSApiBackend.Controllers
         }
 
         [HttpPut("{ID}")]
-        [Consumes("multipart/form-data")]
         public async Task<IActionResult> UpdateAll([FromRoute] int ID, [FromBody] WorkHourUpdateRequest model)
         {
             if (!ModelState.IsValid)
