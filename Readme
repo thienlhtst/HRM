@@ -1,3 +1,4 @@
+The first you have to go the branch is Angular-1 because we have't done yet
 To run a project, we have  6 Step to run
 
 Step 1: go a appsettings.json in QLNS.DataAccess and QLNS.WEBAPI  to change ConnectionStrings
