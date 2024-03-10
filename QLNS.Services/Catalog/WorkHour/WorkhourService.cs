@@ -1,8 +1,10 @@
 ﻿using Azure.Core;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.IdentityModel.Tokens;
 using QLNS.DataAccess;
 using QLNS.DataAccess.Extenstions;
+using QLNS.Entity.Entities;
 using QLNS.Entity.RelationShips;
 using QLNS.ViewModel.Catalogs.Ranks;
 using QLNS.ViewModel.Catalogs.WorkHour;
@@ -163,19 +165,26 @@ namespace QLNS.Services.Catalog.WorkHour
 
         public async Task<WorkHourUpdateRequest> GetById(int id)
         {
-            var a = await _context.WorkHours.FindAsync(id);
+            var a = await (from wh in _context.WorkHours
+                           join emp in _context.Employee on wh.EmployeesID equals emp.ID
+                           join pp in _context.LabourHours on wh.LBDID equals pp.ID
+                           where wh.ID == id
+                           select new { wh, emp, pp }).ToListAsync();
+            if (a == null) return null;
             WorkHourUpdateRequest find = new WorkHourUpdateRequest()
             {
-                ID =a.ID,
-                EmployeesID = a.EmployeesID,
-                LBDID = a.LBDID,
-                Day =   a.Day,
-                Month = a.Month,
-                Year = a.Year,
-                HourCheckin = a.HourCheckin,
-                MinuteCheckin = a.MinuteCheckin,
-                HourCheckout = a.HourCheckout,
-                MinuteCheckout = a.MinuteCheckout,
+                ID =a[0].wh.ID,
+                EmployeesID  =a[0].wh.EmployeesID,
+                EmployeesName = a[0].emp.FirstName+' '+ a[0].emp.MiddleName+' '+ a[0].emp.LastName,
+                LBDID = a[0].wh.LBDID,
+                namelb =a[0].pp.Name,
+                Day =   a[0].wh.Day,
+                Month = a[0].wh.Month,
+                Year = a[0].wh.Year,
+                HourCheckin = a[0].wh.HourCheckin,
+                MinuteCheckin = a[0].wh.MinuteCheckin,
+                HourCheckout = a[0].wh.HourCheckout,
+                MinuteCheckout = a[0].wh.MinuteCheckout,
             };
             return find;
         }
@@ -259,6 +268,24 @@ namespace QLNS.Services.Catalog.WorkHour
                 Items = data
             };
             return pagedView;
+        }
+
+        public async Task<int> Create(WorkHourCreateRequest request)
+        {
+            var workhour = new Entity.RelationShips.WorkHour()
+            {
+                EmployeesID = request.EmployeesID,
+                LBDID = request.LBDID,
+                Day = request.Day,
+                Month = request.Month,
+                Year = request.Year,
+                HourCheckin = request.HourCheckin,
+                MinuteCheckin = request.MinuteCheckin,
+                HourCheckout = request.HourCheckout,
+                MinuteCheckout = request.MinuteCheckout,
+            };
+            _context.WorkHours.Add(workhour);
+            return await _context.SaveChangesAsync();
         }
     }
 }

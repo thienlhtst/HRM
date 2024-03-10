@@ -6,6 +6,10 @@
         <div class="d-flex  justify-content-between ">
           <div class=" p-2 flex-grow-1 ">
             <h5>Month {{paging.month}}/{{paging.year}} </h5>
+            <div  class="form align-items-center">
+              <i class="fa fa-search"></i>
+              <input type="text" name="filter" [(ngModel)]="searchText" class="form-control form-input" placeholder="Search anything..." #fill>
+            </div>
           </div>
           <div class="p-2" >
             <select class="form-select" (change)="onChangeMonth($event)">
@@ -35,8 +39,8 @@
                 <th>Total</th>
               </tr>
             </thead>
-            <tbody *ngIf="spinner; else loaddata">
-              <tr *ngFor="let item of items">
+            <tbody *ngIf="spinner; else loaddata ">
+              <tr *ngFor="let item of items | filter : searchText">
                 <td>{{item.name}}</td>
                 <td *ngFor="let workhour of item.workhour"> {{workhour}}</td>
               </tr>

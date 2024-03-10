@@ -285,7 +285,16 @@ const NavigationItems = [
           type:'item',
           url:'/workhour',
           classes :'nav-item',
-          icon :''
+          icon :'',
+          children:[
+            {
+              id :'workhour',
+              title:'ADD OR EDIT',
+              type:'item',
+              url:"/workhour/addoredit",
+              classes:'nav-item',
+            },
+          ]
         },
         {
           id:'ewa',

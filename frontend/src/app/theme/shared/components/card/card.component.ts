@@ -92,7 +92,7 @@ export class CardComponent implements OnInit {
   ngOnInit() {
     if (!this.options || this.hidHeader || this.customHeader) {
       this.collapsedCard = 'false';
-    }
+    } 
     if (!this.options || this.hidHeader || this.customDate) {
       this.collapsedCard = 'false';
     }

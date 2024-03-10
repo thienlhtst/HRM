@@ -10,11 +10,12 @@ import { WorkhourStatisticsServiceService } from 'src/Services/Statistics/Workho
 @Component({
   selector: 'app-workhour-list-statistic',
   templateUrl: './workhour-list-statistic.component.html',
-  styleUrls: ['./workhour-list-statistic.component.css']
+  styleUrls: ['../../../../../scss/shared/sreach.scss']
 })
 export class WorkhourListStatisticComponent implements OnInit {
   yearOptions: number[];
   PageCount : number = 1
+  searchText:any
   spinner : boolean = false
   paging :RequestpagingStatistic = {
     keyword: '',

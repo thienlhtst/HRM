@@ -6,7 +6,7 @@ import { SalaryStatisticServiceService } from 'src/Services/Statistics/SalarySta
 @Component({
   selector: 'app-salary-statistic-list',
   templateUrl: './salary-statistic-list.component.html',
-  styleUrls: ['./salary-statistic-list.component.css']
+  styleUrls: ['../../../../../scss/shared/sreach.scss']
 })
 export class SalaryStatisticListComponent implements OnInit {
   salaryemployee;
@@ -14,6 +14,7 @@ export class SalaryStatisticListComponent implements OnInit {
   yearOptions: number[];
   spinner : boolean = false
   PageCount : number = 1
+  searchText:any
   paging :RequestpagingStatistic = {
     keyword: '',
     pageindex: 1,

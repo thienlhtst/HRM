@@ -17,6 +17,8 @@ namespace QLNS.Services.Catalog.WorkHour
 
         Task<int> Checkout(CheckoutModel checkout);
 
+        Task<int> Create(WorkHourCreateRequest request);
+
         Task<WorkHourUpdateRequest> GetById(int id);
 
         Task<PagedResult<WorkHourVM>> GetAllPage(GetWorkHourAllPage request);

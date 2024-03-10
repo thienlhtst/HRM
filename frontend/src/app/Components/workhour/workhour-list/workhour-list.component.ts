@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WorkHourModel } from 'src/Model/Relationship/WorkHourModel';
 import { Requestpaging } from 'src/Model/other/requestpaging';
 import { WorkHourService } from 'src/Services/WorkHour/WorkHour.service';
@@ -6,12 +7,13 @@ import { WorkHourService } from 'src/Services/WorkHour/WorkHour.service';
 @Component({
   selector: 'app-workhour',
   templateUrl: './workhour-list.component.html',
-  styleUrls: ['./workhour-list.component.scss']
+  styleUrls: ['./workhour-list.component.scss','../../../../scss/shared/sreach.scss']
 })
 export class WorkhourListComponent implements OnInit{
 
+  searchText:any
 
-  constructor(private service : WorkHourService){
+  constructor(private service : WorkHourService,private router: Router){
 
 
   }
@@ -40,5 +42,8 @@ export class WorkhourListComponent implements OnInit{
   numberchange(numberchange:number):void{
     this.requestpaing.pageindex = numberchange
     this.GetAllpaging()
+  }
+  nagivativeAdd(){
+    this.router.navigate(['/workhour/addoredit'])
   }
 }

@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WorkHourModel } from 'src/Model/Relationship/WorkHourModel';
 import { CheckOut, TimeKeeping } from 'src/Model/Workhours/TimeKeeping';
+import { WorkHourCreateRequest } from 'src/Model/Workhours/WorkHourCreateRequest';
+import { WorkhourEditRequest } from 'src/Model/Workhours/WorkhourEditRequest';
 import { Pagingreponse } from 'src/Model/other/pagingreponse';
 import { Requestpaging } from 'src/Model/other/requestpaging';
 
@@ -19,6 +21,20 @@ constructor(private http : HttpClient) { }
   GetWorkHour():Observable<WorkHourModel[]>{
     return this.http.get<WorkHourModel[]>(this.apiurl + '/WorkHour');
   }
+  GetbyId(id:any):Observable<any>{
+    return this.http.get<WorkHourModel[]>(this.apiurl + '/WorkHour/'+id);
+  }
+  CreateWorkhour(data : WorkHourCreateRequest){
+    return this.http.post(this.apiurl + '/WorkHour/create',data)
+  }
+  EditWorkhour(data:WorkhourEditRequest){
+    return this.http.put(this.apiurl +'/WorkHour/'+data.id,data)
+  }
+  DeleteWorkhour(data:string){
+    return this.http.delete(this.apiurl + '/WorkHour/'+data)
+  }
+
+
   GetWorkHourPaging(paging:Requestpaging):Observable<Pagingreponse>{
     if(paging.keyword!='')
     return this.http.get<Pagingreponse>(this.apiurl + '/WorkHour/paging?Keyword='+paging.keyword+'&PageIndex='+paging.pageindex+'&PageSize='+paging.pagesize+'');
