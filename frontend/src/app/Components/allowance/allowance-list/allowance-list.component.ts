@@ -115,8 +115,9 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
   }
 
   ClicktoShowFormAdd(): void{
-    this.ShowFormAdd = !this.ShowFormAdd
+    this.ShowFormUpdate = !this.ShowFormUpdate
     this.ShowForm =!this.ShowForm
+    this.selectedID = ''
   }
 
   ButtonClickToUpdate(id : string){

@@ -140,13 +140,13 @@ namespace API
             return data;
         }
 
-        public async Task<List<EmployeeRulesViewModel>> GetByAllowance(string AllowanceID)
+        public async Task<List<EmployeeInAllowanceRulesViewModel>> GetByAllowance(string AllowanceID)
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5088");
             var response = await client.GetAsync("/api/Employee/byallowance/" + AllowanceID);
             var body = await response.Content.ReadAsStringAsync();
-            var data = JsonConvert.DeserializeObject<List<EmployeeRulesViewModel>>(body);
+            var data = JsonConvert.DeserializeObject<List<EmployeeInAllowanceRulesViewModel>>(body);
             return data;
         }
 

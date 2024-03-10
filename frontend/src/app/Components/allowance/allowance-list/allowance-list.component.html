@@ -3,7 +3,6 @@
         <input type="text" name="filter" [(ngModel)]="searchText" placeholder="Enter id" #fill>
   </div>
   <button class="btn btn-primary m-2" (click)=" ClicktoShowFormAdd()">Add</button>
-
 <div class="row">
   <div [ngClass]="{'col-md-12': !ShowForm, 'col-md-12 col-xl-8': ShowForm}">
     <div class="mb-5"></div>
@@ -26,10 +25,10 @@
                       <td>{{item.money}}</td>
                       <td>
                       <button (click)="ButtonClickToUpdate(item.id)">
-                        <img class="ti ti-user-plus"  src="/frontend/src/img/plus.png" />
+                        <img class="ti ti-edit"  src="" />
                       </button>
                       <button (click)="Delete($event,item.id)">
-                        <img   src="/frontend/src/img/plus.png" />
+                        <img  class="ti ti-circle-minus" src="" />
                       </button>
                     </td>
                   </tr>

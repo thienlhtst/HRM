@@ -17,7 +17,7 @@ namespace API
 
         Task<List<EmployeeViewModel>> GetByRankAndPosition(string SalaryID);
 
-        Task<List<EmployeeRulesViewModel>> GetByAllowance(string AllowanceID);
+        Task<List<EmployeeInAllowanceRulesViewModel>> GetByAllowance(string AllowanceID);
 
         Task<bool> Update(EmployeeEditRequest request);
 

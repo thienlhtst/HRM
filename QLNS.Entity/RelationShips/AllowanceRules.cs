@@ -9,7 +9,6 @@ namespace QLNS.Entity.RelationShips
 {
     public class AllowanceRules
     {
-        public string ID { get; set; }
         public string AllowanceID { get; set; }
         public string EmployeeID { get; set; }
 

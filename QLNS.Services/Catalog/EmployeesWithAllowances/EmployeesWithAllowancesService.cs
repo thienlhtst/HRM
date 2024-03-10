@@ -38,10 +38,11 @@ namespace QLNS.Services.Catalog.EmployeesWithAllowances
             var a = 0;
             var query = from p in _context.WorkHours
                         join pt in _context.AllowanceRules on p.EmployeesID equals pt.EmployeeID
+                        join px in _context.Allowances on pt.AllowanceID equals px.ID
                         where p.Day.Equals(request.Day) && p.Month.Equals(request.Month) && p.Year.Equals(request.Year)
+                        && pt.AllowanceID.Equals(request.AllowanceID)
                         select p;
             var t = await (from p in _context.EmployeesWithAllowances
-                           join pt in _context.AllowanceRules on p.EmployeeID equals pt.EmployeeID
                            where p.Date.Equals(DateTime.Parse(request.Year + "-" + request.Month + "-" + request.Day))
                            select p).ToListAsync();
             foreach (var item in query)
