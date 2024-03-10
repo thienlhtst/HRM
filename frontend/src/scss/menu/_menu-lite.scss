@@ -177,12 +177,13 @@
         }
       }
 
-      &.coded-hasmenu {
+      &.coded-hasmenu { 
         > a {
           &:after {
-            content: '\e844';
+            content: '\003e';
             font-family: 'feather';
-            font-size: 15px;
+            font-size: 20px;
+            font-weight: bold;
             border: none;
             position: absolute;
             top: 11px;

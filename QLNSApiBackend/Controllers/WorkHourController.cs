@@ -40,7 +40,7 @@ namespace QLNSApiBackend.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> Create([FromBody] QLNS.Entity.RelationShips.WorkHour model)
+        public async Task<IActionResult> Create([FromBody] WorkHourCreateRequest model)
         {
             var result = await _workHourService.Create(model);
             return Ok(result);

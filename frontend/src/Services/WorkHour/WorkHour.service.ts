@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { WorkHourModel } from 'src/Model/Relationship/WorkHourModel';
 import { CheckOut, TimeKeeping } from 'src/Model/Workhours/TimeKeeping';
+import { WorkHourCreateRequest } from 'src/Model/Workhours/WorkHourCreateRequest';
+import { WorkhourEditRequest } from 'src/Model/Workhours/WorkhourEditRequest';
 import { Pagingreponse } from 'src/Model/other/pagingreponse';
 import { Requestpaging } from 'src/Model/other/requestpaging';
 
@@ -22,11 +24,11 @@ constructor(private http : HttpClient) { }
   GetbyId(id:any):Observable<any>{
     return this.http.get<WorkHourModel[]>(this.apiurl + '/WorkHour/'+id);
   }
-  CreateWorkhour(data : any){
+  CreateWorkhour(data : WorkHourCreateRequest){
     return this.http.post(this.apiurl + '/WorkHour/create',data)
   }
-  EditWorkhour(id,data:any){
-    return this.http.put(this.apiurl +'/WorkHour/'+id,data)
+  EditWorkhour(data:WorkhourEditRequest){
+    return this.http.put(this.apiurl +'/WorkHour/'+data.id,data)
   }
   DeleteWorkhour(data:string){
     return this.http.delete(this.apiurl + '/WorkHour/'+data)

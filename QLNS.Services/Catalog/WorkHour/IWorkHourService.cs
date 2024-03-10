@@ -17,7 +17,7 @@ namespace QLNS.Services.Catalog.WorkHour
 
         Task<int> Checkout(CheckoutModel checkout);
 
-        Task<QLNS.Entity.RelationShips.WorkHour> Create(QLNS.Entity.RelationShips.WorkHour request);
+        Task<int> Create(WorkHourCreateRequest request);
 
         Task<WorkHourUpdateRequest> GetById(int id);
 
