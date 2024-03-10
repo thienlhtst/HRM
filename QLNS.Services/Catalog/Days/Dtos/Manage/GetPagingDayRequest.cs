@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QLNS.Services.Catalog.Days.Dtos.Manage
 {
-    public class GetPagingDayRequest : PagedResultBase
+    public class GetPagingDayRequest : PagingRequestBase
     {
         public string Keyword { get; set; }
         public int? CategoryID { get; set; }
