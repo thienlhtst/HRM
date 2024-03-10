@@ -10,4 +10,14 @@ Step 3: Set QLNS.DataAccess to Default Project and run code update-database
 Step 4 Set QLNSApiBackend to starup project and run it
 Step 5: go folder frontend and open terminal 
 Step 6: run npm i --legacy-peer-deps and wait for it
-Step 6: run ng serve and enjoy it
+Step 7: run ng serve and enjoy it
+
+IF you have a docker desktop 
+to run a project , we have step to run
+step 1 you will go a termial have a docker-compose.yml
+step 2 you  run  docker compose up --build and wait for it
+step 3 you open visual studio and Set QLNS.DataAccess to Starup project and open Package Manager Console 
+Step 4 Set QLNS.DataAccess to Default Project and run code update-database
+Step 5: go folder frontend and open terminal 
+Step 6: run npm i --legacy-peer-deps and wait for it
+Step 7: run ng serve and enjoy it
