@@ -58,7 +58,7 @@ namespace QLNS.Services.Catalog.Allowance
             var query = from p in _context.Allowances select new { p };
             if (!string.IsNullOrEmpty(request.Keyword))
             {
-                query = query.Where(x => x.p.ID.Contains(request.Keyword));
+                query = query.Where(x => x.p.ID.Contains(request.Keyword) || x.p.Name.Contains(request.Keyword));
             }
             int totalRow = await query.CountAsync();
             var data = await query.Skip((request.PageIndex - 1) * request.PageSize)

@@ -21,7 +21,7 @@ import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pa
 @Component({
   selector: 'app-allowance-list',
   templateUrl: './allowance-list.component.html',
-  styleUrls: ['./allowance-list.component.scss']
+  styleUrls: ['./allowance-list.component.scss','../../../../scss/shared/button.scss']
 })
 
 

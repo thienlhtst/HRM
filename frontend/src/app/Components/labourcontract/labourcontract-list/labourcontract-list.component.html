@@ -1,0 +1,53 @@
+<button class="btn btn-primary m-2" (click)=" ClicktoShowFormAdd()">Add</button>
+<div class="row">
+  <div [ngClass]="{'col-md-12': !ShowForm, 'col-md-12 col-xl-8': ShowForm}">
+    <div class="mb-5"></div>
+      <div class="card tbl-card">
+        <div class="card-body">
+          <div class="table-responsive" >
+            <table class="table table-hover table-borderless mb-0">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Money</th>
+                      <th>Options</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let item of datas ">
+                      <td>{{item.id}}</td>
+                      <td>{{item.employeeID}}</td>
+                      <td>{{item.content}}</td>
+                      <td>{{item.contractSigninDate}}</td>
+                      <td>{{item.contractTerm}}</td>
+                      <td>{{item.active}}</td>
+                      <td>
+                      <button class="img-button" (click)="ButtonClickToUpdate(item.id)">
+                        <img  class="ti ti-edit"   src="" />
+                      </button>
+                      <button class="img-button" (click)="Delete($event,item.id)">
+                        <img  class="ti ti-circle-minus" src="" />
+                      </button>
+                    </td>
+                  </tr>
+
+              </tbody>
+            </table>
+          <app-pagingnav class="d-flex justify-content-end" (numberchange)="PageChange($event)"  [pagesize]="PageCount"  #child></app-pagingnav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-xl-4" [ngClass]="{'col-md-7': ShowFormOption, 'd-none': !ShowFormOption}" *ngIf="ShowFormOption">
+      <h5 class="mb-4">Update</h5>
+      <div class="card">
+        <div class="card-body">
+          <div class="list-group list-group-flush">
+              <app-labourcontract-options [selectedID]="selectedID" (onSuccess)="OnSuccess()"></app-labourcontract-options>
+         </div>
+        </div>
+      </div>
+    </div>
+</div>
+

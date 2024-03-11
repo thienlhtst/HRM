@@ -19,23 +19,23 @@ import { NavGroupComponent } from './theme/layouts/admin/navigation/nav-content/
 import { NavItemComponent } from './theme/layouts/admin/navigation/nav-content/nav-item/nav-item.component';
 import { NavigationItem } from './theme/layouts/admin/navigation/navigation';
 
+import { PagingnavComponent } from "./theme/shared/components/pagingnav/pagingnav.component";
 @NgModule({
-  declarations: [
-    AppComponent,
-    AdminComponent,
-    GuestComponent,
-    NavigationComponent,
-    NavBarComponent,
-    NavLeftComponent,
-    NavRightComponent,
-    NavContentComponent,
-    NavCollapseComponent,
-    NavGroupComponent,
-    NavItemComponent,
-
-  ],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule],
-  providers: [NavigationItem],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        AdminComponent,
+        GuestComponent,
+        NavigationComponent,
+        NavBarComponent,
+        NavLeftComponent,
+        NavRightComponent,
+        NavContentComponent,
+        NavCollapseComponent,
+        NavGroupComponent,
+        NavItemComponent,
+    ],
+    providers: [NavigationItem],
+    bootstrap: [AppComponent],
+    imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule, PagingnavComponent]
 })
 export class AppModule {}

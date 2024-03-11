@@ -24,10 +24,10 @@
                       <td>{{item.name}}</td>
                       <td>{{item.money}}</td>
                       <td>
-                      <button (click)="ButtonClickToUpdate(item.id)">
-                        <img class="ti ti-edit"  src="" />
+                      <button class="img-button" (click)="ButtonClickToUpdate(item.id)">
+                        <img  class="ti ti-edit"   src="" />
                       </button>
-                      <button (click)="Delete($event,item.id)">
+                      <button class="img-button" (click)="Delete($event,item.id)">
                         <img  class="ti ti-circle-minus" src="" />
                       </button>
                     </td>

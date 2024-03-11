@@ -67,6 +67,7 @@ const NavigationItems = [
             url: '/card',
             icon: 'ti ti-credit-card'
           },
+
         ]
 
 
