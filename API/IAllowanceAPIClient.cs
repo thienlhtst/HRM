@@ -23,7 +23,7 @@ namespace API
 
         Task<PagedResult<AllowanceViewModel>> GetAllowancePaging(GetAllowancePaging request);
 
-        Task<PagedResult<AllowanceRulesViewModel>> GetAllowanceRulesPaging(AllowanceRulesPaging request);
+        Task<List<AllowanceRulesViewModel>> GetAllowanceRules();
 
         Task<bool> CreateAllowanceRules(AllowanceRulesCreateViewModel request);
 

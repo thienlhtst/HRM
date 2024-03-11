@@ -55,123 +55,161 @@ const NavigationItems = [
         {
           id :'allowance',
           title:'Allowance',
-          type:'item',
+          type:'collapse',
           url:"/allowance",
           classes:'nav-item',
           icon:'',
           children :[
             {
-              id :'allowance',
-              title:'Add',
+              id:'allowance',
+              title:'Allowance List',
               type:'item',
-              url:"/allowance/add",
+              url:'/allowance',
               classes:'nav-item',
+              icon:'',
+              children:[
+                {
+                  id :'allowance',
+                  title:'Add',
+                  type:'item',
+                  url:"/allowance/add",
+                  classes:'nav-item',
+                },
+                {
+                  id :'allowance',
+                  title:'Update',
+                  type:'item',
+                  url:"/allowance/update",
+                  classes:'nav-item',
+                },
+              ]
             },
             {
-              id :'allowance',
-              title:'Update',
+              id:'allowance',
+              title:'Employee With Allowance',
               type:'item',
-              url:"/allowance/update",
+              url:'/ewa',
               classes:'nav-item',
-            },
-          ]
-        },
-        {
-          id:'position',
-          title:'Position',
-          type:'item',
-          url:'/position',
-          classes:'nav-item',
-          icon:'',
-          children :[
-            {
-              id :'position',
-              title:'Add',
-              type:'item',
-              url:"/position/add",
-              classes:'nav-item',
-            },
-            {
-              id :'position',
-              title:'Update',
-              type:'item',
-              url:"/position/update",
-              classes:'nav-item',
+              icon:'',
+              children:[
+                {
+                  id :'ewa',
+                  title:'Auto',
+                  type:'item',
+                  url:"/ewa/add",
+                  classes:'nav-item',
+                },
+              ]
             },
           ]
         },
         {
           id:'employee',
           title:'Employee ',
-          type:'item',
+          type:'collapse',
           url:'/employee',
           classes:'nav-item',
           icon:'',
           children :[
             {
-              id :'employee',
-              title:'Add',
+              id:'employee',
+              title:'Employee List',
               type:'item',
-              url:"/employee/add",
+              url:'/employee',
               classes:'nav-item',
+              icon:'',
+              children:[
+                {
+                  id :'employee',
+                  title:'Add',
+                  type:'item',
+                  url:"/employee/add",
+                  classes:'nav-item',
+                },
+                {
+                  id :'employee',
+                  title:'Update',
+                  type:'item',
+                  url:"/employee/update",
+                  classes:'nav-item',
+                },
+              ]
             },
             {
-              id :'employee',
-              title:'Update',
+              id:'position',
+              title:'Position',
               type:'item',
-              url:"/employee/update",
+              url:'/position',
               classes:'nav-item',
+              icon:'',
+              children :[
+                {
+                  id :'position',
+                  title:'Add',
+                  type:'item',
+                  url:"/position/add",
+                  classes:'nav-item',
+                },
+                {
+                  id :'position',
+                  title:'Update',
+                  type:'item',
+                  url:"/position/update",
+                  classes:'nav-item',
+                },
+              ]
+            },
+            {
+              id:'rank',
+              title:'Rank',
+              type:'item',
+              url:'/rank',
+              classes:'nav-item',
+              icon:'',
+              children :[
+                {
+                  id :'rank',
+                  title:'Add',
+                  type:'item',
+                  url:"/rank/add",
+                  classes:'nav-item',
+                },
+                {
+                  id :'rank',
+                  title:'Update',
+                  type:'item',
+                  url:"/rank/update",
+                  classes:'nav-item',
+                },
+              ]
+            },
+            {
+              id:'salary',
+              title:'Salary',
+              type:'item',
+              url:'/salary',
+              classes :'nav-item',
+              icon :'',
+              children :[
+                {
+                  id :'salary',
+                  title:'Add',
+                  type:'item',
+                  url:"/salary/add",
+                  classes:'nav-item',
+                },
+                {
+                  id :'salary',
+                  title:'Update',
+                  type:'item',
+                  url:"/salary/update",
+                  classes:'nav-item',
+                },
+              ]
             },
           ]
         },
-        {
-          id:'rank',
-          title:'Rank',
-          type:'item',
-          url:'/rank',
-          classes:'nav-item',
-          icon:'',
-          children :[
-            {
-              id :'rank',
-              title:'Add',
-              type:'item',
-              url:"/rank/add",
-              classes:'nav-item',
-            },
-            {
-              id :'rank',
-              title:'Update',
-              type:'item',
-              url:"/rank/update",
-              classes:'nav-item',
-            },
-          ]
-        },
-        {
-          id:'salary',
-          title:'Salary',
-          type:'item',
-          url:'/salary',
-          classes :'nav-item',
-          icon :'',
-          children :[
-            {
-              id :'salary',
-              title:'Add',
-              type:'item',
-              url:"/salary/add",
-              classes:'nav-item',
-            },
-            {
-              id :'salary',
-              title:'Update',
-              type:'item',
-              url:"/salary/update",
-              classes:'nav-item',
-            },
-          ]
-        },
+
         {
           id:'workhour',
           title:'Work Hour',
@@ -205,24 +243,6 @@ const NavigationItems = [
               classes :'nav-item',
               icon :'',
             }
-          ]
-        },
-
-        {
-          id:'ewa',
-          title:'Employee With Allowance',
-          type:'item',
-          url:'/ewa',
-          classes:'nav-item',
-          icon:'',
-          children:[
-            {
-              id :'ewa',
-              title:'Auto',
-              type:'item',
-              url:"/ewa/add",
-              classes:'nav-item',
-            },
           ]
         },
     ]

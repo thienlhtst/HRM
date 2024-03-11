@@ -10,23 +10,21 @@ import { AllowanceServiceService } from 'src/Services/Allowance/AllowanceService
 import { NotificationComponent } from 'src/app/theme/shared/components/Notification/Notification.component';
 
 @Component({
-  selector: 'app-allowance-update',
-  templateUrl: './allowance-update.component.html',
-  styleUrls: ['./allowance-update.component.scss']
+  selector: 'app-allowance-options',
+  templateUrl: './allowance-options.component.html',
+  styleUrls: ['./allowance-options.component.scss']
 })
-export class AllowanceUpdateComponent implements OnInit {
+export class AllowanceOptionsComponent implements OnInit {
   constructor(private service : AllowanceServiceService,private route : ActivatedRoute,private router : Router){}
   @Input() selectedID : string
   @Output() onUpdate: EventEmitter<string> =   new EventEmitter();
   @Output() onSuccess: EventEmitter<void> = new EventEmitter();
   messageRequest : string = ''
   data : Allowancemodel
-  ChangeUpdateMode: boolean = false;
 
   @ViewChild(NotificationComponent) childnoti : NotificationComponent
   ngOnInit(): void {
     this.GetAllowanceID()
-    console.log(this.selectedID)
   }
 
   GetAllowanceID(){

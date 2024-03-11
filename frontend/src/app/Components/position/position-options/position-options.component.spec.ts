@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PositionUpdateComponent } from './position-update.component';
+import { PositionOptionsComponent } from './position-options.component';
 
 describe('PositionUpdateComponent', () => {
-  let component: PositionUpdateComponent;
-  let fixture: ComponentFixture<PositionUpdateComponent>;
+  let component: PositionOptionsComponent;
+  let fixture: ComponentFixture<PositionOptionsComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PositionUpdateComponent]
+      declarations: [PositionOptionsComponent]
     });
-    fixture = TestBed.createComponent(PositionUpdateComponent);
+    fixture = TestBed.createComponent(PositionOptionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

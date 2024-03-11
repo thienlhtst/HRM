@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RankUpdateComponent } from './rank-update.component';
+import { RankOptionsComponent } from './rank-options.component';
 
 describe('RankUpdateComponent', () => {
-  let component: RankUpdateComponent;
-  let fixture: ComponentFixture<RankUpdateComponent>;
+  let component: RankOptionsComponent;
+  let fixture: ComponentFixture<RankOptionsComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RankUpdateComponent]
+      declarations: [RankOptionsComponent]
     });
-    fixture = TestBed.createComponent(RankUpdateComponent);
+    fixture = TestBed.createComponent(RankOptionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

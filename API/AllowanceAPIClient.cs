@@ -80,21 +80,14 @@ namespace API
             return allowance;
         }
 
-        public async Task<PagedResult<AllowanceRulesViewModel>> GetAllowanceRulesPaging(AllowanceRulesPaging request)
+        public async Task<List<AllowanceRulesViewModel>> GetAllowanceRules()
         {
-            string page = $"/api/Allowance/rulespaging?Keyword=" +
-                          $"{request.Keyword}&PageIndex={request.PageIndex}&PageSize={request.PageSize}";
-            if (request.Keyword.IsNullOrEmpty())
-            {
-                page = $"/api/Allowance/rulespaging?" +
-                          $"PageIndex={request.PageIndex}&PageSize={request.PageSize}";
-            }
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5088");
-            var response = await client.GetAsync(page);
+            var response = await client.GetAsync("/api/Allowance/rules");
             var body = await response.Content.ReadAsStringAsync();
-            var allowancerules = JsonConvert.DeserializeObject<PagedResult<AllowanceRulesViewModel>>(body);
-            return allowancerules;
+            var allowance = JsonConvert.DeserializeObject<List<AllowanceRulesViewModel>>(body);
+            return allowance;
         }
 
         public Task<PagedResult<AllowanceRulesViewModel>> GetAllowanceRulesPaging(GetAllowancePaging request)

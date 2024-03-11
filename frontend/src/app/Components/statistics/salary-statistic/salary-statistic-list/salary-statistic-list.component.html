@@ -11,7 +11,7 @@
               <input type="text" name="filter" [(ngModel)]="searchText" class="form-control form-input" placeholder="Search anything..." #fill>
             </div>
           </div>
-          
+
           <div class="p-2">
             <select class="form-select" (change)="onChangeMonth($event)">
               <ng-container *ngFor="let number of [].constructor(12); let i = index">
@@ -41,7 +41,7 @@
               </tr>
             </thead>
             <tbody *ngIf="spinner; else loaddata">
-              <tr *ngFor="let item of salaryemployee | filter : searchText" >
+              <tr *ngFor="let item of salaryemployee" >
                 <td>{{ item.id }}</td>
                 <td>{{ item.name }}</td>
                 <td class="text-center">{{ item.basicSalary | number: '1.0-0'}} </td>
@@ -57,7 +57,7 @@
               <div class="d-flex justify-content-center">
                 <app-spinner-beta  ></app-spinner-beta>
               </div>
-             
+
             </ng-template>
           </table>
           <app-pagingnav
@@ -90,7 +90,7 @@
           </a>
         </div>
         <ng-template #loaddata1>
-        
+
           <div class="d-flex justify-content-center">
             <app-spinner-beta  ></app-spinner-beta>
           </div>

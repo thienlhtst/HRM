@@ -6,28 +6,26 @@ import { RouterModule, Routes } from '@angular/router';
 import { BreadcrumbComponent } from 'src/app/theme/shared/components/breadcrumb/breadcrumb.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RankServiceService } from 'src/Services/Rank/RankService.service';
-import { RankAddComponent } from './rank-add/rank-add.component';
-import { RankUpdateComponent } from './rank-update/rank-update.component';
 import { FormsModule } from '@angular/forms';
 import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pagingnav.component';
 import { NotificationComponent } from 'src/app/theme/shared/components/Notification/Notification.component';
 import { PipeSharePipe } from "../../theme/shared/components/Pipe/pipe-share.pipe";
 import { SpinnerBetaComponent } from 'src/app/theme/shared/components/spinner-beta/spinner-beta.component';
+import { RankOptionsComponent } from './rank-options/rank-options.component';
+import { SharedModule } from 'src/app/theme/shared/shared.module';
 
 const route : Routes=[{
   path:'',
   children:[
     {path:'',component:RankListComponent},
-    {path:'add',component: RankAddComponent},
-    {path:'update/:id',component:RankUpdateComponent}
+    {path:'update/:id',component:RankOptionsComponent}
   ]
 }]
 
 @NgModule({
     declarations: [
         RankListComponent,
-        RankAddComponent,
-        RankUpdateComponent
+        RankOptionsComponent
     ],
     providers: [RankServiceService],
     imports: [
@@ -39,7 +37,8 @@ const route : Routes=[{
         NotificationComponent,
         FormsModule,
         PipeSharePipe,
-        SpinnerBetaComponent
+        SpinnerBetaComponent,
+        SharedModule
     ]
 })
 export class RankModule {

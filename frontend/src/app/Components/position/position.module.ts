@@ -6,29 +6,26 @@ import { RouterModule, Routes } from '@angular/router';
 import { BreadcrumbComponent } from 'src/app/theme/shared/components/breadcrumb/breadcrumb.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PositionServiceService } from 'src/Services/Position/PositionService.service';
-import { PositionAddComponent } from './position-add/position-add.component';
-import { PositionUpdateComponent } from './position-update/position-update.component';
 import { FormsModule } from '@angular/forms';
 import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pagingnav.component';
 import { NotificationComponent } from 'src/app/theme/shared/components/Notification/Notification.component';
 import { PipeSharePipe } from "../../theme/shared/components/Pipe/pipe-share.pipe";
 import { SpinnerBetaComponent } from 'src/app/theme/shared/components/spinner-beta/spinner-beta.component';
-
+import { PositionOptionsComponent } from './position-options/position-options.component';
+import { SharedModule } from "../../theme/shared/shared.module";
 
 const route : Routes =[{
   path:'',
   children:[
     {path:'',component:PositionListComponent},
-    {path:'add',component:PositionAddComponent},
-    {path:'update/:id',component:PositionUpdateComponent}
+    {path:'update/:id',component:PositionOptionsComponent}
   ]
 }]
 
 @NgModule({
     declarations: [
         PositionListComponent,
-        PositionAddComponent,
-        PositionUpdateComponent
+        PositionOptionsComponent
     ],
     providers: [PositionServiceService],
     imports: [
@@ -40,7 +37,8 @@ const route : Routes =[{
         PagingnavComponent,
         NotificationComponent,
         PipeSharePipe,
-        SpinnerBetaComponent
+        SpinnerBetaComponent,
+        SharedModule
     ]
 })
 export class PositionModule { }

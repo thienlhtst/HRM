@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AllowanceUpdateComponent } from './allowance-update.component';
+import { AllowanceOptionsComponent } from './allowance-options.component';
 
 describe('AllowanceUpdateComponent', () => {
-  let component: AllowanceUpdateComponent;
-  let fixture: ComponentFixture<AllowanceUpdateComponent>;
+  let component: AllowanceOptionsComponent;
+  let fixture: ComponentFixture<AllowanceOptionsComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AllowanceUpdateComponent]
+      declarations: [AllowanceOptionsComponent]
     });
-    fixture = TestBed.createComponent(AllowanceUpdateComponent);
+    fixture = TestBed.createComponent(AllowanceOptionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

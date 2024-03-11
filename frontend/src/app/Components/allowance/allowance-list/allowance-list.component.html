@@ -1,13 +1,24 @@
 
-  <div class="search">
-        <input type="text" name="filter" [(ngModel)]="searchText" placeholder="Enter id" #fill>
-  </div>
-  <button class="btn btn-primary m-2" (click)=" ClicktoShowFormAdd()">Add</button>
 <div class="row">
-  <div [ngClass]="{'col-md-12': !ShowForm, 'col-md-12 col-xl-8': ShowForm}">
-    <div class="mb-5"></div>
-      <div class="card tbl-card">
-        <div class="card-body">
+  <div [ngClass]="{ 'col-md-12': !ShowForm, 'col-md-12 col-xl-8': ShowForm }">
+    <div class="card tbl-card">
+      <div class="card-header">
+        <h3>Allowance Table</h3>
+      </div>
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div class=" p-2 flex-grow-3 ">
+            <div  class="form align-items-center">
+              <i class="fa fa-search"></i>
+              <input type="text" name="filter" [(ngModel)]="searchText" class="form-control form-input" placeholder="Search anything..." #fill>
+            </div>
+
+            </div>
+            <div class="p-2" >
+              <button type="button" (click)="ClicktoShowFormAdd()" class="btn btn-outline-info mx-auto">Add new</button>
+
+            </div>
+        </div>
           <div class="table-responsive" >
             <table class="table table-hover table-borderless mb-0">
               <thead>
@@ -19,7 +30,7 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr *ngFor="let item of datas | filter : searchText ">
+                  <tr *ngFor="let item of datas  ">
                       <td>{{item.id}}</td>
                       <td>{{item.name}}</td>
                       <td>{{item.money}}</td>
@@ -45,110 +56,17 @@
       <app-spinner-beta></app-spinner-beta>
       </div>
     </div>
-  <div class="col-md-12 col-xl-4" [ngClass]="{'col-md-7': ShowFormAdd, 'd-none': !ShowFormAdd}" *ngIf="ShowFormAdd">
-    <h5 class="mb-4">Add</h5>
-      <div class="card">
-        <div class="card-body">
-          <div class="list-group list-group-flush">
-            <app-allowance-add (onSuccess)="OnSuccess()"></app-allowance-add>
+
+      <div class="col-md-12 col-xl-4" [ngClass]="{'col-md-7': ShowFormUpdate, 'd-none': !ShowFormUpdate}" *ngIf="ShowFormUpdate">
+        <h5 class="mb-4">Update</h5>
+        <div class="card">
+          <div class="card-body">
+            <div class="list-group list-group-flush">
+                <app-allowance-options [selectedID]="selectedID" (onSuccess)="OnSuccess()"></app-allowance-options>
+          </div>
           </div>
         </div>
       </div>
-  </div>
-  <div class="col-md-12 col-xl-4" [ngClass]="{'col-md-7': ShowFormUpdate, 'd-none': !ShowFormUpdate}" *ngIf="ShowFormUpdate">
-    <h5 class="mb-4">Update</h5>
-    <div class="card">
-      <div class="card-body">
-        <div class="list-group list-group-flush">
-            <app-allowance-update [selectedID]="selectedID" (onSuccess)="OnSuccess()"></app-allowance-update>
-       </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="col-md-12 col-xl-4">
-    <div class="card">
-      <div class="card-body">
-        <h2 class="text-center">Allowance Data List</h2>
-        <div class="table-responsive" >
-          <table class="table table-hover table-borderless mb-0">
-            <tbody>
-              <tr *ngFor="let item of datas" [ngClass]="{ 'selected': IDGetofAllowance === item.id}" (click)="ClickToGetAllowance(item.id)">
-                <td>{{item.id}}</td>
-                <td>{{item.name}}</td>
-                <td>{{item.money}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    <div class="col-md-12 col-xl-4">
-      <div class="card">
-        <div class="card-body">
-          <h2 class="text-center"> Employee Data List</h2>
-          <div class="form-group row">
-            <label class="col-sm-6 col-form-label">Position</label>
-            <label class="col-sm-5 col-form-label">Rank</label>
-            <div class="d-flex">
-              <select [(ngModel)]="selectedPositionID" name="positionID" (change)="onPositionChange()" class="form-control  mr-4">
-                <option *ngFor="let position of PositionsData" [value]="position.iDposition">{{ position.name }}</option>
-              </select>
-              <select [(ngModel)]="selectedRankID" name="rankID" (change)="onRankChange()" (click)="GetSalaryByRankAndPosition()" class="form-control">
-                <option  *ngFor="let rank of RanksData" [value]="rank.iDrank"  >{{ rank.name }}</option>
-              </select>
-            </div>
-        </div>
-
-
-          <div class="table-responsive">
-            <table class="table table-hover table-borderless mb-0">
-              <thead>
-                <tr>
-                  <td>ID</td>
-                  <td>First Name</td>
-                  <td>Middle Name</td>
-                  <td>Last Name</td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let item of DataOfEmployee" [ngClass]="{'selected': IDGetofEmployee === item.id}" (click)="ClickToGetEmployee(item.id)">
-                  <td>{{item.id}}</td>
-                  <td>{{item.firstName}}</td>
-                  <td>{{item.middleName}}</td>
-                  <td>{{item.lastName}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-12 col-xl-4">
-      <div class="card">
-        <div class="card-body">
-          <h2 class="text-center"> Allow Employee </h2>
-          <div class="table-responsive"></div>
-          <table class="table table-hover table-borderless mb-0">
-            <thead>
-              <tr>
-                <td> Allowance Name </td>
-                <td> Employee Name </td>
-                <td> Date </td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of datasofAllowEmployee">
-                <td> {{item.allowanceName}}</td>
-                <td> {{item.employeeName}}</td>
-                <tD> {{item.date}}</tD>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+      <app-allowance-rules></app-allowance-rules>
 </div>

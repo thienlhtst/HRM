@@ -1,0 +1,87 @@
+<div class="row">
+  <div class="col-md-12 col-xl-4">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="text-center">Allowance Data List</h2>
+        <div class="table-responsive" >
+          <table class="table table-hover table-borderless mb-0">
+            <tbody>
+              <tr *ngFor="let item of datas" [ngClass]="{ 'selected': IDGetofAllowance === item.id}" (click)="ClickToGetAllowance(item.id)">
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.money}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="col-md-12 col-xl-4">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="text-center"> Employee Data List</h2>
+          <div class="form-group row">
+            <label class="col-sm-6 col-form-label">Position</label>
+            <label class="col-sm-5 col-form-label">Rank</label>
+            <div class="d-flex">
+              <select [(ngModel)]="selectedPositionID" name="positionID" (change)="onPositionChange()" class="form-control  mr-4">
+                <option *ngFor="let position of PositionsData" [value]="position.iDposition">{{ position.name }}</option>
+              </select>
+              <select [(ngModel)]="selectedRankID" name="rankID" (change)="onRankChange()" (click)="GetSalaryByRankAndPosition()" class="form-control">
+                <option  *ngFor="let rank of RanksData" [value]="rank.iDrank"  >{{ rank.name }}</option>
+              </select>
+            </div>
+        </div>
+
+
+          <div class="table-responsive">
+            <table class="table table-hover table-borderless mb-0">
+              <thead>
+                <tr>
+                  <td>ID</td>
+                  <td>First Name</td>
+                  <td>Middle Name</td>
+                  <td>Last Name</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of DataOfEmployee" [ngClass]="{'selected': IDGetofEmployee === item.id}" (click)="ClickToGetEmployee(item.id)">
+                  <td>{{item.id}}</td>
+                  <td>{{item.firstName}}</td>
+                  <td>{{item.middleName}}</td>
+                  <td>{{item.lastName}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12 col-xl-4">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="text-center"> Allow Employee </h2>
+          <div class="table-responsive"></div>
+          <table class="table table-hover table-borderless mb-0">
+            <thead>
+              <tr>
+                <td> Allowance Name </td>
+                <td> Employee Name </td>
+                <td> Date </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of datasofAllowEmployee ">
+                <td> {{item.allowanceName}}</td>
+                <td> {{item.employeeName}} </td>
+                <td> {{item.date}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</div>

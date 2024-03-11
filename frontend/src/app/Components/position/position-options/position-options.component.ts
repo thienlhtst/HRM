@@ -5,11 +5,11 @@ import { PositionModel } from 'src/Model/PositionModel';
 import { PositionServiceService } from 'src/Services/Position/PositionService.service';
 
 @Component({
-  selector: 'app-position-update',
-  templateUrl: './position-update.component.html',
-  styleUrls: ['./position-update.component.scss']
+  selector: 'app-position-options',
+  templateUrl: './position-options.component.html',
+  styleUrls: ['./position-options.component.scss']
 })
-export class PositionUpdateComponent implements OnInit {
+export class PositionOptionsComponent implements OnInit {
   constructor(private Service:PositionServiceService,private router : Router,private route:ActivatedRoute){}
   @Input() selectedID : string
   @Output() onUpdate: EventEmitter<string> =   new EventEmitter();
@@ -28,6 +28,23 @@ export class PositionUpdateComponent implements OnInit {
     })
   }
 
+  Add(data:PositionModel){
+    this.Service.CreatePosition(data).subscribe((res)=>{
+      if(res){
+        alert('Success')
+        setTimeout(() => {
+          this.onSuccess.emit()
+        }, 5);
+        window.location.reload()
+      }
+      else{
+        alert('Fail')
+        setTimeout(() => {
+          this.onSuccess.emit()
+        }, 5);
+      }
+    })
+}
 
   Update(position : PositionModel){
     this.onUpdate.emit(this.selectedID)

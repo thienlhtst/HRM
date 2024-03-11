@@ -79,34 +79,22 @@ namespace QLNS.Services.Catalog.Allowance
             return pagedView;
         }
 
-        public async Task<PagedResult<AllowanceRulesViewModel>> GetAllPageRules(GetAllowanceRulesPagingRequest request)
+        public async Task<List<AllowanceRulesViewModel>> GetAllRules()
         {
             var query = from p in _context.Allowances
                         join pp in _context.AllowanceRules on p.ID equals pp.AllowanceID
                         join px in _context.Employee on pp.EmployeeID equals px.ID
-
                         select new { p, px, pp };
-            if (!string.IsNullOrEmpty(request.Keywork))
-            {
-                query = query.Where(x => x.px.ID == request.Keywork);
-            }
-            int totalRow = query.Count();
-            var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
-                .Take(request.PageSize)
-                .Select(x => new AllowanceRulesViewModel()
-                {
-                    AllowanceName = x.p.Name,
-                    EmployeeName = x.px.FirstName + " " + x.px.MiddleName + " " + x.px.LastName,
-                    Date = x.pp.Date
-                }).ToListAsync();
-            var pagedView = new PagedResult<AllowanceRulesViewModel>()
-            {
-                TotalRecords = totalRow,
-                PageIndex = request.PageIndex,
-                PageSize = request.PageSize,
-                Items = data
-            };
-            return pagedView;
+
+            var data = await query.GroupBy(x => x.pp.AllowanceID)
+             .Select(e => new AllowanceRulesViewModel()
+             {
+                 AllowanceName = e.First().p.Name,
+                 EmployeeName = String.Join(", ", e.Select(t => t.px.FirstName + " " + t.px.MiddleName + " " + t.px.LastName)),
+                 Date = e.First().pp.Date
+             }).ToListAsync();
+
+            return data;
         }
 
         public async Task<AllowanceViewModel> GetByID(string AllowanceID)
