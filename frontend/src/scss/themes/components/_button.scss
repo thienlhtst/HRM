@@ -94,7 +94,7 @@
     }
     &:hover {
       background: shift-color($value, $soft-bg-level);
-      color: $value;
+      color: #241a1a;
       border-color: shift-color($value, $soft-bg-level);
     }
 
