@@ -1,4 +1,9 @@
 
 <div class="row">
-  <app-labourday-list></app-labourday-list>
+  <div [ngClass]="{ 'col-md-12': !ShowForm, 'col-md-12 col-xl-8': ShowForm }">
+  <app-labourday-list (OpenAddorEdit)="OpenAddorEdit($event)" ></app-labourday-list>
+  </div>
+  <div class="col-md-12 col-xl-4 " *ngIf="ShowForm">
+    <app-labourday-addoredit [id]="currentdata"></app-labourday-addoredit>
+  </div>
 </div>

@@ -44,8 +44,11 @@ namespace QLNSApiBackend.BackendApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+
             services.AddDbContext<QLNSDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString)));       //Declare
+                options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString))
+
+                );       //Declare
 
             services.AddTransient<IEmployeeService, EmployeeService>();
             services.AddTransient<IPublicDayService, PublicDayService>();

@@ -10,6 +10,9 @@ import { FormsModule } from '@angular/forms';
 import { PipeSharePipe } from 'src/app/theme/shared/components/Pipe/pipe-share.pipe';
 import { SpinnerBetaComponent } from 'src/app/theme/shared/components/spinner-beta/spinner-beta.component';
 import { LabourdayListComponent } from './labourday-list/labourday-list.component';
+import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
+import { LabourdayAddoreditComponent } from './labourday-addoredit/labourday-addoredit.component';
+import { LabourhourAddoreditComponent } from './labourhour-addoredit/labourhour-addoredit.component';
 
 const route : Routes = [
   {
@@ -31,8 +34,9 @@ const route : Routes = [
     NotificationComponent,
     FormsModule,
     PipeSharePipe,
-    SpinnerBetaComponent
+    SpinnerBetaComponent,
+    MdbRippleModule
   ],
-  declarations: [LabourdayComponent,LabourdayListComponent]
+  declarations: [LabourdayComponent,LabourdayListComponent,LabourdayAddoreditComponent,LabourhourAddoreditComponent]
 })
 export class LabourdayModule { }
