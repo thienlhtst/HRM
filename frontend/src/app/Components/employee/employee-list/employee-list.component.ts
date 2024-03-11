@@ -9,7 +9,7 @@ import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pa
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
-  styleUrls: ['./employee-list.component.scss']
+  styleUrls: ['./employee-list.component.scss','../../../../scss/shared/sreach.scss']
 })
 export class EmployeeListComponent implements OnInit {
   constructor(private service : EmployeeService,private router : Router){}

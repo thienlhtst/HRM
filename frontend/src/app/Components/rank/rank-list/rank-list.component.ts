@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-rank-list',
   templateUrl: './rank-list.component.html',
-  styleUrls: ['./rank-list.component.scss']
+  styleUrls: ['./rank-list.component.scss','../../../../scss/shared/sreach.scss']
 })
 export class RankListComponent implements OnInit{
   constructor(private service : RankServiceService,private router : Router){}

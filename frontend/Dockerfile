@@ -1,13 +1,8 @@
-FROM node:16.14-alpine3.15 as angular
+FROM node:16 as node
+WORKDIR /app
+COPY . .
+RUN npm install --legacy-peer-deps
+RUN npm run build --prod
 
-
-WORKDIR /usr/local/app
-
-COPY ./ /usr/local/app/
-
-RUN npm i --legacy-peer-deps
-RUN npm run build
-
-FROM httpd:alpine3.15
-
-COPY --from=angular /usr/local/app/dist/frontend .
+FROM nginx:alpine
+COPY --from=node /app/dist/frontend /usr/share/nginx/html

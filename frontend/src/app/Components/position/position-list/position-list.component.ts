@@ -11,7 +11,7 @@ import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pa
 @Component({
   selector: 'app-position-list',
   templateUrl: './position-list.component.html',
-  styleUrls: ['./position-list.component.scss']
+  styleUrls: ['./position-list.component.scss','../../../../scss/shared/sreach.scss']
 })
 export class PositionListComponent implements OnInit,OnChanges{
   constructor(private service : PositionServiceService,private router : Router){}

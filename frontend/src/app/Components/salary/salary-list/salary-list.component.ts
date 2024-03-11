@@ -8,7 +8,7 @@ import { SalaryService } from 'src/Services/Salary/salary.service';
 @Component({
   selector: 'app-salary-list',
   templateUrl: './salary-list.component.html',
-  styleUrls: ['./salary-list.component.scss']
+  styleUrls: ['./salary-list.component.scss','../../../../scss/shared/sreach.scss']
 })
 export class SalaryListComponent implements OnInit{
   constructor(private service : SalaryService,private router : Router){}

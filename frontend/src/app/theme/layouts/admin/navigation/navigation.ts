@@ -44,116 +44,8 @@ const NavigationItems = [
       }
     ]
   },
-  {
-    id: 'elements',
-    title: 'UI Components',
-    type: 'group',
-    icon: 'icon-navigation',
-    children: [
-      {
-        id: 'typography',
-        title: 'Typographssy',
-        type: 'collapse',
-        classes: 'nav-item',
-        url: '/typography',
-        icon: 'ti ti-typography',
-        external  :false,
-        children:[
-          {
-            id: 'card',
-            title: 'Card',
-            type: 'item',
-            classes: 'nav-item',
-            url: '/card',
-            icon: 'ti ti-credit-card'
-          },
-
-        ]
 
 
-      },
-      {
-        id: 'card',
-        title: 'Card',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/card',
-        icon: 'ti ti-credit-card'
-      },
-      {
-        id: 'breadcrumb',
-        title: 'Breadcrumb',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/breadcrumb',
-        icon: 'ti ti-hierarchy-2'
-      },
-      {
-        id: 'spinner',
-        title: 'spinner',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/spinner',
-        icon: 'ti ti-loader'
-      },
-      {
-        id: 'color',
-        title: 'Colors',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/color',
-        icon: 'ti ti-brush'
-      },
-      {
-        id: 'tabler',
-        title: 'Tabler',
-        type: 'item',
-        classes: 'nav-item',
-        url: 'https://tabler-icons.io/',
-        icon: 'ti ti-leaf',
-        target: true,
-        external: true
-      }
-    ]
-  },
-  {
-    id: 'authentication',
-    title: 'Authentication',
-    type: 'group',
-    icon: 'icon-navigation',
-    children: [
-      {
-        id: 'login',
-        title: 'Login',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/login',
-        icon: 'ti ti-login',
-        target: true,
-        breadcrumbs: false
-      },
-      {
-        id: 'register',
-        title: 'Register',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/register',
-        icon: 'ti ti-user-plus',
-        target: true,
-        breadcrumbs: false
-      },
-      {
-        id: 'qrcode',
-        title: 'Qrcode',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/qrcode',
-        icon: 'ti ti-user-plus',
-        target: true,
-        breadcrumbs: false
-      },
-    ]
-  },
   {
     id: 'UI',
     title: 'Pages',
@@ -283,20 +175,39 @@ const NavigationItems = [
         {
           id:'workhour',
           title:'Work Hour',
-          type:'item',
+          type:'collapse',
           url:'/workhour',
           classes :'nav-item',
           icon :'',
           children:[
             {
-              id :'workhour',
-              title:'ADD OR EDIT',
+              id:'workhour',
+              title:'Hours',
               type:'item',
-              url:"/workhour/addoredit",
-              classes:'nav-item',
+              url:'/workhour',
+              classes :'nav-item',
+              icon :'',
+              children:[
+                {
+                  id :'workhour',
+                  title:'ADD OR EDIT',
+                  type:'item',
+                  url:"/workhour/addoredit",
+                  classes:'nav-item',
+                },
+              ]
             },
+            {
+              id:'workhour',
+              title:'Labour Day',
+              type:'item',
+              url:'/labourday',
+              classes :'nav-item',
+              icon :'',
+            }
           ]
         },
+
         {
           id:'ewa',
           title:'Employee With Allowance',
