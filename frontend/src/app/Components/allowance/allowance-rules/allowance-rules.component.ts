@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AllowEmployeeModel } from 'src/Model/Allowance/AllowEmployeeModel';
+import { AllowanceRulesModel } from 'src/Model/Allowance/AllowanceRulesModel';
 import { Allowancemodel } from 'src/Model/AllowanceModel';
 import { EmployeeRulesModel } from 'src/Model/Employee/EmployeeRulesModel';
 import { SalaryModelList } from 'src/Model/SalaryModelList';
@@ -28,11 +29,17 @@ export class AllowanceRulesComponent implements OnInit {
   RanksData : any
   PositionsData : any
   SalarysData : SalaryModelList[]
+  AllowanceData : any
+  EmployeeData : any
+  selectedAllowanceID : string
+  selectedEmployeeID : string
   selectedRankID : string
   selectedPositionID : string
   selectedSalaryID : string
   DataOfEmployee : EmployeeRulesModel[]
   pagecountAllowEmployee : number = 1
+  ShowFormAddRules : boolean = false
+  date : Date = new Date()
 
 
 
@@ -52,6 +59,18 @@ export class AllowanceRulesComponent implements OnInit {
     })
   }
 
+  GetAllowanceAndEmployeeInfo(){
+    this.generalService.GetAllowance().subscribe((resallowance)=>{
+      this.AllowanceData = resallowance
+    })
+    this.generalService.GetEmployee().subscribe((resemployee)=>{
+      this.EmployeeData = resemployee
+    })
+  }
+
+  ClicktoShowFormAdd(): void{
+    this.ShowFormAddRules = !this.ShowFormAddRules
+  }
 
   onRankChange(){
     return this.selectedRankID
@@ -103,6 +122,25 @@ export class AllowanceRulesComponent implements OnInit {
   GetPagingofAllowEmployee(){
     this.service.getAllowEmployee().subscribe((res)=>{
       this.datasofAllowEmployee = res
+    })
+  }
+
+
+  Add(data : AllowanceRulesModel){
+    console.log(data)
+    this.service.CreateAllowanceRules(data).subscribe((response)=>{
+      if(response){
+        alert('Success')
+          setTimeout(() => {
+          }, 5);
+          window.location.reload()
+      }
+      else{
+        alert('Fail')
+          setTimeout(() => {
+          }, 5);
+      }
+
     })
   }
 

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SalaryUpdateComponent } from './salary-update.component';
+import { SalaryOptionsComponent } from './salary-options.component';
 
 describe('SalaryUpdateComponent', () => {
-  let component: SalaryUpdateComponent;
-  let fixture: ComponentFixture<SalaryUpdateComponent>;
+  let component: SalaryOptionsComponent;
+  let fixture: ComponentFixture<SalaryOptionsComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SalaryUpdateComponent]
+      declarations: [SalaryOptionsComponent]
     });
-    fixture = TestBed.createComponent(SalaryUpdateComponent);
+    fixture = TestBed.createComponent(SalaryOptionsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

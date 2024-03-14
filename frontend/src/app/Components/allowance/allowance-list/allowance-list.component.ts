@@ -21,7 +21,7 @@ import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pa
 @Component({
   selector: 'app-allowance-list',
   templateUrl: './allowance-list.component.html',
-  styleUrls: ['./allowance-list.component.scss','../../../../scss/shared/button.scss']
+  styleUrls: ['./allowance-list.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss']
 })
 
 
@@ -78,7 +78,19 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
   }
 
 
+  OnSearchChange(){
+    console.log(this.searchText)
+    this.SearchAllowanceByIDandName()
 
+  }
+
+  SearchAllowanceByIDandName(){
+    this.paging.keyword = this.searchText
+    this.service.getAllowancePaging(this.paging).subscribe((res)=>{
+      this.datas = res.items
+      this.pagecount = res.pageCount
+    })
+  }
 
 
   OnSuccess(){
@@ -109,10 +121,10 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
       this.service.DeleteAllowance(id).subscribe((res)=>{
         if(res){
           alert('Delete Success');
-          this.GetPaging();
+          window.location.reload()
         } else{
           alert('Fail')
-          this.GetPaging();
+          window.location.reload()
         }
       })
     }

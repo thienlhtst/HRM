@@ -13,6 +13,7 @@ namespace QLNS.Services.Catalog.LabourContract
     public class LabourContractService : ILabourContractService
     {
         private readonly QLNSDbContext _context;
+
         public LabourContractService(QLNSDbContext context)
         {
             _context = context;
@@ -33,7 +34,6 @@ namespace QLNS.Services.Catalog.LabourContract
             await _context.SaveChangesAsync();
             return Convert.ToInt32(lb.ID);
         }
-        
 
         public async Task<int> Delete(string labourId)
         {
@@ -48,10 +48,9 @@ namespace QLNS.Services.Catalog.LabourContract
                         join pt in _context.Employee on p.EmployeeID equals pt.ID
                         select new { p, pt };
 
-            if (!string.IsNullOrEmpty(request.Keyword)){
-                query = query.Where(x=>x.p.ID.Contains(request.Keyword));
-            
-            
+            if (!string.IsNullOrEmpty(request.Keyword))
+            {
+                query = query.Where(x => x.p.ID.Contains(request.Keyword));
             }
             int totalRow = await query.CountAsync();
 
@@ -60,7 +59,7 @@ namespace QLNS.Services.Catalog.LabourContract
                     .Select(x => new LabourContractViewModel()
                     {
                         ID = x.p.ID,
-                        EmployeeID = x.pt.ID,
+                        EmployeeID = x.pt.FirstName + x.pt.MiddleName + x.pt.LastName,
                         Content = x.p.Content,
                         ContractSigninDate = x.p.ContractSigninDate,
                         Active = x.p.Active,
@@ -75,7 +74,6 @@ namespace QLNS.Services.Catalog.LabourContract
                 Items = data
             };
             return pagedView;
-
         }
 
         public async Task<LabourContractViewModel> GetByID(string labourID)
@@ -108,24 +106,22 @@ namespace QLNS.Services.Catalog.LabourContract
                 ContractSigninDate = x.ContractSigninDate,
                 ContractTerm = x.ContractTerm,
                 Active = x.Active
-                
             }).ToListAsync();
             return data;
         }
 
         public async Task<int> Update(LabourContractEditRequest request)
         {
-            var lb =await _context.LabourContracts.FindAsync(request.ID);
+            var lb = await _context.LabourContracts.FindAsync(request.ID);
             if (lb == null) return 0;
             lb.ID = request.ID;
             lb.EmployeeID = request.EmployeeID;
             lb.Content = request.Content;
-            lb.ContractSigninDate  = request.ContractSigninDate;
+            lb.ContractSigninDate = request.ContractSigninDate;
             lb.ContractTerm = request.ContractTerm;
             lb.Active = request.Active;
             _context.LabourContracts.Update(lb);
             return await _context.SaveChangesAsync();
-
         }
     }
 }

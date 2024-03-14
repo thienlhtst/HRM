@@ -1,3 +1,4 @@
+import { OnInit } from '@angular/core';
 /* eslint-disable @angular-eslint/no-output-on-prefix */
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { LabourContractModel } from 'src/Model/LabourContract/LabourContractModel';
@@ -8,7 +9,7 @@ import { LabourContractServiceService } from 'src/Services/LabourContract/labour
   templateUrl: './labourcontract-options.component.html',
   styleUrls: ['./labourcontract-options.component.scss']
 })
-export class LabourcontractOptionsComponent {
+export class LabourcontractOptionsComponent implements OnInit {
   constructor(private service : LabourContractServiceService){}
   @Input() selectedID : string
   @Output() onUpdate: EventEmitter<string> =   new EventEmitter();
@@ -16,7 +17,12 @@ export class LabourcontractOptionsComponent {
   data : LabourContractModel
 
 
-  GetLabourContract(){
+  ngOnInit(): void {
+    console.log(this.selectedID)
+    this.GetLabourContractID()
+  }
+
+  GetLabourContractID(){
     this.service.GetAllContractByID(this.selectedID).subscribe((res)=>{
       this.data = res
     })

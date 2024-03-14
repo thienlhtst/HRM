@@ -57,7 +57,18 @@ export class PositionListComponent implements OnInit,OnChanges{
     this.ShowFormOptions = false
   }
 
+  onSearchChange(){
+    this.SearchPositionByIdAndName()
+  }
 
+
+  SearchPositionByIdAndName(){
+    this.paging.keyword = this.searchText
+    this.service.GetPositionPaging(this.paging).subscribe((res)=>{
+      this.datas = res.items
+      this.PageCount = res.pageCount
+    })
+  }
 
 
   GetPaging(){

@@ -96,11 +96,6 @@ namespace QLNS.Services.Catalog.Employees
             return pagedView;
         }
 
-        public async Task<IEnumerable<Entity.Entities.Employees>> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<PagedResult<EmployeeViewModel>> GetAllPage(GetEmployeePagingRequest request)
         {
             var query = from p in _context.Employee

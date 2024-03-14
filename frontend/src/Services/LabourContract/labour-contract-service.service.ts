@@ -22,7 +22,7 @@ export class LabourContractServiceService {
   }
 
   GetAllContractByID(id : string) : Observable<LabourContractModel>{
-    return this.http.get<LabourContractModel>(this.apiurl +'/LabourContract' + id)
+    return this.http.get<LabourContractModel>(this.apiurl +'/LabourContract/' + id)
   }
 
   GetAllContractPaging(paging : Requestpaging) : Observable<Pagingreponse>{

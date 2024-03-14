@@ -63,6 +63,19 @@ OnSuccess(){
     }
   }
 
+  onSearchChange(){
+    this.SearchRankByIdAndName()
+  }
+
+
+  SearchRankByIdAndName(){
+    this.paging.keyword = this.searchText
+    this.service.GetRankPaging(this.paging).subscribe((res)=>{
+      this.datas = res.items
+      this.PageCount = res.pageCount
+    })
+  }
+
   GetPaging(){
     this.service.GetRankPaging(this.paging).subscribe((res)=>{
       this.datas = res.items

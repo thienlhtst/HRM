@@ -89,6 +89,10 @@ const routes: Routes = [
       {
         path:'statistic',
         loadChildren:() => import ('./Components/statistics/statistics.module').then(m=>m.StatisticsModule)
+      },
+      {
+        path:'labourcontract',
+        loadChildren:() => import ('./Components/labourcontract/labourcontract.module').then(m=>m.LabourcontractModule)
       }
 
 
@@ -107,13 +111,13 @@ const routes: Routes = [
         path: 'register',
         loadComponent: () => import('./demo/authentication/register/register.component')
       },
-      
-       
+
+
     ]
   },
   {
     path:'qrcode',component:QrcodeComponent
-  
+
   },
   {
     path: "**",

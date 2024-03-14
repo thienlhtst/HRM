@@ -70,16 +70,9 @@ const NavigationItems = [
               children:[
                 {
                   id :'allowance',
-                  title:'Add',
-                  type:'item',
-                  url:"/allowance/add",
-                  classes:'nav-item',
-                },
-                {
-                  id :'allowance',
                   title:'Update',
                   type:'item',
-                  url:"/allowance/update",
+                  url:"/allowance/options",
                   classes:'nav-item',
                 },
               ]
@@ -145,16 +138,9 @@ const NavigationItems = [
               children :[
                 {
                   id :'position',
-                  title:'Add',
-                  type:'item',
-                  url:"/position/add",
-                  classes:'nav-item',
-                },
-                {
-                  id :'position',
                   title:'Update',
                   type:'item',
-                  url:"/position/update",
+                  url:"/position/options",
                   classes:'nav-item',
                 },
               ]
@@ -169,16 +155,9 @@ const NavigationItems = [
               children :[
                 {
                   id :'rank',
-                  title:'Add',
-                  type:'item',
-                  url:"/rank/add",
-                  classes:'nav-item',
-                },
-                {
-                  id :'rank',
                   title:'Update',
                   type:'item',
-                  url:"/rank/update",
+                  url:"/rank/options",
                   classes:'nav-item',
                 },
               ]
@@ -193,16 +172,26 @@ const NavigationItems = [
               children :[
                 {
                   id :'salary',
-                  title:'Add',
-                  type:'item',
-                  url:"/salary/add",
-                  classes:'nav-item',
-                },
-                {
-                  id :'salary',
                   title:'Update',
                   type:'item',
-                  url:"/salary/update",
+                  url:"/salary/options",
+                  classes:'nav-item',
+                },
+              ]
+            },
+            {
+              id:'labourcontract',
+              title:'Labour Contract',
+              type:'item',
+              url:'/labourcontract',
+              classes :'nav-item',
+              icon :'',
+              children :[
+                {
+                  id :'labourcontract',
+                  title:'Labour Options',
+                  type:'item',
+                  url:"/labourcontract/options",
                   classes:'nav-item',
                 },
               ]

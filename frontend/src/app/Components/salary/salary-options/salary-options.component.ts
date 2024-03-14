@@ -7,11 +7,11 @@ import { GeneralService } from 'src/Services/General/general.service';
 import { SalaryService } from 'src/Services/Salary/salary.service';
 
 @Component({
-  selector: 'app-salary-update',
-  templateUrl: './salary-update.component.html',
-  styleUrls: ['./salary-update.component.scss']
+  selector: 'app-salary-options',
+  templateUrl: './salary-options.component.html',
+  styleUrls: ['./salary-options.component.scss']
 })
-export class SalaryUpdateComponent implements OnInit {
+export class SalaryOptionsComponent implements OnInit {
   constructor(private Service:SalaryService,private generalService : GeneralService,private router : Router,private route:ActivatedRoute){}
   @Input() selectedID : string
   @Output() onUpdate: EventEmitter<string> =   new EventEmitter();
@@ -25,7 +25,8 @@ export class SalaryUpdateComponent implements OnInit {
 
 
   ngOnInit(): void {
-      this.GetRankAndPositionInfo()
+    this.GetSalaryID()
+    this.GetRankAndPositionInfo()
   }
 
   GetSalaryID(){
@@ -52,6 +53,24 @@ export class SalaryUpdateComponent implements OnInit {
       this.PositionsData = resposition
     })
   }
+
+  Add(data:SalaryModel){
+    this.Service.CreateSalary(data).subscribe((res)=>{
+      if(res){
+        alert('Success')
+        setTimeout(() => {
+          this.onSuccess.emit()
+        }, 5);
+        window.location.reload()
+      }
+      else{
+        alert('Fail')
+        setTimeout(() => {
+          this.onSuccess.emit()
+        }, 5);
+      }
+    })
+}
 
   Update(salary : SalaryModel){
     console.log(salary)

@@ -20,8 +20,8 @@
             <input type="number" id="money"  ngModel name="money" [ngModel]="data.money"  class="form-control" >
         </div>
     </div>
-    <button (click)="Update(form.value)" *ngIf="selectedID"> Update </button>
-    <button  (click)="Add(form.value)" *ngIf="!selectedID"> Add </button>
+    <button class="btn btn-outline-info mx-auto" (click)="Update(form.value)" *ngIf="selectedID"> Update </button>
+    <button class="btn btn-outline-info mx-auto"  (click)="Add(form.value)" *ngIf="!selectedID"> Add </button>
 </form>
 
 

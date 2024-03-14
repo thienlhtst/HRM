@@ -18,7 +18,7 @@ const routes : Routes =[
     path : '',
     children:[
       {path: '',component:LabourcontractListComponent},
-      {path:'update/:id',component:LabourcontractOptionsComponent}
+      {path:'options/:id',component:LabourcontractOptionsComponent}
     ]
   }
 ]

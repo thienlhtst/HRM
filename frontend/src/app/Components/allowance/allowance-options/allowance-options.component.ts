@@ -12,7 +12,7 @@ import { NotificationComponent } from 'src/app/theme/shared/components/Notificat
 @Component({
   selector: 'app-allowance-options',
   templateUrl: './allowance-options.component.html',
-  styleUrls: ['./allowance-options.component.scss']
+  styleUrls: ['./allowance-options.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss']
 })
 export class AllowanceOptionsComponent implements OnInit {
   constructor(private service : AllowanceServiceService,private route : ActivatedRoute,private router : Router){}

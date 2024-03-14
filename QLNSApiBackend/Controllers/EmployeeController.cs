@@ -25,6 +25,13 @@ namespace QLNSApiBackend.Controllers
             return Ok(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var model = await _employeeService.GetList();
+            return Ok(model);
+        }
+
         [HttpGet("{employeeID}")]
         public async Task<IActionResult> GetById(string employeeID)
         {

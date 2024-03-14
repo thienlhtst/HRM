@@ -11,7 +11,7 @@
               <div class=" p-2 flex-grow-1 ">
                 <div  class="form align-items-center">
                   <i class="fa fa-search"></i>
-                  <input type="text" name="filter" [(ngModel)]="searchText" class="form-control form-input" placeholder="Search anything..." #fill>
+                  <input type="text" name="search" [(ngModel)]="searchText" class="form-control form-input" (ngModelChange)="onSearchChange()" placeholder="Search anything..." #fill>
                 </div>
 
                 </div>

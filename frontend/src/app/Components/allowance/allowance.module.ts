@@ -20,7 +20,7 @@ const routes : Routes =[
     path : '',
     children:[
       {path: '',component:AllowanceListComponent},
-      {path:'update/:id',component:AllowanceOptionsComponent}
+      {path:'options/:id',component:AllowanceOptionsComponent}
     ]
   }
 ]

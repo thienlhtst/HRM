@@ -18,7 +18,7 @@ const route : Routes =[{
   path:'',
   children:[
     {path:'',component:PositionListComponent},
-    {path:'update/:id',component:PositionOptionsComponent}
+    {path:'options/:id',component:PositionOptionsComponent}
   ]
 }]
 

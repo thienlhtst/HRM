@@ -11,7 +11,7 @@
       <div class=" p-2 flex-grow-1 ">
         <div  class="form align-items-center">
           <i class="fa fa-search"></i>
-          <input type="text" name="filter" [(ngModel)]="searchText" class="form-control form-input" placeholder="Search anything..." #fill>
+          <input type="text" name="search" [(ngModel)]="searchText" class="form-control form-input" (ngModelChange)="onSearchChange()" placeholder="Search anything..." #fill>
         </div>
 
         </div>
@@ -39,6 +39,7 @@
                       <th>Password</th>
                       <th>Active</th>
                       <th>UrlImage</th>
+                      <th>Options</th>
                   </tr>
               </thead>
               <tbody>
@@ -59,11 +60,11 @@
                       <td>{{item.active}}</td>
                       <td>{{item.urlImage}}</td>
                       <td>
-                        <button (click)="ButtonClickToUpdate(item.id)">
-                          <img src="/frontend/src/img/plus.png" />
+                        <button class="img-button-employee" (click)="ButtonClickToUpdate(item.id)">
+                          <img  class="ti ti-edit"   src="" />
                         </button>
-                        <button (click)="Delete($event,item.id)">
-                          <img   src="/frontend/src/img/plus.png" />
+                        <button class="img-button-employee" (click)="Delete($event,item.id)">
+                          <img  class="ti ti-circle-minus" src="" />
                         </button>
                       </td>
                   </tr>

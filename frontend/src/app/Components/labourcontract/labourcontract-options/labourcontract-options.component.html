@@ -1,7 +1,4 @@
 <app-spinner></app-spinner>
-<h5>Update Allowance</h5>
-
-
 <form class="form" #form="ngForm"   >
     <div class="form-group row">
         <div class="col-sm-10">
@@ -39,8 +36,13 @@
       <input type="number" id="active"  ngModel name="active" [ngModel]="data.active"  class="form-control" >
   </div>
 </div>
-    <button (click)="Update(form.value)" *ngIf="selectedID"> Update </button>
-    <button  (click)="Add(form.value)" *ngIf="!selectedID"> Add </button>
+<ng-template [ngIf]="selectedID">
+  <button class="btn btn-outline-info mx-auto" (click)="Update(form.value)"> Update </button>
+</ng-template>
+
+<ng-template [ngIf]="!selectedID">
+  <button class="btn btn-outline-info mx-auto" (click)="Add(form.value)"> Add</button>
+</ng-template>
 </form>
 
 

@@ -7,14 +7,14 @@ import { LabourContractServiceService } from 'src/Services/LabourContract/labour
 @Component({
   selector: 'app-labourcontract-list',
   templateUrl: './labourcontract-list.component.html',
-  styleUrls: ['./labourcontract-list.component.scss']
+  styleUrls: ['./labourcontract-list.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss']
 })
 export class LabourcontractListComponent implements OnInit {
   constructor(private service : LabourContractServiceService){}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.GetPaging()
   }
-
+  searchText : any
   datas : LabourContractModel[]
   ShowFormOption : boolean = false
   ShowForm : boolean = false
