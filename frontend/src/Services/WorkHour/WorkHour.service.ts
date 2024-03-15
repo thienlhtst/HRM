@@ -22,15 +22,15 @@ constructor(private http : HttpClient) { }
     return this.http.get<WorkHourModel[]>(this.apiurl + '/WorkHour');
   }
   GetbyId(id:any):Observable<any>{
-    return this.http.get<WorkHourModel[]>(this.apiurl + '/WorkHour/'+id);
+    return this.http.get<any>(this.apiurl + '/WorkHour/'+id);
   }
-  CreateWorkhour(data : WorkHourCreateRequest){
+  CreateWorkhour(data : WorkHourCreateRequest):Observable<any>{
     return this.http.post(this.apiurl + '/WorkHour/create',data)
   }
-  EditWorkhour(data:WorkhourEditRequest){
+  EditWorkhour(data:WorkhourEditRequest):Observable<any>{
     return this.http.put(this.apiurl +'/WorkHour/'+data.id,data)
   }
-  DeleteWorkhour(data:string){
+  DeleteWorkhour(data:string):Observable<any>{
     return this.http.delete(this.apiurl + '/WorkHour/'+data)
   }
 

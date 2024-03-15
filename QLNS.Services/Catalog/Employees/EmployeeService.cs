@@ -37,9 +37,10 @@ namespace QLNS.Services.Catalog.Employees
 
         public async Task<int> Create(EmployeeCreateRequest request)
         {
+            int id = await _context.Employee.CountAsync();
             var Employee = new Entity.Entities.Employees()
             {
-                ID = request.ID,
+                ID = (id+1).ToString(),
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 MiddleName = request.MiddleName,

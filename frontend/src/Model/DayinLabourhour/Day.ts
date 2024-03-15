@@ -1,6 +1,6 @@
 export interface Day {
     id:number,
-    IDLB:number,
+    idlb:string,
     name:string
     days:number,
     months:number

@@ -14,15 +14,17 @@ namespace QLNS.DataAccess.Extenstions
     public class DataSeeder
     {
         private Faker<WorkHour> WorkHourFake;
-        private List<WorkHour> workHoursList = new List<WorkHour>();
+
         private Faker<EmployeesWithAllowances> EWAFake;
         private List<EmployeesWithAllowances> EWAList = new List<EmployeesWithAllowances>();
 
-        private int idWork = 1; 
         private int idEWA = 1;
 
         public List<WorkHour> WorkHourSeedData()
         {
+            List<WorkHour> workHoursList = new List<WorkHour>();
+            int idWork = 1;
+
             for (int i = 1; i <= 12; i++)
             {
                 int maxDay = (i == 2) ? 28 : (i == 4 || i == 6 || i == 9 || i == 11) ? 30 : 31;
@@ -30,24 +32,23 @@ namespace QLNS.DataAccess.Extenstions
                 {
                     for (int z = 1; z <= 5; z++)
                     {
-                        WorkHourFake = new Faker<WorkHour>()
-                        .RuleFor(u => u.ID, f => idWork++)
-                        .RuleFor(u => u.EmployeesID, f => z.ToString())
-                        .RuleFor(u => u.LBDID, f => 1.ToString())
-                        .RuleFor(u => u.Day, f => j)
-                        .RuleFor(u => u.Month, f => i)
-                        .RuleFor(u => u.Year, f => 2023)
-                        .RuleFor(u => u.HourCheckin, f => 8)
-                        .RuleFor(u => u.MinuteCheckin, f => 30)
-                        .RuleFor(u => u.HourCheckout, f => f.Random.Int(min: 17, max: 18))
-                        .RuleFor(u => u.MinuteCheckout, (f, u) =>
+                        
+                        Random random = new Random();
+                        WorkHour workHour = new WorkHour
                         {
-                            if (u.HourCheckout == 17)
-                                return 00;
-                            else
-                                return 30;
-                        });
-                        workHoursList.Add(WorkHourFake);
+                            ID= idWork,
+                            EmployeesID = z.ToString(),
+                            LBDID = random.Next(1, 2).ToString(),
+                            Day=j,
+                            Month=i,
+                            Year=2023,
+                            HourCheckin=8,
+                            MinuteCheckin=random.Next(0, 40),
+                            HourCheckout= random.Next(17, 18),
+                            MinuteCheckout=random.Next(0, 30),
+                        };
+                        idWork+=1;
+                        workHoursList.Add(workHour);
                     }
                 }
             }

@@ -19,6 +19,8 @@ using QLNS.Services.Catalog.Days;
 using QLNS.Services.Catalog.Employees;
 using QLNS.Services.Catalog.EmployeesWithAllowances;
 using QLNS.Services.Catalog.LabourContract;
+using QLNS.Services.Catalog.LabourDay;
+using QLNS.Services.Catalog.LabourHours;
 using QLNS.Services.Catalog.Login;
 using QLNS.Services.Catalog.Positions;
 using QLNS.Services.Catalog.Ranks;
@@ -56,6 +58,10 @@ namespace QLNSApiBackend.BackendApi
             services.AddTransient<ILoginService, LoginService>();
             services.AddTransient<IRankService, RankService>();
             services.AddTransient<ISalaryService, SalaryService>();
+            services.AddTransient<ILabourDayService, LabourdayService>();
+
+            services.AddTransient<ILabourHourService, LabourHourService>();
+
             services.AddTransient<IManagePositionService, ManagePositionService>();
             services.AddTransient<IWorkHourService, WorkhourService>();
             services.AddTransient<IAllowanceService, AllowanceService>();

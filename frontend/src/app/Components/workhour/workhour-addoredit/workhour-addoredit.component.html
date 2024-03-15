@@ -7,35 +7,35 @@
       ><h5>Edit Work Hour {{ id }}</h5>
     </ng-template>
   </div>
-  <form method="POST" class="m-5">
+  <form  class="m-5 form" #form="ngForm" (ngSubmit)="Confirm(form.value)">
     <div *ngIf="id === 'null'; else edittemplate1">
     <div class="input-group"> 
-      <input class="input--style-1" type="text" placeholder="ID" name="name" />
+      <input class="input--style-1" type="text"  placeholder="IDLb"  ngModel name="idlb" />
     </div>
     <div class="input-group">
-      <input class="input--style-1" type="text" placeholder="ID" name="name" />
+      <input class="input--style-1" type="text" placeholder="idemployee"  ngModel name="idemployee" />
     </div>
   </div>
   <ng-template #edittemplate1>
     <div class="input-group"> 
-      <input class="input--style-1" type="text" placeholder="" [(ngModel)]="data.employeesName" name="name" readonly />
+      <input class="input--style-1" type="text" placeholder="" [(ngModel)]="data.namelb" name="name" readonly />
     </div>
     <div class="input-group">
-      <input class="input--style-1" type="text" placeholder="" [(ngModel)]="data.lbdid" name="lb"  readonly />
+      <input class="input--style-1" type="text" placeholder="" [(ngModel)]="data.employeesID" name="lb"  readonly />
     </div>
   </ng-template>
 
     <div class="row row-space"><div class="col-4 d-flex justify-content-center">
-      <app-date-picker class="ml-5"  (Datechange)="OnChangeDate($event) "></app-date-picker>
+      <app-date-picker class="ml-5"  (Datechange)="OnChangeDate($event)" ></app-date-picker>
     </div>  
       <div class="col-4 d-flex align-items-center">
         <p class="fs-5"> CHECKIN:</p>
-        <select class="form-select">
-          <ng-container *ngFor="let number of [].constructor(60); let i = index">
+        <select class="form-select" ngModel name="minuteCheckin" [(ngModel)]="data.minuteCheckin" >
+          <ng-container *ngFor="let number of [].constructor(60); let i = index" >
             <option [value]="i + 1" [selected]="i + 1 === data.minuteCheckin">{{ i + 1 }} minutes</option>
           </ng-container>
         </select>
-        <select class="form-select">
+        <select class="form-select" ngModel name="hourCheckin" [(ngModel)]="data.hourCheckin">
           <ng-container *ngFor="let number of [].constructor(24); let i = index">
             <option [value]="i + 1" [selected]="i + 1 === data.hourCheckin">{{ i + 1 }} hour</option>
           </ng-container>
@@ -43,12 +43,12 @@
       </div>
       <div class="col-4 d-flex align-items-center">
         <p class="fs-5"> CHECKOUT:</p>
-        <select class="form-select" (change)="OnchangeHour(1,$event)">
+        <select class="form-select" ngModel name="minuteCheckout" [(ngModel)]="data.minuteCheckout">
           <ng-container *ngFor="let number of [].constructor(60); let i = index">
             <option [value]="i + 1" [selected]="i + 1 === data.minuteCheckout">{{ i + 1 }} minutes</option>
           </ng-container>
         </select>
-        <select class="form-select" (change)="OnchangeHour(2,$event)">
+        <select class="form-select" ngModel name="hourCheckout" [(ngModel)]="data.hourCheckout">
           <ng-container *ngFor="let number of [].constructor(24); let i = index">
             <option [value]="i + 1" [selected]="i + 1 === data.hourCheckout">{{ i + 1 }} hour</option>
           </ng-container>

@@ -8,6 +8,7 @@ import * as signalR from "@microsoft/signalr"
 import { RequestHomepaging, Requestpaging } from 'src/Model/other/requestpaging';
 import { EmployeeService } from 'src/Services/Employee/employee.service';
 import { HomeService } from 'src/Services/Home/homeService.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home-list',
@@ -30,6 +31,7 @@ export class HomeListComponent implements OnInit {
     pageindex : 1,
     pagesize : 10
   }
+  apisignar = environment.apisignar
   HomeDetail :any={}
   reponsedata:any={}
   spinner : boolean = false
@@ -40,7 +42,7 @@ export class HomeListComponent implements OnInit {
     this.textHeader="List Work Hours Today"
     this.ChangeDataWorkhour(this.paging)
     this._hubConnection = new signalR.HubConnectionBuilder()
-    .withUrl('https://localhost:3333/signar', {
+    .withUrl(this.apisignar+'/signar', {
       skipNegotiation: true,
       transport: signalR.HttpTransportType.WebSockets
     })
@@ -74,7 +76,7 @@ export class HomeListComponent implements OnInit {
           if (finditem !== -1) {
             this.reponsedata.items[finditem].hourCheckout = data.hour;
             this.reponsedata.items[finditem].minuteCheckout = data.minute;
-            this.HomeDetail.totalworkhour+=(this.reponsedata.items[finditem].hourCheckout + (this.reponsedata.items[finditem].minuteCheckout / 60)) - (this.reponsedata.items[finditem].hourCheckin + (this.reponsedata.items[finditem].minuteCheckin / 60));
+            this.HomeDetail.totalworkhour+=((this.reponsedata.items[finditem].hourCheckout + (this.reponsedata.items[finditem].minuteCheckout / 60)) - (this.reponsedata.items[finditem].hourCheckin + (this.reponsedata.items[finditem].minuteCheckin / 60))).toFixed(2);
           }
         }
       })

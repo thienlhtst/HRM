@@ -40,7 +40,7 @@ export class WorkhourStatisticsServiceService {
         let resultquery:any[]=[]
 
         employees.items.forEach(employee => {
-          let total=0
+          let total1=0
           let ResultInForeach :any={
             name:employee.name,
             workhour:[]
@@ -51,13 +51,14 @@ export class WorkhourStatisticsServiceService {
                   if(employee.id==workhour.employeeID && i==workhour.day )
                   {
                     flag=1
-                    total=total+workhour.workhour
+                    total1=total1+workhour.workhour
                     ResultInForeach.workhour.push(workhour.workhour)
                   }
               })
               if (flag == 0)
                 ResultInForeach.workhour.push(0)
            }
+           let total=total1.toFixed(2)
            ResultInForeach.workhour.push(total)
            resultquery.push(ResultInForeach)
         });

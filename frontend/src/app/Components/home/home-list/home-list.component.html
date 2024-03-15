@@ -3,7 +3,7 @@
     <div class=" col-xl-3 col-md-6 flex-fill">
         <div class="card bg-primary text-white mb-4">
             <div class="card-body">Total Hours:</div>
-            <h2  *ngIf="spinner" class="text-center" #loaddata>{{HomeDetail.totalworkhour.toFixed(2)}}</h2>
+            <h2  *ngIf="spinner;else loaddata" class="text-center" >{{HomeDetail.totalworkhour}}</h2>
             <ng-template #loaddata>
               <app-spinner-beta class="d-flex justify-content-center "></app-spinner-beta>
             </ng-template>
@@ -16,7 +16,7 @@
     <div class="col-xl-3 col-md-6 flex-fill">
         <div class="card bg-warning text-white mb-4">
             <div class="card-body">Employee Work:</div>
-            <h2 *ngIf="spinner" class="text-center" #loaddata1> {{HomeDetail.employeeWork}}</h2>
+            <h2 *ngIf="spinner ;else loaddata1" class="text-center" > {{HomeDetail.employeeWork}}</h2>
             <ng-template #loaddata1>
               <app-spinner-beta class="d-flex justify-content-center "></app-spinner-beta>
             </ng-template>
@@ -28,7 +28,7 @@
     <div class="col-xl-3 col-md-6 flex-fill">
         <div class="card bg-success text-white mb-4">
             <div class="card-body">Employee Off</div>
-            <h2  *ngIf="spinner" class="text-center" #loaddata2>{{HomeDetail.employeeOff}} </h2>
+            <h2  *ngIf="spinner;else loaddata2" class="text-center" >{{HomeDetail.employeeOff}} </h2>
             <ng-template #loaddata2>
               <app-spinner-beta class="d-flex justify-content-center "></app-spinner-beta>
             </ng-template>
@@ -41,7 +41,7 @@
     <div class="col-xl-3 col-md-6 flex-fill">
       <div class="card bg-success text-white mb-4">
           <div class="card-body">Employee Late:</div>
-          <div *ngIf="spinner"  #loaddata3>
+          <div *ngIf="spinner;else loaddata3"  >
             <h2  class="text-center"> {{HomeDetail.employyLate}}</h2>
           </div>
 

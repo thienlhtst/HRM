@@ -13,13 +13,14 @@ import { LabourdayListComponent } from './labourday-list/labourday-list.componen
 import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
 import { LabourdayAddoreditComponent } from './labourday-addoredit/labourday-addoredit.component';
 import { LabourhourAddoreditComponent } from './labourhour-addoredit/labourhour-addoredit.component';
+import { LabourHourService } from 'src/Services/LabourHour/LabourHour.service';
 
 const route : Routes = [
   {
     path :'',
     children :[
       {path:'',component:LabourdayComponent},
-    
+      {path:':id',component:LabourdayComponent},
     ]
   }
 ]
@@ -37,6 +38,7 @@ const route : Routes = [
     SpinnerBetaComponent,
     MdbRippleModule
   ],
+   providers:[LabourHourService],
   declarations: [LabourdayComponent,LabourdayListComponent,LabourdayAddoreditComponent,LabourhourAddoreditComponent]
 })
 export class LabourdayModule { }

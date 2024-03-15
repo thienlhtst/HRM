@@ -23,8 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Catalog\Days\Dtos\Public\" />
-    <Folder Include="Catalog\LabourHour\" />
-    <Folder Include="Catalog\LabourDay\" />
   </ItemGroup>
 
 </Project>

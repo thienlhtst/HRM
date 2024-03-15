@@ -10,6 +10,7 @@ import { WorkhourListDetailComponent } from './workhour-list-detail/workhour-lis
 import { FormsModule } from '@angular/forms';
 import { WorkhourAddoreditComponent } from './workhour-addoredit/workhour-addoredit.component';
 import { DatePickerComponent } from "../../theme/shared/components/date-picker/date-picker.component";
+import { NotificationComponent } from "../../theme/shared/components/Notification/Notification.component";
 
 const route : Routes=[
   {
@@ -35,7 +36,8 @@ const route : Routes=[
         BreadcrumbComponent,
         HttpClientModule, FormsModule,
         PagingnavComponent,
-        DatePickerComponent
+        DatePickerComponent,
+        NotificationComponent
     ]
 })
 export class WorkhourModule { }

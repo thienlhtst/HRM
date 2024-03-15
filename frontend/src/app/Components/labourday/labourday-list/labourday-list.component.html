@@ -15,48 +15,31 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td scope="col d-flex ">
+          <tr *ngFor="let labourhour of datalist">
+            <td scope="col d-flex " >
               
-              <h3>Name: Ngay Le</h3>
-              <h3>Factor: 3</h3>
+              <h3>Name: {{labourhour.name}}</h3>
+              <h3>Factor: {{labourhour.factor}}</h3>
               <div class="align-self-end">
-              <button type="button" class=" btn btn-link"  >Edit Your Labour</button>
+              <button type="button" class=" btn btn-link" (click)="OpenAddofEditLabourHour(labourhour.id)" >Edit Your Labour</button>
             </div>
             </td>
-            <td>
-              <div class="d-flex  align-items-center p-1" >
-              <p style="margin-top: 2%;"> 30/4 ngay giai phong </p>
-              <button type="button" class=" btn btn-link" (click)="test(1)" >Edit Your day</button>
+            <td *ngIf="labourhour.id!='1';else normalday">
+              <div class="d-flex justify-content-between  align-items-center p-1" *ngFor="let labourday of labourhour.days" >
+              <p style="margin-top: 4%;"> {{labourday.days}}/{{labourday.months}} {{labourday.name}} </p>
+              <button type="button" class=" btn btn-link" (click)="OpenAddofEdit(labourday.id,labourhour.id)" >Edit Your day</button>
               </div>
-              <div class="d-flex  align-items-center p-1" >
-                <p style="margin-top: 2%;"> 30/4 ngay giai phong </p>
-                <button type="button" class=" btn btn-link" (click)="test(2)" >Edit Your day</button>
-                </div>
-                <div class="d-flex  align-items-center p-1" >
-                  <p style="margin-top: 2%;"> 30/4 ngay giai phong </p>
-                  <button type="button" class=" btn btn-link"  >Edit Your day</button>
-                  </div>
-              <button type="button" class="btn btn-link" (click)="test(0)" >Add New Day</button>
+              <button type="button" class="btn btn-link" (click)="OpenAddofEdit(0,labourhour.id)" >Add New Day</button>
             </td>
           </tr>
-          <tr>
-            <td>
-              Ngay Cham chi
-            </td>
-            <td>
-              <p>30/4 ngay giai phong </p>
-              <p>30/4 ngay giai phong </p>
-              <p>30/4 ngay giai phong </p>
-              <p>30/4 ngay giai phong </p>
-              <p>30/4 ngay giai phong </p>
-              <p>30/4 ngay giai phong </p>
-              <p>30/4 ngay giai phong </p>
-              <button type="button" class="btn btn-link" >Add New Day</button>
-            </td>
-          </tr>
+          
         </tbody>
       </table>
     </div>
   </div>
 </div>
+<ng-template #normalday>
+  <td class="align-middle">
+    <p> all remaining days </p>
+  </td>
+</ng-template>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { WorkHourCreateRequest} from 'src/Model/Workhours/WorkHourCreateRequest'
@@ -10,6 +10,8 @@ import { WorkHourService } from 'src/Services/WorkHour/WorkHour.service';
   styleUrls: ['./workhour-addoredit.component.css']
 })
 export class WorkhourAddoreditComponent implements OnInit {
+  @Output() onConfirm: EventEmitter<number> = new EventEmitter();
+
   id : string =''
   createrequest:WorkHourCreateRequest
   editrequest:WorkhourEditRequest
@@ -17,7 +19,8 @@ export class WorkhourAddoreditComponent implements OnInit {
     id: 0,
    employeesID :  0 ,
    employeesName : "" ,
-   lbdid :  2 ,
+   lbdid :  0 ,
+   namelb:'',
    day : 1,
    month : 1,
    year : 2023,
@@ -36,6 +39,7 @@ export class WorkhourAddoreditComponent implements OnInit {
          employeesID :  res.employeesID ,
          employeesName : res.employeesName ,
          lbdid : res.lbdid ,
+         namelb: res.namelb,
          day : res.day,
          month : res.month,
          year : res.year,
@@ -51,9 +55,38 @@ export class WorkhourAddoreditComponent implements OnInit {
   ngOnInit() {
   }
   OnChangeDate(date : NgbDateStruct){
-
+    this.data.day =date.day
+    this.data.month =date.month
+    this.data.year =date.year
   }
   OnchangeHour(flag:number,event:any){
     console.log(event.target.value)
+  }
+  Confirm(data:any){
+    console.log(this.data)
+    let request :any={
+        id: this.data.id,
+        employeesID :  this.data.employeesID ,
+        lbdid : this.data.lbdid ,
+        day : this.data.day,
+        month : this.data.month,
+        year : this.data.year,
+        hourCheckin :this.data.hourCheckin,
+        minuteCheckin : this.data.minuteCheckin,
+        hourCheckout : this.data.hourCheckout,
+        minuteCheckout : this.data.minuteCheckout
+    }
+    if(this.id=='null'){
+      request.employeesID=data.idemployee
+      request.lbdid= data.idlb
+      this.services.CreateWorkhour(request).subscribe((res)=>{
+        this.router.navigate(['/workhour'], { queryParams: { flag: res } });
+      })
+    }else
+    {
+      this.services.EditWorkhour(this.data).subscribe((res)=>{
+        this.router.navigate(['/workhour'], { queryParams: { flag: res } });
+      })
+    }
   }
 }

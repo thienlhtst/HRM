@@ -19,8 +19,8 @@ namespace QLNS.DataAccess.Extenstions
         public static void Seed(this ModelBuilder modelbuilder)
         {
             modelbuilder.Entity<Allowance>().HasData(
-                new Allowance() { ID = "1", Name = "Tiền ăn", Money = 300000 },
-                new Allowance() { ID = "2", Name = "Tiền xăng", Money = 500000 }
+                new Allowance() { ID = "1", Name = "Tiền ăn", Money = 30000 },
+                new Allowance() { ID = "2", Name = "Tiền xăng", Money = 20000 }
                 );
             modelbuilder.Entity<Employees>().HasData(
                 new Employees() { ID = "1", FirstName = "Nguyen", MiddleName = "Jonny", LastName = "Dang", DOB = new DateTime(2004, 05, 01), Sex = Sex.Male, CIC = "000001", NumberPhone = "111", Address = "Texas", SalaryID = "1", Account = "admin", Password = "123456", Active = Active.Yes, URLImage = "" },
@@ -56,8 +56,8 @@ namespace QLNS.DataAccess.Extenstions
                 new Salary() { ID = "8", PositionID = "2", RankID = "4", Money = 70000 },
                 new Salary() { ID = "9", PositionID = "3", RankID = "1", Money = 60000 },
                 new Salary() { ID = "10", PositionID = "3", RankID = "2", Money = 100000 },
-                new Salary() { ID = "11", PositionID = "3", RankID = "3", Money = 950000 },
-                new Salary() { ID = "12", PositionID = "3", RankID = "4", Money = 700000 }
+                new Salary() { ID = "11", PositionID = "3", RankID = "3", Money = 95000 },
+                new Salary() { ID = "12", PositionID = "3", RankID = "4", Money = 70000 }
                 );
             modelbuilder.Entity<Day>().HasData(
                 new Day() { ID = "1", IDLB = "3", Name = "30/4", Days = 30, Months = 4 },
@@ -73,10 +73,10 @@ namespace QLNS.DataAccess.Extenstions
 
                 );
 
-            /*modelbuilder.Entity<WorkHour>().HasData(
+            modelbuilder.Entity<WorkHour>().HasData(
               Seeder.WorkHourSeedData());
-            modelbuilder.Entity<EmployeesWithAllowances>().HasData(
-                Seeder.EWASeedData());*/
+            /* modelbuilder.Entity<EmployeesWithAllowances>().HasData(
+                 Seeder.EWASeedData());*/
         }
     }
 }
