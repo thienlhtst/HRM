@@ -13,7 +13,6 @@ import { map } from 'rxjs/operators';
 import { SalaryModel } from 'src/Model/SalaryModel';
 import { EmployeeModel } from 'src/Model/Employee/EmployeeModel';
 import { SalaryModelList } from 'src/Model/SalaryModelList';
-import { SalaryAddComponent } from '../../salary/salary-add/salary-add.component';
 
 @Component({
   selector: 'app-employee-add',

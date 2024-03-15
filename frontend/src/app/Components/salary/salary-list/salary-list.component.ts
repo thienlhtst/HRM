@@ -8,7 +8,7 @@ import { SalaryService } from 'src/Services/Salary/salary.service';
 @Component({
   selector: 'app-salary-list',
   templateUrl: './salary-list.component.html',
-  styleUrls: ['./salary-list.component.scss','../../../../scss/shared/sreach.scss']
+  styleUrls: ['./salary-list.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss']
 })
 export class SalaryListComponent implements OnInit{
   constructor(private service : SalaryService,private router : Router){}
@@ -19,8 +19,7 @@ export class SalaryListComponent implements OnInit{
     pageindex : 1,
     pagesize : 10
   }
-  ShowFormAdd : boolean = false
-  ShowFormUpdate : boolean = false
+  ShowFormOptions : boolean = false
   ShowForm : boolean = false
   selectedID : string
   PageCount : number = 1
@@ -32,12 +31,13 @@ export class SalaryListComponent implements OnInit{
   }
 
   ClicktoShowFormAdd(): void{
-    this.ShowFormAdd = !this.ShowFormAdd
+    this.ShowFormOptions = !this.ShowFormOptions
     this.ShowForm =!this.ShowForm
+    this.selectedID = ""
   }
 
   ButtonClickToUpdate(id : string){
-    this.ShowFormUpdate =! this.ShowFormUpdate
+    this.ShowFormOptions =! this.ShowFormOptions
     this.ShowForm =!this.ShowForm
     this.selectedID = id
   }
@@ -45,8 +45,7 @@ export class SalaryListComponent implements OnInit{
 
 
   OnSuccess(){
-    this.ShowFormUpdate = false
-    this.ShowFormAdd = false
+    this.ShowFormOptions = false
   }
 
 

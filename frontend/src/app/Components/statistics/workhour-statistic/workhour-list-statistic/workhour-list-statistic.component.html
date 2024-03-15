@@ -40,20 +40,20 @@
               </tr>
             </thead>
             <tbody *ngIf="spinner; else loaddata ">
-              <tr *ngFor="let item of items | filter : searchText">
+              <tr *ngFor="let item of items ">
                 <td>{{item.name}}</td>
                 <td *ngFor="let workhour of item.workhour"> {{workhour}}</td>
               </tr>
             </tbody>
             <ng-template #loaddata>
-        
+
               <div class="d-flex justify-content-center">
                 <app-spinner-beta  ></app-spinner-beta>
               </div>
             </ng-template>
 
           </table>
-         
+
         </div>
         <app-pagingnav   class="d-flex justify-content-end" [pagesize]="PageCount" (numberchange)="PageChange($event)" #child></app-pagingnav>
       </div>

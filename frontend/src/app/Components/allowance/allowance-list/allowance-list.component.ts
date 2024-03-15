@@ -21,7 +21,7 @@ import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pa
 @Component({
   selector: 'app-allowance-list',
   templateUrl: './allowance-list.component.html',
-  styleUrls: ['./allowance-list.component.scss']
+  styleUrls: ['./allowance-list.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss']
 })
 
 
@@ -29,25 +29,15 @@ import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pa
 export class AllowanceListComponent implements OnInit,OnChanges  {
   constructor(private service : AllowanceServiceService,private EmployeeService : EmployeeService,private generalService : GeneralService, private router : Router){}
   datas:Allowancemodel[]
-  datasofAllowEmployee : AllowEmployeeModel[]
-  IDGetofAllowance : string
-  IDGetofEmployee : string
   messagerequest:string=''
   searchText : any
   pagecount : number = 1
-  pagecountAllowEmployee : number = 1
   ShowFormAdd : boolean = false
   ShowFormUpdate : boolean = false
   ShowForm : boolean = false
   selectedID : string
   spinner : boolean = false
-  RanksData : any
-  PositionsData : any
-  selectedRankID : string
-  selectedPositionID : string
-  selectedSalaryID : string
-  SalarysData : SalaryModelList[]
-  DataOfEmployee : EmployeeRulesModel[]
+
 
   paging : Requestpaging={
     keyword : '',
@@ -56,57 +46,17 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
 
   }
 
-  pagingAllowEmployee : Requestpaging = {
-    keyword : '',
-    pageindex : 1,
-    pagesize : 10
-  }
-
   @ViewChild(PagingnavComponent) child: PagingnavComponent;
   @ViewChild(NotificationComponent) childnoti: NotificationComponent;
 
   ngOnInit(): void{
     this.GetPaging()
-    this.GetRankAndPositionInfo()
-    this.GetPagingofAllowEmployee()
 
 
-  }
-
-  GetRankAndPositionInfo(){
-    this.generalService.GetRank().subscribe((resrank)=>{
-      this.RanksData = resrank
-    })
-    this.generalService.GetPosition().subscribe((resposition)=>{
-      this.PositionsData = resposition
-    })
-  }
-
-
-  onRankChange(){
-    return this.selectedRankID
 
   }
-  onPositionChange(){
-    return this.selectedPositionID
-  }
 
-  GetSalaryByRankAndPosition(){
-    this.generalService.GetSalary().subscribe((ressalary)=>{
-      this.SalarysData = ressalary
-      for(const salary of this.SalarysData){
-        if(salary.rankID == this.selectedRankID && salary.positionID == this.selectedPositionID)
-        {
-        this.selectedSalaryID = salary.id
-      }
 
-      }
-
-    })
-    this.EmployeeService.GetEmployeeByPositionAndRank(this.selectedSalaryID).subscribe((res)=>{
-      this.DataOfEmployee = res
-    })
-  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['datas']){
@@ -115,8 +65,9 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
   }
 
   ClicktoShowFormAdd(): void{
-    this.ShowFormAdd = !this.ShowFormAdd
+    this.ShowFormUpdate = !this.ShowFormUpdate
     this.ShowForm =!this.ShowForm
+    this.selectedID = ''
   }
 
   ButtonClickToUpdate(id : string){
@@ -126,28 +77,20 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
 
   }
 
-  ClickToGetAllowance(id : string){
-    if(this.IDGetofAllowance === id)
-      this.IDGetofAllowance = null
-    else{
-      this.IDGetofAllowance = id
-      this.EmployeeService.GetEmployeeByAllowance(this.IDGetofAllowance).subscribe((res)=>{
-        this.DataOfEmployee = res
-      })
-    }
-  }
 
-  ClickToGetEmployee(id : string){
-    if(this.IDGetofEmployee === id)
-      this.IDGetofEmployee = null
-    else{
-      this.IDGetofEmployee = id
-      console.log(this.IDGetofEmployee)
-    }
+  OnSearchChange(){
+    console.log(this.searchText)
+    this.SearchAllowanceByIDandName()
 
   }
 
-
+  SearchAllowanceByIDandName(){
+    this.paging.keyword = this.searchText
+    this.service.getAllowancePaging(this.paging).subscribe((res)=>{
+      this.datas = res.items
+      this.pagecount = res.pageCount
+    })
+  }
 
 
   OnSuccess(){
@@ -171,31 +114,22 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
     })
   }
 
-  GetPagingofAllowEmployee(){
-    this.service.getAllowEmployee(this.pagingAllowEmployee).subscribe((res)=>{
-      this.datasofAllowEmployee = res.items
-      this.pagecountAllowEmployee = res.pageCount
-    })
-  }
+
 
   Delete(event:any,id : string){
     if(confirm('Delete this data ?')){
       this.service.DeleteAllowance(id).subscribe((res)=>{
         if(res){
           alert('Delete Success');
-          this.GetPaging();
+          window.location.reload()
         } else{
           alert('Fail')
-          this.GetPaging();
+          window.location.reload()
         }
       })
     }
   }
 
-  pagechangeAllowEmployee(page : number) : void{
-    this.pagingAllowEmployee.pageindex = page
-    this.GetPagingofAllowEmployee()
-  }
 
   pagechange(pagenumber : number) : void{
     this.paging.pageindex = pagenumber

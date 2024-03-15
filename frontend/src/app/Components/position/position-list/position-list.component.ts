@@ -11,7 +11,7 @@ import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pa
 @Component({
   selector: 'app-position-list',
   templateUrl: './position-list.component.html',
-  styleUrls: ['./position-list.component.scss','../../../../scss/shared/sreach.scss']
+  styleUrls: ['./position-list.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss']
 })
 export class PositionListComponent implements OnInit,OnChanges{
   constructor(private service : PositionServiceService,private router : Router){}
@@ -23,8 +23,7 @@ export class PositionListComponent implements OnInit,OnChanges{
     pageindex : 1,
     pagesize : 10
   }
-  ShowFormAdd : boolean = false
-  ShowFormUpdate : boolean = false
+  ShowFormOptions : boolean = false
   ShowForm : boolean = false
   selectedID : string
   PageCount : number = 1
@@ -41,12 +40,13 @@ export class PositionListComponent implements OnInit,OnChanges{
 
 
   ClicktoShowFormAdd(): void{
-    this.ShowFormAdd = !this.ShowFormAdd
+    this.ShowFormOptions = !this.ShowFormOptions
     this.ShowForm =!this.ShowForm
+    this.selectedID = ""
   }
 
   ButtonClickToUpdate(id : string){
-    this.ShowFormUpdate =! this.ShowFormUpdate
+    this.ShowFormOptions =! this.ShowFormOptions
     this.ShowForm =!this.ShowForm
     this.selectedID = id
   }
@@ -54,11 +54,21 @@ export class PositionListComponent implements OnInit,OnChanges{
 
 
   OnSuccess(){
-    this.ShowFormUpdate = false
-    this.ShowFormAdd = false
+    this.ShowFormOptions = false
+  }
+
+  onSearchChange(){
+    this.SearchPositionByIdAndName()
   }
 
 
+  SearchPositionByIdAndName(){
+    this.paging.keyword = this.searchText
+    this.service.GetPositionPaging(this.paging).subscribe((res)=>{
+      this.datas = res.items
+      this.PageCount = res.pageCount
+    })
+  }
 
 
   GetPaging(){

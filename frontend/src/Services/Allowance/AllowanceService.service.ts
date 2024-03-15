@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Requestpaging } from 'src/Model/other/requestpaging';
+import { AllowEmployeeModel } from 'src/Model/Allowance/AllowEmployeeModel';
+import { AllowanceRulesModel } from 'src/Model/Allowance/AllowanceRulesModel';
 @Injectable({
   providedIn: 'root'
 })
@@ -28,14 +30,16 @@ constructor(private http : HttpClient) { }
     return this.http.get<Pagingreponse>(this.apiurl + '/Allowance/paging?PageIndex='+paging.pageindex+'&PageSize='+paging.pagesize)
   }
 
-  getAllowEmployee(paging : Requestpaging) : Observable<Pagingreponse>{
-    if(paging.keyword !='')
-    return this.http.get<Pagingreponse>(this.apiurl + '/Allowance/rulespaging?Keyword='+paging.keyword+'&PageIndex='+paging.pageindex+'&PageSize='+paging.pagesize+'');
-    return this.http.get<Pagingreponse>(this.apiurl + '/Allowance/rulespaging?PageIndex='+paging.pageindex+'&PageSize='+paging.pagesize)
+  getAllowEmployee() : Observable<AllowEmployeeModel[]>{
+    return this.http.get<AllowEmployeeModel[]>(this.apiurl + '/Allowance/rules')
   }
 
   CreateAllowance(data : Allowancemodel){
     return this.http.post(this.apiurl + '/Allowance/createallowance',data)
+  }
+
+  CreateAllowanceRules(data: AllowanceRulesModel){
+    return this.http.post(this.apiurl + '/Allowance/createallowancerules',data)
   }
 
 

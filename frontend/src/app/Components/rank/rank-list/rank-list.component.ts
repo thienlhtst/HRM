@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-rank-list',
   templateUrl: './rank-list.component.html',
-  styleUrls: ['./rank-list.component.scss','../../../../scss/shared/sreach.scss']
+  styleUrls: ['./rank-list.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss']
 })
 export class RankListComponent implements OnInit{
   constructor(private service : RankServiceService,private router : Router){}
@@ -22,8 +22,7 @@ export class RankListComponent implements OnInit{
     pageindex  : 1,
     pagesize : 10
   }
-  ShowFormAdd : boolean = false
-  ShowFormUpdate : boolean = false
+  ShowFormOptions : boolean = false
   ShowForm : boolean = false
   selectedID : string
   PageCount : number = 1
@@ -35,19 +34,19 @@ export class RankListComponent implements OnInit{
 
 
  ClicktoShowFormAdd(): void{
-  this.ShowFormAdd = !this.ShowFormAdd
+  this.ShowFormOptions = !this.ShowFormOptions
   this.ShowForm =!this.ShowForm
+  this.selectedID = ""
 }
 
 ButtonClickToUpdate(id : string){
-  this.ShowFormUpdate =! this.ShowFormUpdate
+  this.ShowFormOptions =! this.ShowFormOptions
   this.ShowForm =!this.ShowForm
   this.selectedID = id
 }
 
 OnSuccess(){
-  this.ShowFormUpdate = false
-  this.ShowFormAdd = false
+  this.ShowFormOptions = false
 }
 
   Delete(event:any,id : string){
@@ -62,6 +61,19 @@ OnSuccess(){
         }
       })
     }
+  }
+
+  onSearchChange(){
+    this.SearchRankByIdAndName()
+  }
+
+
+  SearchRankByIdAndName(){
+    this.paging.keyword = this.searchText
+    this.service.GetRankPaging(this.paging).subscribe((res)=>{
+      this.datas = res.items
+      this.PageCount = res.pageCount
+    })
   }
 
   GetPaging(){

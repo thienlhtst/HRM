@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { RequestpagingStatistic } from 'src/Model/other/requestpaingstatistic';
@@ -50,13 +51,13 @@ export class SalaryStatisticListComponent implements OnInit {
   })
   }
   ChangeData(request:RequestpagingStatistic ):void{
-    
+
     this.services.Getpagingsalary(request).subscribe((res)=>{
       this.spinner =false
       this.salaryemployee = res.items
       this.spinner =true
     })
-  }  
+  }
   onChangeMonth(event:any){
     this.paging.month = parseInt(event.target.value);
     this.ChangeData(this.paging)

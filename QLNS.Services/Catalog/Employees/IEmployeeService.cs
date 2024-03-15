@@ -26,8 +26,6 @@ namespace QLNS.Services.Catalog.Employees
 
         Task<EmployeeEditRequest> GetByIdEdit(string EmployeeID);
 
-        Task<IEnumerable<Entity.Entities.Employees>> GetAll();
-
         Task<PagedResult<EmployeeViewModel>> GetAllPage(GetEmployeePagingRequest request);
 
         Task<List<EmployeeViewModel>> GetByRankAndPosition(string SalaryID);

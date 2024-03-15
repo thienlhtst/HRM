@@ -68,10 +68,10 @@ namespace QLNSApiBackend.Controllers
             return Ok(allowance);
         }
 
-        [HttpGet("rulespaging")]
-        public async Task<IActionResult> GetRulesPaging([FromQuery] GetAllowanceRulesPagingRequest request)
+        [HttpGet("rules")]
+        public async Task<IActionResult> GetRulesPaging()
         {
-            var rules = await _allowanceService.GetAllPageRules(request);
+            var rules = await _allowanceService.GetAllRules();
             return Ok(rules);
         }
     }

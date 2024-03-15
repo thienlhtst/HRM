@@ -13,11 +13,11 @@
                 <i class="fa fa-search"></i>
                 <input type="text" name="filter" [(ngModel)]="searchText" class="form-control form-input" placeholder="Search anything..." #fill>
               </div>
-              
+
               </div>
               <div class="p-2" >
                 <button type="button" (click)="ClicktoShowFormAdd()" class="btn btn-outline-info mx-auto">Add new</button>
-        
+
               </div>
           </div>
         <div class="table-responsive" >
@@ -31,17 +31,17 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr *ngFor="let item of datas | filter : searchText">
+                  <tr *ngFor="let item of datas ">
                       <td>{{item.id}}</td>
                       <td>{{item.rankName}}</td>
                       <td>{{item.positionName}}</td>
                       <td>{{item.money}}</td>
                       <td>
-                        <button (click)="ButtonClickToUpdate(item.id)">
-                          <img   src="/frontend/src/img/plus.png" />
+                        <button class="img-button" (click)="ButtonClickToUpdate(item.id)">
+                          <img  class="ti ti-edit"   src="" />
                         </button>
-                        <button (click)="Delete($event,item.id)">
-                          <img   src="/frontend/src/img/plus.png" />
+                        <button class="img-button" (click)="Delete($event,item.id)">
+                          <img  class="ti ti-circle-minus" src="" />
                         </button>
                       </td>
                   </tr>
@@ -58,23 +58,14 @@
       </div>
   </div>
 
-  <div class="col-md-12 col-xl-4" [ngClass]="{'col-md-7': ShowFormAdd, 'd-none': !ShowFormAdd}" *ngIf="ShowFormAdd">
+
+
+
+    <div class="col-md-12 col-xl-4" [ngClass]="{'col-md-7': ShowFormOptions, 'd-none': !ShowFormOptions}" *ngIf="ShowFormOptions">
       <div class="card">
         <div class="card-body">
           <div class="list-group list-group-flush">
-            <app-salary-add (onSuccess)="OnSuccess()"></app-salary-add>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-    <div class="col-md-12 col-xl-4" [ngClass]="{'col-md-7': ShowFormUpdate, 'd-none': !ShowFormUpdate}" *ngIf="ShowFormUpdate">
-      <div class="card">
-        <div class="card-body">
-          <div class="list-group list-group-flush">
-              <app-salary-update [selectedID]="selectedID" (onSuccess)="OnSuccess()"></app-salary-update>
+              <app-salary-options [selectedID]="selectedID" (onSuccess)="OnSuccess()"></app-salary-options>
          </div>
         </div>
       </div>

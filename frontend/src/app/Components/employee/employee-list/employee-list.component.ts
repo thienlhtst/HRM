@@ -9,7 +9,7 @@ import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pa
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
-  styleUrls: ['./employee-list.component.scss','../../../../scss/shared/sreach.scss']
+  styleUrls: ['./employee-list.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss']
 })
 export class EmployeeListComponent implements OnInit {
   constructor(private service : EmployeeService,private router : Router){}
@@ -41,6 +41,21 @@ export class EmployeeListComponent implements OnInit {
       this.datas =res;
     })
   }
+
+  onSearchChange(){
+    this.SearchEmployeeByIDAndLastName()
+  }
+
+
+  SearchEmployeeByIDAndLastName(){
+    this.paging.keyword = this.searchText
+    this.service.GetEmployeePaging(this.paging).subscribe((res)=>{
+      this.datas = res.items
+      this.PageCount = res.pageCount
+    })
+  }
+
+
 
   Delete(event:any,id : string){
     if(confirm('Delete this data ?')){

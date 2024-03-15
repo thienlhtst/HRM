@@ -26,6 +26,6 @@ namespace QLNS.Services.Catalog.Allowance
 
         Task<int> CreateAllowanceRules(AllowanceRulesCreateViewModel request);
 
-        Task<PagedResult<AllowanceRulesViewModel>> GetAllPageRules(GetAllowanceRulesPagingRequest request);
+        Task<List<AllowanceRulesViewModel>> GetAllRules();
     }
 }
