@@ -60,11 +60,11 @@
                       <td>{{item.active}}</td>
                       <td>{{item.urlImage}}</td>
                       <td>
-                        <button class="img-button-employee" (click)="ButtonClickToUpdate(item.id)">
-                          <img  class="ti ti-edit"   src="" />
+                        <button class="img-button-employee" (click)="ButtonClickToUpdate(item.id)" mat-icon-button [matTooltip]="'Edit'">
+                          <i  class="ti ti-edit"></i>
                         </button>
-                        <button class="img-button-employee" (click)="Delete($event,item.id)">
-                          <img  class="ti ti-circle-minus" src="" />
+                        <button class="img-button-employee" (click)="Delete($event,item.id)" mat-icon-button [matTooltip]="'Delete'">
+                          <i  class="ti ti-circle-minus" src="" ></i>
                         </button>
                       </td>
                   </tr>

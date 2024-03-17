@@ -11,6 +11,7 @@
       <th>Minute Check In</th>
       <th>Hour Check Out</th>
       <th>Minute Check Out</th>
+      <th>Options</th>
     </tr>
   </thead>
 
@@ -26,6 +27,16 @@
       <td>{{ item.minuteCheckin }}</td>
       <td>{{ item.hourCheckout }}</td>
       <td>{{ item.minuteCheckout }}</td>
+      <td >
+        <div class="d-flex ">
+        <button class="img-button" (click)="EventUpdateorDelete(item.id,1)"  mat-icon-button [matTooltip]="'Edit'">
+          <i  class="ti ti-edit"   ></i>
+        </button>
+        <button class="img-button" (click)="EventUpdateorDelete(item.id,2)"  mat-icon-button [matTooltip]="'Delete'">
+          <i class="ti ti-circle-minus"></i>
+        </button>
+      </div>
+      </td>
     </tr>
   </tbody>
 </table>

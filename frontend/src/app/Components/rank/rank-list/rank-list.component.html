@@ -35,10 +35,10 @@
                 <td>{{ item.nameRankRole }}</td>
 
                 <td>
-                  <button class="img-button" (click)="ButtonClickToUpdate(item.id)">
+                  <button class="img-button" (click)="ButtonClickToUpdate(item.id)"  mat-icon-button [matTooltip]="'Edit'">
                     <img  class="ti ti-edit"   src="" />
                   </button>
-                  <button class="img-button" (click)="Delete($event,item.id)">
+                  <button class="img-button" (click)="Delete($event,item.id)"  mat-icon-button [matTooltip]="'Delete'">
                     <img  class="ti ti-circle-minus" src="" />
                   </button>
                 </td>
@@ -66,7 +66,7 @@
     <div class="card">
       <div class="card-body">
         <div class="list-group list-group-flush">
-          <app-rank-Options [selectedID]="selectedID" (onSuccess)="OnSuccess()"></app-rank-Options>
+          <app-rank-options [selectedID]="selectedID" (onSuccess)="OnSuccess()"></app-rank-options>
         </div>
       </div>
     </div>

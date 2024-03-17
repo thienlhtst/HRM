@@ -7,9 +7,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RankServiceService } from 'src/Services/Rank/RankService.service';
 
 @Component({
-  selector: 'app-rank-Options',
-  templateUrl: './rank-Options.component.html',
-  styleUrls: ['./rank-Options.component.scss']
+  selector: 'app-rank-options',
+  templateUrl: './rank-options.component.html',
+  styleUrls: ['./rank-options.component.scss']
 })
 export class RankOptionsComponent implements OnInit {
   constructor(private Service:RankServiceService,private router : Router,private route:ActivatedRoute){}

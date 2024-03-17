@@ -73,7 +73,7 @@ namespace QLNSApiBackend.BackendApi
             services.AddControllersWithViews();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger eShop Solution", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger Timekeeping Solution", Version = "v1" });
             });
             services.AddCors(o => o.AddPolicy("CorsPolicy", b =>
             {

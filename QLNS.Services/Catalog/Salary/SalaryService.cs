@@ -30,7 +30,7 @@ namespace QLNS.Services.Catalog.Salary
                         select new { p, pt, pp };
             if (!string.IsNullOrEmpty(Request.Keyword))
             {
-                query = query.Where(x => x.p.RankID.Contains(Request.Keyword) || x.p.PositionID.Contains(Request.Keyword));
+                query = query.Where(x => x.pt.Name.Contains(Request.Keyword) || x.pp.Name.Contains(Request.Keyword));
             }
             int totalRow = await query.CountAsync();
             var data = await query.Skip((Request.PageIndex - 1) * Request.PageSize)

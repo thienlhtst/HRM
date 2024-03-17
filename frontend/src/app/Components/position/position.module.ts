@@ -13,6 +13,7 @@ import { PipeSharePipe } from "../../theme/shared/components/Pipe/pipe-share.pip
 import { SpinnerBetaComponent } from 'src/app/theme/shared/components/spinner-beta/spinner-beta.component';
 import { PositionOptionsComponent } from './position-options/position-options.component';
 import { SharedModule } from "../../theme/shared/shared.module";
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const route : Routes =[{
   path:'',
@@ -38,7 +39,7 @@ const route : Routes =[{
         NotificationComponent,
         PipeSharePipe,
         SpinnerBetaComponent,
-        SharedModule
+        SharedModule,MatTooltipModule
     ]
 })
 export class PositionModule { }

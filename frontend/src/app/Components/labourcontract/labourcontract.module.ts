@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { PipeSharePipe } from 'src/app/theme/shared/components/Pipe/pipe-share.pipe';
 import { SpinnerBetaComponent } from 'src/app/theme/shared/components/spinner-beta/spinner-beta.component';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const routes : Routes =[
   {
@@ -33,7 +34,7 @@ const routes : Routes =[
     FormsModule,
     PipeSharePipe,
     SpinnerBetaComponent,
-    SharedModule
+    SharedModule,MatTooltipModule
 ]
 })
 export class LabourcontractModule { }

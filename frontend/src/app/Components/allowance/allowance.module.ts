@@ -13,6 +13,7 @@ import { SpinnerBetaComponent } from 'src/app/theme/shared/components/spinner-be
 import { SharedModule } from "../../theme/shared/shared.module";
 import { AllowanceRulesComponent } from './allowance-rules/allowance-rules.component';
 import { AllowanceOptionsComponent } from './allowance-options/allowance-options.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 const routes : Routes =[
@@ -42,7 +43,8 @@ const routes : Routes =[
         FormsModule,
         PipeSharePipe,
         SpinnerBetaComponent,
-        SharedModule
+        SharedModule,
+        MatTooltipModule
     ]
 })
 export class AllowanceModule { }

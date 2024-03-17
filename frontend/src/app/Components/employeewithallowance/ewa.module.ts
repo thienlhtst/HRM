@@ -10,6 +10,7 @@ import { NotificationComponent } from 'src/app/theme/shared/components/Notificat
 import { FormsModule } from '@angular/forms';
 import { BreadcrumbComponent } from 'src/app/theme/shared/components/breadcrumb/breadcrumb.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const route : Routes =[{
   path:'',
@@ -32,7 +33,7 @@ const route : Routes =[{
     CommonModule,
     BreadcrumbComponent,
     HttpClientModule, NotificationComponent,
-    FormsModule,
+    FormsModule,MatTooltipModule
   ]
 })
 export class EwaModule { }

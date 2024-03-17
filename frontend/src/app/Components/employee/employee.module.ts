@@ -12,6 +12,7 @@ import { NotificationComponent } from 'src/app/theme/shared/components/Notificat
 import { FormsModule } from '@angular/forms';
 import { PipeSharePipe } from "../../theme/shared/components/Pipe/pipe-share.pipe";
 import { SpinnerBetaComponent } from 'src/app/theme/shared/components/spinner-beta/spinner-beta.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const route : Routes = [
   {
@@ -40,7 +41,8 @@ const route : Routes = [
         NotificationComponent,
         FormsModule,
         PipeSharePipe,
-        SpinnerBetaComponent
+        SpinnerBetaComponent,
+        MatTooltipModule  
     ]
 })
 export class EmployeeModule { }

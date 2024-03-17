@@ -33,10 +33,10 @@
                       <td>{{item.iDposition}}</td>
                       <td>{{item.name}}</td>
                       <td>
-                        <button class="img-button" (click)="ButtonClickToUpdate(item.iDposition)">
+                        <button class="img-button" (click)="ButtonClickToUpdate(item.iDposition)"  mat-icon-button [matTooltip]="'Edit'">
                           <img  class="ti ti-edit"   src="" />
                         </button>
-                        <button class="img-button" (click)="Delete($event,item.iDposition)">
+                        <button class="img-button" (click)="Delete($event,item.iDposition)"  mat-icon-button [matTooltip]="'Delete'">
                           <img  class="ti ti-circle-minus" src="" />
                         </button>
                       </td>

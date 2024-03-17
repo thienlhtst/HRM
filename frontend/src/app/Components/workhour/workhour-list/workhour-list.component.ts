@@ -62,4 +62,17 @@ export class WorkhourListComponent implements OnInit{
       this.child.showDanger(this.child.dangerTpl);
     }
   }
+  EventChooseId(request:any){
+    if(request.flag==1){
+      this.router.navigate(['/workhour/addoredit',request.id])
+    }else{
+      this.service.DeleteWorkhour(request.id).subscribe((res)=>{
+
+      })
+    }
+  }
+  onSearchChange(){
+    this.requestpaing.keyword=this.searchText
+    this.GetAllpaging()
+  }
 }

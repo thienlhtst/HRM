@@ -14,6 +14,8 @@ import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
 import { LabourdayAddoreditComponent } from './labourday-addoredit/labourday-addoredit.component';
 import { LabourhourAddoreditComponent } from './labourhour-addoredit/labourhour-addoredit.component';
 import { LabourHourService } from 'src/Services/LabourHour/LabourHour.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 
 const route : Routes = [
   {
@@ -36,9 +38,10 @@ const route : Routes = [
     FormsModule,
     PipeSharePipe,
     SpinnerBetaComponent,
-    MdbRippleModule
+    MdbRippleModule,
+    MatTooltipModule
   ],
-   providers:[LabourHourService],
+   providers:[LabourHourService,ConfirmationDialogService],
   declarations: [LabourdayComponent,LabourdayListComponent,LabourdayAddoreditComponent,LabourhourAddoreditComponent]
 })
 export class LabourdayModule { }

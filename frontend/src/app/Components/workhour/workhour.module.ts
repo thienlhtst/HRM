@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { WorkhourAddoreditComponent } from './workhour-addoredit/workhour-addoredit.component';
 import { DatePickerComponent } from "../../theme/shared/components/date-picker/date-picker.component";
 import { NotificationComponent } from "../../theme/shared/components/Notification/Notification.component";
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const route : Routes=[
   {
@@ -37,7 +38,7 @@ const route : Routes=[
         HttpClientModule, FormsModule,
         PagingnavComponent,
         DatePickerComponent,
-        NotificationComponent
+        NotificationComponent,MatTooltipModule
     ]
 })
 export class WorkhourModule { }

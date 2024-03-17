@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve --host 0.0.0.0",
+    "build": "ng build --prod",
     "build-prod": "ng build --configuration production --base-href /angular/free/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -22,6 +22,7 @@
     "@angular/core": "16.1.6",
     "@angular/forms": "16.1.6",
     "@angular/localize": "^17.0.9",
+    "@angular/material": "16.0.0",
     "@angular/platform-browser": "16.1.6",
     "@angular/platform-browser-dynamic": "16.1.6",
     "@angular/router": "16.1.6",

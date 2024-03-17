@@ -58,7 +58,7 @@ const NavigationItems = [
           type:'collapse',
           url:"/allowance",
           classes:'nav-item',
-          icon:'',
+          icon:'bi bi-cash-coin',
           children :[
             {
               id:'allowance',
@@ -66,7 +66,7 @@ const NavigationItems = [
               type:'item',
               url:'/allowance',
               classes:'nav-item',
-              icon:'',
+              icon:'bi bi-currency-dollar',
               children:[
                 {
                   id :'allowance',
@@ -83,7 +83,7 @@ const NavigationItems = [
               type:'item',
               url:'/ewa',
               classes:'nav-item',
-              icon:'',
+              icon:'bi bi-people',
               children:[
                 {
                   id :'ewa',
@@ -102,7 +102,7 @@ const NavigationItems = [
           type:'collapse',
           url:'/employee',
           classes:'nav-item',
-          icon:'',
+          icon:'bi bi-person',
           children :[
             {
               id:'employee',
@@ -110,7 +110,7 @@ const NavigationItems = [
               type:'item',
               url:'/employee',
               classes:'nav-item',
-              icon:'',
+              icon:'bi bi-file-person',
               children:[
                 {
                   id :'employee',
@@ -134,7 +134,7 @@ const NavigationItems = [
               type:'item',
               url:'/position',
               classes:'nav-item',
-              icon:'',
+              icon:'bi bi-briefcase',
               children :[
                 {
                   id :'position',
@@ -151,7 +151,7 @@ const NavigationItems = [
               type:'item',
               url:'/rank',
               classes:'nav-item',
-              icon:'',
+              icon:'bi bi-card-checklist',
               children :[
                 {
                   id :'rank',
@@ -168,7 +168,7 @@ const NavigationItems = [
               type:'item',
               url:'/salary',
               classes :'nav-item',
-              icon :'',
+              icon :'bi bi-receipt',
               children :[
                 {
                   id :'salary',
@@ -185,7 +185,7 @@ const NavigationItems = [
               type:'item',
               url:'/labourcontract',
               classes :'nav-item',
-              icon :'',
+              icon :'bi bi-clipboard',
               children :[
                 {
                   id :'labourcontract',
@@ -205,7 +205,7 @@ const NavigationItems = [
           type:'collapse',
           url:'/workhour',
           classes :'nav-item',
-          icon :'',
+          icon :'bi bi-stopwatch',
           children:[
             {
               id:'workhour',
@@ -213,7 +213,7 @@ const NavigationItems = [
               type:'item',
               url:'/workhour',
               classes :'nav-item',
-              icon :'',
+              icon :'bi bi-clock',
               children:[
                 {
                   id :'workhour',
@@ -230,7 +230,7 @@ const NavigationItems = [
               type:'item',
               url:'/labourday',
               classes :'nav-item',
-              icon :'',
+              icon :'bi bi-calendar',
             }
           ]
         },

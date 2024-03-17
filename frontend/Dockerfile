@@ -1,8 +1,11 @@
 FROM node:16 as node
-WORKDIR /app
-COPY . .
+WORKDIR /project
+RUN npm install -g @angular/cli@16.1.5
+COPY package.json package-lock.json ./
 RUN npm install --legacy-peer-deps
-RUN npm run build --prod
 
-FROM nginx:alpine
-COPY --from=node /app/dist/frontend /usr/share/nginx/html
+COPY . .
+
+
+EXPOSE 4200
+CMD [ "npm","start" ]

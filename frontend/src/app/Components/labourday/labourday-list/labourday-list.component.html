@@ -3,11 +3,26 @@
     <h3>Labourday table</h3>
   </div>
   <div class="card-body">
-    
+    <div class="d-flex justify-content-between">
+      <div class="p-2 flex-grow-1">
+        <div class="form align-items-center">
+          <i class="fa fa-search"></i>
+          <input
+            type="text"
+            name="search"
+            [(ngModel)]="searchText"
+            class="form-control form-input"
+            placeholder="Search anything..."
+            #fill
+          />
+        </div>
+      </div>
+      <div class="p-2">
+        <button type="button" (click)="ClicktoShowFormAdd()" class="btn btn-outline-info mx-auto">Add new</button>
+      </div>
+    </div>
     <div>
-      
-      <table
-        class="table table-bordered table-striped align-middle">
+      <table class="table table-bordered table-striped align-middle">
         <thead>
           <tr>
             <th>Name Factor</th>
@@ -16,23 +31,24 @@
         </thead>
         <tbody>
           <tr *ngFor="let labourhour of datalist">
-            <td scope="col d-flex " >
-              
-              <h3>Name: {{labourhour.name}}</h3>
-              <h3>Factor: {{labourhour.factor}}</h3>
+            <td scope="col d-flex ">
+              <h3>Name: {{ labourhour.name }}</h3>
+              <h3>Factor: {{ labourhour.factor }}</h3>
               <div class="align-self-end">
-              <button type="button" class=" btn btn-link" (click)="OpenAddofEditLabourHour(labourhour.id)" >Edit Your Labour</button>
-            </div>
-            </td>
-            <td *ngIf="labourhour.id!='1';else normalday">
-              <div class="d-flex justify-content-between  align-items-center p-1" *ngFor="let labourday of labourhour.days" >
-              <p style="margin-top: 4%;"> {{labourday.days}}/{{labourday.months}} {{labourday.name}} </p>
-              <button type="button" class=" btn btn-link" (click)="OpenAddofEdit(labourday.id,labourhour.id)" >Edit Your day</button>
+                <button type="button" class="btn btn-link" (click)="OpenAddofEditLabourHour(labourhour.id)">Edit Your Labour</button>
               </div>
-              <button type="button" class="btn btn-link" (click)="OpenAddofEdit(0,labourhour.id)" >Add New Day</button>
+            </td>
+            <td *ngIf="labourhour.id != '1'; else normalday">
+              <div class="d-flex justify-content-between align-items-center p-1" *ngFor="let labourday of labourhour.days">
+                <p style="margin-top: 4%"> {{ labourday.days }}/{{ labourday.months }} {{ labourday.name }} </p>
+                <div>
+                  <button type="button" class="btn btn-link" (click)="OpenAddofEdit(labourday.id, labourhour.id)">Edit Your day</button>
+                  <button type="button" class="btn btn-link" (click)="DeleteLabourDay(labourday.id)">Delete</button>
+                </div>
+              </div>
+              <button type="button" class="btn btn-link" (click)="OpenAddofEdit(0, labourhour.id)">Add New Day</button>
             </td>
           </tr>
-          
         </tbody>
       </table>
     </div>

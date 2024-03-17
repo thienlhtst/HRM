@@ -65,6 +65,7 @@ export class SalaryListComponent implements OnInit{
 
 
   GetPaing(){
+    this.spinner  = false
     this.service.GetSalaryPaging(this.paging).subscribe((res)=>{
       this.datas = res.items
       this.PageCount = res.pageCount
@@ -81,6 +82,10 @@ export class SalaryListComponent implements OnInit{
     this.service.GetSalary().subscribe((res)=>{
       this.datas = res
     })
+  }
+  onSearchChange(){
+     this.paging.keyword = this.searchText
+     this.GetPaing();
   }
 
 }
