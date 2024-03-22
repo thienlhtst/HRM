@@ -1,7 +1,7 @@
 
 <div class="row">
   <div [ngClass]="{ 'col-md-12': !ShowForm, 'col-md-12 col-xl-8': ShowForm }">
-  <app-labourday-list (OpenAddorEdit)="OpenAddorEdit($event)" (OpenAddorEditLabourHour)="OpenAddorEditLabourhour($event)" [datalist]="datarespone" ></app-labourday-list>
+  <app-labourday-list (OpenAddorEdit)="OpenAddorEdit($event)" (DeleteEvent)="onConfirm($event)" (OpenAddorEditLabourHour)="OpenAddorEditLabourhour($event)" [datalist]="datarespone" ></app-labourday-list>
   </div>
   <div class="col-md-12 col-xl-4 " *ngIf="ShowForm">
     <app-labourday-addoredit *ngIf="flagformday" [id]="currentdata" [idlabour]="currentlabour" [LabourhourSelect]="LabourhourSelects" (onConfirm)="onConfirm($event)" ></app-labourday-addoredit>

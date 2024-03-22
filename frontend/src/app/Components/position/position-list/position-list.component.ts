@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { PositionModel } from 'src/Model/PositionModel';
 import { Requestpaging } from 'src/Model/other/requestpaging';
 import { PositionServiceService } from 'src/Services/Position/PositionService.service';
+import { NotificationComponent } from 'src/app/theme/shared/components/Notification/Notification.component';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pagingnav.component';
 
 @Component({
@@ -14,8 +16,9 @@ import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pa
   styleUrls: ['./position-list.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss']
 })
 export class PositionListComponent implements OnInit,OnChanges{
-  constructor(private service : PositionServiceService,private router : Router){}
-  @ViewChild(PagingnavComponent) child : PagingnavComponent
+  constructor(private service : PositionServiceService,private router : Router ,private confirmationDialogService: ConfirmationDialogService){}
+  @ViewChild(NotificationComponent) child: NotificationComponent;
+  message:any
   datas : PositionModel[]
   searchText : any
   paging : Requestpaging={
@@ -80,21 +83,35 @@ export class PositionListComponent implements OnInit,OnChanges{
   }
 
   Delete(event : any, id : string){
-    if(confirm('Delete this Data ?')){
+    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to Add ?')
+    .then((confirmed) =>{
+      if(confirmed) 
       this.service.DeletePosition(id).subscribe((res)=>{
-        if(res){
-          alert('Delete Success');
-          this.GetPaging();
-        } else{
-          alert('Fail')
-          this.GetPaging();
-        }
+        this.NoficationAlert(res)
       })
-    }
+    })
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+    
+   
+    
   }
 
   PageChange(page : number):void{
     this.paging.pageindex = page
     this.GetPaging()
   }
+
+
+  NoficationAlert(flag:any){
+    if (flag == 1) {
+      this.message = 'success';
+      this.child.showSuccess(this.child.successTpl);
+      this.OnSuccess()
+    } else {
+      this.message = 'faill';
+      this.child.showDanger(this.child.dangerTpl);
+    }
+  }
+
+
 }

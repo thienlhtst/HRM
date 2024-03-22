@@ -14,6 +14,7 @@ import { SpinnerBetaComponent } from 'src/app/theme/shared/components/spinner-be
 import { PositionOptionsComponent } from './position-options/position-options.component';
 import { SharedModule } from "../../theme/shared/shared.module";
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 
 const route : Routes =[{
   path:'',
@@ -28,7 +29,7 @@ const route : Routes =[{
         PositionListComponent,
         PositionOptionsComponent
     ],
-    providers: [PositionServiceService],
+    providers: [PositionServiceService,ConfirmationDialogService],
     imports: [
         CommonModule,
         RouterModule.forChild(route),

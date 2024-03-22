@@ -12,6 +12,7 @@ import { WorkhourAddoreditComponent } from './workhour-addoredit/workhour-addore
 import { DatePickerComponent } from "../../theme/shared/components/date-picker/date-picker.component";
 import { NotificationComponent } from "../../theme/shared/components/Notification/Notification.component";
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 
 const route : Routes=[
   {
@@ -30,7 +31,7 @@ const route : Routes=[
         WorkhourListDetailComponent,
         WorkhourAddoreditComponent
     ],
-    providers: [WorkHourService],
+    providers: [WorkHourService,ConfirmationDialogService],
     imports: [
         CommonModule,
         RouterModule.forChild(route),

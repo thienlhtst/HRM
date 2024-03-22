@@ -23,7 +23,7 @@ export class NavItemComponent {
       const sections = document.querySelectorAll('.coded-hasmenu');
       for (let i = 0; i < sections.length; i++) {
         sections[i].classList.remove('active');
-        sections[i].classList.remove('coded-trigger');
+       // sections[i].classList.remove('coded-trigger');
       }
       if (parent.classList.contains('coded-hasmenu')) {
         parent.classList.add('coded-trigger');

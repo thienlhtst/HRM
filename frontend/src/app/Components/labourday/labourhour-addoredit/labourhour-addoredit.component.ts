@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Day } from 'src/Model/DayinLabourhour/Day';
 import { LabourHourService } from 'src/Services/LabourHour/LabourHour.service';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-labourhour-addoredit',
@@ -17,7 +18,7 @@ export class LabourhourAddoreditComponent implements OnInit,OnChanges {
     factor:0,
 
   }
-  constructor(private service: LabourHourService) { 
+  constructor(private service: LabourHourService,private confirmationDialogService: ConfirmationDialogService) { 
     
   }
   GetbyID(){
@@ -41,13 +42,22 @@ export class LabourhourAddoreditComponent implements OnInit,OnChanges {
 
   }
   Add(data:any){
-   this.service.CreateLabourHour(data).subscribe((res)=>{
-    this.onConfirm.emit(res)
-   })
+    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to Add ?')
+    .then((confirmed) =>{
+      if(confirmed) this.service.CreateLabourHour(data).subscribe((res)=>{
+        this.onConfirm.emit(res)
+       })
+    })
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+   
   }
   Edit(){
-   this.service.UpdateLabourHour(this.editrequest).subscribe((res)=>{
-    this.onConfirm.emit(res)
-  })
+    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to Edit ?')
+    .then((confirmed) =>{
+      if(confirmed)  this.service.UpdateLabourHour(this.editrequest).subscribe((res)=>{
+        this.onConfirm.emit(res)
+      })
+    })
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
 }
 }

@@ -12,6 +12,8 @@ import { ConfirmationDialogService } from '../../../theme/shared/components/conf
 export class LabourdayListComponent implements OnInit {
   @Output() OpenAddorEdit : EventEmitter<any> = new EventEmitter()
   @Output() OpenAddorEditLabourHour : EventEmitter<any> = new EventEmitter()
+  @Output() DeleteEvent : EventEmitter<any> = new EventEmitter()
+
   @Input() datalist:HomelistLabour[]
   searchText:any
   constructor(private router : Router,private service:WorkHourService,private confirmationDialogService: ConfirmationDialogService) { }
@@ -31,10 +33,10 @@ export class LabourdayListComponent implements OnInit {
     this.OpenAddorEditLabourHour.emit(0)
   }
   DeleteLabourDay(id:any){
-    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to ... ?')
+    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to Delete ?')
     .then((confirmed) =>{
       if(confirmed) this.service.DeleteWorkhour(id).subscribe((res)=>{
-
+        this.DeleteEvent.emit(res)
       })
     })
     .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));

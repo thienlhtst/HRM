@@ -41,11 +41,13 @@ export class NavContentComponent implements OnInit {
   }
 
   fireOutClick() {
+   
     let current_url = this.location.path();
     const baseHref = this.locationStrategy.getBaseHref();
     if (baseHref) {
       current_url = baseHref + this.location.path();
     }
+
     const link = "a.nav-link[ href='" + current_url + "' ]";
     const ele = document.querySelector(link);
     if (ele !== null && ele !== undefined) {
@@ -66,8 +68,10 @@ export class NavContentComponent implements OnInit {
   }
 
   navMob() {
+    
     if (this.windowWidth < 1025 && document.querySelector('app-navigation.coded-navbar').classList.contains('mob-open')) {
       this.NavCollapsedMob.emit();
+
     }
   }
 }

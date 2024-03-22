@@ -24,7 +24,6 @@ export class NavCollapseComponent {
         sections[i].classList.remove('coded-trigger');
       }
     }
-
     let first_parent = parent.parentElement;
     let pre_parent = parent.parentElement.parentElement;
     if (first_parent.classList.contains('coded-hasmenu')) {

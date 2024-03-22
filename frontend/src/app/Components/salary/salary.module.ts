@@ -12,6 +12,7 @@ import { RankServiceService } from 'src/Services/Rank/RankService.service';
 import { PipeSharePipe } from "../../theme/shared/components/Pipe/pipe-share.pipe";
 import { SpinnerBetaComponent } from 'src/app/theme/shared/components/spinner-beta/spinner-beta.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 
 const route : Routes=[{
   path:'',
@@ -28,7 +29,7 @@ const route : Routes=[{
         SalaryListComponent,
         SalaryOptionsComponent,
     ],
-    providers: [SalaryService, RankServiceService],
+    providers: [SalaryService, RankServiceService,ConfirmationDialogService],
     imports: [
         CommonModule,
         RouterModule.forChild(route),

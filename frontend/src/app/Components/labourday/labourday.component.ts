@@ -89,14 +89,14 @@ export class LabourdayComponent implements OnInit {
   }
   onConfirm(flag: any) {
     if (flag == 1) {
-      this.message = ' success';
+      this.message = 'success';
       this.child.showSuccess(this.child.successTpl);
       this.closeform(1)
       this.service.GetAll().subscribe((res) => {
         this.datarespone = res;
       })
     } else {
-      this.message = 'faill';
+      this.message = 'fail';
       this.child.showDanger(this.child.dangerTpl);
     }
   }
