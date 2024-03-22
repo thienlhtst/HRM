@@ -1,5 +1,5 @@
 import { CanActivateFn, Router } from '@angular/router';
-import { TokenService } from 'src/Services/token.service';
+import { TokenService } from 'src/Services/Token/token.service';
 import { inject } from '@angular/core';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -9,7 +9,8 @@ export const guestGuard: CanActivateFn = (route, state) => {
 
   tokenService.isAuthentication.subscribe({
     next: (value) => {
-      if (value) {
+      
+      if (value == 2) {
         router.navigate(['/home']);
       }
     },

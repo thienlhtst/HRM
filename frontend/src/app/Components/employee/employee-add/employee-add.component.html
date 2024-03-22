@@ -1,6 +1,8 @@
 
-<h5>Add New Employee</h5>
+
 <app-Notification [message]="messageRequest"></app-Notification>
+<div class="card">
+  <div class="card-body">
     <form class="form" #form="ngForm" (ngSubmit)="Add(form.value)"  >
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">ID</label>
@@ -63,7 +65,7 @@
         </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-5 col-form-label">Rank</label>
+      <label class="col-sm-2 col-form-label">Rank</label>
       <div class="col-sm-10">
         <select [(ngModel)]="selectedRankID" name="rankID" (change)="onRankChange()" class="form-control">
           <option  *ngFor="let rank of RanksData" [value]="rank.iDrank"  >{{ rank.name }}</option>
@@ -71,7 +73,7 @@
       </div>
   </div>
     <div class="form-group row">
-        <label class="col-sm-5 col-form-label">Position</label>
+        <label class="col-sm-2 col-form-label">Position</label>
         <div class="col-sm-10">
           <select [(ngModel)]="selectedPositionID" name="positionID" (click)="GetSalaryByRankAndPosition()" (change)="onPositionChange()" class="form-control">
             <option *ngFor="let position of PositionsData" [value]="position.iDposition">{{ position.name }}</option>
@@ -90,18 +92,7 @@
         <input type="text" id="password" ngModel name="password" class="form-control">
     </div>
 </div>
-<div class="form-group row">
-  <label class="col-sm-2 col-form-label"> Active </label>
-  <div  class="col-sm-10">
-  <label>
-    <input type="radio" name="active" [value]="1" [(ngModel)]="selectedActive" (change)="OnActiveChange()"> Yes
-  </label>
 
-  <label>
-    <input type="radio" name="active" [value]="0" [(ngModel)]="selectedActive"  (change)="OnActiveChange()"> No
-  </label>
-</div>
-</div>
     <div class="form-group row">
       <label class="col-sm-2 col-form-label">Url Image</label>
       <div class="col-sm-10">
@@ -110,10 +101,13 @@
   </div>
 
 
-        <button>
+        <button class="btn btn-outline-info mx-auto">
             Add
       </button>
     </form>
+    </div>
+    </div>
+
 
 
 

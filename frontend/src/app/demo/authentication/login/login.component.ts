@@ -6,7 +6,7 @@
 import { Component, ElementRef, EventEmitter, Injectable, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AuthService } from 'src/Services/auth.service';
+import { AuthService } from 'src/Services/Auth/auth.service';
 import {
   FormBuilder,
   FormControl,
@@ -59,7 +59,7 @@ export default class LoginComponent implements OnInit {
 		message: 'This is an success alert',
 	  }
     if (this.loginForm.valid) {
-    
+
       this.authService.onLogin(this.loginForm.value).subscribe({
         next: (a) => {
           this.flag=1
@@ -74,7 +74,7 @@ export default class LoginComponent implements OnInit {
 
 
    } else {
-    
+
       this.validateAllFormFileds(this.loginForm)
     }
     this.flag=0

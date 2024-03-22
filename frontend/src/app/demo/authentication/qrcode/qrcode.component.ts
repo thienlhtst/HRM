@@ -12,7 +12,7 @@ import {ZXingScannerComponent, ZXingScannerModule} from '@zxing/ngx-scanner'
 import { EmployeeModel } from 'src/Model/Employee/EmployeeModel';
 import { CheckOut, TimeKeeping } from 'src/Model/Workhours/TimeKeeping';
 import { WorkHourService } from 'src/Services/WorkHour/WorkHour.service';
-import { AuthService } from 'src/Services/auth.service';
+import { AuthService } from 'src/Services/Auth/auth.service';
 import { NotificationComponent } from "../../../theme/shared/components/Notification/Notification.component";
 import { SpinnerBetaComponent } from "../../../theme/shared/components/spinner-beta/spinner-beta.component";
 import { AllowanceServiceService } from 'src/Services/Allowance/AllowanceService.service';

@@ -24,7 +24,6 @@ export class EmployeeAddComponent implements OnInit {
   datas : EmployeeModel
   messageRequest : string = ''
   selectedGender : number
-  selectedActive : number
   selectedDate: string
   selectedFile : string
   RanksData : any
@@ -89,11 +88,7 @@ export class EmployeeAddComponent implements OnInit {
     return this.selectedGender
 
   }
-  OnActiveChange(){
-    console.log(this.selectedActive)
-    return this.selectedActive.toString()
 
-  }
 
   onDateChange(event): void {
     this.selectedDate = event.target.value;
@@ -101,7 +96,7 @@ export class EmployeeAddComponent implements OnInit {
 
   Add(data : EmployeeCreateModel){
     data.salaryID = this.selectedSalaryID
-    console.log(data)
+    data.active = 1
     this.service.CreateEmployee(data).subscribe((response)=>{
       if(response){
         alert('Success')

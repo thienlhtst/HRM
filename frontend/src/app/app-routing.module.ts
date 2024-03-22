@@ -9,6 +9,9 @@ import { GuestComponent } from './theme/layouts/guest/guest.component';
 import { guestGuard } from './demo/authentication/guards/guest.guard';
 import { authGuard } from './demo/authentication/guards/auth.guard';
 import QrcodeComponent from './demo/authentication/qrcode/qrcode.component';
+import { employeeGuard } from './demo/authentication/guards/employee-guard.service';
+import { EmployeeComponent } from './theme/layouts/employee/employee.component';
+import path from 'path';
 
 const routes: Routes = [
   {
@@ -86,6 +89,14 @@ const routes: Routes = [
       },
 
 
+    ]
+  },
+  {
+    path:'',
+    component:EmployeeComponent,
+    canActivate: [employeeGuard],
+    children :[
+      
     ]
   },
   {
