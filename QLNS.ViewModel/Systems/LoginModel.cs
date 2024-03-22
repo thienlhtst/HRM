@@ -10,7 +10,5 @@ namespace QLNS.ViewModel.Systems
     {
         public string account { get; set; }
         public string password { get; set; }
-
-
     }
 }

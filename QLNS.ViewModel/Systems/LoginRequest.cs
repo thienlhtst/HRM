@@ -12,6 +12,8 @@ namespace QLNS.ViewModel.Systems
         public string Name { get; set; }
         public string Account { get; set; }
         public string Password { get; set; }
-        public string? RankRole { get; set; }
+
+        public string accessToken { get; set; }
+        public string RankRole { get; set; }
     }
 }

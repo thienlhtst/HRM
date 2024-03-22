@@ -20,6 +20,7 @@ import { NavItemComponent } from './theme/layouts/admin/navigation/nav-content/n
 import { NavigationItem } from './theme/layouts/admin/navigation/navigation';
 
 import { PagingnavComponent } from "./theme/shared/components/pagingnav/pagingnav.component";
+import { EmployeeComponent } from './theme/layouts/employee/employee.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -33,6 +34,8 @@ import { PagingnavComponent } from "./theme/shared/components/pagingnav/pagingna
         NavCollapseComponent,
         NavGroupComponent,
         NavItemComponent,
+        EmployeeComponent,
+
     ],
     providers: [NavigationItem],
     bootstrap: [AppComponent],

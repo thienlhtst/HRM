@@ -1,10 +1,11 @@
 
-<h5>Update Employee</h5>
+<div class="card">
+  <div class="card-body">
    <form class="form" #form="ngForm" (ngSubmit)="Update(form.value)"  >
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">ID</label>
             <div class="col-sm-10">
-              <p [(ngModel)]="id" name="id"> ID : {{id}}</p>
+              <input type="text" id="id"  ngModel name="id" [ngModel]="data.id"  class="form-control" >
             </div>
         </div>
         <div class="form-group row">
@@ -62,7 +63,7 @@
         </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-5 col-form-label">Rank</label>
+      <label class="col-sm-2 col-form-label">Rank</label>
       <div class="col-sm-10">
         <select [(ngModel)]="selectedRankID" name="rankID" (change)="onRankChange()" class="form-control">
           <option  *ngFor="let rank of RanksData" [value]="rank.iDrank"  >{{ rank.name }}</option>
@@ -70,7 +71,7 @@
       </div>
   </div>
     <div class="form-group row">
-        <label class="col-sm-5 col-form-label">Position</label>
+        <label class="col-sm-2 col-form-label">Position</label>
         <div class="col-sm-10">
           <select [(ngModel)]="selectedPositionID" name="positionID" (click)="GetSalaryByRankAndPosition()" (change)="onPositionChange()" class="form-control">
             <option *ngFor="let position of PositionsData" [value]="position.iDposition">{{ position.name }}</option>
@@ -109,10 +110,12 @@
   </div>
 
 
-        <button>
+        <button class="btn btn-outline-info mx-auto">
             Update
       </button>
     </form>
+    </div>
+    </div>
 
 
 

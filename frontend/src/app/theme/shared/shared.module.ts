@@ -13,9 +13,9 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 
 // bootstrap import
 import { NgbDropdownModule, NgbNavModule, NgbModule, NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
-import { AuthService } from 'src/Services/auth.service';
+import { AuthService } from 'src/Services/Auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
-import { TokenService } from 'src/Services/token.service';
+import { TokenService } from 'src/Services/Token/token.service';
 import { ModalComponent } from './components/modal/modal/modal.component';
 import { PipeSharePipe } from './components/Pipe/pipe-share.pipe';
 import { SpinnerBetaComponent } from './components/spinner-beta/spinner-beta.component';

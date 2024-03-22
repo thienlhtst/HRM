@@ -1,5 +1,5 @@
 import { CanActivateFn, Router } from '@angular/router';
-import { TokenService } from 'src/Services/token.service';
+import { TokenService } from 'src/Services/Token/token.service';
 import { inject } from '@angular/core';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -12,6 +12,7 @@ export interface ILogin {
 export interface ILoginResponse {
   id: string;
   name: string;
-  token: string;
+  accessToken: string;
   user: IUser;
+  rankRole : string
 }

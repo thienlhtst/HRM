@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import {  Observable, map } from 'rxjs';
-import { TokenService } from './token.service';
+import { TokenService } from '../Token/token.service';
 import {ILogin , ILoginResponse} from 'src/Model/auth.mode';
 import { EmployeeModel } from 'src/Model/Employee/EmployeeModel';
 
@@ -19,14 +19,17 @@ export class AuthService {
   }
 
 
+
+
   onLogin(data: ILogin) {
     return this.http
       .post<ILoginResponse>(environment.apiurl+'/login', data)
       .pipe(
-        
+
         map((response) => {
           if (response) {
-            this.tokenService.setToken(response.name);
+            
+            this.tokenService.setToken(response.accessToken);
             this.tokenService.setTokenId(response.id)
           }
           return response;
@@ -34,6 +37,8 @@ export class AuthService {
       );
 
   }
+
+
 
   onLogout() {
 
