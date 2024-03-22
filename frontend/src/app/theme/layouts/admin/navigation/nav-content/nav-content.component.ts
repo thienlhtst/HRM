@@ -1,10 +1,9 @@
 // Angular import
-import { Component, EventEmitter, NgZone, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Location, LocationStrategy } from '@angular/common';
 
 // project import
 import { NavigationItem } from '../navigation';
-import { MantisConfig } from 'src/app/app-config';
 import { environment } from 'src/environments/environment';
 
 @Component({

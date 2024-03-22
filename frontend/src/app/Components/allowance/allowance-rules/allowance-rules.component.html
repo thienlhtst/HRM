@@ -23,7 +23,7 @@
         <div class="card-body">
           <h2 class="text-center"> Employee Data List</h2>
           <div class="form-group row">
-            <label class="col-sm-6 col-form-label">Position</label>
+            <!-- <label class="col-sm-6 col-form-label">Position</label>
             <label class="col-sm-5 col-form-label">Rank</label>
             <div class="d-flex">
               <select [(ngModel)]="selectedPositionID" name="positionID" (change)="onPositionChange()" class="form-control  mr-4">
@@ -32,7 +32,7 @@
               <select [(ngModel)]="selectedRankID" name="rankID" (change)="onRankChange()" (click)="GetSalaryByRankAndPosition()" class="form-control">
                 <option  *ngFor="let rank of RanksData" [value]="rank.iDrank"  >{{ rank.name }}</option>
               </select>
-            </div>
+            </div> -->
         </div>
 
 
@@ -60,19 +60,19 @@
       </div>
       <div *ngIf="ShowFormAddRules" class="card">
         <div class="card-body">
-        <form class="form" #form="ngForm"   >
+        <form class="form" #form="ngForm">
           <div class="form-group row">
             <label class="col-sm-5 col-form-label">Allowance Name</label>
             <div class="col-sm-10">
-              <select [(ngModel)]="selectedAllowanceID" name="allowanceID" (click)="GetAllowanceAndEmployeeInfo()"  class="form-control">
-                <option *ngFor="let allowance of AllowanceData" [value]="allowance.id">{{ allowance.name }}</option>
+              <select [(ngModel)]="selectedAllowanceID" name="rankID" (change)="onAllowanceChange()" class="form-control">
+                <option  *ngFor="let allowance of AllowanceData" [value]="allowance.id"  >{{ allowance.name }}</option>
               </select>
             </div>
-          </div>
+        </div>
           <div class="form-group row">
             <label class="col-sm-5 col-form-label">Employee Name</label>
             <div class="col-sm-10">
-              <select [(ngModel)]="selectedEmployeeID" name="employeeID" (click)="GetAllowanceAndEmployeeInfo()" class="form-control">
+              <select [(ngModel)]="selectedEmployeeID" name="employeeID" (change)="onEmployeeChange()" class="form-control">
                 <option *ngFor="let employee of EmployeeData" [value]="employee.id">{{employee.firstName + " "+ employee.lastName }}</option>
               </select>
             </div>

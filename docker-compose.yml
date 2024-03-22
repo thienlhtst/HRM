@@ -23,16 +23,16 @@ services:
       ASPNETCORE_ENVIRONMENT : Staging
     depends_on:
       - db
-  angular-app:
-    image: awesome-angular
-    build:
-      context: ./
-      dockerfile: frontend/Dockerfile # Tên Dockerfile cho Angular
-    ports:
-      - "4200:4200" 
-    volumes:
-      - ./frontend:/project
-      - /project/node_modules
+  # angular-app:
+  #   image: awesome-angular
+  #   build:
+  #     context: ./
+  #     dockerfile: frontend/Dockerfile # Tên Dockerfile cho Angular
+  #   ports:
+  #     - "4200:4200" 
+  #   volumes:
+  #     - ./frontend:/project
+  #     - /project/node_modules
    
   
 networks:

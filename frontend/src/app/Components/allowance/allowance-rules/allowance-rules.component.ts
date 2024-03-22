@@ -72,12 +72,21 @@ export class AllowanceRulesComponent implements OnInit {
     this.ShowFormAddRules = !this.ShowFormAddRules
   }
 
-  onRankChange(){
-    return this.selectedRankID
+  // onRankChange(){
+  //   return this.selectedRankID
 
+  // }
+  // onPositionChange(){
+  //   return this.selectedPositionID
+  // }
+
+  onAllowanceChange(){
+    console.log(this.selectedAllowanceID)
+    return this.selectedAllowanceID
   }
-  onPositionChange(){
-    return this.selectedPositionID
+
+  onEmployeeChange(){
+    return this.selectedEmployeeID
   }
 
   GetSalaryByRankAndPosition(){

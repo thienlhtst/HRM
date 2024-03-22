@@ -59,7 +59,7 @@ namespace QLNS.Services.Catalog.LabourContract
                     .Select(x => new LabourContractViewModel()
                     {
                         ID = x.p.ID,
-                        EmployeeID = x.pt.FirstName + x.pt.MiddleName + x.pt.LastName,
+                        EmployeeID = x.pt.FirstName + " " + x.pt.MiddleName + " " + x.pt.LastName,
                         Content = x.p.Content,
                         ContractSigninDate = x.p.ContractSigninDate,
                         Active = x.p.Active,
