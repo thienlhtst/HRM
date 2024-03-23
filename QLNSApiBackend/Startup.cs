@@ -84,9 +84,6 @@ namespace QLNSApiBackend.BackendApi
 
             services.AddSwaggerGen(options =>
             {
-<<<<<<< Updated upstream
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger Timekeeping Solution", Version = "v1" });
-=======
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger eShop Solution", Version = "v1" });
 
                 options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
@@ -144,7 +141,6 @@ namespace QLNSApiBackend.BackendApi
                         new string[] {"Bearer"}
                      }
                  });*/
->>>>>>> Stashed changes
             });
             services.AddCors(o => o.AddPolicy("CorsPolicy", b =>
             {
