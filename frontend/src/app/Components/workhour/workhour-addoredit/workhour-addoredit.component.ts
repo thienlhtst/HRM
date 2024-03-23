@@ -4,6 +4,7 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { WorkHourCreateRequest} from 'src/Model/Workhours/WorkHourCreateRequest'
 import { WorkhourEditRequest } from 'src/Model/Workhours/WorkhourEditRequest';
 import { WorkHourService } from 'src/Services/WorkHour/WorkHour.service';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 @Component({
   selector: 'app-workhour-addoredit',
   templateUrl: './workhour-addoredit.component.html',
@@ -29,7 +30,7 @@ export class WorkhourAddoreditComponent implements OnInit {
    hourCheckout : 17,
    minuteCheckout : 0
   }
-  constructor(private services:WorkHourService, private router : Router,private route : ActivatedRoute ) {
+  constructor(private services:WorkHourService, private router : Router,private route : ActivatedRoute,private confirmationDialogService: ConfirmationDialogService ) {
     this.id = `${this.route.snapshot.paramMap.get('id')}`
     if(this.id!='null'){
       this.services.GetbyId(this.id).subscribe((res)=>
@@ -60,10 +61,8 @@ export class WorkhourAddoreditComponent implements OnInit {
     this.data.year =date.year
   }
   OnchangeHour(flag:number,event:any){
-    console.log(event.target.value)
   }
   Confirm(data:any){
-    console.log(this.data)
     let request :any={
         id: this.data.id,
         employeesID :  this.data.employeesID ,
@@ -76,17 +75,31 @@ export class WorkhourAddoreditComponent implements OnInit {
         hourCheckout : this.data.hourCheckout,
         minuteCheckout : this.data.minuteCheckout
     }
-    if(this.id=='null'){
-      request.employeesID=data.idemployee
-      request.lbdid= data.idlb
-      this.services.CreateWorkhour(request).subscribe((res)=>{
-        this.router.navigate(['/workhour'], { queryParams: { flag: res } });
-      })
-    }else
-    {
-      this.services.EditWorkhour(this.data).subscribe((res)=>{
-        this.router.navigate(['/workhour'], { queryParams: { flag: res } });
-      })
-    }
+    this.confirmationDialogService
+    .confirm('Please confirm..', 'Do you really want to Confirm ?')
+    .then((confirmed) => {
+      if (confirmed) {
+        if(this.id=='null'){
+          request.employeesID=data.idemployee
+          request.lbdid= data.idlb
+          this.services.CreateWorkhour(request).subscribe((res)=>{
+            if(res!=0)
+            this.router.navigate(['/workhour'], { queryParams: { flag: res } });
+          })
+        }else
+        {
+          this.services.EditWorkhour(this.data).subscribe((res)=>{
+            if(res!=0)
+            this.router.navigate(['/workhour'], { queryParams: { flag: res } });
+          })
+        }
+
+      }
+    })
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+    
+
+
+
   }
 }

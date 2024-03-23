@@ -61,9 +61,10 @@
 
         <div class="card-body">
           <div class="list-group list-group-flush">
-              <app-position-options [selectedID]="selectedID" (onSuccess)="OnSuccess()"></app-position-options>
+              <app-position-options [selectedID]="selectedID" (onSuccess)="NoficationAlert($event)"></app-position-options>
          </div>
         </div>
       </div>
     </div>
 </div>
+<app-Notification [message]="message" ></app-Notification>

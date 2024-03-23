@@ -24,16 +24,7 @@ const NavigationItems = [
     type: 'group',
     icon: 'icon-navigation',
     children: [
-      {
-        id: 'default',
-        title: 'Default',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/dashboard/default',
-        icon: 'ti ti-dashboard',
-        breadcrumbs: false
-
-      },{
+    {
         id: 'home',
         title: 'Home',
         type: 'item',
@@ -41,6 +32,15 @@ const NavigationItems = [
         url: '/home',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
+      },
+      {
+        id: 'qrcode',
+        title: 'qrcode',
+        type: 'item',
+        classes: 'nav-item',
+        url: '/qrcode',
+        icon: 'ti ti-dashboard',
+        target:true
       }
     ]
   },
@@ -61,7 +61,7 @@ const NavigationItems = [
           icon:'bi bi-cash-coin',
           children :[
             {
-              id:'allowance',
+              id:'allowance1',
               title:'Allowance List',
               type:'item',
               url:'/allowance',
@@ -69,7 +69,7 @@ const NavigationItems = [
               icon:'bi bi-currency-dollar',
               children:[
                 {
-                  id :'allowance',
+                  id :'allowance2',
                   title:'Update',
                   type:'item',
                   url:"/allowance/options",
@@ -78,7 +78,7 @@ const NavigationItems = [
               ]
             },
             {
-              id:'allowance',
+              id:'allowance3',
               title:'Employee With Allowance',
               type:'item',
               url:'/ewa',

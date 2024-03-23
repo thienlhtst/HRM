@@ -15,7 +15,7 @@ export class SalaryOptionsComponent implements OnInit {
   constructor(private Service:SalaryService,private generalService : GeneralService,private router : Router,private route:ActivatedRoute){}
   @Input() selectedID : string
   @Output() onUpdate: EventEmitter<string> =   new EventEmitter();
-  @Output() onSuccess: EventEmitter<void> = new EventEmitter();
+  @Output() onSuccess: EventEmitter<any> = new EventEmitter();
   RanksData : any
   PositionsData : any
   selectedRankID : string
@@ -57,17 +57,7 @@ export class SalaryOptionsComponent implements OnInit {
   Add(data:SalaryModel){
     this.Service.CreateSalary(data).subscribe((res)=>{
       if(res){
-        alert('Success')
-        setTimeout(() => {
-          this.onSuccess.emit()
-        }, 5);
-        window.location.reload()
-      }
-      else{
-        alert('Fail')
-        setTimeout(() => {
-          this.onSuccess.emit()
-        }, 5);
+          this.onSuccess.emit(res)
       }
     })
 }
@@ -77,16 +67,10 @@ export class SalaryOptionsComponent implements OnInit {
     this.onUpdate.emit(this.selectedID)
     this.Service.UpdateSalary(this.selectedID,salary).subscribe((res)=>{
       if(res){
-        alert('Success')
-          setTimeout(() => {
-            this.onSuccess.emit()
-          }, 5);
+        
+            this.onSuccess.emit(res)
           window.location.reload()
-      }
-      else {alert('Fail')
-          setTimeout(() => {
-            this.onSuccess.emit()
-          }, 5)}
+     }
     })
   }
 }

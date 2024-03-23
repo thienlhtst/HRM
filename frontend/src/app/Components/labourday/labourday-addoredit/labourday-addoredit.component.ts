@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { ActivatedRoute } from '@angular/router';
 import { Day } from 'src/Model/DayinLabourhour/Day';
 import { LabourHourService } from 'src/Services/LabourHour/LabourHour.service';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-labourday-addoredit',
@@ -22,7 +23,7 @@ export class LabourdayAddoreditComponent implements OnInit,OnChanges {
     days: 10,
     months: 11
   };
-  constructor(private service: LabourHourService,private route : ActivatedRoute) {
+  constructor(private service: LabourHourService,private route : ActivatedRoute,private confirmationDialogService: ConfirmationDialogService) {
   }
   ngOnChanges(changes: SimpleChanges): void {
     
@@ -62,22 +63,36 @@ export class LabourdayAddoreditComponent implements OnInit,OnChanges {
 
 
   Add(data: any) {
-    console.log(data)
     let requestadd={
     idlb: this.labourid,
     name: data.name,
     days: parseInt(data.day),
     months: parseInt(data.month)
     }
-    this.service.CreateLabourDay(requestadd).subscribe((res)=>{
-      this.onConfirm.emit(res)
+    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to Add ?')
+    .then((confirmed) =>{
+      if(confirmed) 
+      this.service.CreateLabourDay(requestadd).subscribe((res)=>{
+        this.onConfirm.emit(res)
+      })
     })
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+    
+    
     
    
   }
   Edit() {
-    this.service.UpdateLabourDay(this.editrequest).subscribe((res)=>{
-      this.onConfirm.emit(res)
+    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to Add ?')
+    .then((confirmed) =>{
+      if(confirmed) 
+      this.service.UpdateLabourDay(this.editrequest).subscribe((res)=>{
+        this.onConfirm.emit(res)
+      })
     })
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+    
   }
+
+
 }

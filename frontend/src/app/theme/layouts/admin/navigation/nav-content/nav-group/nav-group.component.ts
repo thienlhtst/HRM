@@ -28,6 +28,7 @@ export class NavGroupComponent implements OnInit {
     if (baseHref) {
       current_url = baseHref + this.location.path();
     }
+
     const link = "a.nav-link[ href='" + current_url + "' ]";
     const ele = document.querySelector(link);
     if (ele !== null && ele !== undefined) {
