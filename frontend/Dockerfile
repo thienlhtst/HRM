@@ -4,7 +4,7 @@ RUN npm install -g @angular/cli@16.1.5
 COPY package.json package-lock.json ./
 RUN npm install --legacy-peer-deps
 
-COPY . .
+COPY . . 
 
 
 EXPOSE 4200
