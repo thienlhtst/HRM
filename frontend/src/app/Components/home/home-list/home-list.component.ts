@@ -54,7 +54,6 @@ export class HomeListComponent implements OnInit {
       .catch(err => console.log('Error while establishing connection :('));
 
     this._hubConnection.on('BroadcastMessage', (data:any) => {
-      console.log(data)
       this.service_employee.GetEmployeebyID(data.employeesID).subscribe((res)=>{
 
         if(data.flag==1){
@@ -76,7 +75,9 @@ export class HomeListComponent implements OnInit {
           if (finditem !== -1) {
             this.reponsedata.items[finditem].hourCheckout = data.hour;
             this.reponsedata.items[finditem].minuteCheckout = data.minute;
-            this.HomeDetail.totalworkhour+=((this.reponsedata.items[finditem].hourCheckout + (this.reponsedata.items[finditem].minuteCheckout / 60)) - (this.reponsedata.items[finditem].hourCheckin + (this.reponsedata.items[finditem].minuteCheckin / 60))).toFixed(2);
+            console.log(this.reponsedata.items)
+            this.HomeDetail.totalworkhour+=((this.reponsedata.items[finditem].hourCheckout + (this.reponsedata.items[finditem].minuteCheckout / 60)) - (this.reponsedata.items[finditem].hourCheckin + (this.reponsedata.items[finditem].minuteCheckin / 60)));
+            
           }
         }
       })
@@ -91,7 +92,7 @@ export class HomeListComponent implements OnInit {
         employeeWork: res.employeeWork,
         employeeOff: res.employeeOff,
         employyLate: res.employyLate,
-        totalworkhour: res.totalworkhour,
+        totalworkhour: parseFloat(res.totalworkhour),
       }
       this.reponsedata={
         items: res.items,
