@@ -84,13 +84,13 @@ namespace QLNS.Services.Satistics
 
         public async Task<SalaryToEmployeeInYear> SalaryInYear(int year)
         {
-            var query_employee = from emp in _context.Employee
-                                 join sal in _context.Salaries on emp.SalaryID equals sal.ID
-                                 select new
-                                 {
-                                     ID = emp.ID,
-                                     Salary = sal.Money,
-                                 };
+            var query_employee = await (from emp in _context.Employee
+                                        join sal in _context.Salaries on emp.SalaryID equals sal.ID
+                                        select new
+                                        {
+                                            ID = emp.ID,
+                                            Salary = sal.Money,
+                                        }).ToListAsync();
             SalaryToEmployeeInYear result = new SalaryToEmployeeInYear
             {
                 total = 0,
@@ -101,27 +101,26 @@ namespace QLNS.Services.Satistics
                 double total_sumsalary = 0;
                 foreach (var item in query_employee)
                 {
-                    var query_workhour = await (from wh in _context.WorkHours
-                                                join lb in _context.LabourHours on wh.LBDID equals lb.ID
-                                                where wh.EmployeesID.Equals(item.ID)  && wh.Month.Equals(i + 1) && wh.Year.Equals(year)
-                                                select new
-                                                {
-                                                    wh,
-                                                    lb
-                                                }
-                                                ).ToListAsync();
+                    var query_workhour = from wh in _context.WorkHours
+                                         join lb in _context.LabourHours on wh.LBDID equals lb.ID
+                                         where wh.EmployeesID.Equals(item.ID)  && wh.Month.Equals(i + 1) && wh.Year.Equals(year)
+                                         select new
+                                         {
+                                             wh,
+                                             lb
+                                         };
 
+                    double TotalAllowance = 0;
+                    var query_alowance = from eaw in _context.EmployeesWithAllowances
+                                         join allw in _context.Allowances on eaw.AllowanceID equals allw.ID
+                                         where eaw.EmployeeID.Equals(item.ID) && eaw.Date.Month.Equals(i + 1) && eaw.Date.Year.Equals(year)
+                                         select allw;
                     double sum_workhour = 0;
                     if (query_workhour != null)
-                        sum_workhour = query_workhour.Sum(x => Math.Round(((x.wh.HourCheckout + ((double)x.wh.MinuteCheckout / 60)) - (x.wh.HourCheckin + ((double)x.wh.MinuteCheckin / 60)))*x.lb.Factor, 2));
+                        sum_workhour = await query_workhour.SumAsync(x => Math.Round(((x.wh.HourCheckout + ((double)x.wh.MinuteCheckout / 60)) - (x.wh.HourCheckin + ((double)x.wh.MinuteCheckin / 60)))*x.lb.Factor, 2));
                     double sumsalary = (double)item.Salary * sum_workhour;
-                    double TotalAllowance = 0;
-                    var query_alowance = await (from eaw in _context.EmployeesWithAllowances
-                                                join allw in _context.Allowances on eaw.AllowanceID equals allw.ID
-                                                where eaw.EmployeeID.Equals(item.ID) && eaw.Date.Month.Equals(i + 1) && eaw.Date.Year.Equals(year)
-                                                select allw).ToListAsync();
                     if (query_alowance !=null)
-                        TotalAllowance = query_alowance.Sum(x => x.Money);
+                        TotalAllowance = await query_alowance.SumAsync(x => x.Money);
                     total_sumsalary += sumsalary+TotalAllowance;
                 }
                 if (total_sumsalary < 1000000 && total_sumsalary > 10000)

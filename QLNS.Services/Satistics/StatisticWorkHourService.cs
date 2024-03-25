@@ -90,7 +90,7 @@ namespace QLNS.Services.Satistics
                 for (int j = 1; j<=7; j++)
                 {
                     double result = _date.SumOfWorkhourInWeek(weekDays.firstDayOfWeek, query1);
-                    ArraysOfweek[j-1] = result;
+                    ArraysOfweek[j-1] = Math.Round(result, 2);
                     weekDays.firstDayOfWeek=weekDays.firstDayOfWeek.AddDays(1);
                 }
                 listOfArrays.Add(ArraysOfweek);
