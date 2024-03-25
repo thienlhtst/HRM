@@ -17,7 +17,7 @@ const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
-    canActivate: [authGuard],
+    canActivate: [guestGuard],
     children: [
       {
         path: '',
@@ -77,7 +77,7 @@ const routes: Routes = [
   {
     path: '',
     component: GuestComponent,
-    canActivate: [guestGuard],
+    canActivate: [authGuard],
     children: [
       {
         path: 'login',

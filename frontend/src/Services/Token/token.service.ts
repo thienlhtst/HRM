@@ -6,36 +6,27 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class TokenService {
-  isAuthentication: BehaviorSubject<number> = new BehaviorSubject<number>(
-    0
-  );
-  apiurl : string = environment.apiurl
-  constructor(private http : HttpClient) {
+  isAuthentication: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  apiurl: string = environment.apiurl;
+  constructor(private http: HttpClient) {
     const token = this.getToken();
-    if (token) {
-
-      this.DecodeToken(token).subscribe((res)=>{
-        if(res != null){
-          this.updateToken(parseInt(res.role))
-
-        }
-      })
-    }
-    else{
-      this.updateToken(0)
-    }
-
+    if (token ) {
+      this.DecodeToken(token).subscribe((res) => {
+        if (res != null) {
+          this.updateToken(parseInt(res.role));
+        } else this.updateToken(0);
+      });
+    }else this.updateToken(0);
   }
 
-
-  DecodeToken(token : string):Observable<any> {
+  DecodeToken(token: string): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': 'bearer ' + token
+        'Content-Type': 'application/json',
+        Authorization: 'bearer ' + token
       })
     };
 
@@ -48,12 +39,16 @@ export class TokenService {
 
   setToken(token: string) {
     localStorage.setItem(environment.CURRENT_TOKEN, token);
-
+    this.DecodeToken(token).subscribe((res) => {
+      if (res != null) {
+        this.updateToken(parseInt(res.role));
+      } else this.updateToken(0);
+    });
   }
   setTokenId(id: string) {
     localStorage.setItem(environment.CURRENT_TOKEN_ID, id);
   }
-  getToken( ): string | null {
+  getToken(): string | null {
     return localStorage.getItem(environment.CURRENT_TOKEN);
   }
   getTokenId(): string | null {

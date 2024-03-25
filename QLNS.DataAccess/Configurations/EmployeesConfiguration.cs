@@ -29,6 +29,7 @@ namespace QLNS.DataAccess.Configurations
             builder.Property(x => x.Password).IsRequired().HasMaxLength(100);
             builder.Property(x => x.Active).HasDefaultValue(Active.Yes);
             builder.Property(x => x.URLImage).HasMaxLength(200).IsRequired(true);
+            builder.HasIndex(x => new { x.CIC, x.Account }).IsUnique();
         }
     }
 }

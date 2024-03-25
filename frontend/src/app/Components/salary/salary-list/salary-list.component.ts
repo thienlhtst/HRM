@@ -57,7 +57,7 @@ export class SalaryListComponent implements OnInit{
 
   Delete(event:any,id : string){
     this.confirmationDialogService
-      .confirm('Please confirm..', 'Do you really want to Edit ?')
+      .confirm('Please confirm..', 'Do you really want to Delete ?')
       .then((confirmed) => {
         if (confirmed) {
           this.service.DeleteSalary(id).subscribe((res)=>{
@@ -66,7 +66,6 @@ export class SalaryListComponent implements OnInit{
         
         }
       })
-      .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
   }
      
   

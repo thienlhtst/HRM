@@ -309,7 +309,7 @@ namespace QLNS.Services.Catalog.Employees
             }
             var today = DateTime.Now;
             var data_request = new List<EmployeeViewModel>();
-            var query_workhour = await _context.WorkHours.Where(x => x.Day.Equals(today.Day) && x.Month.Equals(today.Month) && x.Day.Equals(today.Year)).ToListAsync();
+            var query_workhour = await _context.WorkHours.Where(x => x.Day.Equals(today.Day) && x.Month.Equals(today.Month) && x.Year.Equals(today.Year)).ToListAsync();
             if (request.flag == 1)
             {
                 foreach (var item in query)

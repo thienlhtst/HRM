@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SalaryModel } from 'src/Model/SalaryModel';
 import { GeneralService } from 'src/Services/General/general.service';
 import { SalaryService } from 'src/Services/Salary/salary.service';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-salary-options',
@@ -12,7 +13,7 @@ import { SalaryService } from 'src/Services/Salary/salary.service';
   styleUrls: ['./salary-options.component.scss']
 })
 export class SalaryOptionsComponent implements OnInit {
-  constructor(private Service:SalaryService,private generalService : GeneralService,private router : Router,private route:ActivatedRoute){}
+  constructor(private Service:SalaryService,private confirmationDialogService: ConfirmationDialogService,private generalService : GeneralService,private router : Router,private route:ActivatedRoute){}
   @Input() selectedID : string
   @Output() onUpdate: EventEmitter<string> =   new EventEmitter();
   @Output() onSuccess: EventEmitter<any> = new EventEmitter();
@@ -65,12 +66,18 @@ export class SalaryOptionsComponent implements OnInit {
   Update(salary : SalaryModel){
     console.log(salary)
     this.onUpdate.emit(this.selectedID)
-    this.Service.UpdateSalary(this.selectedID,salary).subscribe((res)=>{
-      if(res){
+    this.confirmationDialogService
+      .confirm('Please confirm..', 'Do you really want to Edit ?')
+      .then((confirmed) => {
+        if (confirmed) {
+          this.Service.UpdateSalary(this.selectedID,salary).subscribe((res)=>{
+          
+                  this.onSuccess.emit(res)
+           
+          })
         
-            this.onSuccess.emit(res)
-          window.location.reload()
-     }
-    })
+        }
+      })
+    
   }
 }
