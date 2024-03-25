@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-mixed-spaces-and-tabs */
@@ -58,11 +59,11 @@ export default class LoginComponent implements OnInit {
       let user=this.loginForm.value
       this.authService.onLogin(user).subscribe((res) => {
         if (res == null) {
-          
+
           (this.message = true), (this.alert.type = 'danger'), (this.alert.message = 'User or password wrong');
           this.flag = 0;
           this.usernameInput.nativeElement.focus();
-          
+
         }
         this.flag = 0;
       });

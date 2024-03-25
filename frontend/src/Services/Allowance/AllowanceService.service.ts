@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Pagingreponse } from './../../Model/other/pagingreponse';
 import { Injectable } from '@angular/core';
@@ -34,17 +35,17 @@ constructor(private http : HttpClient) { }
     return this.http.get<AllowEmployeeModel[]>(this.apiurl + '/Allowance/rules')
   }
 
-  CreateAllowance(data : Allowancemodel){
+  CreateAllowance(data : Allowancemodel) : Observable<any>{
     return this.http.post(this.apiurl + '/Allowance/createallowance',data)
   }
 
-  CreateAllowanceRules(data: AllowanceRulesModel){
+  CreateAllowanceRules(data: AllowanceRulesModel) : Observable<any>{
     return this.http.post(this.apiurl + '/Allowance/createallowancerules',data)
   }
 
 
 
-  UpdateAllowance(id : string,data : Allowancemodel){
+  UpdateAllowance(id : string,data : Allowancemodel) : Observable<any>{
       return this.http.put(this.apiurl+'/Allowance/'+id,data)
   }
 

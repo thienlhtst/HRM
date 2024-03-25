@@ -3,11 +3,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @angular-eslint/no-output-on-prefix */
 import { Component, Input, OnInit, Output, ViewChild,EventEmitter } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Allowancemodel } from 'src/Model/AllowanceModel';
 import { AllowanceServiceService } from 'src/Services/Allowance/AllowanceService.service';
+import { RegexService } from 'src/Services/Regex/regex.service';
 import { NotificationComponent } from 'src/app/theme/shared/components/Notification/Notification.component';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-allowance-options',
@@ -15,12 +17,21 @@ import { NotificationComponent } from 'src/app/theme/shared/components/Notificat
   styleUrls: ['./allowance-options.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss']
 })
 export class AllowanceOptionsComponent implements OnInit {
-  constructor(private service : AllowanceServiceService,private route : ActivatedRoute,private router : Router){}
+  constructor(private service : AllowanceServiceService,
+    private route : ActivatedRoute,
+    private router : Router,
+    private confirmService : ConfirmationDialogService,
+    private regex : RegexService
+    ){}
   @Input() selectedID : string
   @Output() onUpdate: EventEmitter<string> =   new EventEmitter();
   @Output() onSuccess: EventEmitter<void> = new EventEmitter();
+  @Output() onConfirm : EventEmitter<number> = new EventEmitter();
   messageRequest : string = ''
   data : Allowancemodel
+
+
+
 
   @ViewChild(NotificationComponent) childnoti : NotificationComponent
   ngOnInit(): void {
@@ -37,44 +48,41 @@ export class AllowanceOptionsComponent implements OnInit {
 
 
   Add(data : Allowancemodel){
-    console.log(data)
-    this.service.CreateAllowance(data).subscribe((response)=>{
-      if(response){
-        alert('Success')
-          setTimeout(() => {
-            this.onSuccess.emit()
-          }, 5);
-          window.location.reload()
-      }
-      else{
-        alert('Fail')
-          setTimeout(() => {
-            this.onSuccess.emit()
-          }, 5);
-      }
+    this.confirmService.confirm('Please Confirm','You wanna add ? ')
+    .then((confirmed)=>{
+      if(confirmed){
+        this.service.CreateAllowance(data).subscribe((res)=>{
+          if(res){
+            this.onConfirm.emit(res)
+            this.confirmService.confirm('Success','Add Succeed')
+            window.location.reload()
+          }
+          else {
+            this.confirmService.confirm('Fail','Add Failed')
+          }
 
+
+        })
+      }
     })
+
   }
 
   Update(allowance : Allowancemodel){
-      console.log(allowance)
-      this.onUpdate.emit(this.selectedID)
-      this.service.UpdateAllowance(this.selectedID,allowance).subscribe((response)=>{
-        if(response){
-          alert('Success')
-          setTimeout(() => {
-            this.onSuccess.emit()
-          }, 5);
-          window.location.reload()
-        }
-        else{
-          alert('Fail')
-          setTimeout(() => {
-            this.onSuccess.emit()
-          }, 5);
-        }
+      this.confirmService.confirm('Plese Confirm','You wanna update ? ')
+      .then((confirmed)=>{
+        if(confirmed){
+          this.onUpdate.emit(this.selectedID)
+          this.service.UpdateAllowance(this.selectedID,allowance).subscribe((res)=>{
+            if(res){
+              this.onConfirm.emit(res)
+              this.confirmService.confirm('Success','Update Succeed')
+              window.location.reload()
+            }
 
+        })
+      }
+    })
 
-      })
   }
 }

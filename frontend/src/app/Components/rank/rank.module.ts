@@ -14,6 +14,8 @@ import { SpinnerBetaComponent } from 'src/app/theme/shared/components/spinner-be
 import { RankOptionsComponent } from './rank-options/rank-options.component';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { RegexService } from 'src/Services/Regex/regex.service';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 
 const route : Routes=[{
   path:'',
@@ -28,7 +30,7 @@ const route : Routes=[{
         RankListComponent,
         RankOptionsComponent
     ],
-    providers: [RankServiceService],
+    providers: [RankServiceService,RegexService,ConfirmationDialogService],
     imports: [
         CommonModule,
         RouterModule.forChild(route),

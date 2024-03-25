@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -28,11 +29,11 @@ constructor(private http : HttpClient) { }
     return this.http.get<Pagingreponse>(this.apiurl +'/Rank/paging?PageIndex='+paging.pageindex+'&PageSize='+paging.pagesize+'')
   }
 
-  CreateRank(data : RankModel){
+  CreateRank(data : RankModel) : Observable<any>{
     return this.http.post(this.apiurl + '/Rank/createrank',data)
   }
 
-  UpdateRank(id : string,data : RankModel){
+  UpdateRank(id : string,data : RankModel) : Observable<any>{
     return this.http.put(this.apiurl +'/Rank/'+id,data)
   }
 

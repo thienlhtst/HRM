@@ -10,7 +10,13 @@
     <div class="form-group row">
         <label class="col-sm-5 col-form-label">Name</label>
         <div class="col-sm-10">
-            <input type="text" id="name"  ngModel name="name" [ngModel]="data.name" class="form-control" >
+            <input type="text" id="name"  ngModel name="name" [ngModel]="data.name" pattern="[a-zA-Z ]+"  #nameModel="ngModel" class="form-control" >
+            <div *ngIf="nameModel.invalid && (nameModel.dirty || nameModel.touched)">
+
+              <small class="text-danger" *ngIf="nameModel.errors?.['required']">Name is require</small>
+              <small class="text-danger" *ngIf="nameModel.errors?.['pattern']">User should be text</small>
+            </div>
+
         </div>
     </div>
 

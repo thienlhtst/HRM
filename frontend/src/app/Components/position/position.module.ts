@@ -15,6 +15,7 @@ import { PositionOptionsComponent } from './position-options/position-options.co
 import { SharedModule } from "../../theme/shared/shared.module";
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
+import { RegexService } from 'src/Services/Regex/regex.service';
 
 const route : Routes =[{
   path:'',
@@ -29,7 +30,7 @@ const route : Routes =[{
         PositionListComponent,
         PositionOptionsComponent
     ],
-    providers: [PositionServiceService,ConfirmationDialogService],
+    providers: [PositionServiceService,ConfirmationDialogService,RegexService],
     imports: [
         CommonModule,
         RouterModule.forChild(route),

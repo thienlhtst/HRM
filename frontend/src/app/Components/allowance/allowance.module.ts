@@ -14,6 +14,8 @@ import { SharedModule } from "../../theme/shared/shared.module";
 import { AllowanceRulesComponent } from './allowance-rules/allowance-rules.component';
 import { AllowanceOptionsComponent } from './allowance-options/allowance-options.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { RegexService } from 'src/Services/Regex/regex.service';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 
 
 const routes : Routes =[
@@ -34,7 +36,7 @@ const routes : Routes =[
         AllowanceRulesComponent,
 
     ],
-    providers: [AllowanceServiceService],
+    providers: [AllowanceServiceService,RegexService,ConfirmationDialogService],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),

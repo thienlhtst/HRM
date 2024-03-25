@@ -13,6 +13,9 @@ import { PipeSharePipe } from 'src/app/theme/shared/components/Pipe/pipe-share.p
 import { SpinnerBetaComponent } from 'src/app/theme/shared/components/spinner-beta/spinner-beta.component';
 import { SharedModule } from 'src/app/theme/shared/shared.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { LabourContractServiceService } from 'src/Services/LabourContract/labour-contract-service.service';
+import { RegexService } from 'src/Services/Regex/regex.service';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 
 const routes : Routes =[
   {
@@ -35,6 +38,7 @@ const routes : Routes =[
     PipeSharePipe,
     SpinnerBetaComponent,
     SharedModule,MatTooltipModule
-]
+],
+providers :[LabourContractServiceService,RegexService,ConfirmationDialogService]
 })
 export class LabourcontractModule { }

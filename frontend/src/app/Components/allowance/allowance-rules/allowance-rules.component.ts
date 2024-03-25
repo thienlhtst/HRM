@@ -1,5 +1,6 @@
+/* eslint-disable @angular-eslint/no-output-on-prefix */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AllowEmployeeModel } from 'src/Model/Allowance/AllowEmployeeModel';
 import { AllowanceRulesModel } from 'src/Model/Allowance/AllowanceRulesModel';
@@ -9,6 +10,7 @@ import { SalaryModelList } from 'src/Model/SalaryModelList';
 import { AllowanceServiceService } from 'src/Services/Allowance/AllowanceService.service';
 import { EmployeeService } from 'src/Services/Employee/employee.service';
 import { GeneralService } from 'src/Services/General/general.service';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-allowance-rules',
@@ -16,11 +18,18 @@ import { GeneralService } from 'src/Services/General/general.service';
   styleUrls: ['./allowance-rules.component.scss']
 })
 export class AllowanceRulesComponent implements OnInit {
-  constructor(private service : AllowanceServiceService,private EmployeeService : EmployeeService,private generalService : GeneralService, private router : Router){}
+  constructor(private service : AllowanceServiceService,
+    private EmployeeService : EmployeeService,
+    private generalService : GeneralService,
+    private router : Router,
+    private confirmService : ConfirmationDialogService
+    ){}
+    @Output() onConfirm : EventEmitter<number> = new EventEmitter();
   ngOnInit(): void {
     this.GetAll()
     this.GetRankAndPositionInfo()
     this.GetPagingofAllowEmployee()
+    this.GetAllowanceAndEmployeeInfo()
   }
   datas:Allowancemodel[]
   datasofAllowEmployee : AllowEmployeeModel[]
@@ -81,7 +90,6 @@ export class AllowanceRulesComponent implements OnInit {
   // }
 
   onAllowanceChange(){
-    console.log(this.selectedAllowanceID)
     return this.selectedAllowanceID
   }
 
@@ -136,21 +144,16 @@ export class AllowanceRulesComponent implements OnInit {
 
 
   Add(data : AllowanceRulesModel){
-    console.log(data)
-    this.service.CreateAllowanceRules(data).subscribe((response)=>{
-      if(response){
-        alert('Success')
-          setTimeout(() => {
-          }, 5);
-          window.location.reload()
-      }
-      else{
-        alert('Fail')
-          setTimeout(() => {
-          }, 5);
-      }
+    this.confirmService.confirm('Please Confirm','You wanna add ?')
+    .then((confirmed)=>{
+      if(confirmed){
+        this.service.CreateAllowanceRules(data).subscribe((res)=>{
+          this.onConfirm.emit(res)
 
+        })
+      }
     })
+
   }
 
 

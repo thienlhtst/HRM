@@ -11,20 +11,35 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">First Name</label>
             <div class="col-sm-10">
-                <input type="text" id="firstname"  ngModel name="firstname" [ngModel]="data.firstName"  class="form-control" >
+              <input type="text" id="firstname"  ngModel name="firstname" [ngModel]="data.firstName" pattern="[a-zA-Z ]+"  #firstnameModel="ngModel"  class="form-control" >
+              <div *ngIf="firstnameModel.invalid && (firstnameModel.dirty || firstnameModel.touched)">
+
+                <small class="text-danger" *ngIf="firstnameModel.errors?.['required']">Name is require</small>
+                <small class="text-danger" *ngIf="firstnameModel.errors?.['pattern']">User should be text</small>
+              </div>
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Middle Name</label>
             <div class="col-sm-10">
-                <input type="text" id="middlename"  ngModel name="middlename" [ngModel]="data.middleName"  class="form-control" >
-            </div>
+                <input type="text" id="middlename"  ngModel name="middlename" [ngModel]="data.middleName" pattern="[a-zA-Z ]+"  #middlenameModel="ngModel" class="form-control" >
+                <div *ngIf="middlenameModel.invalid && (middlenameModel.dirty || middlenameModel.touched)">
+
+                  <small class="text-danger" *ngIf="middlenameModel.errors?.['required']">Name is require</small>
+                  <small class="text-danger" *ngIf="middlenameModel.errors?.['pattern']">User should be text</small>
+                </div>
+              </div>
         </div>
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Last Name</label>
           <div class="col-sm-10">
-              <input type="text" id="lastname"  ngModel name="lastname" [ngModel]="data.lastName"  class="form-control" >
-          </div>
+              <input type="text" id="lastname"  ngModel name="lastname" [ngModel]="data.lastName" pattern="[a-zA-Z ]+"  #lastnameModel="ngModel"  class="form-control" >
+              <div *ngIf="lastnameModel.invalid && (lastnameModel.dirty || lastnameModel.touched)">
+
+                <small class="text-danger" *ngIf="lastnameModel.errors?.['required']">Name is require</small>
+                <small class="text-danger" *ngIf="lastnameModel.errors?.['pattern']">User should be text</small>
+              </div>
+            </div>
         </div>
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Date of Birth</label>
@@ -47,13 +62,23 @@
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Identity Card</label>
           <div class="col-sm-10">
-              <input type="text" id="cic" ngModel name="cic" [ngModel]="data.cic" class="form-control">
+              <input type="text" id="cic" ngModel name="cic" [ngModel]="data.cic"  pattern="[0-9]+" #CicModel="ngModel" class="form-control">
+              <div *ngIf="CicModel.invalid && (CicModel.dirty || CicModel.touched)">
+
+                <small class="text-danger" *ngIf="CicModel.errors?.['required']">Money is require</small>
+                <small class="text-danger" *ngIf="CicModel.errors?.['pattern']">Money should be number</small>
+              </div>
           </div>
       </div>
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Phone Number</label>
           <div class="col-sm-10">
-              <input type="text" id="numberPhone" ngModel name="numberPhone" [ngModel]="data.numberPhone" class="form-control">
+              <input type="text" id="numberPhone" ngModel name="numberPhone" [ngModel]="data.numberPhone" pattern="[0-9]+" #PhoneModel="ngModel" class="form-control">
+              <div *ngIf="PhoneModel.invalid && (PhoneModel.dirty || PhoneModel.touched)">
+
+                <small class="text-danger" *ngIf="PhoneModel.errors?.['required']">Money is require</small>
+                <small class="text-danger" *ngIf="PhoneModel.errors?.['pattern']">Money should be number</small>
+              </div>
           </div>
       </div>
       <div class="form-group row">

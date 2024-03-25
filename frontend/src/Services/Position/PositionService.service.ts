@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -29,11 +30,11 @@ constructor(private http : HttpClient) {}
 
   }
 
-  CreatePosition(data : PositionModel){
+  CreatePosition(data : PositionModel) : Observable<any>{
     return this.http.post(this.ApiUrl + '/Position/createposition',data)
   }
 
-  UpdatePosition(id : string,data: PositionModel){
+  UpdatePosition(id : string,data: PositionModel) : Observable<any>{
     return this.http.put(this.ApiUrl + '/Position/'+id,data)
   }
 
