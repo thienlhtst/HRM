@@ -70,7 +70,10 @@ const routes: Routes = [
         path:'labourcontract',
         loadChildren:() => import ('./Components/labourcontract/labourcontract.module').then(m=>m.LabourcontractModule)
       }
-
+      ,{
+        path:'dashboard',
+        loadComponent:()=> import('./demo/default/dashboard/dashboard.component').then(m=>m.default)
+      }
 
     ]
   },

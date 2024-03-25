@@ -30,7 +30,7 @@ export class TokenService {
       })
     };
 
-    return this.http.get('http://localhost:3333/api/Login', httpOptions);
+    return this.http.get(this.apiurl+'/Login', httpOptions);
   }
 
   updateToken(status: number) {
