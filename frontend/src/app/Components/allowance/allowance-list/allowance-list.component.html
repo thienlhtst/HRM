@@ -57,11 +57,11 @@
       </div>
     </div>
 
-      <div class="col-md-12 col-xl-4" id="div-style" [ngClass]="{'col-md-7': ShowFormUpdate, 'd-none': !ShowFormUpdate}" *ngIf="ShowFormUpdate" @fadeIn>
+      <div class="col-md-12 col-xl-4" id="div-style" [ngClass]="{'col-md-7': ShowFormOptions, 'd-none': !ShowFormOptions}" *ngIf="ShowFormOptions" @fadeIn>
         <div class="card">
           <div class="card-body">
             <div class="list-group list-group-flush">
-                <app-allowance-options [selectedID]="selectedID" (onSuccess)="OnSuccess()"></app-allowance-options>
+                <app-allowance-options [selectedID]="selectedID" (onSuccess)="OnSuccess()" ></app-allowance-options>
           </div>
           </div>
         </div>

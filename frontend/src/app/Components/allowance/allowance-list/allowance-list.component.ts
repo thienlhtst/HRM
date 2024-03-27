@@ -52,8 +52,7 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
   messagerequest:string=''
   searchText : string = ""
   pagecount : number = 1
-  ShowFormAdd : boolean = false
-  ShowFormUpdate : boolean = false
+  ShowFormOptions : boolean = false
   ShowForm : boolean = false
   selectedID : string
   spinner : boolean = false
@@ -72,8 +71,6 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
   ngOnInit(): void{
     this.GetPaging()
 
-
-
   }
 
 
@@ -85,17 +82,13 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
   }
 
   ClicktoShowFormAdd(): void{
-    setTimeout(() => {
-      this.ShowFormUpdate =! this.ShowFormUpdate
-    }, 500)
+    this.ShowFormOptions = !this.ShowFormOptions
     this.ShowForm =!this.ShowForm
     this.selectedID = ''
   }
 
   ButtonClickToUpdate(id : string){
-    setTimeout(() => {
-      this.ShowFormUpdate =! this.ShowFormUpdate
-    }, 500)
+    this.ShowFormOptions =! this.ShowFormOptions
     this.ShowForm =!this.ShowForm
     this.selectedID = id
 
@@ -103,7 +96,6 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
 
 
   OnSearchChange(){
-    console.log(this.searchText)
     this.GetPaging()
 
   }
@@ -112,9 +104,9 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
 
 
   OnSuccess(){
-    this.ShowFormUpdate = false
-    this.ShowFormAdd = false
+    this.ShowFormOptions = false
   }
+
 
 
   GetAll(){

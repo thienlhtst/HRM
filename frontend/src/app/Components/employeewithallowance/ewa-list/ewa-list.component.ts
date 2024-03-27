@@ -28,6 +28,7 @@ export class EwaListComponent implements OnInit {
   ShowForm : boolean = false
   textHeader : string
   DataAllowance : any ={}
+  searchText : string
 
   ngOnInit(): void {
     this.getPaging()
@@ -35,9 +36,14 @@ export class EwaListComponent implements OnInit {
 
 
 
+  OnSearchChange(){
+    this.getPaging()
+
+  }
 
 
   getPaging(){
+    this.paging.keyword = this.searchText
     this.service.getEWApaging(this.paging).subscribe((res)=>{
       this.datas = res.items
       this.PageCount = res.pageCount

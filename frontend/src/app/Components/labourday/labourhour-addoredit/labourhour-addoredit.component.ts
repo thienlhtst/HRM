@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @angular-eslint/no-output-on-prefix */
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { Day } from 'src/Model/DayinLabourhour/Day';
 import { LabourHourService } from 'src/Services/LabourHour/LabourHour.service';
 import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 
@@ -18,8 +19,8 @@ export class LabourhourAddoreditComponent implements OnInit,OnChanges {
     factor:0,
 
   }
-  constructor(private service: LabourHourService,private confirmationDialogService: ConfirmationDialogService) { 
-    
+  constructor(private service: LabourHourService,private confirmationDialogService: ConfirmationDialogService) {
+
   }
   GetbyID(){
     this.service.GetbyIDLabourHour(this.id.toString()).subscribe((res)=>{
@@ -49,7 +50,7 @@ export class LabourhourAddoreditComponent implements OnInit,OnChanges {
        })
     })
     .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
-   
+
   }
   Edit(){
     this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to Edit ?')
