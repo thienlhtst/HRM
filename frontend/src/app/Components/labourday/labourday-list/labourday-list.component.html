@@ -34,8 +34,9 @@
             <td scope="col d-flex ">
               <h3>Name: {{ labourhour.name }}</h3>
               <h3>Factor: {{ labourhour.factor }}</h3>
-              <div class="align-self-end">
+              <div class="align-self-end justify-content-between p-1">
                 <button type="button" class="btn btn-link" (click)="OpenAddofEditLabourHour(labourhour.id)">Edit Your Labour</button>
+                <button type="button" class="btn btn-link" (click)="DeleteLabourHour(labourhour.id)">Delete</button>
               </div>
             </td>
             <td *ngIf="labourhour.id != '1'; else normalday">
