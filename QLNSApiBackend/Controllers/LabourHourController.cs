@@ -46,7 +46,7 @@ namespace QLNSApiBackend.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete()]
         public async Task<IActionResult> Delete([FromQuery] LabourHourDeleteRequest request)
         {
             var result = await _labourhourService.Delete(request);

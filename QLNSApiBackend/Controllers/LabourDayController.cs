@@ -44,7 +44,7 @@ namespace QLNSApiBackend.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete()]
         public async Task<IActionResult> Delete([FromQuery] LabourDayDeleteRequest request)
         {
             var result = await _labourDayService.Delete(request);
