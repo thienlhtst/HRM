@@ -8,7 +8,6 @@ import { Requestpaging } from 'src/Model/other/requestpaging';
 import { PositionServiceService } from 'src/Services/Position/PositionService.service';
 import { NotificationComponent } from 'src/app/theme/shared/components/Notification/Notification.component';
 import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
-import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pagingnav.component';
 
 @Component({
   selector: 'app-position-list',
@@ -20,7 +19,7 @@ export class PositionListComponent implements OnInit,OnChanges{
   @ViewChild(NotificationComponent) child: NotificationComponent;
   message:any
   datas : PositionModel[]
-  searchText : any
+  searchText : string = ""
   paging : Requestpaging={
     keyword : '',
     pageindex : 1,
@@ -61,20 +60,14 @@ export class PositionListComponent implements OnInit,OnChanges{
   }
 
   onSearchChange(){
-    this.SearchPositionByIdAndName()
+    this.GetPaging()
   }
 
 
-  SearchPositionByIdAndName(){
-    this.paging.keyword = this.searchText
-    this.service.GetPositionPaging(this.paging).subscribe((res)=>{
-      this.datas = res.items
-      this.PageCount = res.pageCount
-    })
-  }
 
 
   GetPaging(){
+    this.paging.keyword = this.searchText
     this.service.GetPositionPaging(this.paging).subscribe((res)=>{
       this.datas = res.items
       this.PageCount = res.pageCount
@@ -85,15 +78,15 @@ export class PositionListComponent implements OnInit,OnChanges{
   Delete(event : any, id : string){
     this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to Add ?')
     .then((confirmed) =>{
-      if(confirmed) 
+      if(confirmed)
       this.service.DeletePosition(id).subscribe((res)=>{
         this.NoficationAlert(res)
       })
     })
     .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
-    
-   
-    
+
+
+
   }
 
   PageChange(page : number):void{

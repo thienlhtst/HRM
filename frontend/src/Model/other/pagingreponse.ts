@@ -3,6 +3,7 @@
 
 export interface Pagingreponse {
     items:any[]
+    result : any[]
     pageCount:number
     pageIndex:number
     pageSize:number

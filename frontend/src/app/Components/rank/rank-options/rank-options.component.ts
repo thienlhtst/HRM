@@ -5,6 +5,7 @@ import { RankModel } from 'src/Model/RankModel';
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RankServiceService } from 'src/Services/Rank/RankService.service';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-rank-options',
@@ -12,10 +13,14 @@ import { RankServiceService } from 'src/Services/Rank/RankService.service';
   styleUrls: ['./rank-options.component.scss']
 })
 export class RankOptionsComponent implements OnInit {
-  constructor(private Service:RankServiceService,private router : Router,private route:ActivatedRoute){}
+  constructor(private Service:RankServiceService,
+              private router : Router,private route:ActivatedRoute,
+              private confirmService : ConfirmationDialogService
+    ){}
   @Input() selectedID : string
   @Output() onUpdate: EventEmitter<string> =   new EventEmitter();
   @Output() onSuccess: EventEmitter<void> = new EventEmitter();
+  @Output() onConfirm: EventEmitter<number> = new EventEmitter();
   id:string
   data : RankModel
 
@@ -30,40 +35,43 @@ export class RankOptionsComponent implements OnInit {
     })
   }
 
-  Add(data:RankModel){
-    this.Service.CreateRank(data).subscribe((res)=>{
-      if(res){
-        alert('Success')
-        setTimeout(() => {
-          this.onSuccess.emit()
-        }, 5);
-        window.location.reload()
-      }
-      else{
-        alert('Fail')
-        setTimeout(() => {
-          this.onSuccess.emit()
-        }, 5);
-      }
-    })
-}
 
-  Update(rank : RankModel){
-    this.onUpdate.emit(this.selectedID)
-    this.Service.UpdateRank(this.selectedID,rank).subscribe((res)=>{
-      if(res){
-        alert('Success')
-          setTimeout(() => {
-            this.onSuccess.emit()
-          }, 5);
-          this.router.navigate(['/rank'])
+  Add(data : RankModel){
+    this.confirmService.confirm('Please Confirm','You wanna add ? ')
+    .then((confirmed)=>{
+      if(confirmed){
+        this.Service.CreateRank(data).subscribe((res)=>{
+          if(res){
+            this.onConfirm.emit(res)
+            this.confirmService.confirm('Success','Add Succeed')
+            window.location.reload()
+          }
+          else {
+            this.confirmService.confirm('Fail','Add Failed')
+          }
+
+
+        })
       }
-      else{
-        alert('Fail')
-          setTimeout(() => {
-            this.onSuccess.emit()
-          }, 5);
-        }
     })
+
+  }
+
+  Update(allowance : RankModel){
+      this.confirmService.confirm('Plese Confirm','You wanna update ? ')
+      .then((confirmed)=>{
+        if(confirmed){
+          this.onUpdate.emit(this.selectedID)
+          this.Service.UpdateRank(this.selectedID,allowance).subscribe((res)=>{
+            if(res){
+              this.onConfirm.emit(res)
+              this.confirmService.confirm('Success','Update Succeed')
+              window.location.reload()
+            }
+
+        })
+      }
+    })
+
   }
 }

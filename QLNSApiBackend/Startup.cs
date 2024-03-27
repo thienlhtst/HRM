@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoWrapper;
 using Bogus.DataSets;
 using Faker;
 using Microsoft.AspNetCore.Authentication;
@@ -260,7 +261,12 @@ namespace QLNSApiBackend.BackendApi
 
             app.UseCors("CorsPolicy");
             app.UseWebSockets();
-
+            /*app.UseAutoWrapper(new AutoWrapperOptions
+            {
+                ShowStatusCode = true,
+                DisableProblemDetailsException = true,
+                IsDebug = env.IsDevelopment()
+            });*/
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>

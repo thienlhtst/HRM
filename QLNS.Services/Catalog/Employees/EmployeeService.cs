@@ -40,7 +40,7 @@ namespace QLNS.Services.Catalog.Employees
             int id = await _context.Employee.CountAsync();
             var Employee = new Entity.Entities.Employees()
             {
-                ID = (id+1).ToString(),
+                ID = (id + 1).ToString(),
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 MiddleName = request.MiddleName,
@@ -118,7 +118,7 @@ namespace QLNS.Services.Catalog.Employees
                     FirstName = x.p.FirstName,
                     MiddleName = x.p.MiddleName,
                     LastName = x.p.LastName,
-                    Sex = x.p.Sex,
+                    Sex = x.p.Sex.,
                     NumberPhone = x.p.NumberPhone,
                     DOB = x.p.DOB,
                     CIC = x.p.CIC,

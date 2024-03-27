@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoWrapper.Core" Version="5.0.0-rc-04" />
     <PackageReference Include="Bogus" Version="35.4.0" />
     <PackageReference Include="Faker.Net" Version="2.0.163" />
     <PackageReference Include="Faker.NETCore" Version="1.0.2" />

@@ -1,6 +1,6 @@
 
 <div class="row">
-  <div [ngClass]="{ 'col-md-12': !ShowForm, 'col-md-12 col-xl-8': ShowForm }">
+  <div  [ngClass]="{ 'col-md-12': !ShowForm, 'col-md-12 col-xl-8': ShowForm }">
     <div class="card tbl-card">
       <div class="card-header">
         <h3>Allowance Table</h3>
@@ -15,7 +15,7 @@
 
             </div>
             <div class="p-2" >
-              <button type="button" (click)="ClicktoShowFormAdd()" class="btn btn-outline-info mx-auto">Add new</button>
+              <button type="button" *ngIf="!ShowForm" @moveOut  id="div-style"(click)="ClicktoShowFormAdd()" class="btn btn-outline-info mx-auto">Add new</button>
 
             </div>
         </div>
@@ -57,7 +57,7 @@
       </div>
     </div>
 
-      <div class="col-md-12 col-xl-4" [ngClass]="{'col-md-7': ShowFormUpdate, 'd-none': !ShowFormUpdate}" *ngIf="ShowFormUpdate">
+      <div class="col-md-12 col-xl-4" id="div-style" [ngClass]="{'col-md-7': ShowFormUpdate, 'd-none': !ShowFormUpdate}" *ngIf="ShowFormUpdate" @fadeIn>
         <div class="card">
           <div class="card-body">
             <div class="list-group list-group-flush">

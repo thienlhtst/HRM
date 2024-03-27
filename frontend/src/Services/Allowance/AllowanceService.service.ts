@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Pagingreponse } from './../../Model/other/pagingreponse';
 import { Injectable } from '@angular/core';
 import { Allowancemodel } from '../../Model/AllowanceModel';
 import { HttpClient } from '@angular/common/http';
@@ -25,10 +24,10 @@ constructor(private http : HttpClient) { }
     return this.http.get<Allowancemodel>(this.apiurl + '/Allowance/' + id)
   }
 
-  getAllowancePaging(paging : Requestpaging) : Observable<Pagingreponse>{
+  getAllowancePaging(paging : Requestpaging) : Observable<any>{
     if(paging.keyword!='')
-    return this.http.get<Pagingreponse>(this.apiurl + '/Allowance/paging?Keyword='+paging.keyword+'&PageIndex='+paging.pageindex+'&PageSize='+paging.pagesize+'');
-    return this.http.get<Pagingreponse>(this.apiurl + '/Allowance/paging?PageIndex='+paging.pageindex+'&PageSize='+paging.pagesize)
+    return this.http.get<any>(this.apiurl + '/Allowance/paging?Keyword='+paging.keyword+'&PageIndex='+paging.pageindex+'&PageSize='+paging.pagesize+'');
+    return this.http.get<any>(this.apiurl + '/Allowance/paging?PageIndex='+paging.pageindex+'&PageSize='+paging.pagesize)
   }
 
   getAllowEmployee() : Observable<AllowEmployeeModel[]>{

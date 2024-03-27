@@ -1,5 +1,6 @@
 
 /* eslint-disable no-empty */
+import { animate, style, transition, trigger } from '@angular/animations';
 import { OnChanges, SimpleChanges } from '@angular/core';
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -15,22 +16,41 @@ import { AllowanceServiceService } from 'src/Services/Allowance/AllowanceService
 import { EmployeeService } from 'src/Services/Employee/employee.service';
 import { GeneralService } from 'src/Services/General/general.service';
 import { NotificationComponent } from 'src/app/theme/shared/components/Notification/Notification.component';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pagingnav.component';
 
 
 @Component({
   selector: 'app-allowance-list',
   templateUrl: './allowance-list.component.html',
-  styleUrls: ['./allowance-list.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss']
+  styleUrls: ['./allowance-list.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss'],
+  animations: [
+    trigger('moveOut', [
+      transition(':leave', [
+        animate('500ms',)
+      ])
+    ]),
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('500ms', style({ opacity: 1 }))
+      ])
+    ])
+  ]
 })
 
 
 
 export class AllowanceListComponent implements OnInit,OnChanges  {
-  constructor(private service : AllowanceServiceService,private EmployeeService : EmployeeService,private generalService : GeneralService, private router : Router){}
+  constructor(private service : AllowanceServiceService,
+    private EmployeeService : EmployeeService,
+    private generalService : GeneralService,
+    private confirm : ConfirmationDialogService,
+    private router : Router
+     ){}
   datas:Allowancemodel[]
   messagerequest:string=''
-  searchText : any
+  searchText : string = ""
   pagecount : number = 1
   ShowFormAdd : boolean = false
   ShowFormUpdate : boolean = false
@@ -65,13 +85,17 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
   }
 
   ClicktoShowFormAdd(): void{
-    this.ShowFormUpdate = !this.ShowFormUpdate
+    setTimeout(() => {
+      this.ShowFormUpdate =! this.ShowFormUpdate
+    }, 500)
     this.ShowForm =!this.ShowForm
     this.selectedID = ''
   }
 
   ButtonClickToUpdate(id : string){
-    this.ShowFormUpdate =! this.ShowFormUpdate
+    setTimeout(() => {
+      this.ShowFormUpdate =! this.ShowFormUpdate
+    }, 500)
     this.ShowForm =!this.ShowForm
     this.selectedID = id
 
@@ -80,17 +104,11 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
 
   OnSearchChange(){
     console.log(this.searchText)
-    this.SearchAllowanceByIDandName()
+    this.GetPaging()
 
   }
 
-  SearchAllowanceByIDandName(){
-    this.paging.keyword = this.searchText
-    this.service.getAllowancePaging(this.paging).subscribe((res)=>{
-      this.datas = res.items
-      this.pagecount = res.pageCount
-    })
-  }
+
 
 
   OnSuccess(){
@@ -107,6 +125,7 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
   }
 
   GetPaging(){
+    this.paging.keyword = this.searchText
     this.service.getAllowancePaging(this.paging).subscribe((res)=>{
           this.datas = res.items
           this.pagecount = res.pageCount
@@ -117,17 +136,18 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
 
 
   Delete(event:any,id : string){
-    if(confirm('Delete this data ?')){
+   this.confirm.confirm('Please Confirm','You wanna delete id : ' + id)
+   .then((confirmed)=>{
+    if(confirmed){
       this.service.DeleteAllowance(id).subscribe((res)=>{
-        if(res){
-          alert('Delete Success');
-          window.location.reload()
-        } else{
-          alert('Fail')
-          window.location.reload()
-        }
-      })
-    }
+          this.confirm.confirm('Success','Delete Succeed')
+          .then((confirmSuccess)=>{
+            if(confirmSuccess) window.location.reload()
+          })
+
+        })
+      }
+    })
   }
 
 

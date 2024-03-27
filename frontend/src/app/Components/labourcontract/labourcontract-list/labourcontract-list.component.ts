@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core';
 import { LabourContractModel } from 'src/Model/LabourContract/LabourContractModel';
 import { Requestpaging } from 'src/Model/other/requestpaging';
 import { LabourContractServiceService } from 'src/Services/LabourContract/labour-contract-service.service';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-labourcontract-list',
@@ -10,7 +12,9 @@ import { LabourContractServiceService } from 'src/Services/LabourContract/labour
   styleUrls: ['./labourcontract-list.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss']
 })
 export class LabourcontractListComponent implements OnInit {
-  constructor(private service : LabourContractServiceService){}
+  constructor(private service : LabourContractServiceService,
+              private confirm : ConfirmationDialogService
+    ){}
   ngOnInit(): void {
     this.GetPaging()
   }
@@ -47,17 +51,18 @@ export class LabourcontractListComponent implements OnInit {
   }
 
   Delete(event:any,id : string){
-    if(confirm('Delete this data ?')){
+    this.confirm.confirm('Please Confirm','You wanna delete id : ' + id)
+   .then((confirmed)=>{
+    if(confirmed){
       this.service.DeleteContract(id).subscribe((res)=>{
-        if(res){
-          alert('Delete Success');
-          this.GetPaging();
-        } else{
-          alert('Fail')
-          this.GetPaging();
-        }
-      })
-    }
+          this.confirm.confirm('Success','Delete Succeed')
+          .then((confirmSuccess)=>{
+            if(confirmSuccess) window.location.reload()
+          })
+
+        })
+      }
+    })
   }
 
   GetPaging(){

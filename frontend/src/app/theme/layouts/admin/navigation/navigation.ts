@@ -126,6 +126,13 @@ const NavigationItems = [
                   url:"/employee/update",
                   classes:'nav-item',
                 },
+                {
+                  id :'employee',
+                  title:'Details',
+                  type:'item',
+                  url:"/employee/details",
+                  classes:'nav-item',
+                }
               ]
             },
             {
