@@ -26,10 +26,10 @@ export class NotificationComponent implements OnInit,OnDestroy {
 		this.toastService.show({ template });
 	}
   public showSuccess(template: TemplateRef<any>) {
-		this.toastService.show({ template, classname: 'bg-success text-light', delay: 10000 });
+		this.toastService.show({ template, classname: 'bg-success text-light', delay: 5000 });
 	}
   showDanger(template: TemplateRef<any>) {
-		this.toastService.show({ template, classname: 'bg-danger text-light', delay: 15000 });
+		this.toastService.show({ template, classname: 'bg-danger text-light', delay: 5000 });
 	}
   ngOnDestroy(): void {
 		this.toastService.clear();

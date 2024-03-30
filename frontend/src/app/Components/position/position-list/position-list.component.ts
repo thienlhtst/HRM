@@ -58,6 +58,8 @@ export class PositionListComponent implements OnInit,OnChanges{
 
   OnSuccess(){
     this.ShowFormOptions = false
+    this.ShowForm =false
+
   }
 
   onSearchChange(){
@@ -87,7 +89,10 @@ export class PositionListComponent implements OnInit,OnChanges{
     .then((confirmed) =>{
       if(confirmed) 
       this.service.DeletePosition(id).subscribe((res)=>{
-        this.NoficationAlert(res)
+        if(res==1){
+          this.NoficationAlert(res)
+          this.GetPaging()
+        }
       })
     })
     .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
@@ -106,7 +111,9 @@ export class PositionListComponent implements OnInit,OnChanges{
     if (flag == 1) {
       this.message = 'success';
       this.child.showSuccess(this.child.successTpl);
+      
       this.OnSuccess()
+      this.GetPaging()
     } else {
       this.message = 'faill';
       this.child.showDanger(this.child.dangerTpl);

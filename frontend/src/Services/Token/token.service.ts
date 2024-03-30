@@ -9,7 +9,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TokenService {
-  isAuthentication: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  isAuthentication: BehaviorSubject<number> = new BehaviorSubject<number>(-2);
   apiurl: string = environment.apiurl;
   constructor(private http: HttpClient) {
     const token = this.getToken();

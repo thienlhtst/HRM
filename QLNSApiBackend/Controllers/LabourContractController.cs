@@ -55,7 +55,7 @@ namespace QLNSApiBackend.Controllers
         public async Task<IActionResult> Delete(string id)
         {
             var result = await _labourContractService.Delete(id);
-            return Ok();
+            return Ok(result);
         }
 
     }

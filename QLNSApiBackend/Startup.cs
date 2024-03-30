@@ -21,7 +21,6 @@ using Microsoft.OpenApi.Models;
 using QLNS.DataAccess;
 using QLNS.Entity.Entities;
 using QLNS.Services.Catalog.Allowance;
-using QLNS.Services.Catalog.Days;
 using QLNS.Services.Catalog.Employees;
 using QLNS.Services.Catalog.EmployeesWithAllowances;
 using QLNS.Services.Catalog.LabourContract;
@@ -63,8 +62,6 @@ namespace QLNSApiBackend.BackendApi
             services.AddEndpointsApiExplorer();
             services.AddHttpContextAccessor();
             services.AddTransient<IEmployeeService, EmployeeService>();
-            services.AddTransient<IPublicDayService, PublicDayService>();
-            services.AddTransient<IManageDayService, ManageDayService>();
             services.AddTransient<ILoginService, LoginService>();
             services.AddTransient<IRankService, RankService>();
             services.AddTransient<ISalaryService, SalaryService>();

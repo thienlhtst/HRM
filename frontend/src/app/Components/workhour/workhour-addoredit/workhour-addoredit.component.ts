@@ -1,10 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { WorkHourCreateRequest} from 'src/Model/Workhours/WorkHourCreateRequest'
 import { WorkhourEditRequest } from 'src/Model/Workhours/WorkhourEditRequest';
+import { NotificationService } from 'src/Services/Shared/Notification.service';
 import { WorkHourService } from 'src/Services/WorkHour/WorkHour.service';
 import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
+import { WorkhourListComponent } from '../workhour-list/workhour-list.component';
+import { NotificationComponent } from 'src/app/theme/shared/components/Notification/Notification.component';
 @Component({
   selector: 'app-workhour-addoredit',
   templateUrl: './workhour-addoredit.component.html',
@@ -12,10 +15,13 @@ import { ConfirmationDialogService } from 'src/app/theme/shared/components/confi
 })
 export class WorkhourAddoreditComponent implements OnInit {
   @Output() onConfirm: EventEmitter<number> = new EventEmitter();
-
+  action: string;
   id : string =''
+  message
   createrequest:WorkHourCreateRequest
   editrequest:WorkhourEditRequest
+  @ViewChild(NotificationComponent) child: NotificationComponent;
+
   data:any={
     id: 0,
    employeesID :  0 ,
@@ -30,7 +36,7 @@ export class WorkhourAddoreditComponent implements OnInit {
    hourCheckout : 17,
    minuteCheckout : 0
   }
-  constructor(private services:WorkHourService, private router : Router,private route : ActivatedRoute,private confirmationDialogService: ConfirmationDialogService ) {
+  constructor(private services:WorkHourService, private router : Router,private route : ActivatedRoute,private confirmationDialogService: ConfirmationDialogService, private nofis: NotificationService ) {
     this.id = `${this.route.snapshot.paramMap.get('id')}`
     if(this.id!='null'){
       this.services.GetbyId(this.id).subscribe((res)=>
@@ -62,7 +68,13 @@ export class WorkhourAddoreditComponent implements OnInit {
   }
   OnchangeHour(flag:number,event:any){
   }
+
+setAction(action: string) {
+  this.action = action;
+}
+ 
   Confirm(data:any){
+    if(this.action=='confirm'){
     let request :any={
         id: this.data.id,
         employeesID :  this.data.employeesID ,
@@ -84,22 +96,27 @@ export class WorkhourAddoreditComponent implements OnInit {
           request.lbdid= data.idlb
           this.services.CreateWorkhour(request).subscribe((res)=>{
             if(res!=0)
-            this.router.navigate(['/workhour'], { queryParams: { flag: res } });
+            this.nofis.Setflag()
+            this.router.navigate(['/workhour']);
           })
         }else
         {
           this.services.EditWorkhour(this.data).subscribe((res)=>{
-            if(res!=0)
-            this.router.navigate(['/workhour'], { queryParams: { flag: res } });
+            if(res!=0){
+              this.nofis.Setflag()
+            this.router.navigate(['/workhour']);}
           })
         }
 
       }
     })
-    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+    }else{
+      this.router.navigate(['/workhour']);
+    }
     
 
 
 
   }
+  
 }

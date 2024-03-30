@@ -47,7 +47,7 @@ namespace QLNSApiBackend.Controllers
                 return BadRequest(ModelState);
             }
 
-            return Ok(new { token = salaryID });
+            return Ok( salaryID );
         }
 
         [HttpPut("{id}")]
@@ -64,7 +64,7 @@ namespace QLNSApiBackend.Controllers
             var affectedResult = await _salaryService.Delete(id);
             if (affectedResult == 0)
                 return BadRequest();
-            return Ok();
+            return Ok(affectedResult);
         }
 
         [HttpGet("paging")]

@@ -36,9 +36,11 @@ namespace QLNS.Services.Catalog.LabourHours
         public async Task<int> Delete(LabourHourDeleteRequest request)
         {
             var entity = await _context.LabourHours.FirstOrDefaultAsync(x => x.ID ==request.ID);
+            var entity_day = await _context.Days.Where(x => x.IDLB==request.ID).ToListAsync();
             if (entity!=null)
             {
-                _context.Remove(entity);
+                _context.LabourHours.Remove(entity);
+                _context.Days.RemoveRange(entity_day);
                 return await _context.SaveChangesAsync();
             }
             return -1;

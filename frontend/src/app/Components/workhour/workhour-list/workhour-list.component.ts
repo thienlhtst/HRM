@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { WorkHourModel } from 'src/Model/Relationship/WorkHourModel';
 import { Requestpaging } from 'src/Model/other/requestpaging';
+import { NotificationService } from 'src/Services/Shared/Notification.service';
 import { WorkHourService } from 'src/Services/WorkHour/WorkHour.service';
 import { NotificationComponent } from 'src/app/theme/shared/components/Notification/Notification.component';
 
@@ -15,8 +16,8 @@ export class WorkhourListComponent implements OnInit{
   message:string=''
   @ViewChild(NotificationComponent) child: NotificationComponent;
 
-  constructor(private service : WorkHourService,private router: Router,private route: ActivatedRoute){
-
+  constructor(private service : WorkHourService,private router: Router,private route: ActivatedRoute, private nofis: NotificationService){
+    
   }
   requestpaing:Requestpaging={
     keyword: '',
@@ -28,12 +29,11 @@ export class WorkhourListComponent implements OnInit{
   listitems:any[] =[]
   ngOnInit(): void {
      this.GetAllpaging()
-     this.route.queryParams.subscribe(params => {
-      const data = params['flag'];
-      console.log(data)
-      if (data!=null)
-      this.onConfirm(data)
-    });
+    setTimeout(() => {
+      if( this.nofis.Getflag()=='1')
+      this.onConfirm(1)
+      this.nofis.Removeflag()
+    }, 1);
   }
   GetAllpaging(){
     this.service.GetWorkHourPaging(this.requestpaing).subscribe((res)=>{
@@ -50,13 +50,13 @@ export class WorkhourListComponent implements OnInit{
   }
   nagivativeAdd(){
     this.router.navigate(['/workhour/addoredit'])
+  
   }
-  onConfirm(flag: any) {
+   onConfirm(flag: any) {
     if (flag == 1) {
       this.message = 'success';
       this.child.showSuccess(this.child.successTpl);
-      this.router.navigate(['/workhour']);
-
+      this.GetAllpaging()
     } else {
       this.message = 'faill';
       this.child.showDanger(this.child.dangerTpl);
@@ -67,7 +67,7 @@ export class WorkhourListComponent implements OnInit{
       this.router.navigate(['/workhour/addoredit',request.id])
     }else{
       this.service.DeleteWorkhour(request.id).subscribe((res)=>{
-
+        this.onConfirm(res)
       })
     }
   }

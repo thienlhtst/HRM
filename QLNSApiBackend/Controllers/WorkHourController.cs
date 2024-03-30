@@ -109,7 +109,7 @@ namespace QLNSApiBackend.Controllers
             var affectedResult = await _workHourService.Delete(ID);
             if (affectedResult == 0)
                 return BadRequest();
-            return Ok();
+            return Ok(affectedResult);
         }
 
         [HttpGet("paging")]

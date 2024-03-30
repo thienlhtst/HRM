@@ -46,7 +46,7 @@ export class LabourdayListComponent implements OnInit {
     this.OpenAddorEditLabourHour.emit(id)
   }
   DeleteLabourHour(id:any){
-    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to Delete ?')
+    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to Delete this and all Days ?')
     .then((confirmed) =>{
       if(confirmed) this.service.DeleteLabourHour(id).subscribe((res)=>{
         this.DeleteEvent.emit(res)

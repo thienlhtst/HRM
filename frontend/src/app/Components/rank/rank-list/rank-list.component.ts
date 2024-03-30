@@ -47,6 +47,7 @@ ButtonClickToUpdate(id : string){
 
 OnSuccess(){
   this.ShowFormOptions = false
+  this.ShowForm= false
 }
 
   Delete(event:any,id : string){
@@ -55,10 +56,8 @@ OnSuccess(){
         if(res){
           alert('Delete Success');
           this.GetPaging();
-        } else{
-          alert('Fail')
-          this.GetPaging();
         }
+          alert('Fail')
       })
     }
   }

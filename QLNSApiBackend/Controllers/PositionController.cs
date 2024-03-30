@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using QLNS.Services.Catalog.Days;
 using QLNS.Services.Catalog.Positions;
 using QLNS.Services.Catalog.Positions.Dtos.Manage;
 
@@ -44,7 +43,7 @@ namespace QLNS.BackendApi.Controllers
         public async Task<IActionResult> Create([FromBody] PositionCreateRequest request)
         {
             var position = await _managePositionService.Create(request);
-            return Ok(new {token = position});
+            return Ok( position);
         }
 
         [HttpDelete("{id}")]
@@ -53,7 +52,7 @@ namespace QLNS.BackendApi.Controllers
             var affectedResult = await _managePositionService.Delete(id);
             if (affectedResult == 0)
                 return BadRequest();
-            return Ok();
+            return Ok(affectedResult);
         }
 
         [HttpPut("{id}")]
@@ -63,7 +62,7 @@ namespace QLNS.BackendApi.Controllers
             var affectedResult = await _managePositionService.Update(request);
             if (affectedResult == 0)
                 return BadRequest();
-            return Ok();
+            return Ok(affectedResult);
         }
     }
 }

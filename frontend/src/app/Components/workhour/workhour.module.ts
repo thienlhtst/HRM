@@ -13,6 +13,7 @@ import { DatePickerComponent } from "../../theme/shared/components/date-picker/d
 import { NotificationComponent } from "../../theme/shared/components/Notification/Notification.component";
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
+import { NotificationService } from 'src/Services/Shared/Notification.service';
 
 const route : Routes=[
   {
@@ -31,7 +32,7 @@ const route : Routes=[
         WorkhourListDetailComponent,
         WorkhourAddoreditComponent
     ],
-    providers: [WorkHourService,ConfirmationDialogService],
+    providers: [WorkHourService,ConfirmationDialogService,NotificationService],
     imports: [
         CommonModule,
         RouterModule.forChild(route),

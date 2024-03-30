@@ -76,8 +76,6 @@ namespace QLNSApiBackend.Controllers
             {
                 return BadRequest(ModelState);
             }
-            // var employee = await _employeeService.GetById(employeeCreateRequest.ID);
-            // return CreatedAtAction(nameof(GetById), new { id = employeeID }, employee);
             return Ok(new { token = employeeID });
         }
 
@@ -93,7 +91,7 @@ namespace QLNSApiBackend.Controllers
         public async Task<IActionResult> Delete(string employeeID)
         {
             var emp = await _employeeService.Delete(employeeID);
-            return Ok();
+            return Ok(emp);
         }
 
         [HttpGet("paging")]

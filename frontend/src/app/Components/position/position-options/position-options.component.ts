@@ -55,7 +55,7 @@ export class PositionOptionsComponent implements OnInit {
           this.onUpdate.emit(this.selectedID);
           this.Service.UpdatePosition(this.selectedID, position).subscribe((res) => {
             if (res) {
-              this.onSuccess.emit();
+              this.onSuccess.emit(res);
             }
           });
         }

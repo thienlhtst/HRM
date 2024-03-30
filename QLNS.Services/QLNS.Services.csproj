@@ -22,8 +22,4 @@
     <ProjectReference Include="..\QLNS.ViewModel\QLNS.ViewModel.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Catalog\Days\Dtos\Public\" />
-  </ItemGroup>
-
 </Project>
