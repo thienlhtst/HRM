@@ -6,6 +6,7 @@ import { RankModel } from 'src/Model/RankModel';
 import { Router } from '@angular/router';
 import { Requestpaging } from 'src/Model/other/requestpaging';
 import { Observable } from 'rxjs';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-rank-list',
@@ -13,10 +14,13 @@ import { Observable } from 'rxjs';
   styleUrls: ['./rank-list.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss']
 })
 export class RankListComponent implements OnInit{
-  constructor(private service : RankServiceService,private router : Router){}
+  constructor(private service : RankServiceService,
+              private confirm : ConfirmationDialogService,
+              private router : Router
+    ){}
   @Output() ranksChange: EventEmitter<RankModel[]> = new EventEmitter<RankModel[]>();
   datas : RankModel[]
-  searchText : any
+  searchText : string = ""
   paging : Requestpaging={
     keyword : '',
     pageindex  : 1,
@@ -51,31 +55,27 @@ OnSuccess(){
 }
 
   Delete(event:any,id : string){
-    if(confirm('Delete this data ?')){
+    this.confirm.confirm('Please Confirm','You wanna delete id : ' + id)
+   .then((confirmed)=>{
+    if(confirmed){
       this.service.DeleteRank(id).subscribe((res)=>{
-        if(res){
-          alert('Delete Success');
-          this.GetPaging();
-        }
-          alert('Fail')
-      })
-    }
-  }
+          this.confirm.confirm('Success','Delete Succeed')
+          .then((confirmSuccess)=>{
+            if(confirmSuccess) window.location.reload()
+          })
 
-  onSearchChange(){
-    this.SearchRankByIdAndName()
-  }
-
-
-  SearchRankByIdAndName(){
-    this.paging.keyword = this.searchText
-    this.service.GetRankPaging(this.paging).subscribe((res)=>{
-      this.datas = res.items
-      this.PageCount = res.pageCount
+        })
+      }
     })
   }
 
+  onSearchChange(){
+    this.GetPaging()
+  }
+
+
   GetPaging(){
+    this.paging.keyword = this.searchText
     this.service.GetRankPaging(this.paging).subscribe((res)=>{
       this.datas = res.items
       this.PageCount = res.pageCount

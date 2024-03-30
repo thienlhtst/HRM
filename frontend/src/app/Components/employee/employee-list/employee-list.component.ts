@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmployeeModel } from 'src/Model/Employee/EmployeeModel';
 import { Requestpaging } from 'src/Model/other/requestpaging';
 import { EmployeeService } from 'src/Services/Employee/employee.service';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pagingnav.component';
 
 @Component({
@@ -12,10 +14,12 @@ import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pa
   styleUrls: ['./employee-list.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss']
 })
 export class EmployeeListComponent implements OnInit {
-  constructor(private service : EmployeeService,private router : Router){}
+  constructor(private service : EmployeeService,
+              private confirm : ConfirmationDialogService,
+              private router : Router){}
   @ViewChild(PagingnavComponent) child : PagingnavComponent
   datas : EmployeeModel[]
-  searchText : any
+  searchText : string = ""
   paging : Requestpaging = {
     keyword : '',
     pageindex : 1,
@@ -36,6 +40,10 @@ export class EmployeeListComponent implements OnInit {
     this.router.navigate(['/employee/update',id ])
   }
 
+  ButtonClickToDetails(id:string){
+    this.router.navigate(['employee/details',id])
+  }
+
   GetAll(){
     this.service.GetEmployee().subscribe((res)=>{
       this.datas =res;
@@ -43,35 +51,31 @@ export class EmployeeListComponent implements OnInit {
   }
 
   onSearchChange(){
-    this.SearchEmployeeByIDAndLastName()
+    this.GetPaging()
   }
 
 
-  SearchEmployeeByIDAndLastName(){
-    this.paging.keyword = this.searchText
-    this.service.GetEmployeePaging(this.paging).subscribe((res)=>{
-      this.datas = res.items
-      this.PageCount = res.pageCount
-    })
-  }
+
 
 
 
   Delete(event:any,id : string){
-    if(confirm('Delete this data ?')){
+    this.confirm.confirm('Please Confirm','You wanna delete id : ' + id)
+   .then((confirmed)=>{
+    if(confirmed){
       this.service.DeleteEmployee(id).subscribe((res)=>{
-        if(res){
-          alert('Delete Success');
-          this.GetPaging();
-        } else{
-          alert('Fail')
-          this.GetPaging();
-        }
-      })
-    }
+          this.confirm.confirm('Success','Delete Succeed')
+          .then((confirmSuccess)=>{
+            if(confirmSuccess) window.location.reload()
+          })
+
+        })
+      }
+    })
   }
 
   GetPaging(){
+    this.paging.keyword = this.searchText
     this.service.GetEmployeePaging(this.paging).subscribe((res)=>{
         this.datas = res.items
         this.PageCount = res.pageCount

@@ -25,7 +25,7 @@ const routes: Routes = [
 
         pathMatch: 'full'
       },
-    
+
       {
         path: 'home',
         loadChildren : () => import('./Components/home/home.module').then(m=>m.HomeModule)
@@ -69,11 +69,16 @@ const routes: Routes = [
       {
         path:'labourcontract',
         loadChildren:() => import ('./Components/labourcontract/labourcontract.module').then(m=>m.LabourcontractModule)
+      },
+      {
+        path:'allowancesemployeerules',
+        loadChildren:() => import ('./Components/allowancesemployeerules/allowancesemployeerules.module').then(m=>m.AllowancesemployeerulesModule)
       }
       ,{
         path:'dashboard',
         loadComponent:()=> import('./demo/default/dashboard/dashboard.component').then(m=>m.default)
       }
+
 
     ]
   },
@@ -99,7 +104,7 @@ const routes: Routes = [
     component:EmployeeComponent,
     canActivate: [employeeGuard],
     children :[
-      
+
     ]
   },
   {

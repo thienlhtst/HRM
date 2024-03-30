@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { PipeSharePipe } from "../../theme/shared/components/Pipe/pipe-share.pipe";
 import { SpinnerBetaComponent } from 'src/app/theme/shared/components/spinner-beta/spinner-beta.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 
 const route : Routes = [
   {
@@ -20,7 +22,8 @@ const route : Routes = [
     children :[
       {path:'',component:EmployeeListComponent},
       {path:'add',component:EmployeeAddComponent},
-      {path:'update/:id',component:EmployeeUpdateComponent}
+      {path:'update/:id',component:EmployeeUpdateComponent},
+      {path:'details/:id',component:EmployeeDetailsComponent}
     ]
   }
 ]
@@ -30,8 +33,9 @@ const route : Routes = [
         EmployeeListComponent,
         EmployeeAddComponent,
         EmployeeUpdateComponent,
+        EmployeeDetailsComponent,
     ],
-    providers: [EmployeeService],
+    providers: [EmployeeService,ConfirmationDialogService],
     imports: [
         CommonModule,
         RouterModule.forChild(route),
@@ -42,7 +46,7 @@ const route : Routes = [
         FormsModule,
         PipeSharePipe,
         SpinnerBetaComponent,
-        MatTooltipModule  
+        MatTooltipModule
     ]
 })
 export class EmployeeModule { }

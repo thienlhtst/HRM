@@ -6,6 +6,7 @@ import { SalaryModelList } from 'src/Model/SalaryModelList';
 import { GeneralService } from 'src/Services/General/general.service';
 import { EmployeeUpdateModel } from 'src/Model/Employee/EmployeeUpdateModel';
 import { EmployeeModel } from 'src/Model/Employee/EmployeeModel';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-employee-update',
@@ -13,7 +14,11 @@ import { EmployeeModel } from 'src/Model/Employee/EmployeeModel';
   styleUrls: ['./employee-update.component.scss']
 })
 export class EmployeeUpdateComponent implements OnInit {
-  constructor(private service : EmployeeService,private generalService : GeneralService,private router : Router,private route : ActivatedRoute ){}
+  constructor(private service : EmployeeService,
+    private generalService : GeneralService,
+    private router : Router,private route : ActivatedRoute,
+    private confirm : ConfirmationDialogService
+    ){}
   id : string
   selectedGender : number
   selectedDate: string
@@ -96,14 +101,19 @@ export class EmployeeUpdateComponent implements OnInit {
   }
 
   Update(employee : EmployeeUpdateModel){
-    console.log(employee)
     employee.salaryID = this.selectedSalaryID
-    this.service.UpdateEmployee(this.id,employee).subscribe((res)=>{
-      if(res){
-      alert('Update Success')
-      this.router.navigate(['/employee'])
+    this.confirm.confirm('Please Confirm','You wanna add ? ')
+    .then((confirmed)=>{
+      if(confirmed){
+        this.service.UpdateEmployee(this.id,employee).subscribe((res)=>{
+          if(res){
+            this.confirm.confirm('Susccess','Update Succeed ')
+          this.router.navigate(['/employee'])
+          }
+        })
       }
     })
+
   }
 
 }

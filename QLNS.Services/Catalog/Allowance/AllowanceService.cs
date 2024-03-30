@@ -90,7 +90,7 @@ namespace QLNS.Services.Catalog.Allowance
              .Select(e => new AllowanceRulesViewModel()
              {
                  AllowanceName = e.First().p.Name,
-                 EmployeeName = String.Join(" ", e.Select(t => t.px.FirstName + " " + t.px.MiddleName + " " + t.px.LastName)),
+                 EmployeeName = String.Join(",", e.Select(t => t.px.FirstName + " " + t.px.MiddleName + " " + t.px.LastName)),
                  Date = e.First().pp.Date
              }).ToListAsync();
 

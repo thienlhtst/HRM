@@ -36,6 +36,7 @@ import { EmployeeComponent } from './theme/layouts/employee/employee.component';
         NavItemComponent,
         EmployeeComponent,
 
+
     ],
     providers: [NavigationItem],
     bootstrap: [AppComponent],

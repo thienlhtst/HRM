@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @angular-eslint/no-output-on-prefix */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+//import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PositionModel } from 'src/Model/PositionModel';
 import { PositionServiceService } from 'src/Services/Position/PositionService.service';
+import { RegexService } from 'src/Services/Regex/regex.service';
 import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
@@ -16,13 +18,15 @@ export class PositionOptionsComponent implements OnInit {
     private Service: PositionServiceService,
     private router: Router,
     private route: ActivatedRoute,
-    private confirmationDialogService: ConfirmationDialogService
+    private confirmationDialogService: ConfirmationDialogService,
+    private regex : RegexService
   ) {}
   @Input() selectedID: string;
   @Output() onUpdate: EventEmitter<any> = new EventEmitter();
   @Output() onSuccess: EventEmitter<any> = new EventEmitter();
   id: string;
   data: PositionModel;
+
 
   ngOnInit(): void {
     this.GetPositionID();

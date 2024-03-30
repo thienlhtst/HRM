@@ -13,6 +13,7 @@ import { map } from 'rxjs/operators';
 import { SalaryModel } from 'src/Model/SalaryModel';
 import { EmployeeModel } from 'src/Model/Employee/EmployeeModel';
 import { SalaryModelList } from 'src/Model/SalaryModelList';
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-employee-add',
@@ -20,12 +21,15 @@ import { SalaryModelList } from 'src/Model/SalaryModelList';
   styleUrls: ['./employee-add.component.scss']
 })
 export class EmployeeAddComponent implements OnInit {
-  constructor(private service : EmployeeService,private router : Router,private generalService : GeneralService){}
+  constructor(private service : EmployeeService,
+    private router : Router,
+    private generalService : GeneralService,
+    private confirm : ConfirmationDialogService
+    ){}
   datas : EmployeeModel
   messageRequest : string = ''
   selectedGender : number
   selectedDate: string
-  selectedFile : string
   RanksData : any
   PositionsData : any
   SalarysData : SalaryModelList[]
@@ -58,6 +62,7 @@ export class EmployeeAddComponent implements OnInit {
     return this.selectedPositionID
   }
 
+
   GetSalaryByRankAndPosition(){
     this.generalService.GetSalary().subscribe((ressalary)=>{
       this.SalarysData = ressalary
@@ -76,12 +81,10 @@ export class EmployeeAddComponent implements OnInit {
     if(event.target.files.length > 0 ){
       const file = event.target.files[0];
       this.selectedFilePath = file
+      
     }
   }
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0]; // Lấy tập tin được chọn từ đối tượng sự kiện
-    console.log('Đã chọn tập tin:', this.selectedFile);
-  }
+
 
 
   OnGenderChange(){
@@ -97,16 +100,17 @@ export class EmployeeAddComponent implements OnInit {
   Add(data : EmployeeCreateModel){
     data.salaryID = this.selectedSalaryID
     data.active = 1
-    this.service.CreateEmployee(data).subscribe((response)=>{
-      if(response){
-        alert('Success')
-        this.router.navigate(['/employee'])
+    this.confirm.confirm('Please Confirm','You wanna add ? ')
+    .then((confirmed)=>{
+      if(confirmed){
+        this.service.CreateEmployee(data).subscribe((response)=>{
+          if(response){
+            this.confirm.confirm('Success','Add Succeed')
+            this.router.navigate(['/employee'])
+          }
+        })
       }
-      else{
-        this.messageRequest = "Fail"
-        this.childnoti.showSuccess(this.childnoti.successTpl)
-      }
-
     })
+
   }
 }

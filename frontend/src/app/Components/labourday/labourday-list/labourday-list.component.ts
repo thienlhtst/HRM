@@ -1,3 +1,7 @@
+/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
+/* eslint-disable prefer-const */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HomelistLabour } from 'src/Model/DayinLabourhour/HomelistLabour';
@@ -19,15 +23,15 @@ export class LabourdayListComponent implements OnInit {
   constructor(private router : Router,private service:LabourHourService,private confirmationDialogService: ConfirmationDialogService) { }
 
   ngOnInit() {
-    
+
   }
   OpenAddofEdit(dataid:any,labourhourid:any){
-    let request ={ 
+    let request ={
       id:dataid,
       idlabour:labourhourid
     }
     this.OpenAddorEdit.emit(request);
-    
+
   }
   ClicktoShowFormAdd(){
     this.OpenAddorEditLabourHour.emit(0)
@@ -40,7 +44,7 @@ export class LabourdayListComponent implements OnInit {
       })
     })
     .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
-    
+
   }
   OpenAddofEditLabourHour(id:any){
     this.OpenAddorEditLabourHour.emit(id)

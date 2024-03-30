@@ -75,6 +75,7 @@ namespace QLNS.DataAccess.Extenstions
 
             modelbuilder.Entity<WorkHour>().HasData(
               Seeder.WorkHourSeedData());
+
             /* modelbuilder.Entity<EmployeesWithAllowances>().HasData(
                  Seeder.EWASeedData());*/
         }

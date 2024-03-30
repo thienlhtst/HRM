@@ -46,7 +46,8 @@ const routes : Routes =[
         PipeSharePipe,
         SpinnerBetaComponent,
         SharedModule,
-        MatTooltipModule
+        MatTooltipModule,
+
     ]
 })
 export class AllowanceModule { }

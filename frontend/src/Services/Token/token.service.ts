@@ -9,7 +9,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TokenService {
-  isAuthentication: BehaviorSubject<number> = new BehaviorSubject<number>(-2);
+  isAuthentication: BehaviorSubject<number> = new BehaviorSubject<number>(-3);
   apiurl: string = environment.apiurl;
   constructor(private http: HttpClient) {
     const token = this.getToken();
@@ -30,7 +30,7 @@ export class TokenService {
       })
     };
 
-    return this.http.get(this.apiurl+'/Login', httpOptions);
+    return this.http.get(this.apiurl + '/Login', httpOptions);
   }
 
   updateToken(status: number) {
@@ -42,7 +42,7 @@ export class TokenService {
     this.DecodeToken(token).subscribe((res) => {
       if (res != null) {
         this.updateToken(parseInt(res.role));
-      } else this.updateToken(0);
+      }
     });
   }
   setTokenId(id: string) {

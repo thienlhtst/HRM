@@ -30,15 +30,9 @@
                       <th>Last Name</th>
                       <th>Birth Day</th>
                       <th>Sex</th>
-                      <th>CIC</th>
-                      <th>Phone</th>
-                      <th>Address</th>
                       <th>Rank</th>
                       <th>Position</th>
-                      <th>Account</th>
-                      <th>Password</th>
                       <th>Active</th>
-                      <th>UrlImage</th>
                       <th>Options</th>
                   </tr>
               </thead>
@@ -50,21 +44,18 @@
                       <td>{{item.lastName}}</td>
                       <td>{{item.dob}}</td>
                       <td>{{item.sex}}</td>
-                      <td>{{item.cic}}</td>
-                      <td>{{item.numberPhone}}</td>
-                      <td>{{item.address}}</td>
                       <td>{{item.rank}}</td>
                       <td>{{item.position}}</td>
-                      <td>{{item.account}}</td>
-                      <td>{{item.password}}</td>
                       <td>{{item.active}}</td>
-                      <td>{{item.urlImage}}</td>
                       <td>
                         <button class="img-button-employee" (click)="ButtonClickToUpdate(item.id)" mat-icon-button [matTooltip]="'Edit'">
                           <i  class="ti ti-edit"></i>
                         </button>
                         <button class="img-button-employee" (click)="Delete($event,item.id)" mat-icon-button [matTooltip]="'Delete'">
                           <i  class="ti ti-circle-minus" src="" ></i>
+                        </button>
+                        <button class="img-button-employee" (click)=" ButtonClickToDetails(item.id)" mat-icon-button [matTooltip]="'Infomation'">
+                          <i  class="ti ti-info-circle" src="" ></i>
                         </button>
                       </td>
                   </tr>

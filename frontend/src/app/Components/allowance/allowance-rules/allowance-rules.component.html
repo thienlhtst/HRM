@@ -39,19 +39,16 @@
           <div class="table-responsive">
             <table class="table table-hover table-borderless mb-0">
               <thead>
-                <tr>
-                  <td>ID</td>
-                  <td>First Name</td>
-                  <td>Middle Name</td>
-                  <td>Last Name</td>
+                <tr class="text-center align-middle">
+                  <td >ID</td>
+                  <td>Full Name</td>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of DataOfEmployee" [ngClass]="{'selected': IDGetofEmployee === item.id}" (click)="ClickToGetEmployee(item.id)">
-                  <td>{{item.id}}</td>
-                  <td>{{item.firstName}}</td>
-                  <td>{{item.middleName}}</td>
-                  <td>{{item.lastName}}</td>
+                <tr class="text-center align-middle" *ngFor="let item of DataOfEmployee" [ngClass]="{'selected': IDGetofEmployee === item.id}" (click)="ClickToGetEmployee(item.id)">
+                  <td >{{item.id}}</td>
+                  <td >{{item.firstName+ " " + item.middleName+ " " + item.lastName}}</td>
+
                 </tr>
               </tbody>
             </table>
@@ -64,7 +61,7 @@
           <div class="form-group row">
             <label class="col-sm-5 col-form-label">Allowance Name</label>
             <div class="col-sm-10">
-              <select [(ngModel)]="selectedAllowanceID" name="rankID" (change)="onAllowanceChange()" class="form-control">
+              <select [(ngModel)]="selectedAllowanceID" name="allowanceID" (change)="onAllowanceChange()" class="form-control">
                 <option  *ngFor="let allowance of AllowanceData" [value]="allowance.id"  >{{ allowance.name }}</option>
               </select>
             </div>

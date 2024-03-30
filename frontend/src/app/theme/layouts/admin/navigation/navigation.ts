@@ -61,7 +61,7 @@ const NavigationItems = [
           icon:'bi bi-cash-coin',
           children :[
             {
-              id:'allowance1',
+              id:'allowance',
               title:'Allowance List',
               type:'item',
               url:'/allowance',
@@ -69,7 +69,7 @@ const NavigationItems = [
               icon:'bi bi-currency-dollar',
               children:[
                 {
-                  id :'allowance2',
+                  id :'allowance',
                   title:'Update',
                   type:'item',
                   url:"/allowance/options",
@@ -78,7 +78,7 @@ const NavigationItems = [
               ]
             },
             {
-              id:'allowance3',
+              id:'allowance',
               title:'Employee With Allowance',
               type:'item',
               url:'/ewa',
@@ -94,6 +94,23 @@ const NavigationItems = [
                 },
               ]
             },
+            {
+              id:'allowance',
+              title:'Allowances and Employee Rules',
+              type:'item',
+              url:'/allowancesemployeerules',
+              classes:'nav-item',
+              icon:'bi bi-people',
+              children:[
+                {
+                id :'aerules',
+                title:'Auto',
+                type:'item',
+                url:"/allowancesemployeerules/add",
+                classes:'nav-item',
+              }
+            ]
+            }
           ]
         },
         {
@@ -126,6 +143,13 @@ const NavigationItems = [
                   url:"/employee/update",
                   classes:'nav-item',
                 },
+                {
+                  id :'employee',
+                  title:'Details',
+                  type:'item',
+                  url:"/employee/details",
+                  classes:'nav-item',
+                }
               ]
             },
             {

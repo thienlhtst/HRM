@@ -40,7 +40,7 @@ namespace QLNS.Services.Catalog.Employees
             int id = await _context.Employee.CountAsync();
             var Employee = new Entity.Entities.Employees()
             {
-                ID = (id+1).ToString(),
+                ID = (id + 1).ToString(),
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 MiddleName = request.MiddleName,
@@ -107,7 +107,7 @@ namespace QLNS.Services.Catalog.Employees
                         ;
             if (!string.IsNullOrEmpty(request.Keyword))
             {
-                query = query.Where(x => x.p.ID.Contains(request.Keyword) || x.p.NumberPhone.Contains(request.Keyword) || x.p.LastName.Contains(request.Keyword));
+                query = query.Where(x => x.p.ID.Contains(request.Keyword) || x.p.NumberPhone.Contains(request.Keyword) || (x.p.FirstName + x.p.MiddleName + x.p.LastName).Contains(request.Keyword));
             }
             int totalRow = await query.CountAsync();
             var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
