@@ -118,7 +118,7 @@ namespace QLNS.Services.Catalog.Employees
                     FirstName = x.p.FirstName,
                     MiddleName = x.p.MiddleName,
                     LastName = x.p.LastName,
-                    Sex = x.p.Sex.,
+                    Sex = x.p.Sex,
                     NumberPhone = x.p.NumberPhone,
                     DOB = x.p.DOB,
                     CIC = x.p.CIC,

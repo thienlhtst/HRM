@@ -30,7 +30,6 @@ export class EmployeeAddComponent implements OnInit {
   messageRequest : string = ''
   selectedGender : number
   selectedDate: string
-  selectedFile : string
   RanksData : any
   PositionsData : any
   SalarysData : SalaryModelList[]
@@ -63,6 +62,7 @@ export class EmployeeAddComponent implements OnInit {
     return this.selectedPositionID
   }
 
+
   GetSalaryByRankAndPosition(){
     this.generalService.GetSalary().subscribe((ressalary)=>{
       this.SalarysData = ressalary
@@ -81,12 +81,10 @@ export class EmployeeAddComponent implements OnInit {
     if(event.target.files.length > 0 ){
       const file = event.target.files[0];
       this.selectedFilePath = file
+      
     }
   }
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0]; // Lấy tập tin được chọn từ đối tượng sự kiện
-    console.log('Đã chọn tập tin:', this.selectedFile);
-  }
+
 
 
   OnGenderChange(){

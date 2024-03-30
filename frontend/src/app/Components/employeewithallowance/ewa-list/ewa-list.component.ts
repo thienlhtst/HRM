@@ -12,7 +12,7 @@ import { EwaAutoModel } from 'src/Model/EmployeeWithAllowance/EwaAutoModel';
 @Component({
   selector: 'app-ewa-list',
   templateUrl: './ewa-list.component.html',
-  styleUrls: ['./ewa-list.component.scss']
+  styleUrls: ['./ewa-list.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss']
 })
 export class EwaListComponent implements OnInit {
   constructor(private service : EWAServiceService,private EmployeeService : EmployeeService,private AllowanceService : AllowanceServiceService){}
@@ -28,7 +28,7 @@ export class EwaListComponent implements OnInit {
   ShowForm : boolean = false
   textHeader : string
   DataAllowance : any ={}
-  searchText : string
+  searchText : string = ""
 
   ngOnInit(): void {
     this.getPaging()

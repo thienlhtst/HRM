@@ -61,7 +61,7 @@
           <div class="form-group row">
             <label class="col-sm-5 col-form-label">Allowance Name</label>
             <div class="col-sm-10">
-              <select [(ngModel)]="selectedAllowanceID" name="rankID" (change)="onAllowanceChange()" class="form-control">
+              <select [(ngModel)]="selectedAllowanceID" name="allowanceID" (change)="onAllowanceChange()" class="form-control">
                 <option  *ngFor="let allowance of AllowanceData" [value]="allowance.id"  >{{ allowance.name }}</option>
               </select>
             </div>

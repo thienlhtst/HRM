@@ -1,7 +1,8 @@
+/* eslint-disable @angular-eslint/no-output-on-prefix */
 
 /* eslint-disable no-empty */
 import { animate, style, transition, trigger } from '@angular/animations';
-import { OnChanges, SimpleChanges } from '@angular/core';
+import {  OnChanges, SimpleChanges } from '@angular/core';
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -48,8 +49,9 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
     private confirm : ConfirmationDialogService,
     private router : Router
      ){}
+
   datas:Allowancemodel[]
-  messagerequest:string=''
+  message:string=''
   searchText : string = ""
   pagecount : number = 1
   ShowFormOptions : boolean = false
@@ -102,6 +104,17 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
 
 
 
+  onConfirm(event : any){
+      this.message = 'success'
+      this.childnoti.showSuccess(this.childnoti.successTpl)
+      this.ShowForm = false
+      this.service.getAllowancePaging(this.paging).subscribe((res)=>{
+        this.datas = res
+      })
+    }
+
+
+
 
   OnSuccess(){
     this.ShowFormOptions = false
@@ -134,7 +147,7 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
       this.service.DeleteAllowance(id).subscribe((res)=>{
           this.confirm.confirm('Success','Delete Succeed')
           .then((confirmSuccess)=>{
-            if(confirmSuccess) window.location.reload()
+            if(confirmSuccess) this.GetPaging()
           })
 
         })
