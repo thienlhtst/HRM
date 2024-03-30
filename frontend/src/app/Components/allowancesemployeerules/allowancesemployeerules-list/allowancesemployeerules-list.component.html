@@ -1,6 +1,6 @@
 <!-- eslint-disable @angular-eslint/template/eqeqeq -->
 <div class="row">
-  <div  [ngClass]="{ 'col-md-12': !ShowForm, 'col-md-12 col-xl-8': ShowForm }">
+  <div >
   <div class="card">
     <div class="card-header">
       <h3>Allowance and Employee Table</h3>
@@ -21,7 +21,7 @@
           </div>
         </div> -->
         <div class="p-2">
-          <button type="button" (click)="ButtonClickToOptions()"  class="btn btn-outline-info mx-auto">Add new</button>
+          <button type="button" (click)="ButtonClickToOptions()" #showRules class="btn btn-outline-info mx-auto">Add new</button>
         </div>
       </div>
       <div>
@@ -47,16 +47,9 @@
     </div>
     </div>
   </div>
-
-  <div class="col-md-12 col-xl-4" id="div-style" [ngClass]="{'col-md-7': ShowFormOptions, 'd-none': !ShowFormOptions}" *ngIf="ShowFormOptions" @fadeIn>
-    <div class="card">
-      <div class="card-body">
-        <div class="list-group list-group-flush">
-            <app-allowancesemployeerules-add (onConfirm)="OnConfirm($event)" (onSuccess)="OnSuccess()" ></app-allowancesemployeerules-add>
-      </div>
-      </div>
-    </div>
-  </div>
+<div *ngIf="ShowForm">
+  <app-allowance-rules></app-allowance-rules>
+</div>
 
 
 </div>

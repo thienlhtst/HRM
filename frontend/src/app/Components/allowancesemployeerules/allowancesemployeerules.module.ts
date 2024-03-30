@@ -14,14 +14,16 @@ import { SharedModule } from 'src/app/theme/shared/shared.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AllowancesAndEmployeeRulesService } from 'src/Services/AllowancesAndEmployeeRules/allowances-and-employee-rules.service';
 import { AllowanceServiceService } from 'src/Services/Allowance/AllowanceService.service';
-import { AllowancesemployeerulesAddComponent } from './allowancesemployeerules-add/allowancesemployeerules-add.component';
+
+import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
+import { AllowanceRulesComponent } from '../allowance/allowance-rules/allowance-rules.component';
 
 const routes : Routes =[
   {
     path : '',
     children:[
       {path: '',component:AllowancesemployeerulesListComponent},
-      {path:'add',component: AllowancesemployeerulesAddComponent}
+
     ]
   }
 ]
@@ -29,7 +31,7 @@ const routes : Routes =[
 @NgModule({
   declarations: [
     AllowancesemployeerulesListComponent,
-    AllowancesemployeerulesAddComponent
+    AllowanceRulesComponent
   ],
   imports: [
     CommonModule,
@@ -42,6 +44,6 @@ const routes : Routes =[
         SharedModule,
         MatTooltipModule,
   ],
-  providers:[AllowanceServiceService ]
+  providers:[AllowanceServiceService,ConfirmationDialogService]
 })
 export class AllowancesemployeerulesModule { }

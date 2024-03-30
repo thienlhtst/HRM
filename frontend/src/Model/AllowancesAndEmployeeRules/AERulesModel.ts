@@ -1,10 +1,11 @@
+
 export interface AERulesModel {
   allowanceName : string
-  employeeName : EmployeeList[]
+  employeeName : string
   date : string
 }
 
-export interface EmployeeList{
-  id : string
-  Name : string
-}
+
+
+
+

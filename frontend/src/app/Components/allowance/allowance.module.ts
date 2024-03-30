@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { PipeSharePipe } from 'src/app/theme/shared/components/Pipe/pipe-share.pipe';
 import { SpinnerBetaComponent } from 'src/app/theme/shared/components/spinner-beta/spinner-beta.component';
 import { SharedModule } from "../../theme/shared/shared.module";
-import { AllowanceRulesComponent } from './allowance-rules/allowance-rules.component';
+
 import { AllowanceOptionsComponent } from './allowance-options/allowance-options.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RegexService } from 'src/Services/Regex/regex.service';
@@ -33,7 +33,6 @@ const routes : Routes =[
     declarations: [
         AllowanceListComponent,
         AllowanceOptionsComponent,
-        AllowanceRulesComponent,
 
     ],
     providers: [AllowanceServiceService,RegexService,ConfirmationDialogService],

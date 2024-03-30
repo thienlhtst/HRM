@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @angular-eslint/no-output-on-prefix */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
@@ -5,6 +6,8 @@ import { Router } from '@angular/router';
 import { AllowEmployeeModel } from 'src/Model/Allowance/AllowEmployeeModel';
 import { AllowanceRulesModel } from 'src/Model/Allowance/AllowanceRulesModel';
 import { Allowancemodel } from 'src/Model/AllowanceModel';
+import { AERulesModel } from 'src/Model/AllowancesAndEmployeeRules/AERulesModel';
+import { EmployeeModel } from 'src/Model/Employee/EmployeeModel';
 import { EmployeeRulesModel } from 'src/Model/Employee/EmployeeRulesModel';
 import { SalaryModelList } from 'src/Model/SalaryModelList';
 import { AllowanceServiceService } from 'src/Services/Allowance/AllowanceService.service';
@@ -18,8 +21,10 @@ import { ConfirmationDialogService } from 'src/app/theme/shared/components/confi
   styleUrls: ['./allowance-rules.component.scss']
 })
 export class AllowanceRulesComponent implements OnInit {
+itemlist: any;
   constructor(private service : AllowanceServiceService,
     private EmployeeService : EmployeeService,
+    private AllowanceService : AllowanceServiceService,
     private generalService : GeneralService,
     private router : Router,
     private confirmService : ConfirmationDialogService
@@ -49,13 +54,15 @@ export class AllowanceRulesComponent implements OnInit {
   pagecountAllowEmployee : number = 1
   ShowFormAddRules : boolean = false
   date : Date = new Date()
+  listEmployeeToAllow : AERulesModel[] = []
+  DataToPush : AERulesModel
+  allowanceMap = new Map<string, AERulesModel>()
 
 
 
   GetAll(){
     this.service.getAllowance().subscribe((res)=>{
       this.datas = res
-
     })
   }
 
@@ -123,18 +130,39 @@ export class AllowanceRulesComponent implements OnInit {
       this.EmployeeService.GetEmployeeByAllowance(this.IDGetofAllowance).subscribe((res)=>{
         this.DataOfEmployee = res
       })
+      console.log(this.IDGetofAllowance)
     }
   }
 
   ClickToGetEmployee(id : string){
+
+
+
     if(this.IDGetofEmployee === id)
       this.IDGetofEmployee = null
     else{
       this.IDGetofEmployee = id
-      console.log(this.IDGetofEmployee)
+      this.AllowanceService.getAllowanceByID(this.IDGetofAllowance).subscribe((resallo=>{
+        if(resallo){
+          this.EmployeeService.GetEmployeebyID(id).subscribe((resemployee)=>{
+            this.DataToPush ={
+              allowanceName : resallo.name,
+              employeeName : resemployee.firstName + " " + resemployee.middleName + " " + resemployee.lastName,
+              date : this.date.toISOString()
+            }
+            this.listEmployeeToAllow.push(this.DataToPush)
+
+          })
+        }
+      }))
+
+
+
     }
 
   }
+
+
 
   GetPagingofAllowEmployee(){
     this.service.getAllowEmployee().subscribe((res)=>{
@@ -144,6 +172,7 @@ export class AllowanceRulesComponent implements OnInit {
 
 
   Add(data : AllowanceRulesModel){
+
     this.confirmService.confirm('Please Confirm','You wanna add ?')
     .then((confirmed)=>{
       if(confirmed){
