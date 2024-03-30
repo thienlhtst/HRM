@@ -32,7 +32,7 @@ export class LabourHourService {
     return this.http.put(this.apiurl, request);
   }
   DeleteLabourHour(request: string): Observable<any> {
-    return this.http.delete(this.apiurl + '/' + request);
+    return this.http.delete(this.apiurl + '/?ID=' + request);
   }
   ///////////////////////////
   GetbyIDLabourDay(id: any): Observable<any> {
@@ -45,7 +45,7 @@ export class LabourHourService {
     return this.http.put(this.apiurlday, request);
   }
   DeleteLabourDay(request: string): Observable<any> {
-    return this.http.delete(this.apiurlday + '/' + request);
+    return this.http.delete(this.apiurlday + '/?ID=' + request);
   }
 
 

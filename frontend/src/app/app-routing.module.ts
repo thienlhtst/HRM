@@ -74,7 +74,10 @@ const routes: Routes = [
         path:'allowancesemployeerules',
         loadChildren:() => import ('./Components/allowancesemployeerules/allowancesemployeerules.module').then(m=>m.AllowancesemployeerulesModule)
       }
-
+      ,{
+        path:'dashboard',
+        loadComponent:()=> import('./demo/default/dashboard/dashboard.component').then(m=>m.default)
+      }
 
 
     ]

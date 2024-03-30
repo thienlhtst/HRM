@@ -56,7 +56,21 @@ formatsEnabled: BarcodeFormat[] = [
 
   constructor(private service : AuthService,private ewaService : EWAServiceService,private services_workhour:WorkHourService,private AllowanceService : AllowanceServiceService, private router : Router) {
     this.data.id=''
-
+    this.askForCameraPermission()
+  }
+  askForCameraPermission() {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+          // you can now use this stream for video source
+        })
+        .catch(err => {
+          // handle the error of user denying access
+          console.error("The following error occurred: " + err);
+        });
+    } else {
+      console.error("getUserMedia is not supported by your browser");
+    }
   }
   ChangeCheck(flagchange:number){
     this.flagchange = flagchange

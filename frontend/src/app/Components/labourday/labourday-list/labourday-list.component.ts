@@ -20,7 +20,7 @@ export class LabourdayListComponent implements OnInit {
 
   @Input() datalist:HomelistLabour[]
   searchText:any
-  constructor(private router : Router,private service:WorkHourService,private confirmationDialogService: ConfirmationDialogService) { }
+  constructor(private router : Router,private service:LabourHourService,private confirmationDialogService: ConfirmationDialogService) { }
 
   ngOnInit() {
 
@@ -39,7 +39,7 @@ export class LabourdayListComponent implements OnInit {
   DeleteLabourDay(id:any){
     this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to Delete ?')
     .then((confirmed) =>{
-      if(confirmed) this.service.DeleteWorkhour(id).subscribe((res)=>{
+      if(confirmed) this.service.DeleteLabourDay(id).subscribe((res)=>{
         this.DeleteEvent.emit(res)
       })
     })
@@ -48,5 +48,15 @@ export class LabourdayListComponent implements OnInit {
   }
   OpenAddofEditLabourHour(id:any){
     this.OpenAddorEditLabourHour.emit(id)
+  }
+  DeleteLabourHour(id:any){
+    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to Delete ?')
+    .then((confirmed) =>{
+      if(confirmed) this.service.DeleteLabourHour(id).subscribe((res)=>{
+        this.DeleteEvent.emit(res)
+      })
+    })
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+    
   }
 }

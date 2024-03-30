@@ -1,1 +1,20 @@
-https://docs.google.com/spreadsheets/d/1kRhfoz4r-UVOxTxusI7sLJvAoXYW72PfHFxptG9jut8/edit?usp=sharing
+The first you have to go the branch is Angular-1 because we have't done yet
+To run a project, we have  6 Step to run
+
+Step 1: go a appsettings.json in QLNS.DataAccess and QLNS.WEBAPI  to change ConnectionStrings
+
+ "QLNSDb": "Data Source=your name database;Database=QLNS;User ID=sa;Password=your password;TrustServerCertificate=True;MultipleActiveResultSets=true"
+Step 2 Set QLNSApiBackend to starup project and run it
+Step 3: go folder frontend and open terminal 
+Step 4: run npm i --legacy-peer-deps and wait for it
+Step 5: run ng serve 
+
+IF you have a docker desktop 
+to run a project , we have step to run
+step 1 you will go a termial have a docker-compose.yml
+step 2 you  run  docker compose up --build and wait for it
+Step 3 open web go: localhost:4200 
+
+
+
+Username and Password : admin admin
