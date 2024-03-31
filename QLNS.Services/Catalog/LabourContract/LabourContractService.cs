@@ -54,14 +54,14 @@ namespace QLNS.Services.Catalog.LabourContract
             }
             int totalRow = await query.CountAsync();
 
-            var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
+            var data = await query.OrderBy(x => Convert.ToInt32(x.p.ID)).Skip((request.PageIndex - 1) * request.PageSize)
                     .Take(request.PageSize)
                     .Select(x => new LabourContractViewModel()
                     {
                         ID = x.p.ID,
                         EmployeeID = x.pt.FirstName + " " + x.pt.MiddleName + " " + x.pt.LastName,
                         Content = x.p.Content,
-                        ContractSigninDate = x.p.ContractSigninDate,
+                        ContractSigninDate = x.p.ContractSigninDate.Date.ToString() ,
                         Active = x.p.Active,
                         ContractTerm = x.p.ContractTerm
                     }).ToListAsync();
@@ -88,7 +88,7 @@ namespace QLNS.Services.Catalog.LabourContract
                 ID = lbct.ID,
                 EmployeeID = employeeID,
                 Content = lbct.Content,
-                ContractSigninDate = lbct.ContractSigninDate,
+                ContractSigninDate = lbct.ContractSigninDate.Date.ToString(),
                 Active = lbct.Active,
                 ContractTerm = lbct.ContractTerm
             };
@@ -103,7 +103,7 @@ namespace QLNS.Services.Catalog.LabourContract
                 ID = x.ID,
                 EmployeeID = x.EmployeeID,
                 Content = x.Content,
-                ContractSigninDate = x.ContractSigninDate,
+                ContractSigninDate = x.ContractSigninDate.Date.ToString(),
                 ContractTerm = x.ContractTerm,
                 Active = x.Active
             }).ToListAsync();

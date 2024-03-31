@@ -39,8 +39,6 @@ export class PositionListComponent implements OnInit,OnChanges{
 
     }
   }
-
-
   ClicktoShowFormAdd(): void{
     this.ShowFormOptions = !this.ShowFormOptions
     this.ShowForm =!this.ShowForm
@@ -104,7 +102,7 @@ export class PositionListComponent implements OnInit,OnChanges{
     if (flag == 1) {
       this.message = 'success';
       this.child.showSuccess(this.child.successTpl);
-      
+
       this.OnSuccess()
       this.GetPaging()
     } else {

@@ -61,7 +61,7 @@ namespace QLNS.Services.Catalog.Allowance
                 query = query.Where(x => x.p.ID.Contains(request.Keyword) || x.p.Name.Contains(request.Keyword));
             }
             int totalRow = await query.CountAsync();
-            var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
+            var data = await query.OrderBy(x => Convert.ToInt32(x.p.ID)).Skip((request.PageIndex - 1) * request.PageSize)
                 .Take(request.PageSize)
                 .Select(x => new AllowanceViewModel()
                 {

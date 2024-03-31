@@ -1,4 +1,4 @@
-
+<app-Notification [message]="message" ></app-Notification>
 <div class="row">
   <div [ngClass]="{ 'col-md-12': !ShowForm, 'col-md-12 col-xl-8': ShowForm }">
     <div class="card tbl-card">
@@ -66,7 +66,7 @@
     <div class="card">
       <div class="card-body">
         <div class="list-group list-group-flush">
-          <app-rank-options [selectedID]="selectedID" (onSuccess)="OnSuccess()"></app-rank-options>
+          <app-rank-options [selectedID]="selectedID" (onConfirm)="NoficationAlert($event)"></app-rank-options>
         </div>
       </div>
     </div>

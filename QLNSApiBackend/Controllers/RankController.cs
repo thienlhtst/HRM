@@ -61,7 +61,7 @@ namespace QLNSApiBackend.Controllers
             {
                 return BadRequest(ModelState);
             }
-            return Ok(new { token = rankID });
+            return Ok( rankID );
         }
 
         [HttpPut("{id}")]

@@ -26,7 +26,7 @@ namespace QLNSApiBackend.Controllers
         public async Task<IActionResult> Create([FromBody] LabourContractCreateRequest request)
         {
             var labour = await _labourContractService.Create(request);
-            return Ok(new { token = labour });
+            return Ok(labour);
         }
 
         [HttpGet("{id}")]

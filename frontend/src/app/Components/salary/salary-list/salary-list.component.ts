@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { getMultipleValuesInSingleSelectionError } from '@angular/cdk/collections';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { SalaryModel } from 'src/Model/SalaryModel';
@@ -49,9 +50,10 @@ export class SalaryListComponent implements OnInit{
 
 
 
-  OnSuccess(flag:any){
-    this.onConfirm(flag)
+  OnSuccess(){
     this.ShowFormOptions = false
+    this.ShowForm= false
+    this.GetPaing()
   }
 
 
@@ -72,7 +74,11 @@ export class SalaryListComponent implements OnInit{
   onConfirm(flag: any) {
     if (flag == 1) {
       this.message = 'success';
-      this.child.showSuccess(this.child.successTpl);
+      setTimeout(() => {
+        this.child.showSuccess(this.child.successTpl);
+
+      }, 1);
+      this.OnSuccess()
 
     } else {
       this.message = 'faill';
@@ -82,6 +88,7 @@ export class SalaryListComponent implements OnInit{
 
   GetPaing(){
     this.spinner  = false
+    this.datas=[]
     this.service.GetSalaryPaging(this.paging).subscribe((res)=>{
       this.datas = res.items
       this.PageCount = res.pageCount
@@ -94,11 +101,8 @@ export class SalaryListComponent implements OnInit{
     this.GetPaing()
   }
 
-  GetAll(){
-    this.service.GetSalary().subscribe((res)=>{
-      this.datas = res
-    })
-  }
+  
+  
   onSearchChange(){
      this.paging.keyword = this.searchText
      this.GetPaing();

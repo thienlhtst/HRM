@@ -132,7 +132,7 @@ namespace QLNS.Services.Catalog.EmployeesWithAllowances
                 query = query.Where(x => x.p.EmployeeID.Contains(request.Keyword) || (x.pt.FirstName + x.pt.MiddleName + x.pt.LastName).Contains(request.Keyword));
             }
             var totalRow = await query.CountAsync();
-            var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
+            var data = await query.OrderBy(x => Convert.ToInt32(x.p.ID)).Skip((request.PageIndex - 1) * request.PageSize)
                 .Take(request.PageSize)
                 .Select(x => new EmployeesWithAllowancesViewModel()
                 {

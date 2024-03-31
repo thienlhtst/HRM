@@ -36,7 +36,7 @@ namespace QLNS.Services.Catalog.Ranks
                 query = query.Where(x => x.p.IDrank.Contains(Request.Keyword) || x.p.Name.Contains(Request.Keyword));
             }
             int totalRow = await query.CountAsync();
-            var data = await query.Skip((Request.PageIndex - 1) * Request.PageSize)
+            var data = await query.OrderBy(x => Convert.ToInt32(x.p.IDrank)).Skip((Request.PageIndex - 1) * Request.PageSize)
                 .Take(Request.PageSize)
                 .Select(x => new RankVM()
                 {
@@ -63,8 +63,7 @@ namespace QLNS.Services.Catalog.Ranks
                 Name = request.Name
             };
             _context.Ranks.Add(rank);
-            await _context.SaveChangesAsync();
-            return Convert.ToInt32(rank.IDrank);
+            return await _context.SaveChangesAsync();
         }
 
         public async Task<int> Delete(string rankID)

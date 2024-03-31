@@ -81,7 +81,7 @@ namespace QLNS.Services.Catalog.Employees
                 query = query.Where(x => x.ID.Contains(request.Keyword) || x.LastName.Contains(request.Keyword));
             }
             int totalRow = await query.CountAsync();
-            var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
+            var data = await query.OrderBy(x => Convert.ToInt32(x.ID)).Skip((request.PageIndex - 1) * request.PageSize)
                 .Take(request.PageSize).Select(x => new EmployeeVMStatistic()
                 {
                     ID = x.ID,

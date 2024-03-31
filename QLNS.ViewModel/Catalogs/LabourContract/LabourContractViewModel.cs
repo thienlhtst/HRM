@@ -12,7 +12,7 @@ namespace QLNS.ViewModel.Catalogs.LabourContract
         public string ID { get; set; }
         public string EmployeeID { get; set; }
         public string Content { get; set; }
-        public DateTime ContractSigninDate { get; set; }
+        public string ContractSigninDate { get; set; }
         public int ContractTerm { get; set; }
         public Active Active { get; set; }
     }

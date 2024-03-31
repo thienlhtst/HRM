@@ -36,14 +36,14 @@ namespace QLNSApiBackend.Controllers
         public async Task<IActionResult> Create([FromBody] AllowanceCreateRequest request)
         {
             var allowance = await _allowanceService.Create(request);
-            return Ok(new { token = allowance });
+            return Ok( allowance );
         }
 
         [HttpPost("createallowancerules")]
         public async Task<IActionResult> CreateAllowanceRules([FromBody] AllowanceRulesCreateViewModel request)
         {
             var allowancerules = await _allowanceService.CreateAllowanceRules(request);
-            return Ok(new { token = allowancerules });
+            return Ok(allowancerules);
         }
 
         [HttpPut("{id}")]

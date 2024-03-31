@@ -33,7 +33,7 @@ namespace QLNS.Services.Catalog.Salary
                 query = query.Where(x => x.pt.Name.Contains(Request.Keyword) || x.pp.Name.Contains(Request.Keyword));
             }
             int totalRow = await query.CountAsync();
-            var data = await query.Skip((Request.PageIndex - 1) * Request.PageSize)
+            var data = await query.OrderBy(x=>Convert.ToInt32(x.p.ID)).Skip((Request.PageIndex - 1) * Request.PageSize)
                 .Take(Request.PageSize)
                 .Select(x => new SalaryVM()
                 {
@@ -62,8 +62,7 @@ namespace QLNS.Services.Catalog.Salary
                 Money = request.Money
             };
             _context.Salaries.Add(rank);
-            await _context.SaveChangesAsync();
-            return Convert.ToInt32(rank.ID);
+            return await _context.SaveChangesAsync();
         }
 
         public async Task<int> Delete(string rankID)
@@ -76,13 +75,11 @@ namespace QLNS.Services.Catalog.Salary
         public async Task<SalaryVM> GetById(string SalaryID)
         {
             var salary = await _context.Salaries.FindAsync(SalaryID);
-            var rank = await _context.Ranks.FindAsync(salary.RankID);
-            var position = await _context.Positions.FindAsync(salary.PositionID);
             var salaryvm = new SalaryVM()
             {
                 ID = salary.ID,
-                RankName = rank.Name,
-                PositionName = position.Name,
+                RankName = salary.RankID,
+                PositionName = salary.PositionID,
                 Money = salary.Money
             };
             return salaryvm;

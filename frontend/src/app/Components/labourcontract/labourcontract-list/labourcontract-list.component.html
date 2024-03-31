@@ -1,4 +1,4 @@
-
+<app-Notification [message]="message" ></app-Notification>
 <div class="row">
   <div [ngClass]="{ 'col-md-12': !ShowForm, 'col-md-12 col-xl-8': ShowForm }">
     <div class="card tbl-card">
@@ -61,7 +61,7 @@
       <div class="card">
         <div class="card-body">
           <div class="list-group list-group-flush">
-              <app-labourcontract-options [selectedID]="selectedID" (onSuccess)="OnSuccess()"></app-labourcontract-options>
+              <app-labourcontract-options [selectedID]="selectedID" (onSuccess)="NoficationAlert($event)"></app-labourcontract-options>
          </div>
         </div>
       </div>

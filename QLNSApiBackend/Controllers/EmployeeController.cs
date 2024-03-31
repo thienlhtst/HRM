@@ -76,7 +76,7 @@ namespace QLNSApiBackend.Controllers
             {
                 return BadRequest(ModelState);
             }
-            return Ok(new { token = employeeID });
+            return Ok(employeeID);
         }
 
         [HttpPut("{id}")]

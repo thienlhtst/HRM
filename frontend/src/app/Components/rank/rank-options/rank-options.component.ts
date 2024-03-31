@@ -25,7 +25,12 @@ export class RankOptionsComponent implements OnInit {
   @Output() onSuccess: EventEmitter<void> = new EventEmitter();
   @Output() onConfirm: EventEmitter<number> = new EventEmitter();
   id:string
-  data : RankModel
+  data : any={
+    iDrank:'',
+    name:'',
+    rankRoleID:'',
+
+  }
 
 
 
@@ -36,7 +41,9 @@ export class RankOptionsComponent implements OnInit {
 
   GetRankID(){
     this.Service.GetRankByID(this.selectedID).subscribe((res)=>{
-      this.data = res
+      this.data.iDrank =res.id
+      this.data.name= res.name
+      this.data.rankRoleID= res.nameRankRole
     })
   }
 
@@ -48,8 +55,6 @@ export class RankOptionsComponent implements OnInit {
         this.Service.CreateRank(data).subscribe((res)=>{
           if(res){
             this.onConfirm.emit(res)
-            this.confirmService.confirm('Success','Add Succeed')
-            window.location.reload()
           }
           else {
             this.confirmService.confirm('Fail','Add Failed')
@@ -70,8 +75,6 @@ export class RankOptionsComponent implements OnInit {
           this.Service.UpdateRank(this.selectedID,allowance).subscribe((res)=>{
             if(res){
               this.onConfirm.emit(res)
-              this.confirmService.confirm('Success','Update Succeed')
-              window.location.reload()
             }
 
         })

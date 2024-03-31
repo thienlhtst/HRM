@@ -127,7 +127,7 @@ namespace QLNS.Services.Catalog.WorkHour
                 query = query.Where(x => x.pt.LastName.Contains(request.Keyword) || x.pp.Name.Contains(request.Keyword));
             }
             int totalRow = await query.CountAsync();
-            var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
+            var data = await query.OrderBy(x => Convert.ToInt32(x.p.ID)).Skip((request.PageIndex - 1) * request.PageSize)
                 .Take(request.PageSize)
                 .Select(x => new WorkHourVM()
                 {

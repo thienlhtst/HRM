@@ -11,16 +11,16 @@
     <div class="form-group row">
       <label class="col-sm-5 col-form-label">Rank</label>
       <div class="col-sm-10">
-        <select [(ngModel)]="selectedRankID" name="rankID" (change)="onRankchange()" class="form-control">
-          <option *ngFor="let rank of RanksData" [value]="rank.iDrank">{{ rank.name }}</option>
+        <select ngModel name="rankID" class="form-control" [(ngModel)]="data.rankID">
+          <option *ngFor="let rank of RanksData" [value]="rank.iDrank" [selected]="rank.iDrank==data.rankID">{{ rank.name }}</option>
         </select>
       </div>
   </div>
     <div class="form-group row">
         <label class="col-sm-5 col-form-label">Position</label>
         <div class="col-sm-10">
-          <select [(ngModel)]="selectedPositionID" name="positionID" (change)="onPositionchange()" class="form-control">
-            <option *ngFor="let position of PositionsData" [value]="position.iDposition">{{ position.name }}</option>
+          <select  ngModel name="positionID"  class="form-control" [(ngModel)]="data.positionID">
+            <option *ngFor="let position of PositionsData" [value]="position.iDposition" [selected]="position.iDposition==data.positionID">{{ position.name }}</option>
           </select>
         </div>
     </div>

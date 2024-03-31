@@ -22,27 +22,34 @@ export class SalaryOptionsComponent implements OnInit {
   selectedRankID : string
   selectedPositionID : string
   id:string
-  data : SalaryModel
+  data : any={
+    id: "",
+  rankID: "",
+  positionID: "",
+  money: 0
+  }
 
 
   ngOnInit(): void {
+    if(this.selectedID!='')
     this.GetSalaryID()
     this.GetRankAndPositionInfo()
   }
 
   GetSalaryID(){
     this.Service.GetSalaryByID(this.selectedID).subscribe((res)=>{
-      this.data = res
+      this.data.id =res.id
+      this.data.rankID=res.rankName
+      this.data.positionID=res.positionName
+      this.data.money=res.money
     })
   }
 
   onRankchange(){
-    console.log(this.selectedRankID)
     return this.selectedRankID
   }
 
   onPositionchange(){
-    console.log(this.selectedPositionID)
     return this.selectedPositionID
   }
 
@@ -55,25 +62,30 @@ export class SalaryOptionsComponent implements OnInit {
     })
   }
 
-  Add(data:SalaryModel){
-    this.Service.CreateSalary(data).subscribe((res)=>{
-      if(res){
-          this.onSuccess.emit(res)
-      }
-    })
+  Add(data:any){
+    this.confirmationDialogService
+      .confirm('Please confirm..', 'Do you really want to ADD ?')
+      .then((confirmed) => {
+        if (confirmed) {
+          this.Service.CreateSalary(data).subscribe((res)=>{
+            if(res){
+                this.onSuccess.emit(res)
+            }
+          })
+        
+        }
+      })
+    
 }
 
-  Update(salary : SalaryModel){
-    console.log(salary)
+  Update(salary : any){
     this.onUpdate.emit(this.selectedID)
     this.confirmationDialogService
       .confirm('Please confirm..', 'Do you really want to Edit ?')
       .then((confirmed) => {
         if (confirmed) {
           this.Service.UpdateSalary(this.selectedID,salary).subscribe((res)=>{
-          
                   this.onSuccess.emit(res)
-           
           })
         
         }

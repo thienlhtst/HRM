@@ -59,7 +59,7 @@ namespace QLNS.Services.Catalog.Positions
             if (!string.IsNullOrEmpty(request.Keyword))
                 query = query.Where(x => x.IDposition.Contains(request.Keyword) || x.Name.Contains(request.Keyword));
             int totalRow = await query.CountAsync();
-            var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
+            var data = await query.OrderBy(x => Convert.ToInt32(x.IDposition)).Skip((request.PageIndex - 1) * request.PageSize)
                 .Take(request.PageSize)
                 .Select(x => new PositionViewModel()
                 {
