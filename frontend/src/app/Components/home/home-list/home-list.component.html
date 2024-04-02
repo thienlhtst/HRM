@@ -63,6 +63,7 @@
         <div class="table-responsive">
           <app-home-list-details [items]="reponsedata.items" *ngIf="flagdetail === 0"></app-home-list-details>
           <app-home-listemployee-details *ngIf="flagdetail !== 0" [items]="reponsedata.items"></app-home-listemployee-details>
+          <app-spinner-beta *ngIf="!spinner" class="d-flex justify-content-center"></app-spinner-beta>
           <app-pagingnav
             class="d-flex justify-content-end"
             [pagesize]="pagecount"

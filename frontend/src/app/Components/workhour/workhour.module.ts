@@ -14,6 +14,7 @@ import { NotificationComponent } from "../../theme/shared/components/Notificatio
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 import { NotificationService } from 'src/Services/Shared/Notification.service';
+import { SpinnerBetaComponent } from "../../theme/shared/components/spinner-beta/spinner-beta.component";
 
 const route : Routes=[
   {
@@ -32,7 +33,7 @@ const route : Routes=[
         WorkhourListDetailComponent,
         WorkhourAddoreditComponent
     ],
-    providers: [WorkHourService,ConfirmationDialogService,NotificationService],
+    providers: [WorkHourService, ConfirmationDialogService, NotificationService],
     imports: [
         CommonModule,
         RouterModule.forChild(route),
@@ -40,7 +41,8 @@ const route : Routes=[
         HttpClientModule, FormsModule,
         PagingnavComponent,
         DatePickerComponent,
-        NotificationComponent,MatTooltipModule
+        NotificationComponent, MatTooltipModule,
+        SpinnerBetaComponent
     ]
 })
 export class WorkhourModule { }

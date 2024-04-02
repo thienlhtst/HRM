@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { error } from 'console';
+import { compile } from 'sass';
 import { WorkHourModel } from 'src/Model/Relationship/WorkHourModel';
 import { Requestpaging } from 'src/Model/other/requestpaging';
 import { NotificationService } from 'src/Services/Shared/Notification.service';
@@ -15,6 +17,8 @@ import { NotificationComponent } from 'src/app/theme/shared/components/Notificat
 export class WorkhourListComponent implements OnInit{
   searchText:any
   message:string=''
+  messageerr:string=''
+  flagspiner:boolean=false
   @ViewChild(NotificationComponent) child: NotificationComponent;
 
   constructor(private service : WorkHourService,private router: Router,private route: ActivatedRoute, private nofis: NotificationService){
@@ -37,12 +41,23 @@ export class WorkhourListComponent implements OnInit{
     }, 1);
   }
   GetAllpaging(){
-    this.service.GetWorkHourPaging(this.requestpaing).subscribe((res)=>{
+    this.listitems=[]
+    this.flagspiner=false
+    this.service.GetWorkHourPaging(this.requestpaing).subscribe( {next:(res)=>{
 
       this.listitems=res.items
-
       this.pageCount = res.pageCount
-    })
+      this.flagspiner=true
+      
+    },
+    error:(err)=>{
+      this.flagspiner=true
+      this.messageerr='errorrrr'
+    },
+     
+  }
+    
+    )
 
   }
   numberchange(numberchange:number):void{

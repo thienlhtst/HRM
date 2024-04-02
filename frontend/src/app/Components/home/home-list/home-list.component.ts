@@ -86,6 +86,7 @@ export class HomeListComponent implements OnInit {
 
   }
   ChangeDataWorkhour(request:Requestpaging):void{
+    this.reponsedata.items=[]
     this.service.GetHomePaging(request).subscribe((res)=>{
       this.spinner=false
       this.HomeDetail={

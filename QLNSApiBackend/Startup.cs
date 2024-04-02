@@ -262,7 +262,7 @@ namespace QLNSApiBackend.BackendApi
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger eShopSolution V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger T2Pro V1");
             });
 
             app.UseHttpsRedirection();

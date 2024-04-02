@@ -20,6 +20,9 @@
   <div class="card-block table-border-style" >
       <div class="table-responsive" >
         <app-workhour-list-detail [listitems]="listitems"(OnChooseid)="EventChooseId($event)" ></app-workhour-list-detail>
+        <div class=" d-flex justify-content-center"  >       <app-spinner-beta *ngIf="!flagspiner"></app-spinner-beta>
+          <p *ngIf="messageerr=='errorrrr'"> loiii</p>
+        </div>
           <app-pagingnav class="d-flex justify-content-end"   [pagesize]="pageCount"  (numberchange)="numberchange($event)"></app-pagingnav>
       </div>
   </div>

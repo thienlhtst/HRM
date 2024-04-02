@@ -83,7 +83,7 @@ export class LabourdayAddoreditComponent implements OnInit,OnChanges {
    
   }
   Edit() {
-    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to Add ?')
+    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to Edit ?')
     .then((confirmed) =>{
       if(confirmed) 
       this.service.UpdateLabourDay(this.editrequest).subscribe((res)=>{
