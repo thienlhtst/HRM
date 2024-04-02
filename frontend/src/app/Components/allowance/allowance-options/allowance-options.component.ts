@@ -1,3 +1,6 @@
+/* eslint-disable no-empty */
+/* eslint-disable no-cond-assign */
+/* eslint-disable no-constant-condition */
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
@@ -6,8 +9,11 @@
 import { Component, Input, OnInit, Output, ViewChild,EventEmitter } from '@angular/core';
 import { FormControl, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Allowancemodel } from 'src/Model/AllowanceModel';
+import { error } from 'console';
+import { Alert } from 'src/Model/Alert';
+import { Allowancemodel } from 'src/Model/Allowance/AllowanceModel';
 import { AllowanceServiceService } from 'src/Services/Allowance/AllowanceService.service';
+import { FormOptionsService } from 'src/Services/FormOptions/form-options.service';
 import { RegexService } from 'src/Services/Regex/regex.service';
 import { NotificationComponent } from 'src/app/theme/shared/components/Notification/Notification.component';
 import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
@@ -22,14 +28,17 @@ export class AllowanceOptionsComponent implements OnInit {
     private route : ActivatedRoute,
     private router : Router,
     private confirmService : ConfirmationDialogService,
-    private regex : RegexService
+    private regex : RegexService,
+    private FormOptions : FormOptionsService
     ){}
   @Input() selectedID : string
   @Output() onUpdate: EventEmitter<string> =   new EventEmitter();
-  @Output() onSuccess: EventEmitter<void> = new EventEmitter();
   @Output() onConfirm : EventEmitter<number> = new EventEmitter();
   messageRequest : string = ''
   data : Allowancemodel
+  Action : string
+  alert : Alert
+  message: any = '';
 
 
 
@@ -46,26 +55,38 @@ export class AllowanceOptionsComponent implements OnInit {
   }
 
 
+  SetAction(action : string){
+    this.Action = action
+  }
 
 
-  Add(data : Allowancemodel){
+  OnSubmit(data : Allowancemodel){
+    if(this.Action == 'confirm'){
+     this.alert = {
+       type : 'success',
+       message : 'This is an success alert'
+     }
     this.confirmService.confirm('Please Confirm','You wanna add ? ')
     .then((confirmed)=>{
       if(confirmed){
-        this.service.CreateAllowance(data).subscribe((res)=>{
-          if(res){
-            this.onConfirm.emit(res)
-            this.confirmService.confirm('Success','Add Succeed')
-            window.location.reload()
+        this.service.CreateAllowance(data).subscribe({
+          next: (res) => {
+            this.onConfirm.emit(res);
+            this.confirmService.confirm('Success', 'Add Succeed');
+            window.location.reload();
+          },
+          error: (error) => {
+            this.message = true;
+            this.alert.type = 'danger';
+            this.alert.message = 'Duplicate id are not allowed,Name is just A-Z, and money is just 0 - 9, please check your input';
           }
-          else {
-            this.confirmService.confirm('Fail','Add Failed')
-          }
-
-
-        })
+        });
       }
     })
+  }
+
+      this.FormOptions.setShowFormAndOptions(false)
+
 
   }
 
@@ -74,16 +95,28 @@ export class AllowanceOptionsComponent implements OnInit {
       .then((confirmed)=>{
         if(confirmed){
           this.onUpdate.emit(this.selectedID)
-          this.service.UpdateAllowance(this.selectedID,allowance).subscribe((res)=>{
-            if(res){
+          this.service.UpdateAllowance(this.selectedID,allowance).subscribe({
+            next:(res)=>{
               this.onConfirm.emit(res)
               this.confirmService.confirm('Success','Update Succeed')
               window.location.reload()
+            },
+            error : (error) =>{
+              this.message = true;
+              this.alert.type = 'danger';
+              if(this.regex.UserNameRegex.test(this.data.id)){
+                this.alert.message = 'Duplicate id are not allowed,Name is just A-Z, and money is just 0 - 9, please check your input';
+              }
+
             }
 
         })
       }
     })
 
+  }
+
+  flagchangeHandler(flagchange: boolean) {
+    this.message = flagchange;
   }
 }

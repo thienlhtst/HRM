@@ -40,7 +40,7 @@ namespace QLNSApiBackend.Controllers
         }
 
         [HttpPost("createallowancerules")]
-        public async Task<IActionResult> CreateAllowanceRules([FromBody] AllowanceRulesCreateViewModel request)
+        public async Task<IActionResult> CreateAllowanceRules([FromBody] List<AllowanceRulesCreateViewModel> request)
         {
             var allowancerules = await _allowanceService.CreateAllowanceRules(request);
             return Ok(new { token = allowancerules });

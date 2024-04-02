@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Allowancemodel } from 'src/Model/AllowanceModel';
+import { Allowancemodel } from 'src/Model/Allowance/AllowanceModel';
 import { EmployeeModel } from 'src/Model/Employee/EmployeeModel';
 import { PositionModel } from 'src/Model/PositionModel';
 import { RankModel } from 'src/Model/RankModel';

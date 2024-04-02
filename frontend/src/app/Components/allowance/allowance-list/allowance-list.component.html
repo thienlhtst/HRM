@@ -61,7 +61,7 @@
         <div class="card">
           <div class="card-body">
             <div class="list-group list-group-flush">
-                <app-allowance-options [selectedID]="selectedID" (onConfirm)="onConfirm($event)" (onSuccess)="OnSuccess()" ></app-allowance-options>
+                <app-allowance-options [selectedID]="selectedID" (onConfirm)="onConfirm($event)"(onCancel)="onCancel()" ></app-allowance-options>
           </div>
           </div>
         </div>

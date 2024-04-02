@@ -16,6 +16,8 @@ import { AllowanceOptionsComponent } from './allowance-options/allowance-options
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RegexService } from 'src/Services/Regex/regex.service';
 import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
+import { AlertComponent } from 'src/app/theme/shared/components/alert/alert.component';
+import { FormOptionsService } from 'src/Services/FormOptions/form-options.service';
 
 
 const routes : Routes =[
@@ -35,7 +37,7 @@ const routes : Routes =[
         AllowanceOptionsComponent,
 
     ],
-    providers: [AllowanceServiceService,RegexService,ConfirmationDialogService],
+    providers: [AllowanceServiceService,RegexService,ConfirmationDialogService,FormOptionsService],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
@@ -46,7 +48,7 @@ const routes : Routes =[
         SpinnerBetaComponent,
         SharedModule,
         MatTooltipModule,
-
+        AlertComponent
     ]
 })
 export class AllowanceModule { }

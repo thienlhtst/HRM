@@ -1,7 +1,7 @@
 
 <div class="card">
   <div class="card-body">
-   <form class="form" #form="ngForm" (ngSubmit)="Update(form.value)"  >
+   <form class="form" #form="ngForm" (ngSubmit)="OnSubmit(form.value)"  >
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">ID</label>
             <div class="col-sm-10">
@@ -135,9 +135,13 @@
   </div>
 
 
-        <button class="btn btn-outline-info mx-auto">
+       <button class="btn btn-outline-info mx-auto" (click)="SetAction('Confirm')">
             Update
       </button>
+
+      <button class="btn btn-outline-info mx-auto" (click)="SetAction('Cencel')">
+        Cencel
+  </button>
     </form>
     </div>
     </div>

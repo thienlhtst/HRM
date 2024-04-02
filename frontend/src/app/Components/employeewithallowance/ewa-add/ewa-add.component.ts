@@ -1,6 +1,6 @@
 /* eslint-disable @angular-eslint/no-output-on-prefix */
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Allowancemodel } from 'src/Model/AllowanceModel';
+import { Allowancemodel } from 'src/Model/Allowance/AllowanceModel';
 import { EwaAutoModel } from 'src/Model/EmployeeWithAllowance/EwaAutoModel';
 import { EWAServiceService } from 'src/Services/EmployeeWithAllowance/ewaservice.service';
 import { GeneralService } from 'src/Services/General/general.service';

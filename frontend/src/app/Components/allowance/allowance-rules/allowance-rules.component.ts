@@ -3,17 +3,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { AllowEmployeeModel } from 'src/Model/Allowance/AllowEmployeeModel';
-import { AllowanceRulesModel } from 'src/Model/Allowance/AllowanceRulesModel';
-import { Allowancemodel } from 'src/Model/AllowanceModel';
-import { AERulesModel } from 'src/Model/AllowancesAndEmployeeRules/AERulesModel';
-import { EmployeeModel } from 'src/Model/Employee/EmployeeModel';
+import { AllowEmployeeModel } from 'src/Model/AllowancesAndEmployeeRules/AllowEmployeeModel';
+import { Allowancemodel } from 'src/Model/Allowance/AllowanceModel';
+import { AERulesAddModel } from 'src/Model/AllowancesAndEmployeeRules/AERulesAddModel';
 import { EmployeeRulesModel } from 'src/Model/Employee/EmployeeRulesModel';
 import { SalaryModelList } from 'src/Model/SalaryModelList';
 import { AllowanceServiceService } from 'src/Services/Allowance/AllowanceService.service';
 import { EmployeeService } from 'src/Services/Employee/employee.service';
 import { GeneralService } from 'src/Services/General/general.service';
 import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
+import { AllowanceRulesModel } from 'src/Model/AllowancesAndEmployeeRules/AllowanceRulesModel';
+import { SERVFAIL } from 'dns';
+import { FormOptionsService } from 'src/Services/FormOptions/form-options.service';
 
 @Component({
   selector: 'app-allowance-rules',
@@ -27,7 +28,8 @@ itemlist: any;
     private AllowanceService : AllowanceServiceService,
     private generalService : GeneralService,
     private router : Router,
-    private confirmService : ConfirmationDialogService
+    private confirmService : ConfirmationDialogService,
+
     ){}
     @Output() onConfirm : EventEmitter<number> = new EventEmitter();
   ngOnInit(): void {
@@ -54,10 +56,11 @@ itemlist: any;
   pagecountAllowEmployee : number = 1
   ShowFormAddRules : boolean = false
   date : Date = new Date()
-  listEmployeeToAllow : AERulesModel[] = []
-  DataToPush : AERulesModel
-  allowanceMap = new Map<string, AERulesModel>()
-
+  listEmployeeToAllow : AERulesAddModel[] = []
+  listToShow : AllowanceRulesModel [] = []
+  DataToShow : AllowanceRulesModel
+  DataToPush : AERulesAddModel
+  allowanceMap = new Map<string, AERulesAddModel>()
 
 
   GetAll(){
@@ -136,8 +139,6 @@ itemlist: any;
 
   ClickToGetEmployee(id : string){
 
-
-
     if(this.IDGetofEmployee === id)
       this.IDGetofEmployee = null
     else{
@@ -145,12 +146,22 @@ itemlist: any;
       this.AllowanceService.getAllowanceByID(this.IDGetofAllowance).subscribe((resallo=>{
         if(resallo){
           this.EmployeeService.GetEmployeebyID(id).subscribe((resemployee)=>{
-            this.DataToPush ={
-              allowanceName : resallo.name,
-              employeeName : resemployee.firstName + " " + resemployee.middleName + " " + resemployee.lastName,
-              date : this.date.toISOString()
+            const Exist = this.listEmployeeToAllow.some(e=>e.employeeID === resemployee.id && e.allowanceID === resallo.id)
+              if(!Exist)
+              {
+                this.DataToPush ={
+                allowanceID : resallo.id,
+                employeeID : resemployee.id,
+                date : this.date.toISOString().split('T')[0]
+                }
+                this.DataToShow = {
+                  allowanceName : resallo.name,
+                  employeeName : resemployee.firstName + " " + resemployee.middleName + " " + resemployee.lastName,
+                  date : this.date.toISOString().split('T')[0]
+                }
+              this.listToShow.push(this.DataToShow)
+              this.listEmployeeToAllow.push(this.DataToPush)
             }
-            this.listEmployeeToAllow.push(this.DataToPush)
 
           })
         }
@@ -162,6 +173,12 @@ itemlist: any;
 
   }
 
+  RemoveAllowanceRules(index : number){
+    this.listToShow.splice(index,1);
+    this.listEmployeeToAllow.splice(index,1)
+  }
+
+
 
 
   GetPagingofAllowEmployee(){
@@ -171,14 +188,12 @@ itemlist: any;
   }
 
 
-  Add(data : AllowanceRulesModel){
-
+  Add(){
     this.confirmService.confirm('Please Confirm','You wanna add ?')
     .then((confirmed)=>{
       if(confirmed){
-        this.service.CreateAllowanceRules(data).subscribe((res)=>{
-          this.onConfirm.emit(res)
-
+        this.service.CreateAllowanceRules(this.listEmployeeToAllow).subscribe((res)=>{
+          this.confirmService.confirm('Succeess','Add Succeed')
         })
       }
     })

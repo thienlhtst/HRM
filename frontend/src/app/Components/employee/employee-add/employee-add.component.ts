@@ -14,6 +14,7 @@ import { SalaryModel } from 'src/Model/SalaryModel';
 import { EmployeeModel } from 'src/Model/Employee/EmployeeModel';
 import { SalaryModelList } from 'src/Model/SalaryModelList';
 import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
+import { Alert } from 'src/Model/Alert';
 
 @Component({
   selector: 'app-employee-add',
@@ -37,6 +38,9 @@ export class EmployeeAddComponent implements OnInit {
   selectedPositionID : string
   selectedSalaryID : string
   selectedFilePath : string
+  message : any = ''
+  alert : Alert
+  Action : string
 
   @ViewChild(NotificationComponent) childnoti:NotificationComponent
 
@@ -81,7 +85,7 @@ export class EmployeeAddComponent implements OnInit {
     if(event.target.files.length > 0 ){
       const file = event.target.files[0];
       this.selectedFilePath = file
-      
+
     }
   }
 
@@ -97,20 +101,33 @@ export class EmployeeAddComponent implements OnInit {
     this.selectedDate = event.target.value;
   }
 
-  Add(data : EmployeeCreateModel){
-    data.salaryID = this.selectedSalaryID
-    data.active = 1
-    this.confirm.confirm('Please Confirm','You wanna add ? ')
-    .then((confirmed)=>{
-      if(confirmed){
-        this.service.CreateEmployee(data).subscribe((response)=>{
-          if(response){
-            this.confirm.confirm('Success','Add Succeed')
-            this.router.navigate(['/employee'])
-          }
-        })
-      }
-    })
 
+  SetAction(action : string){
+    this.Action = action
+  }
+
+  OnSubmit(data : EmployeeCreateModel){
+    if(this.Action == 'confirm'){
+      data.salaryID = this.selectedSalaryID
+      data.active = 1
+      this.confirm.confirm('Please Confirm','You wanna add ? ')
+      .then((confirmed)=>{
+        if(confirmed){
+          this.service.CreateEmployee(data).subscribe((response)=>{
+            if(response){
+              this.confirm.confirm('Success','Add Succeed')
+              this.router.navigate(['/employee'])
+            }
+          })
+        }
+      })
+    }
+    this.router.navigate(['/employee'])
+
+
+  }
+
+  flagchangeHandler(flagchange : boolean){
+    this.message = flagchange
   }
 }

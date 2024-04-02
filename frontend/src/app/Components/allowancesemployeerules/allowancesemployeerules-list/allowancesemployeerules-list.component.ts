@@ -2,7 +2,7 @@
 import { OnInit, ViewChild } from '@angular/core';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component } from '@angular/core';
-import { AERulesModel } from 'src/Model/AllowancesAndEmployeeRules/AERulesModel';
+import { AllowanceRulesModel } from 'src/Model/AllowancesAndEmployeeRules/AllowanceRulesModel';
 import { AllowancesAndEmployeeRulesService } from 'src/Services/AllowancesAndEmployeeRules/allowances-and-employee-rules.service';
 import { NotificationComponent } from 'src/app/theme/shared/components/Notification/Notification.component';
 import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pagingnav.component';
@@ -15,7 +15,7 @@ import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pa
 export class AllowancesemployeerulesListComponent implements OnInit {
   constructor(private service : AllowancesAndEmployeeRulesService){}
 
-  datas : AERulesModel[]
+  datas : AllowanceRulesModel[]
   searchText : string = ''
   message : string
   ShowForm : boolean = false

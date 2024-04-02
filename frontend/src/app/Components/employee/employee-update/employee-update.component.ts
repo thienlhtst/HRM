@@ -7,6 +7,7 @@ import { GeneralService } from 'src/Services/General/general.service';
 import { EmployeeUpdateModel } from 'src/Model/Employee/EmployeeUpdateModel';
 import { EmployeeModel } from 'src/Model/Employee/EmployeeModel';
 import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
+import { Alert } from 'src/Model/Alert';
 
 @Component({
   selector: 'app-employee-update',
@@ -31,6 +32,9 @@ export class EmployeeUpdateComponent implements OnInit {
   selectedSalaryID : string
   selectedFilePath : string
   data : EmployeeModel
+  message : any = ''
+  Action : string
+  alert : Alert
   ngOnInit(): void {
     this.id = `${this.route.snapshot.paramMap.get('id')}`
     this.GetRankAndPositionInfo()
@@ -100,20 +104,29 @@ export class EmployeeUpdateComponent implements OnInit {
     this.selectedDate = event.target.value.toString();
   }
 
-  Update(employee : EmployeeUpdateModel){
-    employee.salaryID = this.selectedSalaryID
-    this.confirm.confirm('Please Confirm','You wanna add ? ')
-    .then((confirmed)=>{
-      if(confirmed){
-        this.service.UpdateEmployee(this.id,employee).subscribe((res)=>{
-          if(res){
-            this.confirm.confirm('Susccess','Update Succeed ')
-          this.router.navigate(['/employee'])
-          }
-        })
-      }
-    })
-
+  SetAction(action : string){
+    this.Action = action
   }
 
+  OnSubmit(employee : EmployeeUpdateModel){
+    if(this.Action == 'Confirm'){
+      employee.salaryID = this.selectedSalaryID
+      this.confirm.confirm('Please Confirm','You wanna add ? ')
+      .then((confirmed)=>{
+        if(confirmed){
+          this.service.UpdateEmployee(this.id,employee).subscribe((res)=>{
+            if(res){
+              this.confirm.confirm('Susccess','Update Succeed ')
+            this.router.navigate(['/employee'])
+            }
+          })
+        }
+      })
+      }
+      this.router.navigate(['/employee'])
+    }
+
+    flagchangeHandler(flagchange: boolean) {
+      this.message = flagchange;
+    }
 }

@@ -63,7 +63,7 @@ export default class LoginComponent implements OnInit {
           (this.message = true), (this.alert.type = 'danger'), (this.alert.message = 'User or password wrong');
           this.flag = 0;
           this.usernameInput.nativeElement.focus();
-
+          console.log(res)
         }
         this.flag = 0;
       });

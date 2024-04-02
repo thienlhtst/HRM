@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { WorkHourModel } from 'src/Model/Relationship/WorkHourModel';
 import { Requestpaging } from 'src/Model/other/requestpaging';
 import { NotificationService } from 'src/Services/Shared/Notification.service';
@@ -17,7 +18,7 @@ export class WorkhourListComponent implements OnInit{
   @ViewChild(NotificationComponent) child: NotificationComponent;
 
   constructor(private service : WorkHourService,private router: Router,private route: ActivatedRoute, private nofis: NotificationService){
-    
+
   }
   requestpaing:Requestpaging={
     keyword: '',
@@ -50,7 +51,7 @@ export class WorkhourListComponent implements OnInit{
   }
   nagivativeAdd(){
     this.router.navigate(['/workhour/addoredit'])
-  
+
   }
    onConfirm(flag: any) {
     if (flag == 1) {

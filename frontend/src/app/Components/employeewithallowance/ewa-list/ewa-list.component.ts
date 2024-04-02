@@ -7,7 +7,7 @@ import { EWAServiceService } from 'src/Services/EmployeeWithAllowance/ewaservice
 import * as signalR from "@microsoft/signalr"
 import { EmployeeService } from 'src/Services/Employee/employee.service';
 import { AllowanceServiceService } from 'src/Services/Allowance/AllowanceService.service';
-import { Allowancemodel } from 'src/Model/AllowanceModel';
+import { Allowancemodel } from 'src/Model/Allowance/AllowanceModel';
 import { EwaAutoModel } from 'src/Model/EmployeeWithAllowance/EwaAutoModel';
 @Component({
   selector: 'app-ewa-list',

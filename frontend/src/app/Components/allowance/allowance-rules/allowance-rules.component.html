@@ -63,7 +63,7 @@
         <div class="card-body">
           <h2 class="text-center"> Allow Employee </h2>
           <div class="p-1" >
-            <button type="button" class="btn btn-outline-info mx-auto">Confirm</button>
+            <button type="button" (click)="Add()" class="btn btn-outline-info mx-auto">Confirm</button>
 
           </div>
           <div class="table-responsive"></div>
@@ -76,10 +76,12 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let items of listEmployeeToAllow">
-                <td>{{items.allowanceName}}</td>
+              <tr *ngFor="let items of listToShow ; let i = index" (click)="RemoveAllowanceRules(i)">
+                <td *ngIf="!listToShow[items.allowanceName] else empty">{{items.allowanceName}}</td>
+                <ng-template #empty><td></td></ng-template>
                 <td>{{items.employeeName}}</td>
                 <td>{{items.date}}</td>
+
               </tr>
             </tbody>
           </table>
