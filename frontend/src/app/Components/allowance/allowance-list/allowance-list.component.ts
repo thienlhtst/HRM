@@ -7,9 +7,9 @@ import {  OnChanges, SimpleChanges } from '@angular/core';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AllowEmployeeModel } from 'src/Model/Allowance/AllowEmployeeModel';
-import { AllowanceRulesModel } from 'src/Model/Allowance/AllowanceRulesModel';
-import { Allowancemodel } from 'src/Model/AllowanceModel';
+import { AllowEmployeeModel } from 'src/Model/AllowancesAndEmployeeRules/AllowEmployeeModel';
+import { AllowanceRulesModel } from 'src/Model/AllowancesAndEmployeeRules/AllowanceRulesModel';
+import { Allowancemodel } from 'src/Model/Allowance/AllowanceModel';
 import { EmployeeRulesModel } from 'src/Model/Employee/EmployeeRulesModel';
 import { SalaryModelList } from 'src/Model/SalaryModelList';
 import { Requestpaging } from 'src/Model/other/requestpaging';
@@ -19,6 +19,7 @@ import { GeneralService } from 'src/Services/General/general.service';
 import { NotificationComponent } from 'src/app/theme/shared/components/Notification/Notification.component';
 import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 import { PagingnavComponent } from 'src/app/theme/shared/components/pagingnav/pagingnav.component';
+import { FormOptionsService } from 'src/Services/FormOptions/form-options.service';
 
 
 @Component({
@@ -47,15 +48,16 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
     private EmployeeService : EmployeeService,
     private generalService : GeneralService,
     private confirm : ConfirmationDialogService,
-    private router : Router
+    private router : Router,
+    private FormOptions : FormOptionsService
      ){}
 
   datas:Allowancemodel[]
   message:string=''
   searchText : string = ""
   pagecount : number = 1
-  ShowFormOptions : boolean = false
-  ShowForm : boolean = false
+  ShowFormOptions : boolean
+  ShowForm : boolean
   selectedID : string
   spinner : boolean = false
 
@@ -71,6 +73,14 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
   @ViewChild(NotificationComponent) childnoti: NotificationComponent;
 
   ngOnInit(): void{
+    this.FormOptions.showFormOptions$.subscribe(optionsForm=>{
+      this.ShowFormOptions = optionsForm
+      console.log(optionsForm)
+    })
+    this.FormOptions.showFormSource$.subscribe(Form=>{
+      this.ShowForm = Form
+      console.log(Form)
+    })
     this.GetPaging()
 
   }
@@ -116,8 +126,9 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
 
 
 
-  OnSuccess(){
-    this.ShowFormOptions = false
+
+  onCancel() {
+    this.ShowFormOptions = false;
   }
 
 

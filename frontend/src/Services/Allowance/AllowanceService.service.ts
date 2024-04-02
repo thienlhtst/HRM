@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Injectable } from '@angular/core';
-import { Allowancemodel } from '../../Model/AllowanceModel';
+import { Allowancemodel } from '../../Model/Allowance/AllowanceModel';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Requestpaging } from 'src/Model/other/requestpaging';
-import { AllowEmployeeModel } from 'src/Model/Allowance/AllowEmployeeModel';
-import { AllowanceRulesModel } from 'src/Model/Allowance/AllowanceRulesModel';
+import { AllowEmployeeModel } from 'src/Model/AllowancesAndEmployeeRules/AllowEmployeeModel';
+import { AERulesAddModel } from 'src/Model/AllowancesAndEmployeeRules/AERulesAddModel';
 @Injectable({
   providedIn: 'root'
 })
@@ -38,8 +38,9 @@ constructor(private http : HttpClient) { }
     return this.http.post(this.apiurl + '/Allowance/createallowance',data)
   }
 
-  CreateAllowanceRules(data: AllowanceRulesModel) : Observable<any>{
-    return this.http.post(this.apiurl + '/Allowance/createallowancerules',data)
+  CreateAllowanceRules(data: AERulesAddModel[]) : Observable<any>{
+  console.log(data)
+    return this.http.post<any>(this.apiurl + '/Allowance/createallowancerules',data)
   }
 
 

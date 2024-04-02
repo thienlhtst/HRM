@@ -11,11 +11,13 @@ import { FormsModule } from '@angular/forms';
 import { PipeSharePipe } from 'src/app/theme/shared/components/Pipe/pipe-share.pipe';
 import { SpinnerBetaComponent } from 'src/app/theme/shared/components/spinner-beta/spinner-beta.component';
 import { SharedModule } from "../../theme/shared/shared.module";
-import { AllowanceRulesComponent } from './allowance-rules/allowance-rules.component';
+
 import { AllowanceOptionsComponent } from './allowance-options/allowance-options.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RegexService } from 'src/Services/Regex/regex.service';
 import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
+import { AlertComponent } from 'src/app/theme/shared/components/alert/alert.component';
+import { FormOptionsService } from 'src/Services/FormOptions/form-options.service';
 
 
 const routes : Routes =[
@@ -33,10 +35,9 @@ const routes : Routes =[
     declarations: [
         AllowanceListComponent,
         AllowanceOptionsComponent,
-        AllowanceRulesComponent,
 
     ],
-    providers: [AllowanceServiceService,RegexService,ConfirmationDialogService],
+    providers: [AllowanceServiceService,RegexService,ConfirmationDialogService,FormOptionsService],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
@@ -47,7 +48,7 @@ const routes : Routes =[
         SpinnerBetaComponent,
         SharedModule,
         MatTooltipModule,
-
+        AlertComponent
     ]
 })
 export class AllowanceModule { }

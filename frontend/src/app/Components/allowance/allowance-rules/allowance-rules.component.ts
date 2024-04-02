@@ -1,16 +1,20 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @angular-eslint/no-output-on-prefix */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { AllowEmployeeModel } from 'src/Model/Allowance/AllowEmployeeModel';
-import { AllowanceRulesModel } from 'src/Model/Allowance/AllowanceRulesModel';
-import { Allowancemodel } from 'src/Model/AllowanceModel';
+import { AllowEmployeeModel } from 'src/Model/AllowancesAndEmployeeRules/AllowEmployeeModel';
+import { Allowancemodel } from 'src/Model/Allowance/AllowanceModel';
+import { AERulesAddModel } from 'src/Model/AllowancesAndEmployeeRules/AERulesAddModel';
 import { EmployeeRulesModel } from 'src/Model/Employee/EmployeeRulesModel';
 import { SalaryModelList } from 'src/Model/SalaryModelList';
 import { AllowanceServiceService } from 'src/Services/Allowance/AllowanceService.service';
 import { EmployeeService } from 'src/Services/Employee/employee.service';
 import { GeneralService } from 'src/Services/General/general.service';
 import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
+import { AllowanceRulesModel } from 'src/Model/AllowancesAndEmployeeRules/AllowanceRulesModel';
+import { SERVFAIL } from 'dns';
+import { FormOptionsService } from 'src/Services/FormOptions/form-options.service';
 
 @Component({
   selector: 'app-allowance-rules',
@@ -18,11 +22,14 @@ import { ConfirmationDialogService } from 'src/app/theme/shared/components/confi
   styleUrls: ['./allowance-rules.component.scss']
 })
 export class AllowanceRulesComponent implements OnInit {
+itemlist: any;
   constructor(private service : AllowanceServiceService,
     private EmployeeService : EmployeeService,
+    private AllowanceService : AllowanceServiceService,
     private generalService : GeneralService,
     private router : Router,
-    private confirmService : ConfirmationDialogService
+    private confirmService : ConfirmationDialogService,
+
     ){}
     @Output() onConfirm : EventEmitter<number> = new EventEmitter();
   ngOnInit(): void {
@@ -49,13 +56,16 @@ export class AllowanceRulesComponent implements OnInit {
   pagecountAllowEmployee : number = 1
   ShowFormAddRules : boolean = false
   date : Date = new Date()
-
+  listEmployeeToAllow : AERulesAddModel[] = []
+  listToShow : AllowanceRulesModel [] = []
+  DataToShow : AllowanceRulesModel
+  DataToPush : AERulesAddModel
+  allowanceMap = new Map<string, AERulesAddModel>()
 
 
   GetAll(){
     this.service.getAllowance().subscribe((res)=>{
       this.datas = res
-
     })
   }
 
@@ -123,18 +133,53 @@ export class AllowanceRulesComponent implements OnInit {
       this.EmployeeService.GetEmployeeByAllowance(this.IDGetofAllowance).subscribe((res)=>{
         this.DataOfEmployee = res
       })
+      console.log(this.IDGetofAllowance)
     }
   }
 
   ClickToGetEmployee(id : string){
+
     if(this.IDGetofEmployee === id)
       this.IDGetofEmployee = null
     else{
       this.IDGetofEmployee = id
-      console.log(this.IDGetofEmployee)
+      this.AllowanceService.getAllowanceByID(this.IDGetofAllowance).subscribe((resallo=>{
+        if(resallo){
+          this.EmployeeService.GetEmployeebyID(id).subscribe((resemployee)=>{
+            const Exist = this.listEmployeeToAllow.some(e=>e.employeeID === resemployee.id && e.allowanceID === resallo.id)
+              if(!Exist)
+              {
+                this.DataToPush ={
+                allowanceID : resallo.id,
+                employeeID : resemployee.id,
+                date : this.date.toISOString().split('T')[0]
+                }
+                this.DataToShow = {
+                  allowanceName : resallo.name,
+                  employeeName : resemployee.firstName + " " + resemployee.middleName + " " + resemployee.lastName,
+                  date : this.date.toISOString().split('T')[0]
+                }
+              this.listToShow.push(this.DataToShow)
+              this.listEmployeeToAllow.push(this.DataToPush)
+            }
+
+          })
+        }
+      }))
+
+
+
     }
 
   }
+
+  RemoveAllowanceRules(index : number){
+    this.listToShow.splice(index,1);
+    this.listEmployeeToAllow.splice(index,1)
+  }
+
+
+
 
   GetPagingofAllowEmployee(){
     this.service.getAllowEmployee().subscribe((res)=>{
@@ -143,13 +188,12 @@ export class AllowanceRulesComponent implements OnInit {
   }
 
 
-  Add(data : AllowanceRulesModel){
+  Add(){
     this.confirmService.confirm('Please Confirm','You wanna add ?')
     .then((confirmed)=>{
       if(confirmed){
-        this.service.CreateAllowanceRules(data).subscribe((res)=>{
-          this.onConfirm.emit(res)
-
+        this.service.CreateAllowanceRules(this.listEmployeeToAllow).subscribe((res)=>{
+          this.confirmService.confirm('Succeess','Add Succeed')
         })
       }
     })

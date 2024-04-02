@@ -12,7 +12,7 @@ namespace QLNS.ViewModel.Catalogs.Allowance
         public string ID { get; set; }
 
         [Required(ErrorMessage = "First Name is required"), StringLength(50, MinimumLength = 2)]
-        [RegularExpression(@"^[A-Z][a-zA-Z""'\s-]*$"), Display(Name = "First Name")]
+        [RegularExpression(@"^[A-Z][a-zA-Z""'\s-]*$"), Display(Name = "Name")]
         public string Name { get; set; }
 
         [RegularExpression("^[0-9]+$")]

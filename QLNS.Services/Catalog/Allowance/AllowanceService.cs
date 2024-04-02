@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Azure.Core;
+using Microsoft.EntityFrameworkCore;
 using QLNS.DataAccess;
+using QLNS.Entity.RelationShips;
 using QLNS.ViewModel.Catalogs.Allowance;
 using QLNS.ViewModel.Catalogs.AllowanceRules;
 using QLNS.ViewModel.Dtos;
@@ -22,7 +24,7 @@ namespace QLNS.Services.Catalog.Allowance
 
         public async Task<int> Create(AllowanceCreateRequest request)
         {
-            var allowance = new QLNS.Entity.Entities.Allowance()
+            var allowance = new QLNS.Entity.Entities.Allowance
             {
                 ID = request.ID,
                 Name = request.Name,
@@ -33,17 +35,17 @@ namespace QLNS.Services.Catalog.Allowance
             return Convert.ToInt32(allowance.ID);
         }
 
-        public async Task<int> CreateAllowanceRules(AllowanceRulesCreateViewModel request)
+        public async Task<int> CreateAllowanceRules(List<AllowanceRulesCreateViewModel> request)
         {
-            var allowancerules = new QLNS.Entity.RelationShips.AllowanceRules()
+            var allowancerules = request.Select(x => new QLNS.Entity.RelationShips.AllowanceRules
             {
-                AllowanceID = request.AllowanceID,
-                EmployeeID = request.EmployeeID,
-                Date = request.Date,
-            };
-            _context.AllowanceRules.Add(allowancerules);
+                AllowanceID = x.AllowanceID,
+                EmployeeID = x.EmployeeID,
+                Date = x.Date,
+            }).ToList();
+            _context.AllowanceRules.AddRange(allowancerules);
             await _context.SaveChangesAsync();
-            return Convert.ToInt32(allowancerules.AllowanceID);
+            return allowancerules.Count;
         }
 
         public async Task<int> Delete(string AllowanceId)

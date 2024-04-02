@@ -1,6 +1,6 @@
 <app-spinner></app-spinner>
 <app-Notification [message]="messageRequest"></app-Notification>
-<form class="form" #form="ngForm" >
+<form class="form" #form="ngForm" (ngSubmit)="OnSubmit(form.value)">
     <div class="form-group row">
         <div class="col-sm-10">
           <label class="col-sm-5 col-form-label"> ID </label>
@@ -31,8 +31,12 @@
             </div>
         </div>
     </div>
-    <button class="btn btn-outline-info mx-auto" (click)="Update(form.value)" *ngIf="selectedID"> Update </button>
-    <button class="btn btn-outline-info mx-auto"  (click)="Add(form.value)" *ngIf="!selectedID"> Add </button>
+    <div *ngIf="message===true">
+      <app-alert [alert]="alert" (flagchange)='flagchangeHandler($event)'></app-alert>
+      </div>
+    <button class="btn btn-outline-info mx-auto" (click)="SetAction('confirm')"  *ngIf="selectedID"> Update </button>
+    <button class="btn btn-outline-info mx-auto"  (click)="SetAction('confirm')" *ngIf="!selectedID"> Add </button>
+    <button class="btn btn-outline-info mx-auto"  (click)="SetAction('cancel')"> Cancel </button>
 </form>
 
 

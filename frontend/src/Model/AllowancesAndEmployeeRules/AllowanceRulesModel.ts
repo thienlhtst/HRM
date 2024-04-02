@@ -1,5 +1,5 @@
 export interface AllowanceRulesModel {
-  allowanceID : string
-  emloyeeID : string
+  allowanceName : string
+  employeeName : string
   date : string
 }
