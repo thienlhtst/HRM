@@ -1,4 +1,5 @@
 ﻿using Azure.Core;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using QLNS.DataAccess;
 using QLNS.Entity.RelationShips;
@@ -22,9 +23,9 @@ namespace QLNS.Services.Catalog.Allowance
             _context = context;
         }
 
-        public async Task<int> Create(AllowanceCreateRequest request)
+        public async Task Create(AllowanceCreateRequest request)
         {
-            var allowance = new QLNS.Entity.Entities.Allowance
+            /*var allowance = new QLNS.Entity.Entities.Allowance
             {
                 ID = request.ID,
                 Name = request.Name,
@@ -32,7 +33,14 @@ namespace QLNS.Services.Catalog.Allowance
             };
             _context.Allowances.Add(allowance);
             await _context.SaveChangesAsync();
-            return Convert.ToInt32(allowance.ID);
+            return Convert.ToInt32(allowance.ID);*/
+
+            var id = new SqlParameter("@ID", request.ID);
+            var name = new SqlParameter("Name",request.Name);
+            var money = new SqlParameter("Money", request.Money);
+            await _context.Database.ExecuteSqlRawAsync("EXEC createallowance @ID, @Name, @Money", id, name, money);
+            //await _context.Allowances.ExecuteSqlRawAsync("EXEC createallowance @ID, @Name, @Money", id, name, money);
+
         }
 
         public async Task<int> CreateAllowanceRules(List<AllowanceRulesCreateViewModel> request)

@@ -17,7 +17,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { RegexService } from 'src/Services/Regex/regex.service';
 import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 import { AlertComponent } from 'src/app/theme/shared/components/alert/alert.component';
-import { FormOptionsService } from 'src/Services/FormOptions/form-options.service';
 
 
 const routes : Routes =[
@@ -37,7 +36,7 @@ const routes : Routes =[
         AllowanceOptionsComponent,
 
     ],
-    providers: [AllowanceServiceService,RegexService,ConfirmationDialogService,FormOptionsService],
+    providers: [AllowanceServiceService,RegexService,ConfirmationDialogService],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),

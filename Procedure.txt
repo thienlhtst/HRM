@@ -1,0 +1,40 @@
+var CreateAllowanceProcedure = @"
+CREATE PROCEDURE createallowance
+    @ID nvarchar(50),
+    @Name nvarchar(50),
+    @Money nvarchar(50)
+AS
+BEGIN
+    INSERT INTO Allowance (ID,Name,Money)
+    VALUES (@ID,@Name,@Money)
+END
+";
+
+var UpdateAllowanceProcedure = @"
+UPDATE PROCEDURE updateallowance
+    @ID nvarchar(50),
+    @Name nvarchar(50),
+    @Money nvarchar(50)
+AS
+BEGIN
+    UPDATE allowance
+    SET Name = @Name,Money = @Money
+    WHERE ID = @ID
+END
+";
+
+var DeleteAllowanceProcedure = @"
+UPDATE PROCEDURE updateallowance
+    @ID nvarchar(50),
+    @Name nvarchar(50),
+    @Money nvarchar(50)
+AS
+BEGIN
+    DELETE FROM allowance
+    WHERE ID = @ID
+END
+";
+
+migrationBuilder.Sql(CreateAllowanceProcedure);
+migrationBuilder.Sql(UpdateAllowanceProcedure);
+migrationBuilder.Sql(DeleteAllowanceProcedure);

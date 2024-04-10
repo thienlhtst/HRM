@@ -61,7 +61,7 @@
 
         <div class="card-body">
           <div class="list-group list-group-flush">
-              <app-position-options [selectedID]="selectedID" (onSuccess)="NoficationAlert($event)"></app-position-options>
+              <app-position-options [selectedID]="selectedID" (onSuccess)="NoficationAlert($event)" (onCancel)="onCancel()" ></app-position-options>
          </div>
         </div>
       </div>

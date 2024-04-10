@@ -58,12 +58,17 @@ export class RankListComponent implements OnInit {
     this.GetPaging()
   }
 
+  onCancel(){
+    this.ShowFormOptions = false;
+    this.ShowForm = false;
+  }
+
   Delete(event: any, id: string) {
     this.confirm.confirm('Please Confirm', 'You wanna delete id : ' + id).then((confirmed) => {
       if (confirmed) {
         this.service.DeleteRank(id).subscribe((res) => {
           this.NoficationAlert(res)
-         
+
         });
       }
     });

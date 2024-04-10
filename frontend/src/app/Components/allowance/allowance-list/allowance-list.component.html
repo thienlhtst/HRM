@@ -38,7 +38,7 @@
                       <button class="img-button" (click)="ButtonClickToUpdate(item.id)"  mat-icon-button [matTooltip]="'Edit'">
                         <img  class="ti ti-edit"   src="" />
                       </button>
-                      <button class="img-button" (click)="Delete($event,item.id)"  mat-icon-button [matTooltip]="'Delete'">
+                      <button class="img-button" (click)="Delete(item.id)"  mat-icon-button [matTooltip]="'Delete'">
                         <img  class="ti ti-circle-minus" src="" />
                       </button>
                     </td>
@@ -61,7 +61,7 @@
         <div class="card">
           <div class="card-body">
             <div class="list-group list-group-flush">
-                <app-allowance-options [selectedID]="selectedID" (onConfirm)="onConfirm($event)"(onCancel)="onCancel()" ></app-allowance-options>
+                <app-allowance-options [selectedID]="selectedID" (onConfirm)="onConfirm($event)" (onCancel)="onCancel()" ></app-allowance-options>
           </div>
           </div>
         </div>

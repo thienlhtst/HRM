@@ -24,6 +24,7 @@ export class PositionOptionsComponent implements OnInit {
   @Input() selectedID: string;
   @Output() onUpdate: EventEmitter<any> = new EventEmitter();
   @Output() onSuccess: EventEmitter<any> = new EventEmitter();
+  @Output() onCancel : EventEmitter<boolean> = new EventEmitter();
   id: string;
   data: PositionModel;
 

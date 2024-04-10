@@ -39,6 +39,8 @@ export class PositionListComponent implements OnInit,OnChanges{
 
     }
   }
+
+
   ClicktoShowFormAdd(): void{
     this.ShowFormOptions = !this.ShowFormOptions
     this.ShowForm =!this.ShowForm
@@ -61,6 +63,12 @@ export class PositionListComponent implements OnInit,OnChanges{
 
   onSearchChange(){
     this.GetPaging()
+  }
+
+  onCancel(){
+    this.ShowFormOptions = false
+    this.ShowForm =false
+
   }
 
 

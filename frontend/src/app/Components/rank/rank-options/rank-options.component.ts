@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 /* eslint-disable @angular-eslint/component-selector */
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
@@ -8,6 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RankServiceService } from 'src/Services/Rank/RankService.service';
 import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
 import { RegexService } from 'src/Services/Regex/regex.service';
+import { Alert } from 'src/Model/Alert';
+import { error } from 'console';
 
 @Component({
   selector: 'app-rank-options',
@@ -24,6 +28,7 @@ export class RankOptionsComponent implements OnInit {
   @Output() onUpdate: EventEmitter<string> =   new EventEmitter();
   @Output() onSuccess: EventEmitter<void> = new EventEmitter();
   @Output() onConfirm: EventEmitter<number> = new EventEmitter();
+  @Output() onCancel: EventEmitter<boolean> = new EventEmitter();
   id:string
   data : any={
     iDrank:'',
@@ -32,11 +37,20 @@ export class RankOptionsComponent implements OnInit {
 
   }
 
+  Action : string
+  alert : Alert
+  message : any
+
 
 
 
   ngOnInit(): void {
     this.GetRankID()
+  }
+
+
+  SetAction (action : string){
+    this.Action = action
   }
 
   GetRankID(){
@@ -49,21 +63,27 @@ export class RankOptionsComponent implements OnInit {
 
 
   Add(data : RankModel){
+      this.alert = {
+        type : 'success',
+        message : 'This is a success alert'
+      }
     this.confirmService.confirm('Please Confirm','You wanna add ? ')
     .then((confirmed)=>{
       if(confirmed){
-        this.Service.CreateRank(data).subscribe((res)=>{
-          if(res){
+        this.Service.CreateRank(data).subscribe({
+          next:(res)=>{
+            this.confirmService.confirm('Success', 'Add Succeed');
             this.onConfirm.emit(res)
+          },
+          error: (error)=>{
+            this.message = true,
+            this.alert.type = 'danger'
           }
-          else {
-            this.confirmService.confirm('Fail','Add Failed')
-          }
-
 
         })
       }
     })
+
 
   }
 
@@ -81,5 +101,9 @@ export class RankOptionsComponent implements OnInit {
       }
     })
 
+  }
+
+  onCanceled(){
+    this.onCancel.emit(false)
   }
 }

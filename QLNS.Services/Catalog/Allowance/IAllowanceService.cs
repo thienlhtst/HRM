@@ -12,7 +12,7 @@ namespace QLNS.Services.Catalog.Allowance
 {
     public interface IAllowanceService
     {
-        Task<int> Create(AllowanceCreateRequest request);
+        Task Create(AllowanceCreateRequest request);
 
         Task<int> Update(AllowanceEditRequest request);
 

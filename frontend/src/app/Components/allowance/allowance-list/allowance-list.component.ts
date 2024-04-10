@@ -56,8 +56,8 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
   message:string=''
   searchText : string = ""
   pagecount : number = 1
-  ShowFormOptions : boolean
-  ShowForm : boolean
+  ShowFormOptions : boolean = false
+  ShowForm : boolean = false
   selectedID : string
   spinner : boolean = false
 
@@ -73,14 +73,6 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
   @ViewChild(NotificationComponent) childnoti: NotificationComponent;
 
   ngOnInit(): void{
-    this.FormOptions.showFormOptions$.subscribe(optionsForm=>{
-      this.ShowFormOptions = optionsForm
-      console.log(optionsForm)
-    })
-    this.FormOptions.showFormSource$.subscribe(Form=>{
-      this.ShowForm = Form
-      console.log(Form)
-    })
     this.GetPaging()
 
   }
@@ -118,17 +110,16 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
       this.message = 'success'
       this.childnoti.showSuccess(this.childnoti.successTpl)
       this.ShowForm = false
+      this.ShowFormOptions =false
       this.service.getAllowancePaging(this.paging).subscribe((res)=>{
         this.datas = res
       })
     }
 
 
-
-
-
-  onCancel() {
-    this.ShowFormOptions = false;
+  onCancel(){
+    this.ShowForm = false
+    this.ShowFormOptions = false
   }
 
 
@@ -151,7 +142,7 @@ export class AllowanceListComponent implements OnInit,OnChanges  {
 
 
 
-  Delete(event:any,id : string){
+  Delete(id : string){
    this.confirm.confirm('Please Confirm','You wanna delete id : ' + id)
    .then((confirmed)=>{
     if(confirmed){

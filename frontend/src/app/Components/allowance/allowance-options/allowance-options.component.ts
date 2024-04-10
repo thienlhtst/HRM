@@ -34,6 +34,7 @@ export class AllowanceOptionsComponent implements OnInit {
   @Input() selectedID : string
   @Output() onUpdate: EventEmitter<string> =   new EventEmitter();
   @Output() onConfirm : EventEmitter<number> = new EventEmitter();
+  @Output() onCancel : EventEmitter<boolean> = new EventEmitter();
   messageRequest : string = ''
   data : Allowancemodel
   Action : string
@@ -45,7 +46,13 @@ export class AllowanceOptionsComponent implements OnInit {
 
   @ViewChild(NotificationComponent) childnoti : NotificationComponent
   ngOnInit(): void {
-    this.GetAllowanceID()
+    if(this.selectedID == ''){
+      console.log('')
+    }
+    else{
+      this.GetAllowanceID()
+    }
+
   }
 
   GetAllowanceID(){
@@ -60,8 +67,7 @@ export class AllowanceOptionsComponent implements OnInit {
   }
 
 
-  OnSubmit(data : Allowancemodel){
-    if(this.Action == 'confirm'){
+  Add(data : Allowancemodel){
      this.alert = {
        type : 'success',
        message : 'This is an success alert'
@@ -71,9 +77,8 @@ export class AllowanceOptionsComponent implements OnInit {
       if(confirmed){
         this.service.CreateAllowance(data).subscribe({
           next: (res) => {
-            this.onConfirm.emit(res);
             this.confirmService.confirm('Success', 'Add Succeed');
-            window.location.reload();
+            this.onConfirm.emit(res);
           },
           error: (error) => {
             this.message = true;
@@ -83,9 +88,8 @@ export class AllowanceOptionsComponent implements OnInit {
         });
       }
     })
-  }
 
-      this.FormOptions.setShowFormAndOptions(false)
+
 
 
   }
@@ -97,16 +101,14 @@ export class AllowanceOptionsComponent implements OnInit {
           this.onUpdate.emit(this.selectedID)
           this.service.UpdateAllowance(this.selectedID,allowance).subscribe({
             next:(res)=>{
-              this.onConfirm.emit(res)
-              this.confirmService.confirm('Success','Update Succeed')
-              window.location.reload()
+            this.confirmService.confirm('Success','Update Succeed')
+            this.onConfirm.emit(res)
+
             },
             error : (error) =>{
               this.message = true;
               this.alert.type = 'danger';
-              if(this.regex.UserNameRegex.test(this.data.id)){
-                this.alert.message = 'Duplicate id are not allowed,Name is just A-Z, and money is just 0 - 9, please check your input';
-              }
+              this.alert.message = 'Duplicate id are not allowed,Name is just A-Z, and money is just 0 - 9, please check your input';
 
             }
 
@@ -114,7 +116,14 @@ export class AllowanceOptionsComponent implements OnInit {
       }
     })
 
+
   }
+
+  onCanceled(){
+    this.onCancel.emit(false)
+  }
+
+
 
   flagchangeHandler(flagchange: boolean) {
     this.message = flagchange;

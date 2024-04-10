@@ -26,6 +26,48 @@ namespace QLNS.DataAccess.Migrations
                     table.PrimaryKey("PK_Allowance", x => x.ID);
                 });
 
+
+
+
+            var CreateAllowanceProcedure = @"
+            CREATE PROCEDURE createallowance
+                @ID nvarchar(50),
+                @Name nvarchar(50),
+                @Money nvarchar(50)
+            AS
+            BEGIN
+                INSERT INTO Allowance (ID,Name,Money)
+                VALUES (@ID,@Name,@Money)
+            END
+            ";
+
+            var UpdateAllowanceProcedure = @"
+            CREATE PROCEDURE updateallowance
+                @ID nvarchar(50),
+                @Name nvarchar(50),
+                @Money nvarchar(50)
+            AS
+            BEGIN
+                UPDATE allowance
+                SET Name = @Name,Money = @Money
+                WHERE ID = @ID
+            END
+            ";
+
+            var DeleteAllowanceProcedure = @"
+            CREAT PROCEDURE updateallowance
+                @ID nvarchar(50),
+            AS
+            BEGIN
+                DELETE FROM allowance
+                WHERE ID = @ID
+            END
+            ";
+
+            migrationBuilder.Sql(CreateAllowanceProcedure);
+            migrationBuilder.Sql(UpdateAllowanceProcedure);
+            migrationBuilder.Sql(DeleteAllowanceProcedure);
+
             migrationBuilder.CreateTable(
                 name: "Labour Hour",
                 columns: table => new
@@ -39,6 +81,11 @@ namespace QLNS.DataAccess.Migrations
                     table.PrimaryKey("PK_Labour Hour", x => x.ID);
                 });
 
+
+            
+
+
+
             migrationBuilder.CreateTable(
                 name: "Position",
                 columns: table => new
@@ -50,6 +97,45 @@ namespace QLNS.DataAccess.Migrations
                 {
                     table.PrimaryKey("PK_Position", x => x.IDposition);
                 });
+
+
+            var CreatePositionProcedure = @"
+            CREATE PROCEDURE createposition
+                @IDposition nvarchar(50),
+                @Name nvarchar(50),
+            AS
+            BEGIN
+                INSERT INTO Allowance (IDposition,Name,)
+                VALUES (@IDposition,@Name)
+            END
+            ";
+
+
+            var UpdatePositionProcedure = @"
+            CREATE  PROCEDURE updateposition
+                @IDposition nvarchar(50),
+                @Name nvarchar(50),
+            AS
+            BEGIN
+                UPDATE position
+                SET Name = @Name
+                WHERE IDposition = @IDposition
+            END
+            ";
+
+            var DeletePositionProcedure = @"
+            CREATE PROCEDURE deleteallowance
+                @IDposition nvarchar(50),
+            AS
+            BEGIN
+                DELETE FROM position
+                WHERE ID = @ID
+            END
+            ";
+
+            migrationBuilder.Sql(CreatePositionProcedure);
+            migrationBuilder.Sql(UpdatePositionProcedure);
+            migrationBuilder.Sql(DeletePositionProcedure);
 
             migrationBuilder.CreateTable(
                 name: "Rank Role",
@@ -112,6 +198,7 @@ namespace QLNS.DataAccess.Migrations
                     RankRoleID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
                 },
+
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Rank", x => x.IDrank);
@@ -122,6 +209,47 @@ namespace QLNS.DataAccess.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            var CreateRankProcedure = @"
+            CREATE PROCEDURE createrank
+                @IDrank nvarchar(50),
+                @RankRoleID nvarchar(50),
+                @Name nvarchar(50)
+            AS
+            BEGIN
+                INSERT INTO Allowance (IDrank,RankRoleID,Name)
+                VALUES (@IDrank,@RankRoleID,@Name)
+            END
+            ";
+
+
+            var UpdateRankProcedure = @"
+            CREATE  PROCEDURE updaterank
+                @IDrank nvarchar(50),
+                @RankRoleID nvarchar(50),
+                @Name nvarchar(50)
+            AS
+            BEGIN
+                UPDATE rank
+                SET IDrank = @IDrank,RankRoleID = @RankRoleID,Name = @Name
+                WHERE IDrank = @IDrank
+            END
+            ";
+
+            var DeleteRankProcedure = @"
+            CREATE  PROCEDURE updateallowance
+                 @ID nvarchar(50),
+
+             AS
+             BEGIN
+                 DELETE FROM rank
+                 WHERE ID = @ID
+             END
+             ";
+
+            migrationBuilder.Sql(CreateRankProcedure);
+            migrationBuilder.Sql(UpdateRankProcedure);
+            migrationBuilder.Sql(DeleteRankProcedure);
 
             migrationBuilder.CreateTable(
                 name: "Salary",
@@ -2304,6 +2432,10 @@ namespace QLNS.DataAccess.Migrations
                 name: "IX_Work Hour_LBDID",
                 table: "Work Hour",
                 column: "LBDID");
+
+
+
+            
         }
 
         /// <inheritdoc />
@@ -2350,6 +2482,7 @@ namespace QLNS.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Rank Role");
+            migrationBuilder.Sql("DROP PROCEDURE IF EXISTS createallowance");
         }
     }
 }
