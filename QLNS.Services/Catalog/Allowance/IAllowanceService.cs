@@ -12,11 +12,13 @@ namespace QLNS.Services.Catalog.Allowance
 {
     public interface IAllowanceService
     {
-        Task Create(AllowanceCreateRequest request);
+        Task<int> Create(AllowanceCreateRequest request);
 
         Task<int> Update(AllowanceEditRequest request);
 
         Task<int> Delete(string AllowanceId);
+
+        Task DeleteAllowanceAndRulesByProcedure(string AllowanceID);
 
         Task<AllowanceViewModel> GetByID(string AllowanceID);
 
@@ -27,5 +29,6 @@ namespace QLNS.Services.Catalog.Allowance
         Task<int> CreateAllowanceRules(List<AllowanceRulesCreateViewModel> request);
 
         Task<List<AllowanceRulesViewModel>> GetAllRules();
+        Task UpdateProcedure(AllowanceEditRequest request);
     }
 }

@@ -23,9 +23,9 @@ namespace QLNS.Services.Catalog.Allowance
             _context = context;
         }
 
-        public async Task Create(AllowanceCreateRequest request)
+        public async Task<int> Create(AllowanceCreateRequest request)
         {
-            /*var allowance = new QLNS.Entity.Entities.Allowance
+            var allowance = new QLNS.Entity.Entities.Allowance
             {
                 ID = request.ID,
                 Name = request.Name,
@@ -33,13 +33,8 @@ namespace QLNS.Services.Catalog.Allowance
             };
             _context.Allowances.Add(allowance);
             await _context.SaveChangesAsync();
-            return Convert.ToInt32(allowance.ID);*/
+            return Convert.ToInt32(allowance.ID);
 
-            var id = new SqlParameter("@ID", request.ID);
-            var name = new SqlParameter("Name",request.Name);
-            var money = new SqlParameter("Money", request.Money);
-            await _context.Database.ExecuteSqlRawAsync("EXEC createallowance @ID, @Name, @Money", id, name, money);
-            //await _context.Allowances.ExecuteSqlRawAsync("EXEC createallowance @ID, @Name, @Money", id, name, money);
 
         }
 
@@ -61,6 +56,12 @@ namespace QLNS.Services.Catalog.Allowance
             var allowance = await _context.Allowances.FindAsync(AllowanceId);
             _context.Allowances.Remove(allowance);
             return await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAllowanceAndRulesByProcedure(string AllowanceID)
+        {
+            var id = new SqlParameter("@ID", AllowanceID);
+            await _context.Database.ExecuteSqlRawAsync("EXEC DeleteAllowanceAndRule @ID", id);
         }
 
         public async Task<PagedResult<AllowanceViewModel>> GetAllPage(GetAllowancePagingRequest request)
@@ -140,6 +141,17 @@ namespace QLNS.Services.Catalog.Allowance
             allowance.Money = request.Money;
             _context.Allowances.Update(allowance);
             return await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateProcedure(AllowanceEditRequest request)
+        {
+            var findtherules = await _context.AllowanceRules.FirstOrDefaultAsync(x => x.AllowanceID == request.ID);
+           var id = new SqlParameter("@ID",request.ID);
+           var name = new SqlParameter("@Name",request.Name);
+           var money = new SqlParameter("@Money", request.Money);
+           var EmpID = new SqlParameter("@EmployeeID", findtherules.EmployeeID);
+           var date = new SqlParameter("@Date", findtherules.Date);
+           await _context.Database.ExecuteSqlRawAsync("EXEC UpdateAllowanceAndRule @ID,@Name,@Money,@EmployeeID,@Date", id, name, money, EmpID, date);
         }
     }
 }

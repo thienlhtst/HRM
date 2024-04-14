@@ -33,7 +33,7 @@ namespace QLNS.DataAccess
             modelBuilder.ApplyConfiguration(new WorkHourConfiguration());
             modelBuilder.ApplyConfiguration(new RankRoleConfiguration());
             modelBuilder.ApplyConfiguration(new DescriptionRoleConfiguration());
-
+            modelBuilder.ApplyConfiguration(new ProcedureConfiguration());
             modelBuilder.Seed();
             base.OnModelCreating(modelBuilder);
         }
@@ -52,5 +52,7 @@ namespace QLNS.DataAccess
         public DbSet<Salary> Salaries { get; set; }
         public DbSet<EmployeesWithAllowances> EmployeesWithAllowances { get; set; }
         public DbSet<WorkHour> WorkHours { get; set; }
+
+        public DbSet<Procedure> Procedures { get; set; }
     }
 }

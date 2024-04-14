@@ -35,8 +35,8 @@ namespace QLNSApiBackend.Controllers
         [HttpPost("createallowance")]
         public async Task<IActionResult> Create([FromBody] AllowanceCreateRequest request)
         {
-            await _allowanceService.Create(request);
-            return Ok();
+            var allo = await _allowanceService.Create(request);
+            return Ok(allo);
         }
 
         [HttpPost("createallowancerules")]
@@ -46,20 +46,37 @@ namespace QLNSApiBackend.Controllers
             return Ok(allowancerules);
         }
 
-        [HttpPut("{id}")]
+        /*[HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, [FromBody] AllowanceEditRequest request)
         {
             request.ID = id;
             var allowance = await _allowanceService.Update(request);
             return Ok(allowance);
+        }*/
+
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProcedure(string id, [FromBody] AllowanceEditRequest request)
+        {
+            request.ID = id;
+            await _allowanceService.UpdateProcedure(request);
+            return Ok();
         }
 
-        [HttpDelete("{id}")]
+        /*[HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
             var result = await _allowanceService.Delete(id);
             return Ok(result);
+        }*/
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProcedure(string id)
+        {
+            await _allowanceService.DeleteAllowanceAndRulesByProcedure(id);
+            return Ok();
         }
+
 
         [HttpGet("paging")]
         public async Task<IActionResult> GetAllPaging([FromQuery] GetAllowancePagingRequest request)

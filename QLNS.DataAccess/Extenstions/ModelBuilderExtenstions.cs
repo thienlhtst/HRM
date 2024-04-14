@@ -76,6 +76,9 @@ namespace QLNS.DataAccess.Extenstions
             modelbuilder.Entity<WorkHour>().HasData(
               Seeder.WorkHourSeedData());
 
+            modelbuilder.Entity<Procedure>().HasData(
+                new Procedure() { ID = "1", Name = "DeleteAllowance", Description = "CREATE  PROCEDURE updateposition\r\n @ID nvarchar(50),\r\n@Name nvarchar(50),\r\n@IDSalary nvarchar(50),\r\n  @RankID nvarchar(50),\r\n                @Money int\r\n                \r\n            AS\r\n            BEGIN\r\n    UPDATE Position\r\n                SET Name = @Name\r\n                WHERE IDposition = @ID\r\n\r\n UPDATE Salary\r\nSet ID = @IDSalary, PositionID = @ID, RankID = @RankID, Money = @Money\r\n WHERE IDPosition = @ID\r\n\r\n\r\nEND" });
+
             /* modelbuilder.Entity<EmployeesWithAllowances>().HasData(
                  Seeder.EWASeedData());*/
         }
