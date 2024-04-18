@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+ /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LabourContractModel } from 'src/Model/LabourContract/LabourContractModel';
@@ -85,7 +85,7 @@ export class LabourcontractListComponent implements OnInit {
         this.child.showSuccess(this.child.successTpl);
       }, 1);
       this.OnSuccess()
-      
+
     } else {
       this.message = 'faill';
       this.child.showDanger(this.child.dangerTpl);

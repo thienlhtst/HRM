@@ -1,3 +1,8 @@
+/* eslint-disable @angular-eslint/no-output-on-prefix */
+/* eslint-disable prefer-const */
+/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
@@ -72,7 +77,7 @@ export class WorkhourAddoreditComponent implements OnInit {
 setAction(action: string) {
   this.action = action;
 }
- 
+
   Confirm(data:any){
     if(this.action=='confirm'){
     let request :any={
@@ -113,10 +118,10 @@ setAction(action: string) {
     }else{
       this.router.navigate(['/workhour']);
     }
-    
+
 
 
 
   }
-  
+
 }

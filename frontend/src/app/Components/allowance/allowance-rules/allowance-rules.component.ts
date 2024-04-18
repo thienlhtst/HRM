@@ -3,18 +3,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { AllowEmployeeModel } from 'src/Model/AllowancesAndEmployeeRules/AllowEmployeeModel';
 import { Allowancemodel } from 'src/Model/Allowance/AllowanceModel';
-import { AERulesAddModel } from 'src/Model/AllowancesAndEmployeeRules/AERulesAddModel';
 import { EmployeeRulesModel } from 'src/Model/Employee/EmployeeRulesModel';
 import { SalaryModelList } from 'src/Model/SalaryModelList';
 import { AllowanceServiceService } from 'src/Services/Allowance/AllowanceService.service';
 import { EmployeeService } from 'src/Services/Employee/employee.service';
 import { GeneralService } from 'src/Services/General/general.service';
 import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
-import { AllowanceRulesModel } from 'src/Model/AllowancesAndEmployeeRules/AllowanceRulesModel';
-import { SERVFAIL } from 'dns';
 import { FormOptionsService } from 'src/Services/FormOptions/form-options.service';
+import { AllowEmployeeModel } from 'src/Model/AllowancesAndEmployeeRules/AllowEmployeeModel';
+import { AERulesAddModel } from 'src/Model/AllowancesAndEmployeeRules/AERulesAddModel';
+import { AllowanceRulesModel } from 'src/Model/AllowancesAndEmployeeRules/AllowanceRulesModel';
+import { EmployeeModel } from 'src/Model/Employee/EmployeeModel';
+
 
 @Component({
   selector: 'app-allowance-rules',
@@ -53,6 +54,7 @@ itemlist: any;
   selectedPositionID : string
   selectedSalaryID : string
   DataOfEmployee : EmployeeRulesModel[]
+  EmployeeToPush : EmployeeRulesModel
   pagecountAllowEmployee : number = 1
   ShowFormAddRules : boolean = false
   date : Date = new Date()
@@ -107,22 +109,7 @@ itemlist: any;
     return this.selectedEmployeeID
   }
 
-  GetSalaryByRankAndPosition(){
-    this.generalService.GetSalary().subscribe((ressalary)=>{
-      this.SalarysData = ressalary
-      for(const salary of this.SalarysData){
-        if(salary.rankID == this.selectedRankID && salary.positionID == this.selectedPositionID)
-        {
-        this.selectedSalaryID = salary.id
-      }
 
-      }
-
-    })
-    this.EmployeeService.GetEmployeeByPositionAndRank(this.selectedSalaryID).subscribe((res)=>{
-      this.DataOfEmployee = res
-    })
-  }
 
 
   ClickToGetAllowance(id : string){
@@ -173,9 +160,28 @@ itemlist: any;
 
   }
 
+
+
   RemoveAllowanceRules(index : number){
-    this.listToShow.splice(index,1);
-    this.listEmployeeToAllow.splice(index,1)
+
+    const GetReturnEmployeeID = this.listEmployeeToAllow.splice(index,1)[0]
+    const GetReturnEmployeeName = this.listToShow.splice(index,1)[0]
+    this.listToShow.splice(index, 0);
+    this.listEmployeeToAllow.splice(index, 0);
+      this.EmployeeToPush = {
+        id : GetReturnEmployeeID.employeeID,
+        firstName :  GetReturnEmployeeName.employeeName,
+        middleName : "",
+        lastName : ""
+      }
+       this.DataOfEmployee.push(this.EmployeeToPush)
+
+
+
+  }
+
+  RemoveEmployeeDataList(index : number){
+    this.DataOfEmployee.splice(index,1)
   }
 
 
