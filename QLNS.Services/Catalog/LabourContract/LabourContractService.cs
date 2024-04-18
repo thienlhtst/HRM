@@ -81,7 +81,7 @@ namespace QLNS.Services.Catalog.LabourContract
             var employeeID = (from p in _context.LabourContracts
                               join pt in _context.Employee on p.EmployeeID equals pt.ID
                               where p.ID == labourID
-                              select p.EmployeeID).First();
+                              select pt.FirstName + " " + pt.MiddleName + " " + pt.MiddleName).First();
             var lbct = await _context.LabourContracts.FindAsync(labourID);
             var lb = new LabourContractViewModel()
             {

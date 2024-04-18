@@ -46,7 +46,8 @@ const route : Routes = [
         FormsModule,
         PipeSharePipe,
         SpinnerBetaComponent,
-        MatTooltipModule
+        MatTooltipModule,
+
     ]
 })
 export class EmployeeModule { }

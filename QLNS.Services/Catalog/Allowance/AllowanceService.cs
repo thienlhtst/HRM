@@ -143,15 +143,5 @@ namespace QLNS.Services.Catalog.Allowance
             return await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateProcedure(AllowanceEditRequest request)
-        {
-            var findtherules = await _context.AllowanceRules.FirstOrDefaultAsync(x => x.AllowanceID == request.ID);
-           var id = new SqlParameter("@ID",request.ID);
-           var name = new SqlParameter("@Name",request.Name);
-           var money = new SqlParameter("@Money", request.Money);
-           var EmpID = new SqlParameter("@EmployeeID", findtherules.EmployeeID);
-           var date = new SqlParameter("@Date", findtherules.Date);
-           await _context.Database.ExecuteSqlRawAsync("EXEC UpdateAllowanceAndRule @ID,@Name,@Money,@EmployeeID,@Date", id, name, money, EmpID, date);
-        }
     }
 }

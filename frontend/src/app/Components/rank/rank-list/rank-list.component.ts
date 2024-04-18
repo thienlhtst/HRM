@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { RankServiceService } from 'src/Services/Rank/RankService.service';
-import { RankModel } from 'src/Model/RankModel';
+import { RankModel } from 'src/Model/Rank/RankModel';
 import { Router } from '@angular/router';
 import { Requestpaging } from 'src/Model/other/requestpaging';
 import { Observable } from 'rxjs';

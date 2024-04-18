@@ -394,5 +394,22 @@ namespace QLNS.Services.Catalog.Employees
             }).ToListAsync();
             return data;
         }
+
+        public async Task<List<EmployeeHasAllowance>> GetEmployeeHasAllowance(string id)
+        {
+            var query = from p in _context.Employee
+                        join pt in _context.AllowanceRules on p.ID equals pt.EmployeeID
+                        join px in _context.Allowances on pt.AllowanceID equals px.ID
+                        where p.ID == id
+                        select new { p, pt,px };
+
+            var data = await query.GroupBy(a => a.p.ID)
+                .Select(x => new EmployeeHasAllowance()
+            {
+                Name = x.First().p.LastName,
+                Allowances = String.Join(",",x.Select(t=>t.px.Name))
+            }).ToListAsync();
+            return data;
+        }
     }
 }

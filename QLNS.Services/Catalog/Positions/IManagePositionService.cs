@@ -23,5 +23,7 @@ namespace QLNS.Services.Catalog.Positions
         Task<List<PositionViewModel>> GetAll();
 
         Task<PagedResult<PositionViewModel>> GetAllPaging(GetPagingPositionRequest request);
+
+        Task DeletePositionByProceDure (string id);
     }
 }

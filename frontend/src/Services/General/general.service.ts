@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Allowancemodel } from 'src/Model/Allowance/AllowanceModel';
 import { EmployeeModel } from 'src/Model/Employee/EmployeeModel';
 import { PositionModel } from 'src/Model/PositionModel';
-import { RankModel } from 'src/Model/RankModel';
+import { RankModel } from 'src/Model/Rank/RankModel';
 import { SalaryModelList } from 'src/Model/SalaryModelList';
 import { environment } from 'src/environments/environment';
 

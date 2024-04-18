@@ -8,6 +8,7 @@ import { Requestpaging } from 'src/Model/other/requestpaging';
 import { Pagingreponse } from 'src/Model/other/pagingreponse';
 import { EmployeeUpdateModel } from 'src/Model/Employee/EmployeeUpdateModel';
 import { EmployeeRulesModel } from 'src/Model/Employee/EmployeeRulesModel';
+import { EmployeeHasAllowanceModel } from 'src/Model/Employee/EmployeeHasAllowanceModel';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,10 @@ export class EmployeeService {
 
   GetEmployeeByAllowance(id : string) : Observable<EmployeeRulesModel[]>{
     return this.http.get<EmployeeRulesModel[]>(this.ApiUrl +'/Employee/byallowance/'+id)
+  }
+
+  GetAllowanceByEmployeeID(id : string) : Observable<EmployeeHasAllowanceModel[]>{
+    return this.http.get<EmployeeHasAllowanceModel[]>(this.ApiUrl + '/Employee/GetAllowanceByEmployee/' + id)
   }
 
   CreateEmployee(data : EmployeeCreateModel){

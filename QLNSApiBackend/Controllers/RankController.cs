@@ -49,6 +49,13 @@ namespace QLNSApiBackend.Controllers
             return Ok(rank);
         }
 
+        [HttpGet("GetRoleList")]
+        public async Task<IActionResult> GetRoleList()
+        {
+            var role = await _rankService.GetRoleList();
+            return Ok(role);
+        }
+
         [HttpPost("createrank")]
         public async Task<IActionResult> Create([FromBody] RankCreateRequest rankCreateRequest)
         {
@@ -75,10 +82,9 @@ namespace QLNSApiBackend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            var affectedResult = await _rankService.Delete(id);
-            if (affectedResult == 0)
-                return BadRequest();
-            return Ok(affectedResult);
+            await _rankService.DeleteRankByProcedure(id);
+
+            return Ok();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Azure.Core;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using QLNS.DataAccess;
 using QLNS.Entity.Entities;
@@ -117,6 +118,23 @@ namespace QLNS.Services.Catalog.Ranks
             rank.Name = request.Name;
             _context.Ranks.Update(rank);
             return await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<RankRole>> GetRoleList()
+        {
+            var query = from p in _context.RankRoles select p;
+            var data = await query.Select(x => new QLNS.Entity.Entities.RankRole()
+            {
+                ID = x.ID,
+                Name = x.Name
+            }).ToListAsync();
+            return data;
+        }
+
+        public async Task DeleteRankByProcedure(string id)
+        {
+            var ID = new SqlParameter(@"IDrank", id);
+            await _context.Database.ExecuteSqlRawAsync("EXEC DeleteRank @IDrank", ID);
         }
     }
 }

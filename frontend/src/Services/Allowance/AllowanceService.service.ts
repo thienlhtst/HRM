@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { Requestpaging } from 'src/Model/other/requestpaging';
 import { AllowEmployeeModel } from 'src/Model/AllowancesAndEmployeeRules/AllowEmployeeModel';
 import { AERulesAddModel } from 'src/Model/AllowancesAndEmployeeRules/AERulesAddModel';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,6 +20,8 @@ constructor(private http : HttpClient) { }
   getAllowance(): Observable<Allowancemodel[]> {
     return this.http.get<Allowancemodel[]>(this.apiurl+'/Allowance')
   }
+
+
 
   getAllowanceByID(id : string) : Observable<Allowancemodel>{
     return this.http.get<Allowancemodel>(this.apiurl + '/Allowance/' + id)

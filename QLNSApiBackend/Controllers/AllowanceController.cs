@@ -55,13 +55,6 @@ namespace QLNSApiBackend.Controllers
         }*/
 
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProcedure(string id, [FromBody] AllowanceEditRequest request)
-        {
-            request.ID = id;
-            await _allowanceService.UpdateProcedure(request);
-            return Ok();
-        }
 
         /*[HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)

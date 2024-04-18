@@ -81,29 +81,9 @@ namespace QLNS.DataAccess.Migrations
             END
             ";
 
-            var UpdateAllowanceRulesWhenUpdateAllowanceProcedure = @"
-            CREATE PROCEDURE UpdateAllowanceAndRule    
-                @ID nvarchar(50),
-                @Name nvarchar(50),
-                @Money nvarchar(50),
-                @EmployeeID nvarchar(50),
-                @Date datetime2
-                
-            AS
-            BEGIN
-                UPDATE Allowance
-                SET Name = @Name,Money = @Money
-                WHERE ID = @ID
-                
-                UPDATE AllowanceRules
-                SET AllowanceID = @ID, EmployeeID = @EmployeeID, Date = @Date
-                WHERE AllowanceID = @ID
-            
-            END
-            ";
 
             migrationBuilder.Sql(DeleteAllowanceRulesWhenDeleteAllowanceProcedure);
-            migrationBuilder.Sql(UpdateAllowanceRulesWhenUpdateAllowanceProcedure);
+
             migrationBuilder.CreateTable(
                 name: "Labour Hour",
                 columns: table => new
@@ -138,40 +118,18 @@ namespace QLNS.DataAccess.Migrations
             
 
 
-            var UpdatePositionProcedure = @"
-            CREATE  PROCEDURE updateposition
-                @ID nvarchar(50),
-                @Name nvarchar(50),
-                @IDSalary nvarchar(50),
-                @RankID nvarchar(50),
-                @Money int
-                
-            AS
-            BEGIN
-                UPDATE Position
-                SET Name = @Name
-                WHERE IDposition = @ID
-
-                UPDATE Salary
-                Set ID = @IDSalary, PositionID = @ID, RankID = @RankID, Money = @Money
-                WHERE IDPosition = @ID
-            
-                
-            END
-            ";
 
             var DeletePositionProcedure = @"
-            CREATE PROCEDURE deleteallowance
-                @IDposition nvarchar(50),
+            CREATE PROCEDURE DeletePosition
+                @IDposition nvarchar(50)
             AS
             BEGIN
                 DELETE FROM position
-                WHERE ID = @ID
+                WHERE IDposition = @IDposition
                 DELETE FROM salary
-                WHERE PositionID = @ID
+                WHERE PositionID = @IDposition
             END
             ";
-            migrationBuilder.Sql(UpdatePositionProcedure);
             migrationBuilder.Sql(DeletePositionProcedure);
 
             migrationBuilder.CreateTable(
@@ -247,41 +205,17 @@ namespace QLNS.DataAccess.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            var UpdateRankProcedure = @"
-            CREATE  PROCEDURE updateposition
-                @ID nvarchar(50),
-                @RankRoleID nvarchar(50),
-                @Name nvarchar(50),
-                @IDSalary nvarchar(50),
-                @PositionID nvarchar(50),
-                @Money int
-                
-            AS
-            BEGIN
-                UPDATE Rank
-                SET RankRoleID = @RankRoleID,Name = @Name
-                WHERE IDRank = @ID
-
-                UPDATE Salary
-                Set ID = @IDSalary, PositionID = @PositionID, RankID = @ID, Money = @Money
-                WHERE IDRank = @ID
-            
-                
-            END
-            ";
-
             var DeleteRankProcedure = @"
-            CREATE PROCEDURE deleteallowance
-                @IDposition nvarchar(50),
+            CREATE PROCEDURE DeleteRank
+                @IDrank nvarchar(50)
             AS
             BEGIN
-                DELETE FROM position
-                WHERE ID = @ID
-                DELETE FROM salary
-                WHERE PositionID = @ID
+                DELETE FROM Rank
+                WHERE IDrank = @IDrank
+                DELETE FROM Salary
+                WHERE RankID = @IDrank
             END
             ";
-            migrationBuilder.Sql(UpdateRankProcedure);
             migrationBuilder.Sql(DeleteRankProcedure);
 
             migrationBuilder.CreateTable(
@@ -342,52 +276,20 @@ namespace QLNS.DataAccess.Migrations
 
             var DeleteEmployeeAndDeleteEmployeeInRule = @"
                 CREATE PROCEDURE DeleteEmployeeAndRule
-                       @ID nvarchar(50)
+                    @ID nvarchar(50)
                 AS
                 BEGIN
-                    DELETE FROM Employee
+                    DELETE FROM Employees
                     WHERE ID = @ID
-                    DETELE FROM AllowanceRules
+
+                    DELETE FROM AllowanceRules
                     WHERE EmployeeID = @ID
                 END
             ";
 
-            var UpdateEmployeeAndEmployeeInRules = @"
-                CREATE PROCEDURE UpdateEmployeeAndRule    
-                @ID nvarchar(50),
-                @FirstName nvarchar(50),
-                @MiddleName nvarchar(50),
-                @LastName nvarchar(50),
-                @DOB datetime2,
-                @Sex int,
-                @CIC nvarchar(50),
-                @NumberPhone nvarchar(50),
-                @Address nvarchar(50),
-                @SalaryID nvarchar(50),
-                @Account nvarchar(50),
-                @Password nvarchar(50),
-                @Active int,
-                @URLImage nvarchar(50),
-                @Money nvarchar(50),
-                @AllowanceID nvarchar(50),
-                @Date datetime2
-                
-            AS
-            BEGIN
-                UPDATE Employee
-                SET FirstName = @FirstName,MiddleName = @MiddleName,LastName = @LastName, DOB = @DOB, Sex = @Sex, CIC = @CIC,NumberPhone = @NumberPhone,Address = @Address,SalaryID = @SalaryID,Account = @Account, Password = @Password,Active = @Active, URLImage = @URLImage
-                WHERE ID = @ID
-                
-                UPDATE AllowanceRules
-                SET AllowanceID = @AllowanceID, EmployeeID = @ID, Date = @Date
-                WHERE EmployeeID = @ID
-            
-            END
-            ";
 
             
             migrationBuilder.Sql(DeleteEmployeeAndDeleteEmployeeInRule);
-            migrationBuilder.Sql(UpdateEmployeeAndEmployeeInRules);
             migrationBuilder.CreateTable(
                 name: "AllowanceRules",
                 columns: table => new

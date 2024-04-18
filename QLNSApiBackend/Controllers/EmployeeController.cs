@@ -107,5 +107,12 @@ namespace QLNSApiBackend.Controllers
             var employees = await _employeeService.GetAllHomePage(request);
             return Ok(employees);
         }
+
+        [HttpGet("GetAllowanceByEmployee/{id}")]
+        public async Task<IActionResult> GetAllowanceByEmployeeID(string id)
+        {
+            var employee = await _employeeService.GetEmployeeHasAllowance(id);
+            return Ok(employee);
+        }
     }
 }

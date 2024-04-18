@@ -2,10 +2,11 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RankModel } from '../../Model/RankModel';
+import { RankModel } from '../../Model/Rank/RankModel';
 import { environment } from 'src/environments/environment';
 import { Requestpaging } from 'src/Model/other/requestpaging';
 import { Pagingreponse } from 'src/Model/other/pagingreponse';
+import { RankRoleModel } from 'src/Model/Rank/RankRoleModel';
 
 @Injectable()
 export class RankServiceService {
@@ -16,6 +17,9 @@ constructor(private http : HttpClient) { }
 
   GetRank():Observable<RankModel[]>{
     return this.http.get<RankModel[]>(this.apiurl + '/Rank')
+  }
+  getRole() : Observable<RankRoleModel[]>{
+    return this.http.get<RankRoleModel[]>(this.apiurl + "/Rank/GetRoleList")
   }
 
   GetRankByID(id: string) :Observable<RankModel>{

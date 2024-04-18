@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using QLNS.ViewModel.Dtos;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
 
 namespace QLNS.Services.Catalog.Positions
 {
@@ -38,6 +39,12 @@ namespace QLNS.Services.Catalog.Positions
             var position = await _context.Positions.FindAsync(PositionID);
             _context.Positions.Remove(position);
             return await _context.SaveChangesAsync();
+        }
+
+        public async Task DeletePositionByProceDure(string id)
+        {
+            var ID = new SqlParameter(@"IDposition", id);
+            await _context.Database.ExecuteSqlRawAsync("EXEC DeletePosition @IDposition", id);
         }
 
         public async Task<List<PositionViewModel>> GetAll()

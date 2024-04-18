@@ -5,7 +5,7 @@ import { EmployeeCreateModel } from 'src/Model/Employee/EmployeeCreateModel';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { PositionModel } from 'src/Model/PositionModel';
-import { RankModel } from 'src/Model/RankModel';
+import { RankModel } from 'src/Model/Rank/RankModel';
 import { EmployeeService } from 'src/Services/Employee/employee.service';
 import { GeneralService } from 'src/Services/General/general.service';
 import { NotificationComponent } from 'src/app/theme/shared/components/Notification/Notification.component';

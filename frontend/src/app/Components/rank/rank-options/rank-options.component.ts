@@ -4,7 +4,7 @@
 /* eslint-disable @angular-eslint/component-selector */
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 /* eslint-disable @angular-eslint/no-output-on-prefix */
-import { RankModel } from 'src/Model/RankModel';
+import { RankModel } from 'src/Model/Rank/RankModel';
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RankServiceService } from 'src/Services/Rank/RankService.service';
@@ -12,6 +12,7 @@ import { ConfirmationDialogService } from 'src/app/theme/shared/components/confi
 import { RegexService } from 'src/Services/Regex/regex.service';
 import { Alert } from 'src/Model/Alert';
 import { error } from 'console';
+import { RankRoleModel } from 'src/Model/Rank/RankRoleModel';
 
 @Component({
   selector: 'app-rank-options',
@@ -40,14 +41,26 @@ export class RankOptionsComponent implements OnInit {
   Action : string
   alert : Alert
   message : any
+  RoleData : RankRoleModel[]
+  selectedRole : string
 
 
 
 
   ngOnInit(): void {
     this.GetRankID()
+    this.GetAllRole()
   }
 
+  GetAllRole(){
+    this.Service.getRole().subscribe((res)=>{
+      this.RoleData = res
+    })
+  }
+
+  OnRoleChange(){
+    return this.selectedRole
+  }
 
   SetAction (action : string){
     this.Action = action

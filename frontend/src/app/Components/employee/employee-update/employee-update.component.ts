@@ -111,6 +111,7 @@ export class EmployeeUpdateComponent implements OnInit {
   OnSubmit(employee : EmployeeUpdateModel){
     if(this.Action == 'Confirm'){
       employee.salaryID = this.selectedSalaryID
+      employee.sex = this.data.sex
       this.confirm.confirm('Please Confirm','You wanna add ? ')
       .then((confirmed)=>{
         if(confirmed){
