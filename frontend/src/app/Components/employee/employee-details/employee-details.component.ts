@@ -4,7 +4,6 @@ import { Component, Inject, OnInit, ViewChild, ViewEncapsulation } from '@angula
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeModel } from 'src/Model/Employee/EmployeeModel';
 import { EmployeeService } from 'src/Services/Employee/employee.service';
-import { ButtonComponent, ButtonModule } from '@syncfusion/ej2-angular-buttons';
 import { LabourContractServiceService } from 'src/Services/LabourContract/labour-contract-service.service';
 import { LabourContractModel } from 'src/Model/LabourContract/LabourContractModel';
 import { AllowanceServiceService } from 'src/Services/Allowance/AllowanceService.service';
