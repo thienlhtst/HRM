@@ -27,13 +27,14 @@ namespace QLNS.DataAccess
             modelBuilder.ApplyConfiguration(new LabourContractConfiguration());
             modelBuilder.ApplyConfiguration(new LabourHourConfiguration());
             modelBuilder.ApplyConfiguration(new PositionConfiguration());
-            modelBuilder.ApplyConfiguration(new RankConguration());
+            modelBuilder.ApplyConfiguration(new LevelConfiguration());
             modelBuilder.ApplyConfiguration(new RewardConfiguration());
             modelBuilder.ApplyConfiguration(new SalaryConfiguration());
             modelBuilder.ApplyConfiguration(new WorkHourConfiguration());
-            modelBuilder.ApplyConfiguration(new RankRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.ApplyConfiguration(new DescriptionRoleConfiguration());
             modelBuilder.ApplyConfiguration(new ProcedureConfiguration());
+            modelBuilder.ApplyConfiguration(new DetailSalaryConfiguration());
             modelBuilder.Seed();
             base.OnModelCreating(modelBuilder);
         }
@@ -45,11 +46,13 @@ namespace QLNS.DataAccess
         public DbSet<LabourContract> LabourContracts { get; set; }
         public DbSet<LabourHour> LabourHours { get; set; }
         public DbSet<Position> Positions { get; set; }
-        public DbSet<Rank> Ranks { get; set; }
-        public DbSet<RankRole> RankRoles { get; set; }
+        public DbSet<Level> Levels { get; set; }
+        public DbSet<Role> Roles { get; set; }
         public DbSet<DescriptionRole> DescriptionRoles { get; set; }
         public DbSet<Rewards> Rewards { get; set; }
         public DbSet<Salary> Salaries { get; set; }
+
+        public DbSet<DetailSalary> DetailsSalary { get; set; }
         public DbSet<EmployeesWithAllowances> EmployeesWithAllowances { get; set; }
         public DbSet<WorkHour> WorkHours { get; set; }
 

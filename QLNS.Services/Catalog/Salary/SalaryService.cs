@@ -25,8 +25,8 @@ namespace QLNS.Services.Catalog.Salary
         public async Task<PagedResult<SalaryVM>> GetAllPage(GetSalaryPagingRequest Request)
         {
             var query = from p in _context.Salaries
-                        join pt in _context.Ranks on p.RankID equals pt.IDrank
-                        join pp in _context.Positions on p.PositionID equals pp.IDposition
+                        join pt in _context.Levels on p.RankID equals pt.ID
+                        join pp in _context.Positions on p.PositionID equals pp.ID
                         select new { p, pt, pp };
             if (!string.IsNullOrEmpty(Request.Keyword))
             {

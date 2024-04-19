@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QLNS.ViewModel.Catalogs.Ranks
+namespace QLNS.ViewModel.Catalogs.Levels
 {
-    public class RankDetailRequest
+    public class RankDeleteRequest
     {
-        public RankVM rank { get; set; }
+        public string ID { get; set; }
     }
 }

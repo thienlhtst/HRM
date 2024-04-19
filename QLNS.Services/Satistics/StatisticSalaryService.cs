@@ -135,8 +135,8 @@ namespace QLNS.Services.Satistics
         public async Task<List<TopSalary>> TopSalary(int top)
         {
             var query_salary = await (from sal in _context.Salaries
-                                      join rank in _context.Ranks on sal.RankID equals rank.IDrank
-                                      join pos in _context.Positions on sal.PositionID equals pos.IDposition
+                                      join rank in _context.Levels on sal.RankID equals rank.ID
+                                      join pos in _context.Positions on sal.PositionID equals pos.ID
                                       select new TopSalary
                                       {
                                           ID = sal.ID,

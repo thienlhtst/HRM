@@ -20,6 +20,7 @@ using QLNS.Services.Common;
 using System.Net.Http.Headers;
 using QLNS.ViewModel.Catalogs.AllowanceRules;
 using Bogus;
+using HelpMate.Core.Extensions;
 
 namespace QLNS.Services.Catalog.Employees
 {
@@ -101,8 +102,8 @@ namespace QLNS.Services.Catalog.Employees
         {
             var query = from p in _context.Employee
                         join ps in _context.Salaries on p.SalaryID equals ps.ID
-                        join pr in _context.Ranks on ps.RankID equals pr.IDrank
-                        join pp in _context.Positions on ps.PositionID equals pp.IDposition
+                        join pr in _context.Levels on ps.RankID equals pr.ID
+                        join pp in _context.Positions on ps.PositionID equals pp.ID
                         select new { p, ps, pr, pp }
                         ;
             if (!string.IsNullOrEmpty(request.Keyword))
@@ -144,8 +145,8 @@ namespace QLNS.Services.Catalog.Employees
         {
             var query = from p in _context.Employee
                         join ps in _context.Salaries on p.SalaryID equals ps.ID
-                        join pr in _context.Ranks on ps.RankID equals pr.IDrank
-                        join pp in _context.Positions on ps.PositionID equals pp.IDposition
+                        join pr in _context.Levels on ps.RankID equals pr.ID
+                        join pp in _context.Positions on ps.PositionID equals pp.ID
                         where ps.ID == SalaryID
                         select new { p, ps, pr, pp };
             var employeerules = await query.Select(x => new EmployeeViewModel()
@@ -171,12 +172,12 @@ namespace QLNS.Services.Catalog.Employees
         {
             var rank = (from p in _context.Employee
                         join ps in _context.Salaries on p.SalaryID equals ps.ID
-                        join pr in _context.Ranks on ps.RankID equals pr.IDrank
+                        join pr in _context.Levels on ps.RankID equals pr.ID
                         where p.ID.Equals(EmployeeID)
                         select pr.Name).First();
             var position = (from p in _context.Employee
                             join ps in _context.Salaries on p.SalaryID equals ps.ID
-                            join pp in _context.Positions on ps.PositionID equals pp.IDposition
+                            join pp in _context.Positions on ps.PositionID equals pp.ID
                             where p.ID.Equals(EmployeeID)
                             select pp.Name).First();
 
@@ -282,8 +283,8 @@ namespace QLNS.Services.Catalog.Employees
         {
             var query = from p in _context.Employee
                         join ps in _context.Salaries on p.SalaryID equals ps.ID
-                        join pr in _context.Ranks on ps.RankID equals pr.IDrank
-                        join pp in _context.Positions on ps.PositionID equals pp.IDposition
+                        join pr in _context.Levels on ps.RankID equals pr.ID
+                        join pp in _context.Positions on ps.PositionID equals pp.ID
                         select new EmployeeViewModel()
                         {
                             ID = p.ID,

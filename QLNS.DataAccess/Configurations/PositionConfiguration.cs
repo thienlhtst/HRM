@@ -14,8 +14,8 @@ namespace QLNS.DataAccess.Configurations
 		public void Configure(EntityTypeBuilder<Position> builder)
 		{
 			builder.ToTable("Position");
-			builder.HasKey(x => x.IDposition);
-			builder.Property(x => x.IDposition).IsRequired();
+			builder.HasKey(x => x.ID);
+			builder.Property(x => x.ID).IsRequired();
 			builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
 			
 		}

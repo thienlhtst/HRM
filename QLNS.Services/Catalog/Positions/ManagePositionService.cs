@@ -26,7 +26,7 @@ namespace QLNS.Services.Catalog.Positions
         {
             var position = new Position()
             {
-                IDposition = request.ID,
+                ID = request.ID,
                 Name = request.Name
             };
             _context.Add(position);
@@ -43,8 +43,8 @@ namespace QLNS.Services.Catalog.Positions
 
         public async Task DeletePositionByProceDure(string id)
         {
-            var ID = new SqlParameter(@"IDposition", id);
-            await _context.Database.ExecuteSqlRawAsync("EXEC DeletePosition @IDposition", id);
+            var ID = new SqlParameter(@"ID", id);
+            await _context.Database.ExecuteSqlRawAsync("EXEC DeletePosition @ID", id);
         }
 
         public async Task<List<PositionViewModel>> GetAll()
@@ -53,7 +53,7 @@ namespace QLNS.Services.Catalog.Positions
 
             var data = await query.Select(x => new PositionViewModel()
             {
-                IDposition = x.IDposition,
+                IDposition = x.ID,
                 Name = x.Name
             }).ToListAsync();
 
@@ -64,13 +64,13 @@ namespace QLNS.Services.Catalog.Positions
         {
             var query = from p in _context.Positions select p;
             if (!string.IsNullOrEmpty(request.Keyword))
-                query = query.Where(x => x.IDposition.Contains(request.Keyword) || x.Name.Contains(request.Keyword));
+                query = query.Where(x => x.ID.Contains(request.Keyword) || x.Name.Contains(request.Keyword));
             int totalRow = await query.CountAsync();
-            var data = await query.OrderBy(x => Convert.ToInt32(x.IDposition)).Skip((request.PageIndex - 1) * request.PageSize)
+            var data = await query.OrderBy(x => Convert.ToInt32(x.ID)).Skip((request.PageIndex - 1) * request.PageSize)
                 .Take(request.PageSize)
                 .Select(x => new PositionViewModel()
                 {
-                    IDposition = x.IDposition,
+                    IDposition = x.ID,
                     Name = x.Name
                 }).ToListAsync();
             var pagedView = new PagedResult<PositionViewModel>()
@@ -88,7 +88,7 @@ namespace QLNS.Services.Catalog.Positions
             var rank = await _context.Positions.FindAsync(PositionID);
             var rankvm = new PositionViewModel()
             {
-                IDposition = rank.IDposition,
+                IDposition = rank.ID,
                 Name = rank.Name
             };
             return rankvm;
@@ -98,7 +98,7 @@ namespace QLNS.Services.Catalog.Positions
         {
             var position = await _context.Positions.FindAsync(request.ID);
 
-            position.IDposition = request.ID;
+            position.ID = request.ID;
             position.Name = request.Name;
 
             _context.Positions.Update(position);

@@ -9,15 +9,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace QLNS.DataAccess.Configurations
 {
-    public class RankConguration : IEntityTypeConfiguration<Rank>
+    public class LevelConfiguration : IEntityTypeConfiguration<Level>
 	{
-        public void Configure(EntityTypeBuilder<Rank> builder)
+        public void Configure(EntityTypeBuilder<Level> builder)
         {
-            builder.ToTable("Rank");
-            builder.HasKey(x => x.IDrank);
-            builder.Property(x => x.IDrank).IsRequired();
+            builder.ToTable("Level");
+            builder.HasKey(x => x.ID);
+            builder.Property(x => x.ID).IsRequired();
             builder.Property(x => x.Name).HasMaxLength(20);
-			builder.HasOne(x => x.Roles).WithMany(x => x.Rank).HasForeignKey(x => x.RankRoleID);
+			builder.HasOne(x => x.Roles).WithMany(x => x.Level).HasForeignKey(x => x.RoleID);
 		}
     }
 }

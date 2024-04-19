@@ -34,7 +34,7 @@ namespace QLNS.Services.Catalog.Login
         {
             var query = from p in _context.Employee
                         join ps in _context.Salaries on p.SalaryID equals ps.ID
-                        join pt in _context.Ranks on ps.RankID equals pt.IDrank
+                        join pt in _context.Levels on ps.RankID equals pt.ID
                         select new { p, pt };
             var data = await query.Select(x => new LoginRequest()
             {
@@ -42,7 +42,7 @@ namespace QLNS.Services.Catalog.Login
                 Name = x.p.LastName + " " + x.p.FirstName,
                 Account = x.p.Account,
                 Password = x.p.Password,
-                RankRole = x.pt.RankRoleID
+                RankRole = x.pt.RoleID
             }).ToListAsync();
 
             return data;

@@ -26,6 +26,7 @@ using QLNS.Services.Catalog.EmployeesWithAllowances;
 using QLNS.Services.Catalog.LabourContract;
 using QLNS.Services.Catalog.LabourDay;
 using QLNS.Services.Catalog.LabourHours;
+using QLNS.Services.Catalog.Levels;
 using QLNS.Services.Catalog.Login;
 using QLNS.Services.Catalog.Positions;
 using QLNS.Services.Catalog.Ranks;
@@ -63,7 +64,7 @@ namespace QLNSApiBackend.BackendApi
             services.AddHttpContextAccessor();
             services.AddTransient<IEmployeeService, EmployeeService>();
             services.AddTransient<ILoginService, LoginService>();
-            services.AddTransient<IRankService, RankService>();
+            services.AddTransient<ILevelService, LevelService>();
             services.AddTransient<ISalaryService, SalaryService>();
             services.AddTransient<ILabourDayService, LabourdayService>();
 
@@ -79,7 +80,7 @@ namespace QLNSApiBackend.BackendApi
             services.AddTransient<IStorageService, FileStorageService>();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllersWithViews();
-
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger Timekeeping Solution", Version = "v1" });

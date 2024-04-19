@@ -9,8 +9,8 @@ namespace QLNS.Entity.Entities
 	public class DescriptionRole
 	{
 		public int ID { get; set; }
-		public string RankRoleID { get; set; }
-		public RankRole? RankRole { get; set; } = null!;
+		public string RoleID { get; set; }
+		public Role? RankRole { get; set; } = null!;
 		public string Name { get; set; }
 
 

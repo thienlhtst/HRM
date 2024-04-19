@@ -6,7 +6,7 @@ using QLNS.DataAccess;
 using QLNS.DataAccess.Extenstions;
 using QLNS.Entity.Entities;
 using QLNS.Entity.RelationShips;
-using QLNS.ViewModel.Catalogs.Ranks;
+using QLNS.ViewModel.Catalogs.Levels;
 using QLNS.ViewModel.Catalogs.WorkHour;
 using QLNS.ViewModel.Common;
 using QLNS.ViewModel.Dtos;

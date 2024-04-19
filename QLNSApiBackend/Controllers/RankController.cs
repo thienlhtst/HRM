@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QLNS.Services.Catalog.Ranks;
-using QLNS.ViewModel.Catalogs.Ranks;
+using QLNS.ViewModel.Catalogs.Levels;
 using QLNS.ViewModel.Dtos;
 
 namespace QLNSApiBackend.Controllers
@@ -10,9 +10,9 @@ namespace QLNSApiBackend.Controllers
     [ApiController]
     public class RankController : ControllerBase
     {
-        private readonly IRankService _rankService;
+        private readonly ILevelService _rankService;
 
-        public RankController(IRankService rankService)
+        public RankController(ILevelService rankService)
         {
             _rankService = rankService;
         }
@@ -74,7 +74,7 @@ namespace QLNSApiBackend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, [FromBody] RankEditRequest request)
         {
-            request.IDrank = id;
+            request.ID = id;
             var rank = await _rankService.Update(request);
             return Ok(rank);
         }

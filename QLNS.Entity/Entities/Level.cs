@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace QLNS.Entity.Entities
 {
-    public class Rank
+    public class Level
     {
-        public string IDrank { get; set; }
-        public string RankRoleID { get; set; }
+        public string ID { get; set; }
+        public string RoleID { get; set; }
         public string Name { get; set; }
         public List<Salary> Salaries { get; } = new();
-        public RankRole? Roles { get; set; } = null!;
+        public Role? Roles { get; set; } = null!;
     }
 }

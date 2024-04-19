@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace QLNS.DataAccess.Configurations
 {
-	public class RankRoleConfiguration : IEntityTypeConfiguration<RankRole>
+	public class RoleConfiguration : IEntityTypeConfiguration<Role>
 	{
-		public void Configure(EntityTypeBuilder<RankRole> builder)
+		public void Configure(EntityTypeBuilder<Role> builder)
 		{
-			builder.ToTable("Rank Role");
+			builder.ToTable("Role");
 			builder.HasKey(x => x.ID);
 			builder.Property(x => x.Name).IsRequired();
 

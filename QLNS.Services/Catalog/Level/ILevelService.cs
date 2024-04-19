@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using QLNS.ViewModel.Catalogs.Ranks;
+using QLNS.ViewModel.Catalogs.Levels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using QLNS.Entity.Entities;
 
 namespace QLNS.Services.Catalog.Ranks
 {
-    public interface IRankService
+    public interface ILevelService
     {
         Task<PagedResult<RankVM>> GetAllPage(GetRankPagingRequest Request);
 
@@ -22,10 +22,10 @@ namespace QLNS.Services.Catalog.Ranks
 
         Task<RankVM> GetById(string EmployeeID);
 
-        Task<List<QLNS.Entity.Entities.Rank>> GetList();
+        Task<List<QLNS.Entity.Entities.Level>> GetList();
         Task<RankEditRequest> GetByIdForEdit(string RankID);
 
-        Task<List<RankRole>> GetRoleList();
+        Task<List<Role>> GetRoleList();
 
         Task DeleteRankByProcedure(string id);
     }

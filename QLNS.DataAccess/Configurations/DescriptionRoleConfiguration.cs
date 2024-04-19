@@ -18,7 +18,7 @@ namespace QLNS.DataAccess.Configurations
 			builder.HasKey(x => x.ID);
 			builder.Property(x => x.ID).IsRequired();
 			builder.Property(x => x.Name).IsRequired();
-			builder.HasOne(x => x.RankRole).WithMany(x => x.Description).HasForeignKey(x => x.RankRoleID);
+			builder.HasOne(x => x.RankRole).WithMany(x => x.Description).HasForeignKey(x => x.ID);
 
 		}
 	}

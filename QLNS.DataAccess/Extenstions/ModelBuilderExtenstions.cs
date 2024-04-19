@@ -29,21 +29,21 @@ namespace QLNS.DataAccess.Extenstions
                 new Employees() { ID = "4", FirstName = "Tran", MiddleName = "Minh", LastName = "Thien", DOB = new DateTime(2002, 05, 10), Sex = Sex.Female, CIC = "000002", NumberPhone = "2211232", Address = "New York", SalaryID = "2", Account = "admin", Password = "admin", Active = Active.Yes, URLImage = "" },
                 new Employees() { ID = "5", FirstName = "Bui", MiddleName = "Manh", LastName = "Tgabg", DOB = new DateTime(2002, 07, 10), Sex = Sex.Female, CIC = "000002", NumberPhone = "212322", Address = "Dubai", SalaryID = "2", Account = "admin", Password = "admin", Active = Active.Yes, URLImage = "" }
                 );
-            modelbuilder.Entity<RankRole>().HasData(
-                new RankRole() { ID = "1", Name = "Nhan Vien Binh Thuong" },
-                 new RankRole() { ID = "2", Name = "Admin" }
+            modelbuilder.Entity<Role>().HasData(
+                new Role() { ID = "1", Name = "Employee" },
+                 new Role() { ID = "2", Name = "Admin" }
                 );
 
             modelbuilder.Entity<Position>().HasData(
-                new Position() { IDposition = "1", Name = "IT" },
-                new Position() { IDposition = "2", Name = "Kế toán" },
-                new Position() { IDposition = "3", Name = "Marketing" }
+                new Position() { ID = "1", Name = "IT" },
+                new Position() { ID = "2", Name = "Kế toán" },
+                new Position() { ID = "3", Name = "Marketing" }
                 );
-            modelbuilder.Entity<Rank>().HasData(
-                new Rank() { IDrank = "1", Name = "Nhân viên", RankRoleID = "1" },
-                new Rank() { IDrank = "2", Name = "Trưởng phòng", RankRoleID = "2" },
-                new Rank() { IDrank = "3", Name = "Phó phòng", RankRoleID = "2" },
-                new Rank() { IDrank = "4", Name = "Tổ trưởng", RankRoleID = "2" }
+            modelbuilder.Entity<Level>().HasData(
+                new Level() { ID = "1", Name = "Nhân viên", RoleID = "1" },
+                new Level() { ID = "2", Name = "Trưởng phòng", RoleID = "2" },
+                new Level() { ID = "3", Name = "Phó phòng", RoleID = "2" },
+                new Level() { ID = "4", Name = "Tổ trưởng", RoleID = "2" }
                 );
             modelbuilder.Entity<Salary>().HasData(
                 new Salary() { ID = "1", PositionID = "1", RankID = "1", Money = 80000 },

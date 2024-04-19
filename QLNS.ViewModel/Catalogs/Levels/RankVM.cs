@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QLNS.ViewModel.Catalogs.Ranks
+namespace QLNS.ViewModel.Catalogs.Levels
 {
 	public class RankVM
 	{

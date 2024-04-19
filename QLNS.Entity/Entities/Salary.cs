@@ -13,12 +13,14 @@ namespace QLNS.Entity.Entities
         public string ID { get; set; }
         public string RankID { get; set; }
         public string PositionID { get; set; }
-        public Rank Rank { get; set; } = null!;
+        public Level Rank { get; set; } = null!;
         public Position Position { get; set; } = null!;
 
         [Column(TypeName = "decimal(18,2)")]
         public decimal Money { get; set; }
 
         public List<Employees> Employees { get; } = new();
+
+        public List<DetailSalary> DetailSalary { get; } = new();
     }
 }

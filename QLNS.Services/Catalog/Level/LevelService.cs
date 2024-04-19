@@ -1,47 +1,42 @@
-﻿using Azure.Core;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using QLNS.DataAccess;
 using QLNS.Entity.Entities;
-using QLNS.ViewModel.Catalogs.Ranks;
+using QLNS.Services.Catalog.Ranks;
+using QLNS.ViewModel.Catalogs.Levels;
 using QLNS.ViewModel.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace QLNS.Services.Catalog.Ranks
+namespace QLNS.Services.Catalog.Levels
 {
-    public class RankService : IRankService
+    public class LevelService : ILevelService
     {
         private readonly QLNSDbContext _context;
 
-        public RankService(QLNSDbContext context)
+        public LevelService(QLNSDbContext context)
         {
             _context = context;
         }
 
-        public async Task<List<Rank>> GetAll()
+        public async Task<List<Level>> GetAll()
         {
-            return await _context.Ranks.ToListAsync();
+            return await _context.Levels.ToListAsync();
         }
 
         public async Task<PagedResult<RankVM>> GetAllPage(GetRankPagingRequest Request)
         {
-            var query = from p in _context.Ranks
-                        join pt in _context.RankRoles on p.RankRoleID equals pt.ID
+            var query = from p in _context.Levels
+                        join pt in _context.Roles on p.RoleID equals pt.ID
                         select new { p, pt };
             if (!string.IsNullOrEmpty(Request.Keyword))
             {
-                query = query.Where(x => x.p.IDrank.Contains(Request.Keyword) || x.p.Name.Contains(Request.Keyword));
+                query = query.Where(x => x.p.ID.Contains(Request.Keyword) || x.p.Name.Contains(Request.Keyword));
             }
             int totalRow = await query.CountAsync();
-            var data = await query.OrderBy(x => Convert.ToInt32(x.p.IDrank)).Skip((Request.PageIndex - 1) * Request.PageSize)
+            var data = await query.OrderBy(x => Convert.ToInt32(x.p.ID)).Skip((Request.PageIndex - 1) * Request.PageSize)
                 .Take(Request.PageSize)
                 .Select(x => new RankVM()
                 {
-                    ID = x.p.IDrank,
+                    ID = x.p.ID,
                     Name = x.p.Name,
                     NameRankRole = x.pt.Name
                 }).ToListAsync();
@@ -57,30 +52,30 @@ namespace QLNS.Services.Catalog.Ranks
 
         public async Task<int> Create(RankCreateRequest request)
         {
-            var rank = new Entity.Entities.Rank()
+            var rank = new Entity.Entities.Level()
             {
-                IDrank = request.IDrank,
-                RankRoleID = request.RankRoleID,
+                ID = request.ID,
+                RoleID = request.RankRoleID,
                 Name = request.Name
             };
-            _context.Ranks.Add(rank);
+            _context.Levels.Add(rank);
             return await _context.SaveChangesAsync();
         }
 
         public async Task<int> Delete(string rankID)
         {
-            var rank = await _context.Ranks.FindAsync(rankID);
-            _context.Ranks.Remove(rank);
+            var rank = await _context.Levels.FindAsync(rankID);
+            _context.Levels.Remove(rank);
             return await _context.SaveChangesAsync();
         }
 
         public async Task<RankVM> GetById(string RankID)
         {
-            var rank = await _context.Ranks.FindAsync(RankID);
+            var rank = await _context.Levels.FindAsync(RankID);
             var rankvm = new RankVM()
             {
-                ID = rank.IDrank,
-                NameRankRole = rank.RankRoleID,
+                ID = rank.ID,
+                NameRankRole = rank.RoleID,
                 Name = rank.Name
             };
             return rankvm;
@@ -88,23 +83,23 @@ namespace QLNS.Services.Catalog.Ranks
 
         public async Task<RankEditRequest> GetByIdForEdit(string RankID)
         {
-            var rank = await _context.Ranks.FindAsync(RankID);
+            var rank = await _context.Levels.FindAsync(RankID);
             var rankvm = new RankEditRequest()
             {
-                IDrank = rank.IDrank,
-                RankRoleID = rank.RankRoleID,
+                ID = rank.ID,
+                RankRoleID = rank.RoleID,
                 Name = rank.Name
             };
             return rankvm;
         }
 
-        public async Task<List<QLNS.Entity.Entities.Rank>> GetList()
+        public async Task<List<QLNS.Entity.Entities.Level>> GetList()
         {
-            var query = from p in _context.Ranks select p;
-            var data = await query.Select(x => new QLNS.Entity.Entities.Rank()
+            var query = from p in _context.Levels select p;
+            var data = await query.Select(x => new QLNS.Entity.Entities.Level()
             {
-                IDrank = x.IDrank,
-                RankRoleID = x.RankRoleID,
+                ID = x.ID,
+                RoleID = x.RoleID,
                 Name = x.Name
             }).ToListAsync();
             return data;
@@ -112,18 +107,18 @@ namespace QLNS.Services.Catalog.Ranks
 
         public async Task<int> Update(RankEditRequest request)
         {
-            var rank = await _context.Ranks.FindAsync(request.IDrank);
-            rank.IDrank = request.IDrank;
-            rank.RankRoleID = request.RankRoleID;
+            var rank = await _context.Levels.FindAsync(request.ID);
+            rank.ID = request.ID;
+            rank.RoleID = request.RankRoleID;
             rank.Name = request.Name;
-            _context.Ranks.Update(rank);
+            _context.Levels.Update(rank);
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<List<RankRole>> GetRoleList()
+        public async Task<List<Role>> GetRoleList()
         {
-            var query = from p in _context.RankRoles select p;
-            var data = await query.Select(x => new QLNS.Entity.Entities.RankRole()
+            var query = from p in _context.Roles select p;
+            var data = await query.Select(x => new QLNS.Entity.Entities.Role()
             {
                 ID = x.ID,
                 Name = x.Name
@@ -133,8 +128,8 @@ namespace QLNS.Services.Catalog.Ranks
 
         public async Task DeleteRankByProcedure(string id)
         {
-            var ID = new SqlParameter(@"IDrank", id);
-            await _context.Database.ExecuteSqlRawAsync("EXEC DeleteRank @IDrank", ID);
+            var ID = new SqlParameter(@"ID", id);
+            await _context.Database.ExecuteSqlRawAsync("EXEC DeleteRank @ID", ID);
         }
     }
 }

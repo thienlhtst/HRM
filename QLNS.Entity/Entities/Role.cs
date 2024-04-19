@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace QLNS.Entity.Entities
 {
-	public class RankRole
+	public class Role
 	{
 		public string ID { get; set; }
 		
 		public string Name { get; set; }
-		public ICollection<Rank> Rank { get; } = new List<Rank>();
+		public ICollection<Level> Level { get; } = new List<Level>();
 		public ICollection<DescriptionRole> Description { get; set; } = new List<DescriptionRole>();
 	}
 }
