@@ -25,9 +25,9 @@ namespace QLNS.DataAccess.Extenstions
             modelbuilder.Entity<Employees>().HasData(
                 new Employees() { ID = "1", FirstName = "Nguyen", MiddleName = "Jonny", LastName = "Dang", DOB = new DateTime(2004, 05, 01), Sex = Sex.Male, CIC = "000001", NumberPhone = "111", Address = "Texas", SalaryID = "1", Account = "admin", Password = "123456", Active = Active.Yes, URLImage = "" },
                 new Employees() { ID = "2", FirstName = "Nguyen", MiddleName = "Khoa", LastName = "Pug", DOB = new DateTime(2002, 09, 10), Sex = Sex.Male, CIC = "000002", NumberPhone = "222", Address = "New York", SalaryID = "2", Account = "admin", Password = "admin", Active = Active.Yes, URLImage = "" },
-                new Employees() { ID = "3", FirstName = "Nguyen", MiddleName = "Tri", LastName = "Thanh", DOB = new DateTime(2002, 03, 04), Sex = Sex.Male, CIC = "000002", NumberPhone = "222", Address = "Thailand", SalaryID = "2", Account = "admin", Password = "admin", Active = Active.Yes, URLImage = "" },
-                new Employees() { ID = "4", FirstName = "Tran", MiddleName = "Minh", LastName = "Thien", DOB = new DateTime(2002, 05, 10), Sex = Sex.Female, CIC = "000002", NumberPhone = "2211232", Address = "New York", SalaryID = "2", Account = "admin", Password = "admin", Active = Active.Yes, URLImage = "" },
-                new Employees() { ID = "5", FirstName = "Bui", MiddleName = "Manh", LastName = "Tgabg", DOB = new DateTime(2002, 07, 10), Sex = Sex.Female, CIC = "000002", NumberPhone = "212322", Address = "Dubai", SalaryID = "2", Account = "admin", Password = "admin", Active = Active.Yes, URLImage = "" }
+                new Employees() { ID = "3", FirstName = "Nguyen", MiddleName = "Tri", LastName = "Thanh", DOB = new DateTime(2002, 03, 04), Sex = Sex.Male, CIC = "000003", NumberPhone = "222", Address = "Thailand", SalaryID = "2", Account = "admin", Password = "admin", Active = Active.Yes, URLImage = "" },
+                new Employees() { ID = "4", FirstName = "Tran", MiddleName = "Minh", LastName = "Thien", DOB = new DateTime(2002, 05, 10), Sex = Sex.Female, CIC = "000004", NumberPhone = "2211232", Address = "New York", SalaryID = "2", Account = "admin", Password = "admin", Active = Active.Yes, URLImage = "" },
+                new Employees() { ID = "5", FirstName = "Bui", MiddleName = "Manh", LastName = "Tgabg", DOB = new DateTime(2002, 07, 10), Sex = Sex.Female, CIC = "000005", NumberPhone = "212322", Address = "Dubai", SalaryID = "2", Account = "admin", Password = "admin", Active = Active.Yes, URLImage = "" }
                 );
             modelbuilder.Entity<Role>().HasData(
                 new Role() { ID = "1", Name = "Employee" },
@@ -76,9 +76,7 @@ namespace QLNS.DataAccess.Extenstions
             modelbuilder.Entity<WorkHour>().HasData(
               Seeder.WorkHourSeedData());
 
-            modelbuilder.Entity<Procedure>().HasData(
-                new Procedure() { ID = "1", Name = "DeleteAllowance", Description = "CREATE  PROCEDURE updateposition\r\n @ID nvarchar(50),\r\n@Name nvarchar(50),\r\n@IDSalary nvarchar(50),\r\n  @RankID nvarchar(50),\r\n                @Money int\r\n                \r\n            AS\r\n            BEGIN\r\n    UPDATE Position\r\n                SET Name = @Name\r\n                WHERE IDposition = @ID\r\n\r\n UPDATE Salary\r\nSet ID = @IDSalary, PositionID = @ID, RankID = @RankID, Money = @Money\r\n WHERE IDPosition = @ID\r\n\r\n\r\nEND" });
-
+            
             /* modelbuilder.Entity<EmployeesWithAllowances>().HasData(
                  Seeder.EWASeedData());*/
         }

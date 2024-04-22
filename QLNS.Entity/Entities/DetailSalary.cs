@@ -10,7 +10,7 @@ namespace QLNS.Entity.Entities
     {
         public string ID {  get; set; }
 
-        public Decimal IDSalary { get; set; }
+        public string IDSalary { get; set; }
 
         public Decimal BonusSalary { get; set; }
 

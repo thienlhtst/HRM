@@ -10,7 +10,7 @@ namespace QLNS.Entity.Entities
 	{
 		public int ID { get; set; }
 		public string RoleID { get; set; }
-		public Role? RankRole { get; set; } = null!;
+		public Role? Role { get; set; } = null!;
 		public string Name { get; set; }
 
 

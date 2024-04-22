@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Bogus.DataSets;
@@ -36,6 +37,7 @@ using QLNS.Services.Common;
 using QLNS.Services.Satistics;
 using QLNS.Utilities.Constants;
 using QLNS.ViewModel.JwtOptions;
+using QLNS.ViewModel.Mapper;
 using QLNSApiBackend.Hub;
 using Swashbuckle.AspNetCore.Filters;
 
@@ -81,6 +83,8 @@ namespace QLNSApiBackend.BackendApi
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllersWithViews();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddAutoMapper(typeof(AllowanceMapper).Assembly);
+            
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger Timekeeping Solution", Version = "v1" });

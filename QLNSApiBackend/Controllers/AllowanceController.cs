@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Common;
 using QLNS.Services.Catalog.Allowance;
@@ -12,10 +13,13 @@ namespace QLNSApiBackend.Controllers
     public class AllowanceController : ControllerBase
     {
         private readonly IAllowanceService _allowanceService;
-
-        public AllowanceController(IAllowanceService allowanceService)
+        private readonly ILogger<AllowanceController> _logger;
+        private readonly IMapper _mapper;
+        public AllowanceController(IAllowanceService allowanceService, ILogger<AllowanceController> logger,IMapper mapper)
         {
             _allowanceService = allowanceService;
+            _logger = logger;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -23,6 +27,15 @@ namespace QLNSApiBackend.Controllers
         {
             var model = await _allowanceService.GetList();
             return Ok(model);
+        }
+
+        [HttpGet("Mapper")]
+        public async Task<IActionResult> GetMapper()
+        {
+            var model = await _allowanceService.GetList();
+            var returnAllowance = _mapper.Map<GetAllowanceResponse>(model);
+
+            return Ok(returnAllowance);
         }
 
         [HttpGet("{AllowanceID}")]
