@@ -82,9 +82,10 @@ namespace QLNSApiBackend.BackendApi
             services.AddTransient<IStorageService, FileStorageService>();
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllersWithViews();
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddAutoMapper(typeof(AllowanceMapper).Assembly);
-            
+            services.AddAutoMapper(typeof(Startup));
+            //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            //services.AddAutoMapper(typeof(AllowanceMapper).Assembly);
+
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger Timekeeping Solution", Version = "v1" });

@@ -102,7 +102,7 @@ namespace QLNS.Services.Catalog.Employees
         {
             var query = from p in _context.Employee
                         join ps in _context.Salaries on p.SalaryID equals ps.ID
-                        join pr in _context.Levels on ps.RankID equals pr.ID
+                        join pr in _context.Levels on ps.LevelID equals pr.ID
                         join pp in _context.Positions on ps.PositionID equals pp.ID
                         select new { p, ps, pr, pp }
                         ;
@@ -145,7 +145,7 @@ namespace QLNS.Services.Catalog.Employees
         {
             var query = from p in _context.Employee
                         join ps in _context.Salaries on p.SalaryID equals ps.ID
-                        join pr in _context.Levels on ps.RankID equals pr.ID
+                        join pr in _context.Levels on ps.LevelID equals pr.ID
                         join pp in _context.Positions on ps.PositionID equals pp.ID
                         where ps.ID == SalaryID
                         select new { p, ps, pr, pp };
@@ -161,7 +161,7 @@ namespace QLNS.Services.Catalog.Employees
                 NumberPhone = x.p.NumberPhone,
                 Address = x.p.Address,
                 Position = x.ps.PositionID,
-                Rank = x.ps.RankID,
+                Rank = x.ps.LevelID,
                 Account = x.p.Account,
                 Password = x.p.Password
             }).ToListAsync();
@@ -172,7 +172,7 @@ namespace QLNS.Services.Catalog.Employees
         {
             var rank = (from p in _context.Employee
                         join ps in _context.Salaries on p.SalaryID equals ps.ID
-                        join pr in _context.Levels on ps.RankID equals pr.ID
+                        join pr in _context.Levels on ps.LevelID equals pr.ID
                         where p.ID.Equals(EmployeeID)
                         select pr.Name).First();
             var position = (from p in _context.Employee
@@ -283,7 +283,7 @@ namespace QLNS.Services.Catalog.Employees
         {
             var query = from p in _context.Employee
                         join ps in _context.Salaries on p.SalaryID equals ps.ID
-                        join pr in _context.Levels on ps.RankID equals pr.ID
+                        join pr in _context.Levels on ps.LevelID equals pr.ID
                         join pp in _context.Positions on ps.PositionID equals pp.ID
                         select new EmployeeViewModel()
                         {

@@ -22,7 +22,7 @@ namespace QLNS.Services.Catalog.Levels
             return await _context.Levels.ToListAsync();
         }
 
-        public async Task<PagedResult<RankVM>> GetAllPage(GetRankPagingRequest Request)
+        public async Task<PagedResult<LevelViewModel>> GetAllPage(GetLevelPagingRequest Request)
         {
             var query = from p in _context.Levels
                         join pt in _context.Roles on p.RoleID equals pt.ID
@@ -34,13 +34,13 @@ namespace QLNS.Services.Catalog.Levels
             int totalRow = await query.CountAsync();
             var data = await query.OrderBy(x => Convert.ToInt32(x.p.ID)).Skip((Request.PageIndex - 1) * Request.PageSize)
                 .Take(Request.PageSize)
-                .Select(x => new RankVM()
+                .Select(x => new LevelViewModel()
                 {
                     ID = x.p.ID,
                     Name = x.p.Name,
-                    NameRankRole = x.pt.Name
+                    RoleID = x.pt.Name
                 }).ToListAsync();
-            var pagedView = new PagedResult<RankVM>()
+            var pagedView = new PagedResult<LevelViewModel>()
             {
                 TotalRecords = totalRow,
                 PageIndex = Request.PageIndex,
@@ -50,12 +50,12 @@ namespace QLNS.Services.Catalog.Levels
             return pagedView;
         }
 
-        public async Task<int> Create(RankCreateRequest request)
+        public async Task<int> Create(LevelCreateRequest request)
         {
             var rank = new Entity.Entities.Level()
             {
                 ID = request.ID,
-                RoleID = request.RankRoleID,
+                RoleID = request.RoleID,
                 Name = request.Name
             };
             _context.Levels.Add(rank);
@@ -69,34 +69,34 @@ namespace QLNS.Services.Catalog.Levels
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<RankVM> GetById(string RankID)
+        public async Task<LevelViewModel> GetById(string RankID)
         {
             var rank = await _context.Levels.FindAsync(RankID);
-            var rankvm = new RankVM()
+            var rankvm = new LevelViewModel()
             {
                 ID = rank.ID,
-                NameRankRole = rank.RoleID,
+                RoleID = rank.RoleID,
                 Name = rank.Name
             };
             return rankvm;
         }
 
-        public async Task<RankEditRequest> GetByIdForEdit(string RankID)
+        public async Task<LevelEditRequest> GetByIdForEdit(string RankID)
         {
             var rank = await _context.Levels.FindAsync(RankID);
-            var rankvm = new RankEditRequest()
+            var rankvm = new LevelEditRequest()
             {
                 ID = rank.ID,
-                RankRoleID = rank.RoleID,
+                RoleID = rank.RoleID,
                 Name = rank.Name
             };
             return rankvm;
         }
 
-        public async Task<List<QLNS.Entity.Entities.Level>> GetList()
+        public async Task<List<LevelViewModel>> GetList()
         {
             var query = from p in _context.Levels select p;
-            var data = await query.Select(x => new QLNS.Entity.Entities.Level()
+            var data = await query.Select(x => new LevelViewModel()
             {
                 ID = x.ID,
                 RoleID = x.RoleID,
@@ -105,11 +105,11 @@ namespace QLNS.Services.Catalog.Levels
             return data;
         }
 
-        public async Task<int> Update(RankEditRequest request)
+        public async Task<int> Update(LevelEditRequest request)
         {
             var rank = await _context.Levels.FindAsync(request.ID);
             rank.ID = request.ID;
-            rank.RoleID = request.RankRoleID;
+            rank.RoleID = request.RoleID;
             rank.Name = request.Name;
             _context.Levels.Update(rank);
             return await _context.SaveChangesAsync();

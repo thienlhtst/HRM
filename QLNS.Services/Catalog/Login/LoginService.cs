@@ -34,7 +34,7 @@ namespace QLNS.Services.Catalog.Login
         {
             var query = from p in _context.Employee
                         join ps in _context.Salaries on p.SalaryID equals ps.ID
-                        join pt in _context.Levels on ps.RankID equals pt.ID
+                        join pt in _context.Levels on ps.LevelID equals pt.ID
                         select new { p, pt };
             var data = await query.Select(x => new LoginRequest()
             {

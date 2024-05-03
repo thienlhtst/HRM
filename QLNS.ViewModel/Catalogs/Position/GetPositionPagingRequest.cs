@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QLNS.Services.Catalog.Positions.Dtos.Manage
+namespace QLNS.ViewModel.Catalogs.Position
 {
-    public class GetPagingPositionRequest : PagedResultBase
+    public class GetPositionPagingRequest : PagingRequestBase
     {
         public string Keyword { get; set; } = string.Empty;
     }

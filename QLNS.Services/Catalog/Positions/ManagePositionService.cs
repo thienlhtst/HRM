@@ -1,6 +1,5 @@
 ﻿using QLNS.DataAccess;
-using QLNS.Services.Catalog.Positions.Dtos;
-using QLNS.Services.Catalog.Positions.Dtos.Manage;
+
 using QLNS.Entity.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,6 +9,7 @@ using System.Threading.Tasks;
 using QLNS.ViewModel.Dtos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
+using QLNS.ViewModel.Catalogs.Position;
 
 namespace QLNS.Services.Catalog.Positions
 {
@@ -53,14 +53,14 @@ namespace QLNS.Services.Catalog.Positions
 
             var data = await query.Select(x => new PositionViewModel()
             {
-                IDposition = x.ID,
+                ID = x.ID,
                 Name = x.Name
             }).ToListAsync();
 
             return data;
         }
 
-        public async Task<PagedResult<PositionViewModel>> GetAllPaging(GetPagingPositionRequest request)
+        public async Task<PagedResult<PositionViewModel>> GetAllPaging(GetPositionPagingRequest request)
         {
             var query = from p in _context.Positions select p;
             if (!string.IsNullOrEmpty(request.Keyword))
@@ -70,7 +70,7 @@ namespace QLNS.Services.Catalog.Positions
                 .Take(request.PageSize)
                 .Select(x => new PositionViewModel()
                 {
-                    IDposition = x.ID,
+                    ID = x.ID,
                     Name = x.Name
                 }).ToListAsync();
             var pagedView = new PagedResult<PositionViewModel>()
@@ -88,7 +88,7 @@ namespace QLNS.Services.Catalog.Positions
             var rank = await _context.Positions.FindAsync(PositionID);
             var rankvm = new PositionViewModel()
             {
-                IDposition = rank.ID,
+                ID = rank.ID,
                 Name = rank.Name
             };
             return rankvm;

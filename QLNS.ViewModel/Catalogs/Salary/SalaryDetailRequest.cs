@@ -8,6 +8,6 @@ namespace QLNS.ViewModel.Catalogs.Salary
 {
     public class SalaryDetailRequest
     {
-        public SalaryVM salary { get; set; }
+        public SalaryViewModel salary { get; set; }
     }
 }

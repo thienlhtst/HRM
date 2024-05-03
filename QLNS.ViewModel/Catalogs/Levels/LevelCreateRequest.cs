@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace QLNS.ViewModel.Catalogs.Levels
 {
-    public class RankCreateRequest
+    public class LevelCreateRequest
     {
         public string ID { get; set; }
-        public string RankRoleID { get; set; }
+        public string RoleID { get; set; }
 
         [Required(ErrorMessage = "Name is required"), StringLength(50, MinimumLength = 2)]
      

@@ -13,6 +13,6 @@ namespace QLNS.Entity.Entities
         public string RoleID { get; set; }
         public string Name { get; set; }
         public List<Salary> Salaries { get; } = new();
-        public Role? Roles { get; set; } = null!;
+        public Role? Roles { get; set; }
     }
 }

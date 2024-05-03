@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using QLNS.Services.Catalog.Positions.Dtos;
-using QLNS.Services.Catalog.Positions.Dtos.Manage;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using QLNS.ViewModel.Dtos;
+using QLNS.ViewModel.Catalogs.Position;
 
 namespace QLNS.Services.Catalog.Positions
 {
@@ -22,7 +22,7 @@ namespace QLNS.Services.Catalog.Positions
 
         Task<List<PositionViewModel>> GetAll();
 
-        Task<PagedResult<PositionViewModel>> GetAllPaging(GetPagingPositionRequest request);
+        Task<PagedResult<PositionViewModel>> GetAllPaging(GetPositionPagingRequest request);
 
         Task DeletePositionByProceDure (string id);
     }

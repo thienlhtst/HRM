@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QLNS.ViewModel.Catalogs.Allowance
+namespace QLNS.ViewModel.Catalogs.Position
 {
-    public class GetAllowanceResponse
+    public class PositionUpdateRequest
     {
-        public string ID { get; set; }
+        public string ID {  get; set; }
         public string Name { get; set; }
-        public int Money { get; set; }
     }
 }

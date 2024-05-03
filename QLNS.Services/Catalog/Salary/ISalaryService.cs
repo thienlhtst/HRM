@@ -11,7 +11,7 @@ namespace QLNS.Services.Catalog.Salary
 {
     public interface ISalaryService
     {
-        Task<PagedResult<SalaryVM>> GetAllPage(GetSalaryPagingRequest Request);
+        Task<PagedResult<SalaryViewModel>> GetAllPage(GetSalaryPagingRequest Request);
 
         Task<int> Create(SalaryCreateRequest request);
 
@@ -19,9 +19,9 @@ namespace QLNS.Services.Catalog.Salary
 
         Task<int> Delete(string SalaryID);
 
-        Task<SalaryVM> GetById(string SalaryID);
+        Task<SalaryViewModel> GetById(string SalaryID);
 
-        Task<List<QLNS.Entity.Entities.Salary>> GetList();
+        Task<List<SalaryViewModel>> GetList();
 
         Task<SalaryEditRequest> GetByIdForId(string SalaryID);
     }

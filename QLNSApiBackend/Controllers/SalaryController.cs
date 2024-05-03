@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using QLNS.DataAccess;
 using QLNS.Services.Catalog.Salary;
 using QLNS.ViewModel.Catalogs.Salary;
 
@@ -12,10 +14,16 @@ namespace QLNSApiBackend.Controllers
     public class SalaryController : ControllerBase
     {
         private readonly ISalaryService _salaryService;
+        private readonly IMapper _mapper;
+        private readonly ILogger<SalaryController> _logger;
+        private readonly QLNSDbContext _context;
 
-        public SalaryController(ISalaryService salaryService)
+        public SalaryController(ISalaryService salaryService,IMapper mapper,ILogger<SalaryController> logger,QLNSDbContext context)
         {
             _salaryService = salaryService;
+            _mapper = mapper;
+            _logger = logger;
+            _context = context;
         }
 
         [HttpGet]
@@ -24,6 +32,15 @@ namespace QLNSApiBackend.Controllers
             var model = await _salaryService.GetList();
             return Ok(model);
         }
+
+        [HttpGet("Mapper")]
+        public async Task<IActionResult> GetMapper()
+        {
+            var model = await _salaryService.GetList();
+            var salary = _mapper.Map<SalaryViewModel>(model);
+            return Ok(salary);
+        }
+
 
         [HttpGet("{salaryID}")]
         public async Task<IActionResult> GetById(string salaryID)

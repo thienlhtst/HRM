@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace QLNS.ViewModel.Catalogs.Levels
 {
-    public class RankDetailRequest
-    {
-        public RankVM rank { get; set; }
-    }
+	public class LevelViewModel
+	{
+		public string ID { get; set; }
+		public string RoleID { get; set; }
+        public string Name { get; set; }
+		
+	}
 }

@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QLNS.Services.Catalog.Positions.Dtos.Manage
+namespace QLNS.ViewModel.Catalogs.Position
 {
     public class PositionCreateRequest
     {
-        public string ID { get; set; }
-        public string Name { get; set; }
-
+        public string ID {  get; set; }
+        public string Name {  get; set; }
     }
 }

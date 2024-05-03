@@ -12,18 +12,18 @@ namespace QLNS.Services.Catalog.Ranks
 {
     public interface ILevelService
     {
-        Task<PagedResult<RankVM>> GetAllPage(GetRankPagingRequest Request);
+        Task<PagedResult<LevelViewModel>> GetAllPage(GetLevelPagingRequest Request);
 
-        Task<int> Create(RankCreateRequest request);
+        Task<int> Create(LevelCreateRequest request);
 
-        Task<int> Update(RankEditRequest request);
+        Task<int> Update(LevelEditRequest request);
 
         Task<int> Delete(string EmployeeID);
 
-        Task<RankVM> GetById(string EmployeeID);
+        Task<LevelViewModel> GetById(string EmployeeID);
 
-        Task<List<QLNS.Entity.Entities.Level>> GetList();
-        Task<RankEditRequest> GetByIdForEdit(string RankID);
+        Task<List<LevelViewModel>> GetList();
+        Task<LevelEditRequest> GetByIdForEdit(string RankID);
 
         Task<List<Role>> GetRoleList();
 

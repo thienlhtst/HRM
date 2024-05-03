@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using QLNS.Services.Catalog.Positions.Dtos;
 using QLNS.ViewModel.Dtos;
 using QLNS.ViewModel.Common;
 using QLNS.ViewModel.Catalogs.AllowanceRules;

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QLNS.Services.Catalog.Positions.Dtos.Manage
+namespace QLNS.ViewModel.Catalogs.Position
 {
-    public class PositionUpdateRequest
+    public class PositionViewModel
     {
         public string ID { get; set; }
         public string Name { get; set; }

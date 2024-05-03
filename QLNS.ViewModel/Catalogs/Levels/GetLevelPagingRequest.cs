@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QLNS.ViewModel.Catalogs.Levels
 {
-	public class GetRankPagingRequest : PagingRequestBase
+	public class GetLevelPagingRequest : PagingRequestBase
     {
         public string Keyword { get; set; } = string.Empty;
 	}

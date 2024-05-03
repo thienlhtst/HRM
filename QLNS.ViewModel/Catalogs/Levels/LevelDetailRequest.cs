@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace QLNS.ViewModel.Catalogs.Levels
 {
-    public class RankDeleteRequest
+    public class LevelDetailRequest
     {
-        public string ID { get; set; }
+        public LevelViewModel rank { get; set; }
     }
 }

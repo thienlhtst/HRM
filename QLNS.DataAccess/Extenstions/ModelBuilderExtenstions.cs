@@ -46,18 +46,18 @@ namespace QLNS.DataAccess.Extenstions
                 new Level() { ID = "4", Name = "Tổ trưởng", RoleID = "2" }
                 );
             modelbuilder.Entity<Salary>().HasData(
-                new Salary() { ID = "1", PositionID = "1", RankID = "1", Money = 80000 },
-                new Salary() { ID = "2", PositionID = "1", RankID = "2", Money = 100000 },
-                new Salary() { ID = "3", PositionID = "1", RankID = "3", Money = 70000 },
-                new Salary() { ID = "4", PositionID = "1", RankID = "4", Money = 75000 },
-                new Salary() { ID = "5", PositionID = "2", RankID = "1", Money = 50000 },
-                new Salary() { ID = "6", PositionID = "2", RankID = "2", Money = 110000 },
-                new Salary() { ID = "7", PositionID = "2", RankID = "3", Money = 80000 },
-                new Salary() { ID = "8", PositionID = "2", RankID = "4", Money = 70000 },
-                new Salary() { ID = "9", PositionID = "3", RankID = "1", Money = 60000 },
-                new Salary() { ID = "10", PositionID = "3", RankID = "2", Money = 100000 },
-                new Salary() { ID = "11", PositionID = "3", RankID = "3", Money = 95000 },
-                new Salary() { ID = "12", PositionID = "3", RankID = "4", Money = 70000 }
+                new Salary() { ID = "1", PositionID = "1", LevelID = "1", Money = 80000 },
+                new Salary() { ID = "2", PositionID = "1", LevelID = "2", Money = 100000 },
+                new Salary() { ID = "3", PositionID = "1", LevelID = "3", Money = 70000 },
+                new Salary() { ID = "4", PositionID = "1", LevelID = "4", Money = 75000 },
+                new Salary() { ID = "5", PositionID = "2", LevelID = "1", Money = 50000 },
+                new Salary() { ID = "6", PositionID = "2", LevelID = "2", Money = 110000 },
+                new Salary() { ID = "7", PositionID = "2", LevelID = "3", Money = 80000 },
+                new Salary() { ID = "8", PositionID = "2", LevelID = "4", Money = 70000 },
+                new Salary() { ID = "9", PositionID = "3", LevelID = "1", Money = 60000 },
+                new Salary() { ID = "10", PositionID = "3", LevelID = "2", Money = 100000 },
+                new Salary() { ID = "11", PositionID = "3", LevelID = "3", Money = 95000 },
+                new Salary() { ID = "12", PositionID = "3", LevelID = "4", Money = 70000 }
                 );
             modelbuilder.Entity<Day>().HasData(
                 new Day() { ID = "1", IDLB = "3", Name = "30/4", Days = 30, Months = 4 },

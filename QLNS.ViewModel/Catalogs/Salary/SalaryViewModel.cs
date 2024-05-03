@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace QLNS.ViewModel.Catalogs.Salary
 {
-	public class SalaryVM
+	public class SalaryViewModel
 	{
         public string ID { get; set; }
-        public string RankName { get; set; }
-        public string PositionName { get; set; }
+        public string LevelID { get; set; }
+        public string PositionID { get; set; }
         public decimal Money { get; set; }
     }
 }
