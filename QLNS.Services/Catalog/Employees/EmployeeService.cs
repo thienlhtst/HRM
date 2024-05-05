@@ -412,5 +412,26 @@ namespace QLNS.Services.Catalog.Employees
             }).ToListAsync();
             return data;
         }
+
+        public async Task<List<EmployeeViewModelHasSalaryID>> GetAllHasSalaryID()
+        {
+            var query = from p in _context.Employee select p;
+            var data = await query.Select(x => new EmployeeViewModelHasSalaryID()
+            {
+                ID = x.ID,
+                FirstName = x.FirstName,
+                LastName = x.LastName,
+                MiddleName = x.MiddleName,
+                DOB = x.DOB,
+                Sex = x.Sex,
+                CIC = x.CIC,
+                NumberPhone = x.NumberPhone,
+                Address = x.Address,
+                SalaryID = x.SalaryID,
+                Account = x.Account,
+                Password = x.Password
+            }).ToListAsync();
+            return data;
+        }
     }
 }

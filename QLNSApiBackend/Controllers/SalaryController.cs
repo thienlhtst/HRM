@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QLNS.DataAccess;
+using QLNS.Entity.Entities;
 using QLNS.Services.Catalog.Salary;
 using QLNS.ViewModel.Catalogs.Salary;
 
@@ -26,12 +27,6 @@ namespace QLNSApiBackend.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
-        {
-            var model = await _salaryService.GetList();
-            return Ok(model);
-        }
 
         [HttpGet("Mapper")]
         public async Task<IActionResult> GetMapper()
@@ -39,6 +34,24 @@ namespace QLNSApiBackend.Controllers
             var model = await _salaryService.GetList();
             var salary = _mapper.Map<SalaryViewModel>(model);
             return Ok(salary);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateSalary([FromBody] SalaryCreateRequest request)
+        {
+            var newSalary = _mapper.Map<Salary>(request);
+            _context.Salaries.Add(newSalary);
+            await _context.SaveChangesAsync();
+            return Ok(newSalary);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateSalary(string id,[FromBody] SalaryEditRequest request)
+        {
+            request.ID = id;
+            var newSalary = _mapper.Map<Salary>(request);
+            _context.Salaries.Update(newSalary);
+            return Ok(newSalary);
         }
 
 
@@ -51,29 +64,8 @@ namespace QLNSApiBackend.Controllers
             return Ok(salary);
         }
 
-        [HttpPost("createsalary")]
-        public async Task<IActionResult> Create([FromBody] SalaryCreateRequest salaryCreateRequest)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            var salaryID = await _salaryService.Create(salaryCreateRequest);
-            if (salaryID == 0)
-            {
-                return BadRequest(ModelState);
-            }
 
-            return Ok( salaryID );
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(string id, [FromBody] SalaryEditRequest request)
-        {
-            request.ID = id;
-            var salary = await _salaryService.Update(request);
-            return Ok(salary);
-        }
+   
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
@@ -90,5 +82,17 @@ namespace QLNSApiBackend.Controllers
             var salary = await _salaryService.GetAllPage(request);
             return Ok(salary);
         }
+
+
+        /*
+          [HttpPut("{id}")]
+        public async Task<IActionResult> Update(string id, [FromBody] SalaryEditRequest request)
+        {
+            request.ID = id;
+            var salary = await _salaryService.Update(request);
+            return Ok(salary);
+        }
+          
+         */
     }
 }

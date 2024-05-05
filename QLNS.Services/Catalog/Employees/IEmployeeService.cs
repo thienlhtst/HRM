@@ -35,6 +35,8 @@ namespace QLNS.Services.Catalog.Employees
 
         Task<List<QLNS.Entity.Entities.Employees>> GetList();
 
+        Task<List<EmployeeViewModelHasSalaryID>> GetAllHasSalaryID();
+
         Task<PagedResult<EmployeeVMStatistic>> GetemployeeVMStatistics(GetEmployeePagingRequest request);
 
         Task<List<EmployeeHasAllowance>> GetEmployeeHasAllowance(string id);

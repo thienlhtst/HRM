@@ -83,6 +83,11 @@ namespace QLNSApiBackend.BackendApi
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllersWithViews();
             services.AddAutoMapper(typeof(Startup));
+            services.AddAutoMapper(typeof(AllowanceMapper));
+            services.AddAutoMapper(typeof(PositionMapper));
+            services.AddAutoMapper(typeof(LevelMapper));
+            services.AddAutoMapper(typeof(SalaryMapper));
+            services.AddAutoMapper(typeof(LabourContractMapper));
             //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             //services.AddAutoMapper(typeof(AllowanceMapper).Assembly);
 

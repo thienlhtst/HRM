@@ -40,12 +40,7 @@ namespace QLNSApiBackend.Controllers
             return Ok(level);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
-        {
-            var list = await _Service.GetList();
-            return Ok(list);
-        }
+        
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] LevelCreateRequest request)
@@ -104,7 +99,12 @@ namespace QLNSApiBackend.Controllers
 
         /*
          
-        
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var list = await _Service.GetList();
+            return Ok(list);
+        }
         
         [HttpPost("createrank")]
         public async Task<IActionResult> Create([FromBody] LevelCreateRequest rankCreateRequest)

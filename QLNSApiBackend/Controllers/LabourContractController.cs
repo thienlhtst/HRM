@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using QLNS.DataAccess;
+using QLNS.Entity.Entities;
 using QLNS.Services.Catalog.LabourContract;
 using QLNS.ViewModel.Catalogs.LabourContract;
 
@@ -10,30 +13,40 @@ namespace QLNSApiBackend.Controllers
     public class LabourContractController : ControllerBase
     {
         private readonly ILabourContractService _labourContractService;
-        public LabourContractController(ILabourContractService labourContractService)
+        private readonly IMapper _mapper;
+        private readonly QLNSDbContext _context;
+        public LabourContractController(ILabourContractService labourContractService,IMapper mapper,QLNSDbContext context)
         {
             _labourContractService = labourContractService;
+            _mapper = mapper;
+            _context = context;
         }
+
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var model =await _labourContractService.GetList();
-            return Ok(model);
+            var model = await _labourContractService.GetList();
+            var labour = _mapper.Map<LabourContractViewModel>(model);
+            return Ok(labour);
         }
 
-        [HttpPost("CreateLabourContract")]
+        [HttpPost]
         public async Task<IActionResult> Create([FromBody] LabourContractCreateRequest request)
         {
-            var labour = await _labourContractService.Create(request);
+            var labour = _mapper.Map<LabourContract>(request);
+            _context.LabourContracts.Add(labour);
+            await _context.SaveChangesAsync();
             return Ok(labour);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByID(string id)
+        public async Task<IActionResult> GetByID(string id, [FromBody] LabourContractEditRequest request)
         {
-            var lb = await _labourContractService.GetByID(id);
-            return Ok(lb);
+            var labour = _mapper.Map<LabourContract>(request);
+            _context.LabourContracts.Update(labour);
+            await _context.SaveChangesAsync();
+            return Ok(labour);
         }
 
         [HttpPut("{id}")]

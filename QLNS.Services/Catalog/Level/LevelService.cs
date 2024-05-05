@@ -38,7 +38,7 @@ namespace QLNS.Services.Catalog.Levels
                 {
                     ID = x.p.ID,
                     Name = x.p.Name,
-                    RoleID = x.pt.Name
+                    RoleName = x.pt.Name
                 }).ToListAsync();
             var pagedView = new PagedResult<LevelViewModel>()
             {
@@ -75,7 +75,7 @@ namespace QLNS.Services.Catalog.Levels
             var rankvm = new LevelViewModel()
             {
                 ID = rank.ID,
-                RoleID = rank.RoleID,
+                RoleName = rank.RoleID,
                 Name = rank.Name
             };
             return rankvm;
@@ -99,7 +99,7 @@ namespace QLNS.Services.Catalog.Levels
             var data = await query.Select(x => new LevelViewModel()
             {
                 ID = x.ID,
-                RoleID = x.RoleID,
+                RoleName = x.RoleID,
                 Name = x.Name
             }).ToListAsync();
             return data;

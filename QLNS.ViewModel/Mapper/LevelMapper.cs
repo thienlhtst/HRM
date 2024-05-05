@@ -17,7 +17,7 @@ namespace QLNS.ViewModel.Mapper
                             memberOptions:src => src.MapFrom(x=>x.ID))
                 .ForMember(destinationMember: dest => dest.Name,
                             memberOptions: src => src.MapFrom(x=>x.Name))
-                .ForMember(destinationMember : dest => dest.RoleID,
+                .ForMember(destinationMember : dest => dest.RoleName,
                             memberOptions : src => src.MapFrom(x=>x.RoleID));
 
             CreateMap<LevelCreateRequest,Level>()

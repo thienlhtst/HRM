@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
+using QLNS.DataAccess;
+using QLNS.Entity.Entities;
 using QLNS.Services.Catalog.Employees;
 using QLNS.ViewModel.Catalogs.Employees;
 
@@ -12,10 +15,14 @@ namespace QLNSApiBackend.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeService _employeeService;
+        private readonly IMapper _mapper;
+        private readonly QLNSDbContext _context;
 
-        public EmployeeController(IEmployeeService employeeService)
+        public EmployeeController(IEmployeeService employeeService,IMapper mapper,QLNSDbContext context)
         {
             _employeeService = employeeService;
+            _mapper = mapper;
+            _context = context;
         }
 
         [HttpGet("estatisticpaging")]
@@ -25,11 +32,34 @@ namespace QLNSApiBackend.Controllers
             return Ok(model);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
+
+
+
+        [HttpGet("Mapper")]
+        public async Task<IActionResult> Get()
         {
-            var model = await _employeeService.GetList();
-            return Ok(model);
+            var model = await _employeeService.GetAllHasSalaryID();
+            var emp = _mapper.Map<List<EmployeeViewModelHasSalaryID>>(model);
+            return Ok(emp);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateEmployee([FromBody] EmployeeCreateRequest request)
+        {
+            var newEmployee = _mapper.Map<Employees>(request);
+            _context.Employee.Add(newEmployee);
+            await _context.SaveChangesAsync();
+            return Ok(newEmployee);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateEmployee(string id, [FromBody] EmployeeEditRequest request)
+        {
+            request.ID = id;
+            var newEmployee = _mapper.Map<Employees>(request);
+            _context.Employee.Update(newEmployee);
+            await _context.SaveChangesAsync();
+            return Ok(newEmployee);
         }
 
         [HttpGet("{employeeID}")]
