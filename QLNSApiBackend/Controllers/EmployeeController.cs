@@ -18,7 +18,7 @@ namespace QLNSApiBackend.Controllers
         private readonly IMapper _mapper;
         private readonly QLNSDbContext _context;
 
-        public EmployeeController(IEmployeeService employeeService,IMapper mapper,QLNSDbContext context)
+        public EmployeeController(IEmployeeService employeeService, IMapper mapper, QLNSDbContext context)
         {
             _employeeService = employeeService;
             _mapper = mapper;
@@ -32,10 +32,7 @@ namespace QLNSApiBackend.Controllers
             return Ok(model);
         }
 
-
-
-
-        [HttpGet("Mapper")]
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
             var model = await _employeeService.GetAllHasSalaryID();
@@ -46,21 +43,9 @@ namespace QLNSApiBackend.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateEmployee([FromBody] EmployeeCreateRequest request)
         {
-            var newEmployee = _mapper.Map<Employees>(request);
-            _context.Employee.Add(newEmployee);
-            await _context.SaveChangesAsync();
+            var newEmployee = await _employeeService.Create(request);
             return Ok(newEmployee);
         }
-
-       /* [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateEmployee(string id, [FromBody] EmployeeEditRequest request)
-        {
-            request.ID = id;
-            var newEmployee = _mapper.Map<Employees>(request);
-            _context.Employee.Update(newEmployee);
-            await _context.SaveChangesAsync();
-            return Ok(newEmployee);
-        }*/
 
         [HttpGet("{employeeID}")]
         public async Task<IActionResult> GetById(string employeeID)

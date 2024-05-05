@@ -6,8 +6,6 @@ using QLNS.Entity.Entities;
 using QLNS.Services.Catalog.Positions;
 using QLNS.ViewModel.Catalogs.Position;
 
-
-
 namespace QLNS.BackendApi.Controllers
 {
     [Route("api/[controller]")]
@@ -26,22 +24,12 @@ namespace QLNS.BackendApi.Controllers
             _context = context;
         }
 
-       
-
-
-        [HttpGet("Mapper")]
-        public async Task<IActionResult> GetMapper()
+        [HttpGet]
+        public async Task<IActionResult> Get()
         {
             var model = await _managePositionService.GetAll();
             var position = _mapper.Map<List<PositionViewModel>>(model);
             return Ok(position);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> Get()
-        {
-            var days = await _managePositionService.GetAll();
-            return Ok(days);
         }
 
         [HttpPost]
@@ -54,7 +42,7 @@ namespace QLNS.BackendApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(string id,[FromBody] PositionUpdateRequest request)
+        public async Task<IActionResult> Update(string id, [FromBody] PositionUpdateRequest request)
         {
             request.ID = id;
             var newPosi = _mapper.Map<Position>(request);
@@ -79,7 +67,6 @@ namespace QLNS.BackendApi.Controllers
             return Ok(day);
         }
 
-
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -88,7 +75,7 @@ namespace QLNS.BackendApi.Controllers
         }
 
         /*
-        
+
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -112,7 +99,6 @@ namespace QLNS.BackendApi.Controllers
             return Ok( position);
         }
 
-        
          */
     }
 }

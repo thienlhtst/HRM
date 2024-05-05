@@ -18,16 +18,15 @@ namespace QLNSApiBackend.Controllers
         private readonly IMapper _mapper;
         private readonly QLNSDbContext _context;
 
-        public SalaryController(ISalaryService salaryService,IMapper mapper,QLNSDbContext context)
+        public SalaryController(ISalaryService salaryService, IMapper mapper, QLNSDbContext context)
         {
             _salaryService = salaryService;
             _mapper = mapper;
             _context = context;
         }
 
-
-        [HttpGet("Mapper")]
-        public async Task<IActionResult> GetMapper()
+        [HttpGet]
+        public async Task<IActionResult> Get()
         {
             var model = await _salaryService.GetList();
             var salary = _mapper.Map<List<SalaryViewModel>>(model);
@@ -35,7 +34,7 @@ namespace QLNSApiBackend.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateSalary([FromBody] SalaryCreateRequest request)
+        public async Task<IActionResult> Create([FromBody] SalaryCreateRequest request)
         {
             var newSalary = _mapper.Map<Salary>(request);
             _context.Salaries.Add(newSalary);
@@ -44,7 +43,7 @@ namespace QLNSApiBackend.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateSalary(string id,[FromBody] SalaryEditRequest request)
+        public async Task<IActionResult> Update(string id, [FromBody] SalaryEditRequest request)
         {
             request.ID = id;
             var newSalary = _mapper.Map<Salary>(request);
@@ -52,7 +51,6 @@ namespace QLNSApiBackend.Controllers
             await _context.SaveChangesAsync();
             return Ok(newSalary);
         }
-
 
         [HttpGet("{salaryID}")]
         public async Task<IActionResult> GetById(string salaryID)
@@ -62,9 +60,6 @@ namespace QLNSApiBackend.Controllers
                 return BadRequest("Cannot find Salary");
             return Ok(salary);
         }
-
-
-   
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
@@ -82,7 +77,6 @@ namespace QLNSApiBackend.Controllers
             return Ok(salary);
         }
 
-
         /*
           [HttpPut("{id}")]
         public async Task<IActionResult> Update(string id, [FromBody] SalaryEditRequest request)
@@ -91,7 +85,7 @@ namespace QLNSApiBackend.Controllers
             var salary = await _salaryService.Update(request);
             return Ok(salary);
         }
-          
+
          */
     }
 }

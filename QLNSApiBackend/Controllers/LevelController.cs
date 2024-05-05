@@ -17,7 +17,7 @@ namespace QLNSApiBackend.Controllers
         private readonly IMapper _mapper;
         private readonly QLNSDbContext _context;
 
-        public LevelController(ILevelService Service, IMapper mapper,QLNSDbContext context)
+        public LevelController(ILevelService Service, IMapper mapper, QLNSDbContext context)
         {
             _Service = Service;
             _mapper = mapper;
@@ -31,16 +31,13 @@ namespace QLNSApiBackend.Controllers
             return Ok(rank);
         }
 
-
-        [HttpGet("Mapper")]
-        public async Task<IActionResult> Gett()
+        [HttpGet]
+        public async Task<IActionResult> Get()
         {
             var list = await _Service.GetList();
             var level = _mapper.Map<List<LevelViewModel>>(list);
             return Ok(level);
         }
-
-        
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] LevelCreateRequest request)
@@ -60,7 +57,6 @@ namespace QLNSApiBackend.Controllers
             await _context.SaveChangesAsync();
             return Ok(level);
         }
-
 
         [HttpGet("{rankID}")]
         public async Task<IActionResult> GetById(string rankID)
@@ -87,7 +83,6 @@ namespace QLNSApiBackend.Controllers
             return Ok(role);
         }
 
-
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -96,16 +91,15 @@ namespace QLNSApiBackend.Controllers
             return Ok();
         }
 
-
         /*
-         
+
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             var list = await _Service.GetList();
             return Ok(list);
         }
-        
+
         [HttpPost("createrank")]
         public async Task<IActionResult> Create([FromBody] LevelCreateRequest rankCreateRequest)
         {
@@ -129,7 +123,6 @@ namespace QLNSApiBackend.Controllers
             return Ok(rank);
         }
 
-         
          */
     }
 }

@@ -9,23 +9,10 @@ using System.Threading.Tasks;
 
 namespace QLNS.ViewModel.Mapper
 {
-
-    /*
-     ublic DateTime DOB { get; set; }
-        public Sex Sex { get; set; }
-        public string CIC { get; set; }
-        public string NumberPhone { get; set; }
-        public string Address { get; set; }
-        public string SalaryID { get; set; }
-        public string Account { get; set; }
-        public string Password { get; set; }
-        public Active Active { get; set; }
-        public string URLImage { get; set; } 
-     
-     */
     public class EmployeeMapper : Profile
     {
-        public EmployeeMapper() {
+        public EmployeeMapper()
+        {
             CreateMap<Employees, EmployeeViewModelHasSalaryID>()
                 .ForMember(destinationMember: dest => dest.ID,
                             memberOptions: src => src.MapFrom(x => x.ID))
@@ -55,7 +42,6 @@ namespace QLNS.ViewModel.Mapper
                             memberOptions: src => src.MapFrom(x => x.Active))
                 .ForMember(destinationMember: dest => dest.URLImage,
                             memberOptions: src => src.MapFrom(x => x.URLImage));
-
 
             CreateMap<EmployeeCreateRequest, Employees>()
                 .ForMember(destinationMember: dest => dest.ID,
@@ -87,8 +73,6 @@ namespace QLNS.ViewModel.Mapper
                 .ForMember(destinationMember: dest => dest.URLImage,
                             memberOptions: src => src.MapFrom(x => x.URLImage));
 
-
-
             CreateMap<EmployeeEditRequest, Employees>()
                 .ForMember(destinationMember: dest => dest.ID,
                             memberOptions: src => src.MapFrom(x => x.ID))
@@ -118,7 +102,6 @@ namespace QLNS.ViewModel.Mapper
                             memberOptions: src => src.MapFrom(x => x.Active))
                 .ForMember(destinationMember: dest => dest.URLImage,
                             memberOptions: src => src.MapFrom(x => x.URLImage));
-
         }
     }
 }
