@@ -57,7 +57,7 @@ namespace QLNS.Services.Catalog.Salary
             var rank = new Entity.Entities.Salary()
             {
                 ID = request.ID,
-                LevelID = request.RankID,
+                LevelID = request.LevelID,
                 PositionID = request.PositionID,
                 Money = request.Money
             };
@@ -102,7 +102,7 @@ namespace QLNS.Services.Catalog.Salary
         {
             var rank = await _context.Salaries.FindAsync(request.ID);
             rank.ID = request.ID;
-            rank.LevelID = request.RankID;
+            rank.LevelID = request.LevelID;
             rank.PositionID = request.PositionID;
             rank.Money = request.Money;
             _context.Salaries.Update(rank);

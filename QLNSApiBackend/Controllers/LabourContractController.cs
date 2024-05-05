@@ -27,8 +27,8 @@ namespace QLNSApiBackend.Controllers
         public async Task<IActionResult> Get()
         {
             var model = await _labourContractService.GetList();
-            var labour = _mapper.Map<LabourContractViewModel>(model);
-            return Ok(labour);
+            var labour = _mapper.Map<List<LabourContractViewModel>>(model);
+            return Ok(model);
         }
 
         [HttpPost]
@@ -41,16 +41,14 @@ namespace QLNSApiBackend.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByID(string id, [FromBody] LabourContractEditRequest request)
+        public async Task<IActionResult> GetByID(string id)
         {
-            var labour = _mapper.Map<LabourContract>(request);
-            _context.LabourContracts.Update(labour);
-            await _context.SaveChangesAsync();
+            var labour = await _labourContractService.GetByID(id);
             return Ok(labour);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromRoute] string id,[FromBody] LabourContractEditRequest request)
+        public async Task<IActionResult> Update(string id,[FromBody] LabourContractEditRequest request)
         {
             request.ID = id;
             var lb = await _labourContractService.Update(request);

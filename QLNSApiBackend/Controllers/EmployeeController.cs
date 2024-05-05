@@ -52,7 +52,7 @@ namespace QLNSApiBackend.Controllers
             return Ok(newEmployee);
         }
 
-        [HttpPut("{id}")]
+       /* [HttpPut("{id}")]
         public async Task<IActionResult> UpdateEmployee(string id, [FromBody] EmployeeEditRequest request)
         {
             request.ID = id;
@@ -60,7 +60,7 @@ namespace QLNSApiBackend.Controllers
             _context.Employee.Update(newEmployee);
             await _context.SaveChangesAsync();
             return Ok(newEmployee);
-        }
+        }*/
 
         [HttpGet("{employeeID}")]
         public async Task<IActionResult> GetById(string employeeID)

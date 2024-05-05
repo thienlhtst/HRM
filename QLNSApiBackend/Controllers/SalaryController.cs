@@ -16,14 +16,12 @@ namespace QLNSApiBackend.Controllers
     {
         private readonly ISalaryService _salaryService;
         private readonly IMapper _mapper;
-        private readonly ILogger<SalaryController> _logger;
         private readonly QLNSDbContext _context;
 
-        public SalaryController(ISalaryService salaryService,IMapper mapper,ILogger<SalaryController> logger,QLNSDbContext context)
+        public SalaryController(ISalaryService salaryService,IMapper mapper,QLNSDbContext context)
         {
             _salaryService = salaryService;
             _mapper = mapper;
-            _logger = logger;
             _context = context;
         }
 
@@ -32,7 +30,7 @@ namespace QLNSApiBackend.Controllers
         public async Task<IActionResult> GetMapper()
         {
             var model = await _salaryService.GetList();
-            var salary = _mapper.Map<SalaryViewModel>(model);
+            var salary = _mapper.Map<List<SalaryViewModel>>(model);
             return Ok(salary);
         }
 
@@ -51,6 +49,7 @@ namespace QLNSApiBackend.Controllers
             request.ID = id;
             var newSalary = _mapper.Map<Salary>(request);
             _context.Salaries.Update(newSalary);
+            await _context.SaveChangesAsync();
             return Ok(newSalary);
         }
 

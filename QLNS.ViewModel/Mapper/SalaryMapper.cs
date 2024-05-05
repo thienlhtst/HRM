@@ -23,6 +23,28 @@ namespace QLNS.ViewModel.Mapper
                 .ForMember(destinationMember: dest => dest.Money,
                             memberOptions: src => src.MapFrom(x => x.Money));
 
+
+            CreateMap<SalaryCreateRequest, Salary>()
+                .ForMember(destinationMember: dest => dest.ID,
+                            memberOptions: src => src.MapFrom(x => x.ID))
+                .ForMember(destinationMember: dest => dest.LevelID,
+                            memberOptions: src => src.MapFrom(x => x.LevelID))
+                .ForMember(destinationMember: dest => dest.PositionID,
+                            memberOptions: src => src.MapFrom(x => x.PositionID))
+                .ForMember(destinationMember: dest => dest.Money,
+                            memberOptions: src => src.MapFrom(x => x.Money)); 
+            
+            
+            CreateMap<SalaryEditRequest, Salary>()
+                .ForMember(destinationMember: dest => dest.ID,
+                            memberOptions: src => src.MapFrom(x => x.ID))
+                .ForMember(destinationMember: dest => dest.LevelID,
+                            memberOptions: src => src.MapFrom(x => x.LevelID))
+                .ForMember(destinationMember: dest => dest.PositionID,
+                            memberOptions: src => src.MapFrom(x => x.PositionID))
+                .ForMember(destinationMember: dest => dest.Money,
+                            memberOptions: src => src.MapFrom(x => x.Money));
+
         }
     }
 }
