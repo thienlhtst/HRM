@@ -71,7 +71,7 @@ export class EmployeeAddComponent implements OnInit {
     this.generalService.GetSalary().subscribe((ressalary)=>{
       this.SalarysData = ressalary
       for(const salary of this.SalarysData){
-        if(salary.rankID == this.selectedRankID && salary.positionID == this.selectedPositionID)
+        if(salary.levelID == this.selectedRankID && salary.positionID == this.selectedPositionID)
         {
         this.selectedSalaryID = salary.id
       }

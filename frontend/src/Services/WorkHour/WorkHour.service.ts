@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { WorkHourModel } from 'src/Model/Relationship/WorkHourModel';
 import { CheckOut, TimeKeeping } from 'src/Model/Workhours/TimeKeeping';
 import { WorkHourCreateRequest } from 'src/Model/Workhours/WorkHourCreateRequest';
+import { WorkHourofEmployee } from 'src/Model/Workhours/WorkHourofEmployee';
 import { WorkhourEditRequest } from 'src/Model/Workhours/WorkhourEditRequest';
 import { Pagingreponse } from 'src/Model/other/pagingreponse';
 import { Requestpaging } from 'src/Model/other/requestpaging';
@@ -24,6 +25,11 @@ constructor(private http : HttpClient) { }
   GetbyId(id:any):Observable<any>{
     return this.http.get<any>(this.apiurl + '/WorkHour/'+id);
   }
+
+  GetWorkHourByEmployeeID(id : string) : Observable<WorkHourofEmployee[]>{
+    return this.http.get<WorkHourofEmployee[]>(this.apiurl + '/WorkHour/GetEmployeeWorkHour/'+id)
+  }
+
   CreateWorkhour(data : WorkHourCreateRequest):Observable<any>{
     return this.http.post(this.apiurl + '/WorkHour/create',data)
   }

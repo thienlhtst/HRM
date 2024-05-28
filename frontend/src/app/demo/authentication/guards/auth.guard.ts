@@ -8,9 +8,8 @@ export const authGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   tokenService.isAuthentication.subscribe({
     next: (value) => {
-      console.log(value)
       if (value==2) {
-        router.navigate(['/home']);
+        router.navigate(['admin']);
       }
     },
   });

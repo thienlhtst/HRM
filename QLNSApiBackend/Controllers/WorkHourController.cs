@@ -39,6 +39,13 @@ namespace QLNSApiBackend.Controllers
             return Ok(model);
         }
 
+        [HttpGet("GetEmployeeWorkHour/{id}")]
+        public async Task<IActionResult> GetByEmployeeID(string id)
+        {
+            var model = await _workHourService.GetByEmployeeId(id);
+            return Ok(model);
+        }
+
         [HttpPost("create")]
         public async Task<IActionResult> Create([FromBody] WorkHourCreateRequest model)
         {
@@ -57,13 +64,13 @@ namespace QLNSApiBackend.Controllers
             var result = await _workHourService.Checkin(model);
             RealtimeWH request = new RealtimeWH()
             {
-                EmployeesID= model.EmployeesID,
-                flag=1,
-                Day= model.Day,
-                Month= model.Month,
-                Year= model.Year,
-                Hour= model.HourCheckin,
-                Minute= model.MinuteCheckin,
+                EmployeesID = model.EmployeesID,
+                flag = 1,
+                Day = model.Day,
+                Month = model.Month,
+                Year = model.Year,
+                Hour = model.HourCheckin,
+                Minute = model.MinuteCheckin,
             };
             await _signalrHub.Clients.All.BroadcastMessage(request);
             return Ok(result);
@@ -79,13 +86,13 @@ namespace QLNSApiBackend.Controllers
             var result = await _workHourService.Checkout(model);
             RealtimeWH request = new RealtimeWH()
             {
-                EmployeesID= model.EmployeesID,
-                flag=2,
-                Day= model.Day,
-                Month= model.Month,
-                Year= model.Year,
-                Hour= model.HourCheckout,
-                Minute= model.MinuteCheckout,
+                EmployeesID = model.EmployeesID,
+                flag = 2,
+                Day = model.Day,
+                Month = model.Month,
+                Year = model.Year,
+                Hour = model.HourCheckout,
+                Minute = model.MinuteCheckout,
             };
             await _signalrHub.Clients.All.BroadcastMessage(request);
             return Ok(result);

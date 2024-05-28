@@ -38,7 +38,7 @@ constructor(private http : HttpClient) { }
   }
 
   CreateAllowance(data : Allowancemodel) : Observable<any>{
-    return this.http.post(this.apiurl + '/Allowance/createallowance',data)
+    return this.http.post(this.apiurl + '/Allowance',data)
   }
 
   CreateAllowanceRules(data: AERulesAddModel[]) : Observable<any>{

@@ -36,7 +36,7 @@ namespace QLNS.Services.Catalog.WorkHour
 
             var data = await query.Select(x => new WorkHourVM()
             {
-                ID =x.p.ID,
+                ID = x.p.ID,
                 FirstName = x.pt.FirstName,
                 LastName = x.pt.LastName,
                 LBD = x.pp.Name,
@@ -58,8 +58,8 @@ namespace QLNS.Services.Catalog.WorkHour
                 x =>
                 x.EmployeesID == checkin.EmployeesID &&
                 x.MinuteCheckout == 0 &&
-                x.HourCheckout ==0 && x.Day==checkin.Day &&
-                x.Month==checkin.Month && x.Year == checkin.Year
+                x.HourCheckout == 0 && x.Day == checkin.Day &&
+                x.Month == checkin.Month && x.Year == checkin.Year
                 );
             if (check == null)
             {
@@ -94,11 +94,11 @@ namespace QLNS.Services.Catalog.WorkHour
         public async Task<int> Checkout(CheckoutModel checkout)
         {
             var whcheckout = await _context.WorkHours.FirstOrDefaultAsync(x =>
-            x.EmployeesID ==checkout.EmployeesID &&
+            x.EmployeesID == checkout.EmployeesID &&
             x.Day == checkout.Day &&
             x.Month == checkout.Month &&
             x.Year == checkout.Year &&
-            x.HourCheckin !=0
+            x.HourCheckin != 0
 
             );
             if (whcheckout == null) throw new QLNSDbException($" You {checkout.EmployeesID} dont have check in yet ");
@@ -131,17 +131,17 @@ namespace QLNS.Services.Catalog.WorkHour
                 .Take(request.PageSize)
                 .Select(x => new WorkHourVM()
                 {
-                    ID =x.p.ID,
-                    FirstName =x.pt.FirstName,
+                    ID = x.p.ID,
+                    FirstName = x.pt.FirstName,
                     LastName = x.pt.LastName,
-                    LBD =x.pp.Name,
-                    Day=x.p.Day,
-                    Month=x.p.Month,
-                    Year=x.p.Year,
-                    HourCheckin =x.p.HourCheckin,
-                    MinuteCheckin =x.p.MinuteCheckin,
-                    HourCheckout =x.p.HourCheckout,
-                    MinuteCheckout=x.p.MinuteCheckout,
+                    LBD = x.pp.Name,
+                    Day = x.p.Day,
+                    Month = x.p.Month,
+                    Year = x.p.Year,
+                    HourCheckin = x.p.HourCheckin,
+                    MinuteCheckin = x.p.MinuteCheckin,
+                    HourCheckout = x.p.HourCheckout,
+                    MinuteCheckout = x.p.MinuteCheckout,
                 }).ToListAsync();
             var pagedView = new PagedResult<WorkHourVM>()
             {
@@ -173,12 +173,12 @@ namespace QLNS.Services.Catalog.WorkHour
             if (a == null) return null;
             WorkHourUpdateRequest find = new WorkHourUpdateRequest()
             {
-                ID =a[0].wh.ID,
-                EmployeesID  =a[0].wh.EmployeesID,
-                EmployeesName = a[0].emp.FirstName+' '+ a[0].emp.MiddleName+' '+ a[0].emp.LastName,
+                ID = a[0].wh.ID,
+                EmployeesID = a[0].wh.EmployeesID,
+                EmployeesName = a[0].emp.FirstName + ' ' + a[0].emp.MiddleName + ' ' + a[0].emp.LastName,
                 LBDID = a[0].wh.LBDID,
-                namelb =a[0].pp.Name,
-                Day =   a[0].wh.Day,
+                namelb = a[0].pp.Name,
+                Day = a[0].wh.Day,
                 Month = a[0].wh.Month,
                 Year = a[0].wh.Year,
                 HourCheckin = a[0].wh.HourCheckin,
@@ -210,7 +210,7 @@ namespace QLNS.Services.Catalog.WorkHour
             DateTime now = DateTime.Now;
             var query = from p in _context.WorkHours
                         join pt in _context.Employee on p.EmployeesID equals pt.ID
-                        where p.Day == now.Day && p.Month ==now.Month && p.Year == now.Year
+                        where p.Day == now.Day && p.Month == now.Month && p.Year == now.Year
                         select new { p, pt };
 
             if (!string.IsNullOrEmpty(request.Keyword))
@@ -223,7 +223,7 @@ namespace QLNS.Services.Catalog.WorkHour
                 .Select(x => new WorkhourVMHome()
                 {
                     Employee = x.pt.ID,
-                    Name = x.pt.FirstName+" "+x.pt.MiddleName+" "+x.pt.LastName,
+                    Name = x.pt.FirstName + " " + x.pt.MiddleName + " " + x.pt.LastName,
                     HourCheckin = x.p.HourCheckin,
                     MinuteCheckin = x.p.MinuteCheckin,
                     HourCheckout = x.p.HourCheckout,
@@ -240,7 +240,7 @@ namespace QLNS.Services.Catalog.WorkHour
                 if (!work.Employee.Equals(a))
                 {
                     totalem++;
-                    if (work.HourCheckin>8 || (work.HourCheckin==8   && work.MinuteCheckin>30))
+                    if (work.HourCheckin > 8 || (work.HourCheckin == 8 && work.MinuteCheckin > 30))
                     {
                         emplate++;
                         totalem--;
@@ -250,20 +250,20 @@ namespace QLNS.Services.Catalog.WorkHour
                 }
                 if (work.HourCheckout != 0)
                 {
-                    totalday= ((work.HourCheckout + ((double)work.MinuteCheckout/60)) - (work.HourCheckin + ((double)work.MinuteCheckin / 60)));
+                    totalday = ((work.HourCheckout + ((double)work.MinuteCheckout / 60)) - (work.HourCheckin + ((double)work.MinuteCheckin / 60)));
                 }
                 workhour += totalday;
             }
             var listem = await _context.Employee.ToListAsync();
-            int employoff = listem.Count - totalem-emplate;
+            int employoff = listem.Count - totalem - emplate;
             var pagedView = new PagedResultHome<WorkhourVMHome>()
             {
                 TotalRecords = totalRow,
                 PageIndex = request.PageIndex,
                 PageSize = request.PageSize,
-                EmployeeOff= employoff,
-                EmployyLate= emplate,
-                EmployeeWork= totalem,
+                EmployeeOff = employoff,
+                EmployyLate = emplate,
+                EmployeeWork = totalem,
                 Totalworkhour = workhour.ToString("N2"),
                 Items = data
             };
@@ -286,6 +286,29 @@ namespace QLNS.Services.Catalog.WorkHour
             };
             _context.WorkHours.Add(workhour);
             return await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<WorkHourofEmployeeViewModel>> GetByEmployeeId(string id)
+        {
+            var query = from wh in _context.WorkHours
+                        join emp in _context.Employee on wh.EmployeesID equals emp.ID
+                        join pp in _context.LabourHours on wh.LBDID equals pp.ID
+                        where wh.EmployeesID == id
+                        select new { wh, emp, pp };
+            var find = await query.Select(x => new WorkHourofEmployeeViewModel()
+            {
+                ID = x.wh.ID,
+                EmployeeID = x.wh.EmployeesID,
+                LBD = x.wh.LBDID,
+                Day = x.wh.Day,
+                Month = x.wh.Month,
+                Year = x.wh.Year,
+                HourCheckin = x.wh.HourCheckin,
+                MinuteCheckin = x.wh.MinuteCheckin,
+                HourCheckout = x.wh.HourCheckout,
+                MinuteCheckout = x.wh.MinuteCheckout,
+            }).ToListAsync();
+            return find;
         }
     }
 }

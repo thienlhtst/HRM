@@ -9,6 +9,7 @@ import { Pagingreponse } from 'src/Model/other/pagingreponse';
 import { EmployeeUpdateModel } from 'src/Model/Employee/EmployeeUpdateModel';
 import { EmployeeRulesModel } from 'src/Model/Employee/EmployeeRulesModel';
 import { EmployeeHasAllowanceModel } from 'src/Model/Employee/EmployeeHasAllowanceModel';
+import { EmployeeModelHasSalary } from 'src/Model/Employee/EmployeeModelHasSalary';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,10 @@ export class EmployeeService {
 
   GetEmployee() : Observable<EmployeeModel[]>{
       return this.http.get<EmployeeModel[]>(this.ApiUrl + '/Employee');
+  }
+
+  GetEmployeeHasSalary() : Observable<EmployeeModelHasSalary[]>{
+    return this.http.get<EmployeeModelHasSalary[]>(this.ApiUrl + '/Employee')
   }
   GetEmployeebyID(id):Observable<EmployeeModel>{
     return this.http.get<EmployeeModel>(this.ApiUrl + '/Employee/'+id);

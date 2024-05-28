@@ -31,7 +31,7 @@ constructor(private http : HttpClient) {}
   }
 
   CreatePosition(data : PositionModel) : Observable<any>{
-    return this.http.post(this.ApiUrl + '/Position/createposition',data)
+    return this.http.post(this.ApiUrl + '/Position',data)
   }
 
   UpdatePosition(id : string,data: PositionModel) : Observable<any>{

@@ -1,6 +1,6 @@
 export interface SalaryModelList {
   id : string
-  rankID : string
+  levelID : string
   positionID : string
   money : number
 }

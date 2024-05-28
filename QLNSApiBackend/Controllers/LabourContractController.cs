@@ -15,13 +15,13 @@ namespace QLNSApiBackend.Controllers
         private readonly ILabourContractService _labourContractService;
         private readonly IMapper _mapper;
         private readonly QLNSDbContext _context;
-        public LabourContractController(ILabourContractService labourContractService,IMapper mapper,QLNSDbContext context)
+
+        public LabourContractController(ILabourContractService labourContractService, IMapper mapper, QLNSDbContext context)
         {
             _labourContractService = labourContractService;
             _mapper = mapper;
             _context = context;
         }
-
 
         [HttpGet]
         public async Task<IActionResult> Get()
@@ -47,8 +47,15 @@ namespace QLNSApiBackend.Controllers
             return Ok(labour);
         }
 
+        [HttpGet("employeeid/{id}")]
+        public async Task<IActionResult> GetByEmployeeID(string id)
+        {
+            var labour = await _labourContractService.GetByIDEmployee(id);
+            return Ok(labour);
+        }
+
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(string id,[FromBody] LabourContractEditRequest request)
+        public async Task<IActionResult> Update(string id, [FromBody] LabourContractEditRequest request)
         {
             request.ID = id;
             var lb = await _labourContractService.Update(request);
@@ -68,6 +75,5 @@ namespace QLNSApiBackend.Controllers
             var result = await _labourContractService.Delete(id);
             return Ok(result);
         }
-
     }
 }

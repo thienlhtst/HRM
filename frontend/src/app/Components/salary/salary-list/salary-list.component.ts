@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { getMultipleValuesInSingleSelectionError } from '@angular/cdk/collections';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { SalaryModel } from 'src/Model/SalaryModel';
@@ -65,12 +64,12 @@ export class SalaryListComponent implements OnInit{
           this.service.DeleteSalary(id).subscribe((res)=>{
             this.onConfirm(res)
           })
-        
+
         }
       })
   }
-     
-  
+
+
   onConfirm(flag: any) {
     if (flag == 1) {
       this.message = 'success';
@@ -101,8 +100,8 @@ export class SalaryListComponent implements OnInit{
     this.GetPaing()
   }
 
-  
-  
+
+
   onSearchChange(){
      this.paging.keyword = this.searchText
      this.GetPaing();

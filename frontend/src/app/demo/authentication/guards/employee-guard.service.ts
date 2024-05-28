@@ -10,7 +10,7 @@ export const employeeGuard: CanActivateFn = (route, state) => {
   tokenService.isAuthentication.subscribe({
     next: (value) => {
       if (value == 1) {
-        router.navigate(['/guest']);
+        router.navigate(['/profile']);
       }
     },
   });

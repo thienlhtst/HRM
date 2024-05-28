@@ -1,10 +1,10 @@
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // angular import
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // Project import
-import { AdminComponent } from './theme/layouts/admin/admin.component';
 import { GuestComponent } from './theme/layouts/guest/guest.component';
 import { guestGuard } from './demo/authentication/guards/guest.guard';
 import { authGuard } from './demo/authentication/guards/auth.guard';
@@ -12,16 +12,17 @@ import QrcodeComponent from './demo/authentication/qrcode/qrcode.component';
 import { employeeGuard } from './demo/authentication/guards/employee-guard.service';
 import { EmployeeComponent } from './theme/layouts/employee/employee.component';
 import path from 'path';
+import { AdminComponent } from './theme/layouts/admin/admin.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'admin',
     component: AdminComponent,
-    canActivate: [guestGuard],
+   // canActivate: [guestGuard],
     children: [
       {
-        path: '',
-        redirectTo: '/home',
+        path: 'admin',
+        redirectTo: 'admin/home',
 
         pathMatch: 'full'
       },
@@ -77,7 +78,7 @@ const routes: Routes = [
       ,{
         path:'dashboard',
         loadComponent:()=> import('./demo/default/dashboard/dashboard.component').then(m=>m.default)
-      }
+      },
 
 
     ]
@@ -85,7 +86,7 @@ const routes: Routes = [
   {
     path: '',
     component: GuestComponent,
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
     children: [
       {
         path: 'login',
@@ -100,12 +101,10 @@ const routes: Routes = [
     ]
   },
   {
-    path:'',
-    component:EmployeeComponent,
-    canActivate: [employeeGuard],
-    children :[
+    //canActivate: [guestGuard],
 
-    ]
+      path:'profile',
+      loadChildren:() =>import('./theme/layouts/employee/employee.module').then(m=>m.EmployeeModule),
   },
   {
     path:'qrcode',component:QrcodeComponent
@@ -114,7 +113,7 @@ const routes: Routes = [
   {
     path: "**",
     component: GuestComponent,
-    canActivate: [guestGuard],
+    //canActivate: [guestGuard],
     children: [
       {
         path: 'login',

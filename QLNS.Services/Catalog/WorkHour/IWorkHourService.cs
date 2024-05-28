@@ -21,6 +21,8 @@ namespace QLNS.Services.Catalog.WorkHour
 
         Task<WorkHourUpdateRequest> GetById(int id);
 
+        Task<List<WorkHourofEmployeeViewModel>> GetByEmployeeId(string id);
+
         Task<PagedResult<WorkHourVM>> GetAllPage(GetWorkHourAllPage request);
 
         Task<bool> UpdateCheckin(WorkHourEditCheckinRequest request);

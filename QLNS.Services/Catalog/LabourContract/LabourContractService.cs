@@ -61,7 +61,7 @@ namespace QLNS.Services.Catalog.LabourContract
                         ID = x.p.ID,
                         EmployeeID = x.pt.FirstName + " " + x.pt.MiddleName + " " + x.pt.LastName,
                         Content = x.p.Content,
-                        ContractSigninDate = x.p.ContractSigninDate.Date.ToString() ,
+                        ContractSigninDate = x.p.ContractSigninDate.Date.ToString(),
                         Active = x.p.Active,
                         ContractTerm = x.p.ContractTerm
                     }).ToListAsync();
@@ -92,6 +92,23 @@ namespace QLNS.Services.Catalog.LabourContract
                 Active = lbct.Active,
                 ContractTerm = lbct.ContractTerm
             };
+            return lb;
+        }
+
+        public async Task<List<LabourContractViewModel>> GetByIDEmployee(string EmployeeID)
+        {
+            var query = from p in _context.LabourContracts
+                        where p.EmployeeID == EmployeeID
+                        select new { p };
+            var lb = await query.Select(x => new LabourContractViewModel()
+            {
+                ID = x.p.ID,
+                EmployeeID = x.p.EmployeeID,
+                Content = x.p.Content,
+                ContractSigninDate = x.p.ContractSigninDate.Date.ToString(),
+                Active = x.p.Active,
+                ContractTerm = x.p.ContractTerm
+            }).ToListAsync();
             return lb;
         }
 

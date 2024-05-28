@@ -29,7 +29,7 @@ export class SalaryService {
   }
 
   CreateSalary(data : SalaryModel){
-    return this.http.post(this.apiurl + '/Salary/createsalary',data)
+    return this.http.post(this.apiurl + '/Salary',data)
   }
 
   UpdateSalary(id : string,data : SalaryModel){

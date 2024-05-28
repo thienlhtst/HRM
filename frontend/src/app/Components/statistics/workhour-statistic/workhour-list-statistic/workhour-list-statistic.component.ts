@@ -33,7 +33,7 @@ export class WorkhourListStatisticComponent implements OnInit {
   }
   today: Date = new Date();
   dayinmonth:number
-   daysInMonth = (year, month) => new Date(year, month, 0).getDate();
+  daysInMonth = (year, month) => new Date(year, month, 0).getDate();
   items:any[]=[]
   constructor(private services : WorkhourStatisticsServiceService) {
 

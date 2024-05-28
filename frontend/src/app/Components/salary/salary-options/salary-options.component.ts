@@ -2,7 +2,6 @@
 /* eslint-disable @angular-eslint/no-output-on-prefix */
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SalaryModel } from 'src/Model/SalaryModel';
 import { GeneralService } from 'src/Services/General/general.service';
 import { SalaryService } from 'src/Services/Salary/salary.service';
 import { ConfirmationDialogService } from 'src/app/theme/shared/components/confirmation-dialog/confirmation-dialog.service';
@@ -39,7 +38,7 @@ export class SalaryOptionsComponent implements OnInit {
   GetSalaryID(){
     this.Service.GetSalaryByID(this.selectedID).subscribe((res)=>{
       this.data.id =res.id
-      this.data.rankID=res.rankName
+      this.data.rankID=res.levelName
       this.data.positionID=res.positionName
       this.data.money=res.money
     })
@@ -72,10 +71,10 @@ export class SalaryOptionsComponent implements OnInit {
                 this.onSuccess.emit(res)
             }
           })
-        
+
         }
       })
-    
+
 }
 
   Update(salary : any){
@@ -87,9 +86,9 @@ export class SalaryOptionsComponent implements OnInit {
           this.Service.UpdateSalary(this.selectedID,salary).subscribe((res)=>{
                   this.onSuccess.emit(res)
           })
-        
+
         }
       })
-    
+
   }
 }

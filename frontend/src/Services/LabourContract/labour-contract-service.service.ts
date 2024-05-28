@@ -7,6 +7,7 @@ import { LabourContractModel } from 'src/Model/LabourContract/LabourContractMode
 
 import { environment } from 'src/environments/environment';
 import { Pagingreponse } from 'src/Model/other/pagingreponse';
+import { LabourContractofEmployeeModel } from 'src/Model/LabourContract/LabourContractofEmployeeModel';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,11 @@ export class LabourContractServiceService {
     return this.http.get<LabourContractModel>(this.apiurl +'/LabourContract/' + id)
   }
 
+  GetContractByEmployeeID(id : string) : Observable<LabourContractofEmployeeModel[]>{
+    console.log(id)
+    return this.http.get<LabourContractofEmployeeModel[]>(this.apiurl+'/LabourContract/employeeid/' + id)
+  }
+
   GetAllContractPaging(paging : Requestpaging) : Observable<Pagingreponse>{
     if(paging.keyword!='')
     return this.http.get<Pagingreponse>(this.apiurl + '/LabourContract/paging?Keyword='+paging.keyword+'&PageIndex='+paging.pageindex+'&PageSize='+paging.pagesize+'');
@@ -32,7 +38,7 @@ export class LabourContractServiceService {
   }
 
   CreateContract(data : LabourContractModel){
-    return this.http.post(this.apiurl + '/LabourContract/CreateLabourContract',data)
+    return this.http.post(this.apiurl + '/LabourContract',data)
   }
 
   UpdateContract(id : string,data:LabourContractModel){
