@@ -33,9 +33,9 @@ export class WorkoutViewComponent implements OnInit {
       this.date.year=this.date.year-1
       this.date.month=12
     }
-    this.GetWorkHour()
     this.yearOptions =  this.generateYearOptions(this.date.year, this.date.year - 20)
     this.dayinmonth = this.daysInMonth(this.date.year,this.date.month)
+    this.GetWorkHour()
 
   }
 
@@ -72,7 +72,6 @@ export class WorkoutViewComponent implements OnInit {
     for (let i = 1; i <= this.dayinmonth; i++) {
       this.listofday.push(i);
     }
-    this.GetWorkHour()
 
   }
   onChangeYear(event:any){
@@ -81,6 +80,6 @@ export class WorkoutViewComponent implements OnInit {
     for (let i = 1; i <= this.dayinmonth; i++) {
       this.listofday.push(i);
     }
-    this.GetWorkHour()
+    //this.GetWorkHour()
     }
 }

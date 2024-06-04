@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // angular import
@@ -18,7 +19,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-   // canActivate: [guestGuard],
+    canActivate: [guestGuard],
     children: [
       {
         path: 'admin',
@@ -86,7 +87,7 @@ const routes: Routes = [
   {
     path: '',
     component: GuestComponent,
-    //canActivate: [authGuard],
+    canActivate: [authGuard],
     children: [
       {
         path: 'login',
@@ -101,10 +102,24 @@ const routes: Routes = [
     ]
   },
   {
-    //canActivate: [guestGuard],
-
-      path:'profile',
-      loadChildren:() =>import('./theme/layouts/employee/employee.module').then(m=>m.EmployeeModule),
+      path:'',
+      component:EmployeeComponent,
+      canActivate: [employeeGuard],
+      children:
+      [
+        {
+          path : 'profile',
+          loadChildren: () => import('./EmployeeComponent/profile/profile.module').then(m=>m.ProfileModule)
+        },
+        {
+          path : 'contract',
+          loadChildren: () => import('./EmployeeComponent/Contract/contract.module').then(m=>m.ContractModule)
+        },
+{
+          path : 'employeeworkhour',
+          loadChildren: () => import('./EmployeeComponent/workout/workout.module').then(m=>m.WorkoutModule)
+        },
+      ]
   },
   {
     path:'qrcode',component:QrcodeComponent

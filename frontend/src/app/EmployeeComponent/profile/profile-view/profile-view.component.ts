@@ -43,7 +43,6 @@ export class ProfileViewComponent implements OnInit {
             for(const salary of this.SalaryData){
               if(employee.salaryID == salary.id){
                 this.money = salary.money
-                console.log(this.money)
               }
             }
           }

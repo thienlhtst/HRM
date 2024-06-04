@@ -13,12 +13,7 @@ export const guestGuard: CanActivateFn = (route, state) => {
       if(value == 0){
         router.navigate(['/login'])
       }
-      if(value == 1){
-        router.navigate(['/profile'])
-      }
-      if(value == 2){
-        router.navigate(['/profile'])
-      }
+
     },
   });
 

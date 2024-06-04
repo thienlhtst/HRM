@@ -21,8 +21,18 @@ services:
       - demo-mynetwork
     environment:
       ASPNETCORE_ENVIRONMENT : Staging
+    volumes:
+      - '../EmployeeManager/QLNSApiBackend:/app/data'
     depends_on:
       - db
+    
+  # volumes:
+  #   myapp:
+  #     driver : local
+  #     driver_opts:
+  #       type: none
+  #       o : bind
+  #       device : /myapp
   # angular-app:
   #   image: awesome-angular
   #   build:

@@ -1,44 +1,61 @@
-<div class="container rounded bg-white  mb-5">
-  <div class="row">
-      <div class="col-md-3 border-right">
-          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="assets/images/user/avatar-2.jpg">
-            <span class="font-weight-bold">{{EmployeeData.firstName + " " + EmployeeData.middleName +" " + EmployeeData.lastName}}</span>
-            <span class="text-black-50">{{EmployeeData.position}}</span>
-            <span class="text-black-50">{{EmployeeData.rank}}</span>
-
-            <span> </span></div>
-      </div>
-      <div class="col-md-5 border-right">
-          <div class="p-3 py-5">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                  <h4 class="text-right">Profile</h4>
-              </div>
-              <div class="row mt-2">
-                  <div class="col-md-12"><label class="labels">Full Name</label><input type="text" class="form-control" [value]="EmployeeData.firstName +' '+ EmployeeData.middleName +' '+ EmployeeData.lastName" disabled></div>
-
-              </div>
-              <div class="row mt-3">
-                <div class="col-md-12"><label class="labels">Date Of Birth</label><input type="text" class="form-control"  [value]="EmployeeData.dob" disabled></div>
-                <div class="col-md-12"><label class="labels">Sex</label><input type="text" class="form-control"  [value]="EmployeeData.sex" disabled></div>
-                <div class="col-md-12"><label class="labels">CIC</label><input type="text" class="form-control"  [value]="EmployeeData.cic" disabled></div>
-                <div class="col-md-12"><label class="labels">Phone Number</label><input type="text" class="form-control"  [value]="EmployeeData.numberPhone" disabled></div>
-                <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control"  [value]="EmployeeData.address" disabled></div>
-                <div class="col-md-12"><label class="labels">Account</label><input type="text" class="form-control"  [value]="EmployeeData.account" disabled></div>
-                <div class="col-md-12"><label class="labels">Password</label><input type="text" class="form-control"  [value]="EmployeeData.password" disabled></div>
+<div class="row h-100">
+  <div class="card main-container col-sm-8 ">
+    <div class="card-body">
+      <div class="d-flex flex-column gap-3">
+        <div class="text-profile">
+           Profile
+        </div>
+          <div class="d-flex flex-row justify-content-start align-item-center" >
+            <div class="col-4 text-item">
+              <div class="d-flex flex-column">
+                <label> Name : </label>
+                <span > {{EmployeeData.firstName + ' ' + EmployeeData.middleName + ' ' + EmployeeData.lastName}}</span>
               </div>
 
+            </div>
+            <div class="col-4 text-item">
+              <div class="d-flex flex-column">
+                <label> Date of Birth : </label>
+                <span > {{EmployeeData.dob}}</span>
+              </div>
+            </div>
+
+            <div class="col-4 text-item">
+              <div class="d-flex flex-column">
+                <label> CIC : </label>
+                <span > {{EmployeeData.cic}}</span>
+              </div>
+            </div>
+
+          </div>
+          <div class="d-flex flex-row justify-content-start align-item-center " >
+            <div class="col-4 text-item">
+              <div class="d-flex flex-column">
+                <label > Name : </label>
+                <span > {{EmployeeData.firstName + ' ' + EmployeeData.middleName + ' ' + EmployeeData.lastName}}</span>
+              </div>
+
+            </div>
+            <div class="col-4 text-item">
+              <div class="d-flex flex-column">
+                <label > Date of Birth : </label>
+                <span > {{EmployeeData.dob}}</span>
+              </div>
+            </div>
+
+            <div class="col-4 text-item">
+              <div class="d-flex flex-column">
+                <label> CIC : </label>
+                <span > {{EmployeeData.cic}}</span>
+              </div>
+            </div>
 
           </div>
       </div>
-      <div class="col-md-4">
-          <div class="p-3 py-5">
-             <div>
-              <button class="btn btn-outline-info mx-auto"> Change Password</button>
-              <button class="btn btn-outline-info mx-auto" (click)="ButtonToGetSalary()"> Salary </button>
-             </div>
 
-          </div>
-      </div>
+    </div>
+  </div>
+  <div class="card main-container-1 col-sm-3" style="margin-left:15px ;">
 
   </div>
 </div>

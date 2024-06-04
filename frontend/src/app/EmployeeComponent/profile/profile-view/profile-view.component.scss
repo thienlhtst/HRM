@@ -1,0 +1,26 @@
+.main-container
+{
+  height: calc(100vh - 100px);
+  margin-left: 10px;
+}
+.main-container-1 {
+  height: calc(100vh - 100px);
+  width: 30% !important;
+}
+.text-profile{
+  font-size: 25px;
+  font-weight: bold;
+  color: #005dc7;
+}
+.title{
+  font-size: 20px;
+}
+.text-item{
+  margin-left: 2rem;
+  label {
+    font-size: 20px;
+  }
+  span{
+
+  }
+}

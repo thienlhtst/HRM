@@ -27,6 +27,7 @@ import { NavItemEmployeeComponent } from './theme/layouts/employee/navigation-em
 import { ContractViewComponent } from './EmployeeComponent/Contract/contract-view/contract-view.component';
 import { AdminComponent } from './theme/layouts/admin/admin.component';
 import { NavBarModule } from './theme/layouts/admin/nav-bar/nav-bar.module';
+import { EmployeeComponent } from './theme/layouts/employee/employee.component';
 
 @NgModule({
     declarations: [
@@ -38,6 +39,7 @@ import { NavBarModule } from './theme/layouts/admin/nav-bar/nav-bar.module';
         NavGroupComponent,
         NavItemComponent,
         AdminComponent,
+        EmployeeComponent,
         NavigationEmployeeComponent,
         NavContentEmployeeComponent,
         NavCollapseEmployeeComponent,
