@@ -1,7 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
-export interface NavigationEmployeeItems {
+@Component({
+  selector: 'app-navigation-employee',
+  templateUrl: './navigation-employee.component.html',
+  styleUrls: ['./navigation-employee.component.scss']
+})
+export interface NavigationEmployeeItem {
   id: string;
   title: string;
   type: 'item' | 'collapse' | 'group';
@@ -11,11 +15,11 @@ export interface NavigationEmployeeItems {
   external?: boolean;
   target?: boolean;
   breadcrumbs?: boolean;
-  children?: NavigationEmployee[];
+  children?: NavigationEmployeeComponent[];
 }
 
-export interface NavigationEmployee extends NavigationEmployeeItems {
-  children?: NavigationEmployeeItems[];
+export interface NavigationEmployeeComponent extends NavigationEmployeeItem {
+  children?: NavigationEmployeeItem[];
 }
 const NavigationEmployeeItems = [
   {
@@ -25,28 +29,22 @@ const NavigationEmployeeItems = [
     icon: 'icon-navigation',
     children: [
     {
-        id: 'profile',
-        title: 'Profile',
+        id: 'home',
+        title: 'Home',
         type: 'item',
         classes: 'nav-item',
-        url: '/profile',
+        url: '/home',
         icon: 'ti ti-dashboard',
+        breadcrumbs: false
       },
       {
-        id: 'contract',
-        title: 'Contract',
+        id: 'qrcode',
+        title: 'qrcode',
         type: 'item',
         classes: 'nav-item',
-        url: '/contract',
+        url: '/qrcode',
         icon: 'ti ti-dashboard',
-      },
-      {
-        id: 'workhour',
-        title: 'Work Hour',
-        type: 'item',
-        classes: 'nav-item',
-        url: '/employeeworkhour',
-        icon: 'ti ti-dashboard',
+        target:true
       }
     ]
   },

@@ -2,9 +2,9 @@
   <div class="navbar-content">
     <ul class="nav coded-inner-navbar" (clickOutside)="fireOutClick()" (mouseleave)="navMob()">
       <ng-container *ngFor="let item of navigation">
-        <app-nav-group-employee *ngIf="item.type === 'group'" [item]="item"></app-nav-group-employee>
-        <app-nav-collapse-employee *ngIf="item.type === 'collapse'" [item]="item"></app-nav-collapse-employee>
-        <app-nav-item-employee *ngIf="item.type === 'item'" [item]="item"></app-nav-item-employee>
+        <app-nav-group *ngIf="item.type === 'group'" [item]="item"></app-nav-group>
+        <app-nav-collapse *ngIf="item.type === 'collapse'" [item]="item"></app-nav-collapse>
+        <app-nav-item *ngIf="item.type === 'item'" [item]="item"></app-nav-item>
       </ng-container>
     </ul>
 

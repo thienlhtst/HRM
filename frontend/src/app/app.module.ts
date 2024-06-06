@@ -19,6 +19,10 @@ import { NavigationItem } from './modules//admin/navigation/navigation';
 
 import { PagingnavComponent } from "./modules/shared/components/pagingnav/pagingnav.component";
 import { EmployeeComponent } from './modules//employee/employee.component';
+import { NavContentEmployeeComponent } from './modules/employee/navigation-employee/nav-content-employee/nav-content-employee.component';
+import { NavCollapseEmployeeComponent } from './modules/employee/navigation-employee/nav-content-employee/nav-collapse-employee/nav-collapse-employee.component';
+import { NavGroupEmployeeComponent } from './modules/employee/navigation-employee/nav-content-employee/nav-group-employee/nav-group-employee.component';
+import { NavItemEmployeeComponent } from './modules/employee/navigation-employee/nav-content-employee/nav-item-employee/nav-item-employee.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -30,11 +34,13 @@ import { EmployeeComponent } from './modules//employee/employee.component';
         NavItemComponent,
         AdminComponent,
         EmployeeComponent,
-
-
+        NavContentEmployeeComponent,
+        NavCollapseEmployeeComponent,
+        NavGroupEmployeeComponent,
+        NavItemEmployeeComponent,
 
     ],
-    providers: [NavigationItem,NavigationEmployeeItem],
+    providers: [NavigationItem],
     bootstrap: [AppComponent],
     imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule, PagingnavComponent,]
 })
