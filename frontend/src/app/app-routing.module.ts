@@ -6,14 +6,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 // Project import
-import { GuestComponent } from './theme/layouts/guest/guest.component';
-import { guestGuard } from './demo/authentication/guards/guest.guard';
-import { authGuard } from './demo/authentication/guards/auth.guard';
-import QrcodeComponent from './demo/authentication/qrcode/qrcode.component';
-import { employeeGuard } from './demo/authentication/guards/employee-guard.service';
-import { EmployeeComponent } from './theme/layouts/employee/employee.component';
+import { AdminComponent } from './modules/admin/admin.component';
+import { GuestComponent } from './modules/guest/guest.component';
+import { guestGuard } from './modules/authentication/guards/guest.guard';
+import { authGuard } from './modules/authentication/guards/auth.guard';
+import QrcodeComponent from './modules/authentication/qrcode/qrcode.component';
+import { employeeGuard } from './modules/authentication/guards/employee-guard.service';
+import { EmployeeComponent } from './modules/employee/employee.component';
 import path from 'path';
-import { AdminComponent } from './theme/layouts/admin/admin.component';
 
 const routes: Routes = [
   {
@@ -30,56 +30,53 @@ const routes: Routes = [
 
       {
         path: 'home',
-        loadChildren : () => import('./Components/home/home.module').then(m=>m.HomeModule)
+        loadChildren : () => import('./modules/admin/child-modules/home/home.module').then(m=>m.HomeModule)
       },
       {
         path:'allowance',
-        loadChildren : () => import('./Components/allowance/allowance.module').then(m=>m.AllowanceModule)
+        loadChildren : () => import('./modules/admin/child-modules/allowance/allowance.module').then(m=>m.AllowanceModule)
       },
       {
         path:'employee',
-        loadChildren:() => import('./Components/employee/employee.module').then(m=>m.EmployeeModule)
+        loadChildren:() => import('./modules/admin/child-modules/employee/employee.module').then(m=>m.EmployeeModule)
       },
       {
         path:'position',
-        loadChildren:() => import('./Components/position/position.module').then(m=>m.PositionModule)
+        loadChildren:() => import('./modules/admin/child-modules/position/position.module').then(m=>m.PositionModule)
       },
       {
         path:'rank',
-        loadChildren:() => import('./Components/rank/rank.module').then(m=>m.RankModule)
+        loadChildren:() => import('./modules/admin/child-modules/rank/rank.module').then(m=>m.RankModule)
       },
       {
         path:'salary',
-        loadChildren:() => import ('./Components/salary/salary.module').then(m=>m.SalaryModule)
+        loadChildren:() => import ('./modules/admin/child-modules/salary/salary.module').then(m=>m.SalaryModule)
       },
       {
         path:'workhour',
-        loadChildren:() => import ('./Components/workhour/workhour.module').then(m=>m.WorkhourModule)
+        loadChildren:() => import ('./modules/admin/child-modules/workhour/workhour.module').then(m=>m.WorkhourModule)
       },
       {
         path:'labourday',
-        loadChildren:() => import ('./Components/labourday/labourday.module').then(m=>m.LabourdayModule)
+        loadChildren:() => import ('./modules/admin/child-modules/labourday/labourday.module').then(m=>m.LabourdayModule)
       },
       {
         path:'ewa',
-        loadChildren:() => import ('./Components/employeewithallowance/ewa.module').then(m=>m.EwaModule)
+        loadChildren:() => import ('./modules/admin/child-modules/employeewithallowance/ewa.module').then(m=>m.EwaModule)
       },
       {
         path:'statistic',
-        loadChildren:() => import ('./Components/statistics/statistics.module').then(m=>m.StatisticsModule)
+        loadChildren:() => import ('./modules/admin/child-modules/statistics/statistics.module').then(m=>m.StatisticsModule)
       },
       {
         path:'labourcontract',
-        loadChildren:() => import ('./Components/labourcontract/labourcontract.module').then(m=>m.LabourcontractModule)
+        loadChildren:() => import ('./modules/admin/child-modules/labourcontract/labourcontract.module').then(m=>m.LabourcontractModule)
       },
       {
         path:'allowancesemployeerules',
-        loadChildren:() => import ('./Components/allowancesemployeerules/allowancesemployeerules.module').then(m=>m.AllowancesemployeerulesModule)
+        loadChildren:() => import ('./modules/admin/child-modules/allowancesemployeerules/allowancesemployeerules.module').then(m=>m.AllowancesemployeerulesModule)
       }
-      ,{
-        path:'dashboard',
-        loadComponent:()=> import('./demo/default/dashboard/dashboard.component').then(m=>m.default)
-      },
+
 
 
     ]
@@ -91,11 +88,11 @@ const routes: Routes = [
     children: [
       {
         path: 'login',
-        loadComponent: () => import('./demo/authentication/login/login.component')
+        loadComponent: () => import('./modules/authentication/login/login.component')
       },
       {
         path: 'register',
-        loadComponent: () => import('./demo/authentication/register/register.component')
+        loadComponent: () => import('./modules/authentication/register/register.component')
       },
 
 
@@ -132,7 +129,7 @@ const routes: Routes = [
     children: [
       {
         path: 'login',
-        loadComponent: () => import('./demo/authentication/login/login.component')
+        loadComponent: () => import('./modules/authentication/login/login.component')
       },
     ]
   }
