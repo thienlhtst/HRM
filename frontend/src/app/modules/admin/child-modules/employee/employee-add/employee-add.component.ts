@@ -19,7 +19,7 @@ import { Alert } from 'src/Model/Alert';
 @Component({
   selector: 'app-employee-add',
   templateUrl: './employee-add.component.html',
-  styleUrls: ['./employee-add.component.scss']
+  styleUrls: ['./employee-add.component.scss','../../../../../../scss/shared/sreach.scss']
 })
 export class EmployeeAddComponent implements OnInit {
   constructor(private service : EmployeeService,

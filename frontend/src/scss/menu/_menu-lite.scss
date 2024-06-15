@@ -177,7 +177,7 @@
         }
       }
 
-      &.coded-hasmenu { 
+      &.coded-hasmenu {
         > a {
           &:after {
             content: '\003e';
@@ -434,6 +434,7 @@
 
     ~ app-nav-bar .pc-header {
       left: 0px;
+     
     }
 
     .coded-badge {

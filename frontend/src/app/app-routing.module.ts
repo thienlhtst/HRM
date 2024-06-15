@@ -116,6 +116,10 @@ const routes: Routes = [
           path : 'employeeworkhour',
           loadChildren: () => import('./EmployeeComponent/workout/workout.module').then(m=>m.WorkoutModule)
         },
+        {
+          path:'chat',
+          loadChildren:() => import('./EmployeeComponent/chat/chat.module').then(m=>m.ChatModule)
+        }
       ]
   },
   {

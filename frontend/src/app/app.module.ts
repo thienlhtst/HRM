@@ -1,3 +1,4 @@
+
 // angular import
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,10 +20,8 @@ import { NavigationItem } from './modules//admin/navigation/navigation';
 
 import { PagingnavComponent } from "./modules/shared/components/pagingnav/pagingnav.component";
 import { EmployeeComponent } from './modules//employee/employee.component';
-import { NavContentEmployeeComponent } from './modules/employee/navigation-employee/nav-content-employee/nav-content-employee.component';
-import { NavCollapseEmployeeComponent } from './modules/employee/navigation-employee/nav-content-employee/nav-collapse-employee/nav-collapse-employee.component';
-import { NavGroupEmployeeComponent } from './modules/employee/navigation-employee/nav-content-employee/nav-group-employee/nav-group-employee.component';
-import { NavItemEmployeeComponent } from './modules/employee/navigation-employee/nav-content-employee/nav-item-employee/nav-item-employee.component';
+import { NavBarModule } from "./modules/admin/nav-bar/nav-bar.module";
+import { NavigationEmployeeComponent } from './modules/employee/child-modules/navigation-employee/navigation-employee.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -34,14 +33,12 @@ import { NavItemEmployeeComponent } from './modules/employee/navigation-employee
         NavItemComponent,
         AdminComponent,
         EmployeeComponent,
-        NavContentEmployeeComponent,
-        NavCollapseEmployeeComponent,
-        NavGroupEmployeeComponent,
-        NavItemEmployeeComponent,
+        NavigationEmployeeComponent,
+        
 
     ],
     providers: [NavigationItem],
     bootstrap: [AppComponent],
-    imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule, PagingnavComponent,]
+    imports: [BrowserModule, AppRoutingModule, SharedModule, BrowserAnimationsModule, PagingnavComponent, NavBarModule]
 })
 export class AppModule {}

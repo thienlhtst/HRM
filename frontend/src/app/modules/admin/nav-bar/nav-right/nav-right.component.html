@@ -20,7 +20,8 @@
           <a href="javascript:" class="pc-head-link bg-transparent"><i class="ti ti-power text-danger"></i></a>
         </div>
       </div>
-      <ul ngbNav #nav="ngbNav" class="nav drp-tabs nav-fill nav-tabs">
+      <!-- #nav="ngbNav" -->
+      <ul ngbNav  class="nav drp-tabs nav-fill nav-tabs">
         <li ngbNavItem="1">
           <a ngbNavLink><i class="ti ti-user"></i> Profile</a>
           <ng-template ngbNavContent>
@@ -44,7 +45,7 @@
           </ng-template>
         </li>
       </ul>
-      <div [ngbNavOutlet]="nav"></div>
+      <!-- <div [ngbNavOutlet]="nav"></div> -->
     </div>
   </li>
 </ul>

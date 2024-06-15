@@ -9,6 +9,8 @@ import { EmployeeService } from 'src/Services/Employee/employee.service';
 import { SalaryService } from 'src/Services/Salary/salary.service';
 import { TokenService } from 'src/Services/Token/token.service';
 import { EmployeeModelHasSalary } from 'src/Model/Employee/EmployeeModelHasSalary';
+import { Pagingreponse } from 'src/Model/other/pagingreponse';
+import { Requestpaging } from 'src/Model/other/requestpaging';
 
 @Component({
   selector: 'app-profile-view',
@@ -16,23 +18,47 @@ import { EmployeeModelHasSalary } from 'src/Model/Employee/EmployeeModelHasSalar
   styleUrls: ['./profile-view.component.scss']
 })
 export class ProfileViewComponent implements OnInit {
-  constructor(private tokenService : TokenService,private employeeService : EmployeeService,private GeneralService : GeneralService){}
+  constructor(private tokenService : TokenService,private employeeService : EmployeeService,private GeneralService : GeneralService,private salaryservice : SalaryService){}
   ngOnInit(): void {
     this.IdOfthisEmployee = this.tokenService.getTokenId()
     this.GetEmployee()
+    this.GetListEmployee()
   }
   EmployeeData : EmployeeModel
   SalaryData : SalaryModelList[]
   EmployeeListData : EmployeeModelHasSalary[]
+  selectedEmployee : EmployeeModel
   money : number
   IdOfthisEmployee : string
+  ListofEmployee : EmployeeModel[]
+
+
+  paging : Requestpaging ={
+    keyword: '',
+    pageindex: 1,
+    pagesize: 10
+  }
 
 
   GetEmployee(){
     this.employeeService.GetEmployeebyID(this.IdOfthisEmployee).subscribe((res)=>{
       this.EmployeeData = res
     })
+
   }
+
+  GetListEmployee(){
+    this.employeeService.GetEmployeePaging(this.paging).subscribe((res)=>{
+      this.ListofEmployee = res.items
+      this.paging.pageindex = res.pageIndex
+      this.paging.pagesize = res.pageSize
+    })
+  }
+
+  onMessengerCLick(data : EmployeeModel){
+    this.selectedEmployee = data
+  }
+
 
   ButtonToGetSalary(){
     this.GeneralService.GetSalary().subscribe((ressalary)=>{
@@ -55,6 +81,34 @@ export class ProfileViewComponent implements OnInit {
 
 
 
+
   }
 
+  messages: { user: string, text: string }[] = [];
+  newMessage: string = '';
+
+  sendMessage() {
+    if (this.newMessage.trim() !== '') {
+      this.messages.push({ user: 'You', text: this.newMessage });
+      this.newMessage = '';
+      this.scrollToBottom();
+    }
+  }
+
+  handleKeyPress(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.sendMessage();
+    }
+  }
+
+  scrollToBottom() {
+    try {
+      const chatBox = document.getElementById('chatBox');
+      chatBox.scrollTop = chatBox.scrollHeight;
+    } catch (err) {
+      console.error(err);
+    }
+  }
 }
+
+

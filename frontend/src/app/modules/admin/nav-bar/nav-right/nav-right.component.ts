@@ -64,6 +64,7 @@ export class NavRightComponent {
   isAuthenticated$;
   name:string=''
   rank : string =''
+nav: any;
   constructor( private tokenService: TokenService,private auth:AuthService,private employeeSerivce : EmployeeService){
     this.isAuthenticated$ = this.tokenService.isAuthentication;
     this.employeeSerivce.GetEmployeebyID(this.tokenService.getTokenId()).subscribe((res)=>{

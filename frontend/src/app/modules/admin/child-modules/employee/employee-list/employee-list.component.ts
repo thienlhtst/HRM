@@ -11,7 +11,7 @@ import { PagingnavComponent } from '../../../../shared/components/pagingnav/pagi
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
-  styleUrls: ['./employee-list.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss']
+  styleUrls: ['./employee-list.component.scss','../../../../../../scss/shared/sreach.scss']
 })
 export class EmployeeListComponent implements OnInit {
   constructor(private service : EmployeeService,

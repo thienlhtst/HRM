@@ -5,15 +5,12 @@
         <!-- ========   Change your logo from here   ============ -->
         <img src="../../../../../assets/images/t2pro-logo.png" alt="theme-logo" class="logot2pro" />
       </a>
-    </div>
-    <div class="col-md-3 border-right">
-      <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="assets/images/user/avatar-2.jpg">
-        <span class="font-weight-bold">{{EmployeeData.firstName + " " + EmployeeData.middleName +" " + EmployeeData.lastName}}</span>
-        <span class="text-black-50">{{EmployeeData.position}}</span>
-        <span class="text-black-50">{{EmployeeData.rank}}</span>
 
-        <span> </span></div>
-  </div>
+    </div>
+    <div class="ms-3 mt-2">
+      <img class="rounded-circle" width="50px" src="assets/images/user/avatar-2.jpg">
+    </div>
+
     <app-nav-content (NavCollapsedMob)="navCollapseMob()" class="scroll-div w-100"></app-nav-content>
   </div>
 </nav>

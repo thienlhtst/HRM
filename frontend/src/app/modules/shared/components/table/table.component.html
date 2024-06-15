@@ -1,1 +1,27 @@
-<p>table works!</p>
+<div class="row h-100">
+  <div class="card main-container">
+    <div class="card-body">
+      <div class="title">
+        Contract
+      </div>
+      <div class="table-responsive" >
+        <table class="table table-hover table-borderless mb-0">
+          <thead >
+            <td *ngFor="let item of listofheader"> {{item.name}}</td>
+          </thead>
+          <tbody>
+            @for (item of listofdata; track $index) {
+              <ng-template #template let-data>
+                <ng-container *ngTemplateOutlet="template">
+                  
+                </ng-container>
+
+              </ng-template>
+
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

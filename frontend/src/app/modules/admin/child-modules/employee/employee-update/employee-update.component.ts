@@ -12,7 +12,7 @@ import { Alert } from 'src/Model/Alert';
 @Component({
   selector: 'app-employee-update',
   templateUrl: './employee-update.component.html',
-  styleUrls: ['./employee-update.component.scss']
+  styleUrls: ['./employee-update.component.scss','../../../../../../scss/shared/sreach.scss']
 })
 export class EmployeeUpdateComponent implements OnInit {
   constructor(private service : EmployeeService,

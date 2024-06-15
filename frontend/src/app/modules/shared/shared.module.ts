@@ -19,6 +19,9 @@ import { TokenService } from 'src/Services/Token/token.service';
 import { ModalComponent } from './components/modal/modal/modal.component';
 import { PipeSharePipe } from './components/Pipe/pipe-share.pipe';
 import { SpinnerBetaComponent } from './components/spinner-beta/spinner-beta.component';
+import { SearchInputComponent } from './components/input-components/search-input/search-input.component';
+import { AvtComponent } from './components/avt/avt.component';
+import { TableComponent } from './components/table/table.component';
 
 
 
@@ -37,7 +40,7 @@ import { SpinnerBetaComponent } from './components/spinner-beta/spinner-beta.com
     NgbCollapseModule,
     NgScrollbarModule,
     CardComponent,
-    HttpClientModule
+    HttpClientModule,
   ],
   exports: [
     CommonModule,
@@ -51,9 +54,11 @@ import { SpinnerBetaComponent } from './components/spinner-beta/spinner-beta.com
     NgbCollapseModule,
     NgScrollbarModule,
     CardComponent,
+    AvtComponent,
+    TableComponent
 
   ],
   providers:[AuthService,TokenService],
-  declarations: [SpinnerComponent],
+  declarations: [SpinnerComponent, SearchInputComponent, AvtComponent,TableComponent],
 })
 export class SharedModule {}

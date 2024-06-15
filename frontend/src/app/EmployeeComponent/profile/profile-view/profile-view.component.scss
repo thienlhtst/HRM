@@ -12,6 +12,11 @@
   font-weight: bold;
   color: #005dc7;
 }
+.text-profile-right{
+  font-size: 20px;
+  font-weight: bold;
+  color: #005dc7;
+}
 .title{
   font-size: 20px;
 }
@@ -23,4 +28,33 @@
   span{
 
   }
+}
+.td-left{
+  margin-left: 50px;
+}
+.chat-box {
+  height: 400px;
+  overflow-y: scroll;
+}
+.chat-message {
+  margin-bottom: 15px;
+}
+.chat-input {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  background: #fff;
+  border-top: 1px solid #ccc;
+}
+.card {
+  margin-bottom: 0;
+}
+.chat-box-container {
+  position: fixed;
+  bottom: 0;
+  right: 500px; /* Điều chỉnh khoảng cách từ bên phải */
+  transform: translateX(50%); /* Đẩy khung chat về giữa theo chiều ngang */
+  width: 300px;
+  z-index: 1000;
 }

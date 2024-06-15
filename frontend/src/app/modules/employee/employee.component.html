@@ -1,0 +1,18 @@
+
+<div>
+  <app-nav-bar [flag]="'0px'" (NavCollapsedMob)="navMobClick()" (NavCollapse)="this.navCollapsed = !this.navCollapsed"></app-nav-bar>
+</div>
+<div class="main-container">
+  <div class="row ">
+    <div class="col-sm-3">
+      <div class="d-flex flex-column w-100">
+       <app-navigation-employee></app-navigation-employee>
+      </div>
+    </div>
+    <div class="col-sm-9 ">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+

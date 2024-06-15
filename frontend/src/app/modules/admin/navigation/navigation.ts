@@ -56,7 +56,6 @@ const NavigationItems = [
           id :'allowance',
           title:'Allowance',
           type:'collapse',
-          url:"/allowance",
           classes:'nav-item',
           icon:'bi bi-cash-coin',
           children :[
@@ -64,7 +63,7 @@ const NavigationItems = [
               id:'allowance',
               title:'Allowance List',
               type:'item',
-              url:'/allowance',
+              url:'admin/allowance',
               classes:'nav-item',
               icon:'bi bi-currency-dollar',
               children:[
@@ -117,7 +116,6 @@ const NavigationItems = [
           id:'employee',
           title:'Employee ',
           type:'collapse',
-          url:'/employee',
           classes:'nav-item',
           icon:'bi bi-person',
           children :[
@@ -125,7 +123,7 @@ const NavigationItems = [
               id:'employee',
               title:'Employee List',
               type:'item',
-              url:'/employee',
+              url:'admin/employee',
               classes:'nav-item',
               icon:'bi bi-file-person',
               children:[

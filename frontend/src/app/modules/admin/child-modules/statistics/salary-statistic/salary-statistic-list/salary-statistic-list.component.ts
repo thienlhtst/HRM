@@ -7,7 +7,7 @@ import { SalaryStatisticServiceService } from 'src/Services/Statistics/SalarySta
 @Component({
   selector: 'app-salary-statistic-list',
   templateUrl: './salary-statistic-list.component.html',
-  styleUrls: ['../../../../../scss/shared/sreach.scss']
+  styleUrls: ['../../../../../../../scss/shared/sreach.scss']
 })
 export class SalaryStatisticListComponent implements OnInit {
   salaryemployee;
@@ -23,6 +23,7 @@ export class SalaryStatisticListComponent implements OnInit {
     month: 0,
     year: 0
   }
+  
   constructor(private services:SalaryStatisticServiceService) { }
   generateYearOptions(startYear: number, endYear: number): number[] {
     const years = [];

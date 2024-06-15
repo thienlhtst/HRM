@@ -1,0 +1,55 @@
+<!-- eslint-disable @angular-eslint/template/eqeqeq -->
+<div class="w-100 d-flex flex-column main-container">
+  <div class="color-header">
+    <div class="avt-image">
+      <div class="image-item">
+        <app-avt [borderimg]="'50px'"></app-avt>
+      </div>
+    </div>
+  </div>
+  <div class="avt">
+
+    <div class="d-flex flex-column justify-content-center align-items-center mt-5 ">
+      <div>
+        Phan tich nghiep vu
+      </div>
+      <div>
+        HCM
+      </div>
+    </div>
+  </div>
+
+  <div class="info">
+    <div class="d-flex flex-column about-me gap-1">
+      <div>
+        Phone Numner : {{dataofEmployee.numberPhone}}
+      </div>
+      <div>
+        Cic : {{dataofEmployee.cic}}
+      </div>
+      <div>
+        DOB : {{dataofEmployee.dob}}
+      </div>
+    </div>
+
+    <div class="d-flex flex-column manage py-2">
+      <div>
+        Quan ly :
+      </div>
+    </div>
+
+
+    <div class="d-flex flex-column menu-container gap-1">
+      <div class="item-menu d-flex justity-content-start align-items-center" *ngFor="let item of menuItem" [routerLink]="item.route" routerLinkActive="item-menu-active">
+          <div>
+            <i class="{{item.icon}}"></i>
+          </div>
+          <div>
+            {{item.title}}
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

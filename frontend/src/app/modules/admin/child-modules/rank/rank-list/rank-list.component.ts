@@ -12,7 +12,7 @@ import { NotificationComponent } from '../../../..//shared/components/Notificati
 @Component({
   selector: 'app-rank-list',
   templateUrl: './rank-list.component.html',
-  styleUrls: ['./rank-list.component.scss', '../../../../scss/shared/sreach.scss', '../../../../scss/shared/button.scss']
+  styleUrls: ['./rank-list.component.scss', '../../../../../../scss/shared/sreach.scss']
 })
 export class RankListComponent implements OnInit {
   constructor(
