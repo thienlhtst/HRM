@@ -55,10 +55,10 @@ import { TableComponent } from './components/table/table.component';
     NgScrollbarModule,
     CardComponent,
     AvtComponent,
-    TableComponent
+    
 
   ],
   providers:[AuthService,TokenService],
-  declarations: [SpinnerComponent, SearchInputComponent, AvtComponent,TableComponent],
+  declarations: [SpinnerComponent, SearchInputComponent, AvtComponent],
 })
 export class SharedModule {}

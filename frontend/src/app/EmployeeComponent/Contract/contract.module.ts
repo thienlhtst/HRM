@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ContractViewComponent } from './contract-view/contract-view.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TableComponent } from 'src/app/modules/shared/components/table/table.component';
 
 const route : Routes=[{
   path:'',
@@ -14,11 +17,14 @@ const route : Routes=[{
 }]
 
 @NgModule({
-  declarations: [],
+  declarations: [ContractViewComponent,TableComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(route),
     HttpClientModule,
-  ]
+    FormsModule,
+    MatTooltipModule
+  ],
+  exports:[]
 })
 export class ContractModule { }

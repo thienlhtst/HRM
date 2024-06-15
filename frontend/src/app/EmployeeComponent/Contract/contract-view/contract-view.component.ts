@@ -14,10 +14,13 @@ export class ContractViewComponent implements OnInit {
   datas : LabourContractofEmployeeModel[]
   IdOfthisEmployee : string
   selectedMonth : number
+  columns  = ['id','employeeID','content','contractSigninDate','contractTerm','active']
+  dataloaded : boolean
 
   ngOnInit(): void {
     this.IdOfthisEmployee = this.tokenService.getTokenId()
     this.getContractofEmployee()
+
   }
 
 
@@ -28,7 +31,7 @@ export class ContractViewComponent implements OnInit {
   getContractofEmployee(){
     this.service.GetContractByEmployeeID(this.IdOfthisEmployee).subscribe((res)=>{
       this.datas = res
-
+      this.dataloaded = true
     })
   }
 

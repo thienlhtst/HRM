@@ -1,45 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent {
-  @Input() listofheader : any[] = [
-    {
-    id: '1',
-    name : 'id',
-  },
-  {
-    id:'2',
-    name:'name'
-  },
-  {
-    id:'3',
-    name : 'age'
+export class TableComponent implements OnInit {
+  constructor(){}
+  ngOnInit(): void {
+    this.check()
   }
-  ]
+  @Input() listofheader : any[]
+  @Input() listofdata : any[]
 
-  @Input() listofdata : any[] = [
-    {
-      data1 : '',
-      data2 : '',
-      data3 : ''
-    }
-    ,
-    {
-      data1 : '',
-      data2 : '',
-      data3 : ''
-    },
-    {
-      data1 : '',
-      data2 : '',
-      data3 : ''
-    }
-  ]
-
-
+  check(){
+    console.log(this.listofheader)
+    console.log(this.listofdata)
+  }
 }

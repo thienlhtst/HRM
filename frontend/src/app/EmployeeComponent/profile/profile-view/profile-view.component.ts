@@ -31,7 +31,7 @@ export class ProfileViewComponent implements OnInit {
   money : number
   IdOfthisEmployee : string
   ListofEmployee : EmployeeModel[]
-
+  ListActiveEmployee : EmployeeModel[] = []
 
   paging : Requestpaging ={
     keyword: '',
@@ -52,6 +52,12 @@ export class ProfileViewComponent implements OnInit {
       this.ListofEmployee = res.items
       this.paging.pageindex = res.pageIndex
       this.paging.pagesize = res.pageSize
+
+      for(var item of this.ListofEmployee){
+        if(item.active == 1){
+          this.ListActiveEmployee.push(item)
+        }
+      }
     })
   }
 

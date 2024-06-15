@@ -22,6 +22,7 @@ export class NavigationEmployeeComponent implements OnInit {
     this.idofEmployee = this.token.getTokenId()
     this.getEmployeeByID()
   }
+  date : string
   menuItem : any[] = [
     {
       id:'1',
@@ -48,6 +49,7 @@ export class NavigationEmployeeComponent implements OnInit {
   getEmployeeByID(){
     this.employeeserivice.GetEmployeebyID(this.idofEmployee).subscribe((res)=>{
       this.dataofEmployee = res
+      this.date = this.dataofEmployee.dob.split('T')[0]
     })
   }
 

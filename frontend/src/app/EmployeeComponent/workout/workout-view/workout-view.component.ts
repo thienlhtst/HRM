@@ -40,13 +40,13 @@ export class WorkoutViewComponent implements OnInit {
   }
 
   GetWorkHour(){
+    this.totalWorkHour = 0
     this.service.GetWorkHourByEmployeeID(this.IdOfthisEmployee).subscribe((res)=>{
       this.datas = res
       this.datas.forEach((item)=>{
         if(item.month == this.date.month && item.year == this.date.year){
           this.listofday.forEach((dayitem)=>{
             this.totalWorkHour += 1
-            //console.log(this.totalWorkHour)
           })
 
         }
@@ -67,19 +67,22 @@ export class WorkoutViewComponent implements OnInit {
     return years;
   }
   onChangeMonth(event:any){
+    this.listofday.splice(0,50)
     this.date.month = parseInt(event.target.value);
     this.dayinmonth = this.daysInMonth(this.date.year,this.date.month)
     for (let i = 1; i <= this.dayinmonth; i++) {
       this.listofday.push(i);
     }
+    this.GetWorkHour()
 
   }
   onChangeYear(event:any){
+    this.listofday.splice(0,50)
     this.date.year = parseInt(event.target.value);
     this.dayinmonth = this.daysInMonth(this.date.year,this.date.month)
     for (let i = 1; i <= this.dayinmonth; i++) {
       this.listofday.push(i);
     }
-    //this.GetWorkHour()
+    this.GetWorkHour()
     }
 }
