@@ -42,6 +42,12 @@ export class NavigationEmployeeComponent implements OnInit {
       title : 'WorkHour',
       icon : 'fa-brands fa-facebook-messenger',
       route : '/employeeworkhour',
+    },
+    {
+      id : '4',
+      title : 'Chat',
+      icon : 'fa-brands fa-facebook-messenger',
+      route : '/chat',
     }
   ]
 

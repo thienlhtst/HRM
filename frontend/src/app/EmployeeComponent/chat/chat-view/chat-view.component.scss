@@ -1,5 +1,11 @@
 .main-container{
   height: calc(100vh - 100px);
+  margin-left: 10px;
+}
+.main-container-1 {
+  height: calc(100vh - 100px);
+  width: 30% !important;
+  margin-left: 15px;
 }
 .text-chat{
   position: relative;
@@ -8,5 +14,10 @@
 .chat-input{
   border-radius: 10px;
   width: 98%;
+}
+.text-group{
+  font-size: 20px;
+  font-weight: bold;
+  color: #005dc7;
 }
 
