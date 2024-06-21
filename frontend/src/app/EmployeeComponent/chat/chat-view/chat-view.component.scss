@@ -8,16 +8,41 @@
   margin-left: 15px;
 }
 .text-chat{
-  position: relative;
-  top:93%
+
 }
 .chat-input{
   border-radius: 10px;
-  width: 98%;
+  width: 95%;
+  height: 30px;
 }
 .text-group{
   font-size: 20px;
   font-weight: bold;
   color: #005dc7;
+}
+.box-chat {
+  height: 90%;
+  
+}
+
+.send-chat{
+  padding-top: 30px;
+  height: 10%;
+  i{
+    margin-left: 10px;
+    font-size: 20px;
+  }
+}
+.chat-box-item{
+  background-color: rgba(39, 39, 39, 0.5);;
+  color :white;
+  width: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 5px;
+  border-radius: 20px;
+}
+.inputColor{
+  background-color: blue;
 }
 

@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
 
 
 const route : Routes=[{
@@ -20,15 +21,15 @@ const route : Routes=[{
 @NgModule({
   declarations: [
     ProfileViewComponent
+
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(route),
     HttpClientModule,
-
     FormsModule,
-
-    MatTooltipModule
+    MatTooltipModule,
+    SharedModule
   ]
 })
 export class ProfileModule { }

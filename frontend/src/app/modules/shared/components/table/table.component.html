@@ -5,14 +5,14 @@
       <div class="table-responsive" >
         <table class="table table-hover table-borderless mb-0">
           <thead>
-            <td style="text-align: center;" *ngFor="let item of listofheader"> {{item}}</td>
+            <td style="text-align: center;"  *ngFor="let item of listofheader"> {{item.name}}</td>
           </thead>
           <tbody>
-            <tr *ngFor="let row of listofdata">          
+            <tr *ngFor="let row of listofdata">
               <td style="text-align: center;" *ngFor="let column of listofheader">
-                 {{row[column]}}
-              </td>         
-            </tr> 
+                 {{row[column.column]}}
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

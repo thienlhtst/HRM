@@ -53,7 +53,7 @@ export class ProfileViewComponent implements OnInit {
       this.paging.pageindex = res.pageIndex
       this.paging.pagesize = res.pageSize
 
-      for(var item of this.ListofEmployee){
+      for(const item of this.ListofEmployee){
         if(item.active == 1){
           this.ListActiveEmployee.push(item)
         }

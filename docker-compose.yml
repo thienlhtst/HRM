@@ -26,6 +26,17 @@ services:
     depends_on:
       - db
     
+  chat-api:
+    build:
+      context : ./
+      dockerfile: ChatApi/Dockerfile
+    ports:
+      - 4444:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Staging
+    depends_on:
+      - db
+    
   # volumes:
   #   myapp:
   #     driver : local

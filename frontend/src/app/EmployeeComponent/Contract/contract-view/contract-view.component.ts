@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core';
 import { LabourContractofEmployeeModel } from 'src/Model/LabourContract/LabourContractofEmployeeModel';
 import { LabourContractServiceService } from 'src/Services/LabourContract/labour-contract-service.service';
@@ -14,7 +15,35 @@ export class ContractViewComponent implements OnInit {
   datas : LabourContractofEmployeeModel[]
   IdOfthisEmployee : string
   selectedMonth : number
-  columns  = ['id','employeeID','content','contractSigninDate','contractTerm','active']
+  //columnsssss  = ['id','employeeID','content','contractSigninDate','contractTerm','active']
+  columns : any[] = [
+    {
+      id : '1',
+      name : 'ID',
+      column : 'id',
+      class : '1'
+    },
+    {
+      id : '2',
+      name : 'Content',
+      column : 'content'
+    },
+    {
+      id : '3',
+      name : 'Date',
+      column : 'contractSigninDate'
+    },
+    {
+      id : '4',
+      name : 'Contract Term',
+      column : 'contractTerm'
+    },
+    {
+      id : '5',
+      name : 'Active',
+      column : 'active'
+    },
+  ]
   dataloaded : boolean
 
   ngOnInit(): void {

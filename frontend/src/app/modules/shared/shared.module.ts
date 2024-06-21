@@ -22,6 +22,7 @@ import { SpinnerBetaComponent } from './components/spinner-beta/spinner-beta.com
 import { SearchInputComponent } from './components/input-components/search-input/search-input.component';
 import { AvtComponent } from './components/avt/avt.component';
 import { TableComponent } from './components/table/table.component';
+import { LanguageInputComponent } from './components/input-components/language-input/language-input.component';
 
 
 
@@ -55,10 +56,11 @@ import { TableComponent } from './components/table/table.component';
     NgScrollbarModule,
     CardComponent,
     AvtComponent,
-    
+    LanguageInputComponent
+
 
   ],
   providers:[AuthService,TokenService],
-  declarations: [SpinnerComponent, SearchInputComponent, AvtComponent],
+  declarations: [SpinnerComponent, SearchInputComponent, AvtComponent,LanguageInputComponent],
 })
 export class SharedModule {}

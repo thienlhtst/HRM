@@ -23,9 +23,77 @@ export class ChatViewComponent implements OnInit {
     pageindex: 1,
     pagesize: 10
   }
+  chat : string = ''
+  chatbox : any[] =[
+    {
+      id:'1',
+      user : 'user1',
+      content : '4',
+      time : '4',
+      class : ""
+    },
+    {
+      id:'1',
+      user : 'user1',
+      content : '3',
+      time : '3',
+      class : ""
+    },{
+      id:'1',
+      user : 'user1',
+      content : '5',
+      time : '5',
+      class : ""
+    },
+    {
+      id:'1',
+      user : 'user2',
+      content : '5',
+      time : '7'
+    },
+    {
+      id:'1',
+      user : 'user2',
+      content : '3',
+      time : '8'
+    },
+    {
+      id:'1',
+      user : 'user2',
+      content : '25',
+      time : '25'
+    },
+    {
+      id:'1',
+      user : 'user1',
+      content : '26',
+      time : '65'
+    }
+
+]
+
+
   ngOnInit(): void {
     this.IdofEmployee = this.token.getTokenId()
     this.GetEmployeeActice()
+    this.chatbox.sort((a, b) => {
+      return parseInt(b.time) - parseInt(a.time);
+    });
+    console.log(this.chatbox)
+  }
+
+
+  ButtontoChat(chatcontent : string){
+    console.log(chatcontent)
+    const chat = {
+      id : '1',
+      user : 'user2',
+      content: chatcontent,
+      time : new Date()
+    }
+    this.chatbox.push(chat)
+
+    this.chat = ''
   }
 
   GetEmployeeById(){
