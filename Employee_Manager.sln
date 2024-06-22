@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Domains", "2. Domains", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Host", "3. Host", "{99665BA1-6CD0-4E05-8F50-7F2993C061C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiChat", "ApiChat\ApiChat.csproj", "{ADF6D0A1-BE83-4571-A1F3-4860F375DDE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiChat", "ApiChat\ApiChat.csproj", "{ADF6D0A1-BE83-4571-A1F3-4860F375DDE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

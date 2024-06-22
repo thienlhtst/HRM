@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using ApiChat;
 using Bogus.DataSets;
 using Faker;
 using Microsoft.AspNetCore.Authentication;
@@ -47,6 +48,7 @@ namespace QLNSApiBackend.BackendApi
 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllersWithViews();
+            services.AddSignalR();
 
             //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             //services.AddAutoMapper(typeof(AllowanceMapper).Assembly);
@@ -99,6 +101,7 @@ namespace QLNSApiBackend.BackendApi
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapHub<ChatHub>("/chatHub");
                 endpoints.MapControllers();
             });
         }
