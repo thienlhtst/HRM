@@ -1,4 +1,4 @@
-﻿using ApiChat.Entity;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
@@ -34,8 +34,7 @@ namespace ApiChat.Controllers
             {
                 Id = chatDetail.Id,
                 IdChat = chatDetail.IdChat,
-                IdEmployeeSendMes = chatDetail.IdEmployeeSendMes,
-                IdEmployeeReceiveMes = chatDetail.IdEmployeeReceiveMes,
+                IdEmployee = chatDetail.IdEmployee,
                 Content = chatDetail.Content,
                 Time = chatDetail.Time,
 
@@ -43,7 +42,7 @@ namespace ApiChat.Controllers
             _context.ChatDetail.Add(chatDe);
             await _context.SaveChangesAsync();
 
-            await _hubContext.Clients.Group(chatDetail.IdChat.ToString()).SendAsync("ReceiveMessage", chatDetail.IdEmployeeReceiveMes, chatDetail.Content);
+            await _hubContext.Clients.Group(chatDetail.IdChat.ToString()).SendAsync("ReceiveMessage", chatDetail.IdEmployee, chatDetail.Content);
 
             return CreatedAtAction(nameof(GetChatDetails), new { chatId = chatDetail.IdChat }, chatDetail);
         }

@@ -17,8 +17,7 @@ namespace QLNS.DataAccess.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).IsRequired();
             builder.HasOne(x => x.Chat).WithMany(x => x.ChatDetail).HasForeignKey(x => x.IdChat);
-            builder.Property(x => x.IdEmployeeSendMes).HasMaxLength(20);
-            builder.Property(x=>x.IdEmployeeReceiveMes).HasMaxLength(20);
+            builder.Property(x => x.IdEmployee).HasMaxLength(20);
             builder.Property(x=>x.Content);
             builder.Property(x => x.Time);
         }

@@ -21,10 +21,12 @@ using System.Net.Http.Headers;
 using QLNS.ViewModel.Catalogs.AllowanceRules;
 using Bogus;
 using HelpMate.Core.Extensions;
+using QLNS.ViewModel.Catalogs.Chat;
+using Microsoft.AspNetCore.SignalR;
 
 namespace QLNS.Services.Catalog.Employees
 {
-    public class EmployeeService : IEmployeeService
+    public class EmployeeService : Hub,IEmployeeService
     {
         private readonly QLNSDbContext _context;
         private readonly IStorageService _storageService;
@@ -433,5 +435,7 @@ namespace QLNS.Services.Catalog.Employees
             }).ToListAsync();
             return data;
         }
+
+
     }
 }

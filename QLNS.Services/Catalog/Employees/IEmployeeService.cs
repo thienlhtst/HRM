@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using QLNS.ViewModel.Dtos;
 using QLNS.ViewModel.Common;
 using QLNS.ViewModel.Catalogs.AllowanceRules;
+using QLNS.ViewModel.Catalogs.Chat;
 
 namespace QLNS.Services.Catalog.Employees
 {
@@ -40,5 +41,7 @@ namespace QLNS.Services.Catalog.Employees
         Task<PagedResult<EmployeeVMStatistic>> GetemployeeVMStatistics(GetEmployeePagingRequest request);
 
         Task<List<EmployeeHasAllowance>> GetEmployeeHasAllowance(string id);
+
+
     }
 }

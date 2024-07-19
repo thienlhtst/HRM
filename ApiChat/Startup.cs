@@ -20,6 +20,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using QLNS.DataAccess;
 using QLNS.Entity.Entities;
 
 using QLNS.Utilities.Constants;
@@ -42,7 +43,10 @@ namespace QLNSApiBackend.BackendApi
         {
             services.AddCors();
             services.AddControllers();
+            services.AddDbContext<QLNSDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString))
 
+                );
             services.AddEndpointsApiExplorer();
             services.AddHttpContextAccessor();
 

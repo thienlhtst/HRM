@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\QLNS.DataAccess\QLNS.DataAccess.csproj" />
     <ProjectReference Include="..\QLNS.Entity\QLNS.Entity.csproj" />
+    <ProjectReference Include="..\QLNS.Services\QLNS.Services.csproj" />
     <ProjectReference Include="..\QLNS.ViewModel\QLNS.ViewModel.csproj" />
   </ItemGroup>
 
