@@ -9,6 +9,6 @@ namespace ChatApi.Service
 {
     public interface IChatService
     {
-        Task<EmployeeViewModel> CheckEmployee(string id);
+        Task<EmployeeChatViewModel> CheckEmployee(string id);
     }
 }

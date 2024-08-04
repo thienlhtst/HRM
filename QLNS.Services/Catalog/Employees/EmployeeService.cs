@@ -21,12 +21,11 @@ using System.Net.Http.Headers;
 using QLNS.ViewModel.Catalogs.AllowanceRules;
 using Bogus;
 using HelpMate.Core.Extensions;
-using QLNS.ViewModel.Catalogs.Chat;
 using Microsoft.AspNetCore.SignalR;
 
 namespace QLNS.Services.Catalog.Employees
 {
-    public class EmployeeService : Hub,IEmployeeService
+    public class EmployeeService : IEmployeeService
     {
         private readonly QLNSDbContext _context;
         private readonly IStorageService _storageService;
@@ -404,14 +403,14 @@ namespace QLNS.Services.Catalog.Employees
                         join pt in _context.AllowanceRules on p.ID equals pt.EmployeeID
                         join px in _context.Allowances on pt.AllowanceID equals px.ID
                         where p.ID == id
-                        select new { p, pt,px };
+                        select new { p, pt, px };
 
             var data = await query.GroupBy(a => a.p.ID)
                 .Select(x => new EmployeeHasAllowance()
-            {
-                Name = x.First().p.LastName,
-                Allowances = String.Join(",",x.Select(t=>t.px.Name))
-            }).ToListAsync();
+                {
+                    Name = x.First().p.LastName,
+                    Allowances = String.Join(",", x.Select(t => t.px.Name))
+                }).ToListAsync();
             return data;
         }
 
@@ -435,7 +434,5 @@ namespace QLNS.Services.Catalog.Employees
             }).ToListAsync();
             return data;
         }
-
-
     }
 }

@@ -1,8 +1,6 @@
-﻿
-using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.SignalR;
 using QLNS.DataAccess;
 using QLNS.Entity.Entities;
-using QLNS.ViewModel.Catalogs.Chat;
 using System.Threading.Tasks;
 
 namespace ApiChat

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace QLNS.ViewModel.Catalogs.Employees
 {
-    public class EmployeeViewModel
+    public class EmployeeChatViewModel
     {
         public string ID { get; set; }
         public string FirstName { get; set; }

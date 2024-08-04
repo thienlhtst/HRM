@@ -17,11 +17,11 @@ namespace ChatApi.Service
             _httpClient = httpClient;
         }
 
-        public async Task<EmployeeViewModel> CheckEmployee(string id)
+        public async Task<EmployeeChatViewModel> CheckEmployee(string id)
         {
             var apiurl = "localhost:3333/employee/getbyid";
             var response = await _httpClient.GetAsync(apiurl);
-            return await response.Content.ReadFromJsonAsync<EmployeeViewModel>();
+            return await response.Content.ReadFromJsonAsync<EmployeeChatViewModel>();
         }
     }
 }

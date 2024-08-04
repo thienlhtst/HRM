@@ -34,8 +34,6 @@ namespace QLNS.DataAccess
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.ApplyConfiguration(new DescriptionRoleConfiguration());
             modelBuilder.ApplyConfiguration(new DetailSalaryConfiguration());
-            modelBuilder.ApplyConfiguration(new ChatConfiguration());
-            modelBuilder.ApplyConfiguration(new ChatDetailConfiguration());
             modelBuilder.Seed();
             base.OnModelCreating(modelBuilder);
         }
@@ -57,7 +55,6 @@ namespace QLNS.DataAccess
         public DbSet<EmployeesWithAllowances> EmployeesWithAllowances { get; set; }
         public DbSet<WorkHour> WorkHours { get; set; }
 
-        public DbSet<Chat> Chat {  get; set; }
-        public DbSet<ChatDetail> ChatDetail { get; set; }
+ 
     }
 }
