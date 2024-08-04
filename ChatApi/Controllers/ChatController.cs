@@ -2,14 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-using QLNS.DataAccess;
-using QLNS.Entity.Entities;
-using QLNS.Services.Catalog.Employees;
-using QLNS.ViewModel.Catalogs.Chat;
+
 using QLNS.ViewModel.Catalogs.Employees;
 
-namespace ApiChat.Controllers
+namespace ChatApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]

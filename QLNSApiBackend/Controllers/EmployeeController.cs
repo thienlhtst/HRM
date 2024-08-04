@@ -47,7 +47,7 @@ namespace QLNSApiBackend.Controllers
             return Ok(newEmployee);
         }
 
-        [HttpGet("{employeeID}")]
+        [HttpGet("getbyid/{employeeID}")]
         public async Task<IActionResult> GetById(string employeeID)
         {
             var employee = await _employeeService.GetById(employeeID);
