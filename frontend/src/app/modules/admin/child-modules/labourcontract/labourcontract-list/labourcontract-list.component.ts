@@ -10,7 +10,7 @@ import { ConfirmationDialogService } from '../../../../shared/components/confirm
 @Component({
   selector: 'app-labourcontract-list',
   templateUrl: './labourcontract-list.component.html',
-  styleUrls: ['./labourcontract-list.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss']
+  styleUrls: ['./labourcontract-list.component.scss','../../../../../../scss/shared/sreach.scss','../../../../../../scss/shared/button.scss']
 })
 export class LabourcontractListComponent implements OnInit {
   @ViewChild(NotificationComponent) child: NotificationComponent;

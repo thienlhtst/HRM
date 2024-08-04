@@ -24,6 +24,30 @@ export class TokenService {
       });
     }else this.updateToken(0);
   }
+  // new code added here
+  getRole(): Observable<any> {
+    const token = this.getToken();
+    if (!token) {
+      return new Observable((observer) => {
+        observer.next({role:'0'});
+        observer.complete();
+      });
+    }
+      
+    
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'bearer ' + token
+      })
+    };
+
+    return this.http.get(this.apiurl + '/Login', httpOptions);
+  }
+
+
+
+// new code added here
 
   DecodeToken(token: string): Observable<any> {
     const httpOptions = {

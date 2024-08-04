@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 @Component({
   selector: 'app-workhour-list-detail',
   templateUrl: './workhour-list-detail.component.html',
-  styleUrls: ['../../../../scss/shared/button.scss']
+  styleUrls: ['../../../../../../scss/shared/button.scss','../../../../../../scss/shared/sreach.scss']
 
 })
 export class WorkhourListDetailComponent implements OnInit,OnChanges {

@@ -21,7 +21,7 @@ import { ConfirmationDialogService } from '../../../../shared/components/confirm
 @Component({
   selector: 'app-allowance-options',
   templateUrl: './allowance-options.component.html',
-  styleUrls: ['./allowance-options.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss']
+  styleUrls: ['./allowance-options.component.scss','../../../../../../scss/shared/sreach.scss','../../../../../../scss/shared/button.scss']
 })
 export class AllowanceOptionsComponent implements OnInit {
   constructor(private service : AllowanceServiceService,

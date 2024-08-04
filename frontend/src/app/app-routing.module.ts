@@ -24,7 +24,6 @@ const routes: Routes = [
       {
         path: 'admin',
         redirectTo: 'admin/home',
-
         pathMatch: 'full'
       },
 
@@ -99,7 +98,7 @@ const routes: Routes = [
     ]
   },
   {
-      path:'',
+      path:'employee',
       component:EmployeeComponent,
       canActivate: [employeeGuard],
       children:

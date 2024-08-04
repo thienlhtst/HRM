@@ -25,7 +25,7 @@ import { FormOptionsService } from 'src/Services/FormOptions/form-options.servic
 @Component({
   selector: 'app-allowance-list',
   templateUrl: './allowance-list.component.html',
-  styleUrls: ['./allowance-list.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss'],
+  styleUrls: ['./allowance-list.component.scss','../../../../../../scss/shared/sreach.scss','../../../../../../scss/shared/button.scss'],
   animations: [
     trigger('moveOut', [
       transition(':leave', [

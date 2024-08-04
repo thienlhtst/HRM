@@ -12,7 +12,7 @@ import { ConfirmationDialogService } from '../../../../shared/components/confirm
 @Component({
   selector: 'app-position-list',
   templateUrl: './position-list.component.html',
-  styleUrls: ['./position-list.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss']
+  styleUrls: ['./position-list.component.scss','../../../../../../scss/shared/sreach.scss','../../../../../../scss/shared/button.scss']
 })
 export class PositionListComponent implements OnInit,OnChanges{
   constructor(private service : PositionServiceService,private router : Router ,private confirmationDialogService: ConfirmationDialogService){}

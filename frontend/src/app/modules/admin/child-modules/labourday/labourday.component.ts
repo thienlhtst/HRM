@@ -9,7 +9,7 @@ import { NotificationComponent } from '../../../shared/components/Notification/N
 @Component({
   selector: 'app-labourday',
   templateUrl: './labourday.component.html',
-  styleUrls: ['./labourday.component.css', '../../../scss/shared/sreach.scss']
+  styleUrls: ['./labourday.component.css', '../../../../../scss/shared/sreach.scss']
 })
 export class LabourdayComponent implements OnInit {
   ShowForm: boolean = false;

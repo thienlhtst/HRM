@@ -10,7 +10,7 @@ import { ConfirmationDialogService } from '../../../../shared/components/confirm
 @Component({
   selector: 'app-salary-list',
   templateUrl: './salary-list.component.html',
-  styleUrls: ['./salary-list.component.scss','../../../../scss/shared/sreach.scss','../../../../scss/shared/button.scss']
+  styleUrls: ['./salary-list.component.scss','../../../../../../scss/shared/sreach.scss','../../../../../../scss/shared/button.scss']
 })
 export class SalaryListComponent implements OnInit{
   @ViewChild(NotificationComponent) child: NotificationComponent;
