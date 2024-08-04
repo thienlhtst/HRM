@@ -2,6 +2,7 @@ version : '3.7'
 
 services:
   db:
+    container_name: db
     image: mcr.microsoft.com/mssql/server:2019-latest
     environment:
       SA_PASSWORD: Thanh@123456
@@ -12,6 +13,7 @@ services:
       - demo-mynetwork
 
   main-api:
+    container_name: main-api
     build:
       context: ./
       dockerfile: QLNSApiBackend\Dockerfile
@@ -26,16 +28,17 @@ services:
     depends_on:
       - db
     
-  chat-api:
-    build:
-      context : ./
-      dockerfile: ChatApi/Dockerfile
-    ports:
-      - 4444:80
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Staging
-    depends_on:
-      - db
+  # chat-api:
+  #   container_name: chat-api
+  #   build:
+  #     context : ./
+  #     dockerfile: ChatApi/Dockerfile
+  #   ports:
+  #     - 4444:80
+  #   environment:
+  #     - ASPNETCORE_ENVIRONMENT=Staging
+  #   depends_on:
+  #     - db
     
   # volumes:
   #   myapp:
