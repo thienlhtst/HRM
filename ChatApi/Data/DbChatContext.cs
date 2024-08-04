@@ -1,6 +1,6 @@
 ﻿namespace ChatApi.Data
 {
-    public class ChatDbContentFactory
+    public class DbChatContext
     {
     }
 }

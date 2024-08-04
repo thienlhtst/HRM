@@ -31,7 +31,6 @@ namespace QLNS.Entity.Entities
         public List<EmployeesWithAllowances> EWA { get; } = new();
         public List<AllowanceRules> Rules { get; } = new();
 
-        public List<Chat> Chat { get; } = new();
 
         public ICollection<LabourContract> LabourContracts { get; } = new List<LabourContract>();
         public ICollection<Rewards> Rewards { get; } = new List<Rewards>();
