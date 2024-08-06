@@ -6,7 +6,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
      <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
 		<UserSecretsId>68b724b5-db8b-47fb-819e-98458e5c0170</UserSecretsId>
-		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
 	</PropertyGroup>
 
   <ItemGroup>
