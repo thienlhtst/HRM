@@ -1,5 +1,6 @@
 // Angular import
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router'; // Import the Router class
 
 // Project import
 import { NavigationItem } from '../../navigation';
@@ -12,7 +13,9 @@ import { NavigationItem } from '../../navigation';
 export class NavItemComponent {
   // public props
   @Input() item!: NavigationItem;
-
+  
+  // Declare the router property
+ constructor(private router: Router) { }
   // public method
   closeOtherMenu(event) {
     const ele = event.target;
@@ -39,5 +42,10 @@ export class NavItemComponent {
     if ((document.querySelector('app-navigation.coded-navbar') as HTMLDivElement).classList.contains('mob-open')) {
       (document.querySelector('app-navigation.coded-navbar') as HTMLDivElement).classList.remove('mob-open');
     }
+  }
+  navitemClick(event) {
+    console.log(event);
+    this.router.navigate([event]);
+
   }
 }

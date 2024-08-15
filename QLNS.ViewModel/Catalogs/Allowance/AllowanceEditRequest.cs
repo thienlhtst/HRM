@@ -9,10 +9,10 @@ namespace QLNS.ViewModel.Catalogs.Allowance
 {
     public class AllowanceEditRequest
     {
-        public string ID { get; set; }
+        public string ID { get; set; } = "";
 
         [RegularExpression(@"^[A-Z][a-zA-Z""'\s-]*$"), Display(Name = "Name")]
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
 
         [RegularExpression("^[0-9]+$")]
         public int Money { get; set; }

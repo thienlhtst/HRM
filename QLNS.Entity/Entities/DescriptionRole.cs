@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace QLNS.Entity.Entities
 {
-	public class DescriptionRole
-	{
-		public int ID { get; set; }
-		public string RoleID { get; set; }
-		public Role? Role { get; set; } = null!;
-		public string Name { get; set; }
-
-
-	}
+    public class DescriptionRole
+    {
+        public int ID { get; set; }
+        public string RoleID { get; set; } = "";
+        public Role? Role { get; set; } = null!;
+        public string Name { get; set; } = "";
+    }
 }

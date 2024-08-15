@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace QLNS.ViewModel.Catalogs.Employees
 {
-	public class EmployeeVMStatistic
-	{
-		public string ID { get; set; }
-		public string Name { get; set; }
-	}
+    public class EmployeeVMStatistic
+    {
+        public string ID { get; set; } = String.Empty;
+        public string Name { get; set; } = String.Empty;
+    }
 }

@@ -22,8 +22,8 @@ const routes: Routes = [
     canActivate: [guestGuard],
     children: [
       {
-        path: 'admin',
-        redirectTo: 'admin/home',
+        path: '',
+        redirectTo: 'home',
         pathMatch: 'full'
       },
 

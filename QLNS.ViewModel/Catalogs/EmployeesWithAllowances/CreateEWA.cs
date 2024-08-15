@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace QLNS.ViewModel.Catalogs.EmployeesWithAllowances
 {
-	public class CreateEWA
-	{
-		public string EmployeeID { get; set; }
-		public string AllowanceID { get; set; }
-		public DateTime Date { get; set; }
-	}
+    public class CreateEWA
+    {
+        public string EmployeeID { get; set; } = String.Empty;
+        public string AllowanceID { get; set; } = String.Empty;
+        public DateTime Date { get; set; }
+    }
 }

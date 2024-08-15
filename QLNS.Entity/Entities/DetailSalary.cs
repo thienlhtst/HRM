@@ -8,13 +8,12 @@ namespace QLNS.Entity.Entities
 {
     public class DetailSalary
     {
-        public string ID {  get; set; }
+        public string ID { get; set; } = "";
 
-        public string IDSalary { get; set; }
+        public string IDSalary { get; set; } = "";
 
         public Decimal BonusSalary { get; set; }
 
         public Salary? Salary { get; set; }
-
     }
 }

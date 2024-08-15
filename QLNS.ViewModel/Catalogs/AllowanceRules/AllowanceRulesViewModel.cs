@@ -8,8 +8,8 @@ namespace QLNS.ViewModel.Catalogs.AllowanceRules
 {
     public class AllowanceRulesViewModel
     {
-        public string AllowanceName { get; set; }
-        public string EmployeeName { get; set; }
+        public string AllowanceName { get; set; } = String.Empty;
+        public string EmployeeName { get; set; } = String.Empty;
 
         public DateTime Date { get; set; }
     }

@@ -7,5 +7,6 @@ export const environment = {
   apiurl : 'http://localhost:3333/api',
   CURRENT_TOKEN_ID: 'CURRENT_TOKEN_ID',
   CURRENT_TOKEN: 'CURRENT_TOKEN',
+  
 };
  

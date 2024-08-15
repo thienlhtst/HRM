@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using ApiChat;
 using Bogus.DataSets;
 using Faker;
 using Microsoft.AspNetCore.Authentication;
@@ -32,6 +33,7 @@ using QLNS.Services.Catalog.Login;
 using QLNS.Services.Catalog.Positions;
 using QLNS.Services.Catalog.Ranks;
 using QLNS.Services.Catalog.Salary;
+using QLNS.Services.Catalog.Systems;
 using QLNS.Services.Catalog.WorkHour;
 using QLNS.Services.Common;
 using QLNS.Services.Satistics;
@@ -71,7 +73,7 @@ namespace QLNSApiBackend.BackendApi
             services.AddTransient<ILabourDayService, LabourdayService>();
 
             services.AddTransient<ILabourHourService, LabourHourService>();
-
+            services.AddTransient<ISystemManagementService, SystemManagementService>();
             services.AddTransient<IManagePositionService, ManagePositionService>();
             services.AddTransient<IWorkHourService, WorkhourService>();
             services.AddTransient<IAllowanceService, AllowanceService>();

@@ -23,6 +23,8 @@ import { SearchInputComponent } from './components/input-components/search-input
 import { AvtComponent } from './components/avt/avt.component';
 import { TableComponent } from './components/table/table.component';
 import { LanguageInputComponent } from './components/input-components/language-input/language-input.component';
+import { SystemService } from 'src/Services/System/System.service';
+import { TextInputComponent } from './components/input-components/text-input/text-input.component';
 
 
 
@@ -42,6 +44,7 @@ import { LanguageInputComponent } from './components/input-components/language-i
     NgScrollbarModule,
     CardComponent,
     HttpClientModule,
+    
   ],
   exports: [
     CommonModule,
@@ -56,11 +59,12 @@ import { LanguageInputComponent } from './components/input-components/language-i
     NgScrollbarModule,
     CardComponent,
     AvtComponent,
-    LanguageInputComponent
+    LanguageInputComponent,
+    TextInputComponent
 
 
   ],
-  providers:[AuthService,TokenService],
-  declarations: [SpinnerComponent, SearchInputComponent, AvtComponent,LanguageInputComponent],
+  providers:[AuthService,TokenService,SystemService],
+  declarations: [SpinnerComponent, SearchInputComponent, AvtComponent,LanguageInputComponent,TextInputComponent],
 })
 export class SharedModule {}

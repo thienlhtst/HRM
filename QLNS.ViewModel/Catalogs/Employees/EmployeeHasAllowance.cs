@@ -8,7 +8,7 @@ namespace QLNS.ViewModel.Catalogs.Employees
 {
     public class EmployeeHasAllowance
     {
-        public string Name { get; set; }
-        public String Allowances { get; set; }
+        public string Name { get; set; } = String.Empty;
+        public string Allowances { get; set; } = String.Empty;
     }
 }

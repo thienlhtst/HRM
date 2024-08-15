@@ -9,6 +9,6 @@ namespace QLNS.ViewModel.Catalogs.EmployeesWithAllowances
 {
     public class GetEmployeesWithAllowancesPaging : PagedResultBase
     {
-        public string Keyword { get; set; }
+        public string Keyword { get; set; } = String.Empty;
     }
 }

@@ -15,30 +15,34 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { AlertComponent } from '../../shared/components/alert/alert.component';
 import { Alert } from 'src/Model/Alert';
 import { emitKeypressEvents } from 'readline';
+import { SystemService } from 'src/Services/System/System.service';
+import { SharedModule } from "../../shared/shared.module";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, ModalComponent, AlertComponent],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, HttpClientModule, ModalComponent, AlertComponent, SharedModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [AuthService, MdbModalService, ModalComponent]
+  providers: [AuthService, MdbModalService, ModalComponent,SystemService]
 })
 @Injectable({
   providedIn: 'root'
 })
 export default class LoginComponent implements OnInit {
   @ViewChild('usernameInput') usernameInput: ElementRef;
-
+  FunctionID: any='login';
   alert: Alert;
-
+  datasLanguage: any[] = [];
   loginForm!: FormGroup;
   message: any = '';
   flag: number = 0;
+  LanguageFlag=false;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private systemService: SystemService
   ) {}
 
   // eslint-disable-next-line @angular-eslint/contextual-lifecycle
@@ -47,6 +51,15 @@ export default class LoginComponent implements OnInit {
       account: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
     });
+    let lan = localStorage.getItem("language")
+    if (lan == null) {
+      lan = '0'
+    }
+   this.systemService.GetLangugeLayout(this.FunctionID, lan).subscribe((res) => {
+      this.datasLanguage = res;
+      this.LanguageFlag=true;
+   });
+
   }
 
   onSubmit() {
@@ -65,6 +78,7 @@ export default class LoginComponent implements OnInit {
           this.usernameInput.nativeElement.focus();
           console.log(res)
         }
+        window.location.reload();
         this.flag = 0;
       });
     } else {

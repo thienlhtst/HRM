@@ -8,8 +8,8 @@ namespace QLNS.ViewModel.Catalogs.Allowance
 {
     public class AllowanceViewModel
     {
-        public string ID { get; set; }
-        public string Name { get; set; }
+        public string ID { get; set; } = "";
+        public string Name { get; set; } = "";
         public int Money { get; set; }
     }
 }

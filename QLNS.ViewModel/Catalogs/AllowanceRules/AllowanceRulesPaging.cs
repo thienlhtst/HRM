@@ -9,6 +9,6 @@ namespace QLNS.ViewModel.Catalogs.AllowanceRules
 {
     public class AllowanceRulesPaging : PagedResultBase
     {
-        public string Keyword { get; set; }
+        public string Keyword { get; set; } = String.Empty;
     }
 }

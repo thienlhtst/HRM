@@ -8,6 +8,6 @@ namespace QLNS.ViewModel.Catalogs.Employees
 {
     public class EmployeeDeleteViewModel
     {
-        public string ID { get; set; }
+        public string ID { get; set; } = String.Empty;
     }
 }

@@ -9,9 +9,9 @@ namespace QLNS.Entity.Entities
 {
     public class Level
     {
-        public string ID { get; set; }
-        public string RoleID { get; set; }
-        public string Name { get; set; }
+        public string ID { get; set; } = "";
+        public string RoleID { get; set; } = "";
+        public string Name { get; set; } = "";
         public List<Salary> Salaries { get; } = new();
         public Role? Roles { get; set; }
     }

@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { EmployeeModel } from 'src/Model/Employee/EmployeeModel';
 import { EmployeeService } from 'src/Services/Employee/employee.service';
 import { TokenService } from 'src/Services/Token/token.service';
@@ -13,6 +14,8 @@ import { TokenService } from 'src/Services/Token/token.service';
   styleUrls: ['./navigation-employee.component.scss']
 })
 export class NavigationEmployeeComponent implements OnInit {
+  route : string = environment.routeemployee
+
   constructor(private token : TokenService,private employeeserivice : EmployeeService,private router : Router ){}
   idofEmployee : string
   id : string = ''
@@ -28,26 +31,26 @@ export class NavigationEmployeeComponent implements OnInit {
       id:'1',
       title : 'Profile',
       icon : 'fa-brands fa-facebook-messenger',
-      route : '/profile',
+      route : this.route+'/profile',
     }
     ,
     {
       id : '2',
       title : 'Contract',
       icon : 'fa-brands fa-facebook-messenger',
-      route : '/contract',
+      route :  this.route+'/contract',
     },
     {
       id : '3',
       title : 'WorkHour',
       icon : 'fa-brands fa-facebook-messenger',
-      route : '/employeeworkhour',
+      route :  this.route+'/employeeworkhour',
     },
     {
       id : '4',
       title : 'Chat',
       icon : 'fa-brands fa-facebook-messenger',
-      route : '/chat',
+      route :  this.route+'/chat',
     }
   ]
 

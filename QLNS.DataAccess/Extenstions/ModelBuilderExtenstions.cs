@@ -75,7 +75,24 @@ namespace QLNS.DataAccess.Extenstions
 
             modelbuilder.Entity<WorkHour>().HasData(
               Seeder.WorkHourSeedData());
+            modelbuilder.Entity<SystemManagement>().HasData(
+                new SystemManagement() { ID=1, FunctionID="100000", ParentID=null, Language=null, Layout="login", Name=null, Label=null, Description=null, KindInput=null, Icon=null, Values=null, KindSystem=KindSystem.Layout },
+                  new SystemManagement() { ID=2, FunctionID="101001", ParentID="100000", KindSystem=KindSystem.Label, Language=language.en, Layout="login", Icon=null, Values=null, Description=null, KindInput=null, Name="Title Login", Label="Login" },
+                  new SystemManagement() { ID=3, FunctionID="101001", ParentID="100000", KindSystem=KindSystem.Label, Language=language.vn, Layout="login", Icon=null, Values=null, Description=null, KindInput=null, Name="Tieu Đề Đăng Nhập", Label="Đăng Nhập" },
+                  new SystemManagement() { ID=4, FunctionID="101012", ParentID="101002", KindSystem=KindSystem.Label, Language=language.en, Layout="login", Icon=null, Values=null, Description=null, KindInput=null, Name="Title Username", Label="UserName" },
+                  new SystemManagement() { ID=5, FunctionID="101012", ParentID="101002", KindSystem=KindSystem.Label, Language=language.vn, Layout="login", Icon=null, Values=null, Description=null, KindInput=null, Name="Tiêu đề tài khoản", Label="Tên tài khoản" },
+                  new SystemManagement() { ID=6, FunctionID="101011", ParentID="101002", KindSystem=KindSystem.Input, KindInput=KindInput.Text, Language=language.en, Layout="login", Icon=null, Description=null, Name="Input Username", Label="UserName:admin", Values="" },
+                  new SystemManagement() { ID=7, FunctionID="101011", ParentID="101002", KindSystem=KindSystem.Input, KindInput=KindInput.Text, Language=language.vn, Layout="login", Icon=null, Description=null, Name="Nhập tài khoản", Label="Tên tài khoản:admin", Values="" },
+                  new SystemManagement() { ID=8, FunctionID="101013", ParentID="101003", KindSystem=KindSystem.Label, Language=language.en, Layout="login", Icon=null, Values=null, Description=null, KindInput=null, Name="Title Password", Label="Password" },
+                  new SystemManagement() { ID=9, FunctionID="101013", ParentID="101003", KindSystem=KindSystem.Label, Language=language.vn, Layout="login", Icon=null, Values=null, Description=null, KindInput=null, Name="Tiêu đề Mặt khẩu", Label="Mặt khẩu" },
+                  new SystemManagement() { ID=10, FunctionID="101014", ParentID="101003", KindSystem=KindSystem.Label, KindInput=KindInput.Password, Layout="login", Icon=null, Description=null, Language=language.en, Name="Input Password", Label="Password:admin", Values="" },
+                  new SystemManagement() { ID=11, FunctionID="101014", ParentID="101003", KindSystem=KindSystem.Label, KindInput=KindInput.Password, Layout="login", Icon=null, Description=null, Language=language.vn, Name="Nhập Mặt Khẩu", Label="Mặt khẩu:admin", Values="" },
+                  new SystemManagement() { ID=12, FunctionID="101004", ParentID="100000", KindSystem=KindSystem.Label, Language=language.en, Layout="login", Icon=null, Values=null, Description=null, KindInput=null, Name="Title Button", Label="Login" },
+                  new SystemManagement() { ID=13, FunctionID="101004", ParentID="100000", KindSystem=KindSystem.Label, Language=language.vn, Layout="login", Icon=null, Values=null, Description=null, KindInput=null, Name="Tiêu đề Button", Label="Đăng Nhập" },
+                  new SystemManagement() { ID=14, FunctionID="101002", ParentID="100000", KindSystem=KindSystem.Group, Language=null, Layout="login", Icon=null, Values=null, Description=null, KindInput=null, Name="Group Usersname", Label=null },
+                  new SystemManagement() { ID=15, FunctionID="101003", ParentID="100000", KindSystem=KindSystem.Group, Language=null, Layout="login", Icon=null, Values=null, Description=null, KindInput=null, Name="Group Usersname", Label=null }
 
+                ); ;
             /* modelbuilder.Entity<EmployeesWithAllowances>().HasData(
                  Seeder.EWASeedData());*/
         }
