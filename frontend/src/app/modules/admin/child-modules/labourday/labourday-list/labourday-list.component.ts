@@ -11,7 +11,7 @@ import { ConfirmationDialogService } from '../../../../shared/components/confirm
 @Component({
   selector: 'app-labourday-list',
   templateUrl: './labourday-list.component.html',
-  styleUrls: ['./labourday-list.component.css','../../../../scss/shared/sreach.scss']
+  styleUrls: ['./labourday-list.component.css','../../../../../../scss/shared/sreach.scss']
 })
 export class LabourdayListComponent implements OnInit {
   @Output() OpenAddorEdit : EventEmitter<any> = new EventEmitter()

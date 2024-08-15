@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 export interface NavigationItem {
@@ -29,7 +31,7 @@ const NavigationItems = [
         title: 'Home',
         type: 'item',
         classes: 'nav-item',
-        url: '/home',
+        url:  environment.routeadmin+ '/home',
         icon: 'ti ti-dashboard',
         breadcrumbs: false
       },
@@ -63,7 +65,7 @@ const NavigationItems = [
               id:'allowance',
               title:'Allowance List',
               type:'item',
-              url:'admin/allowance',
+              url:environment.routeadmin+ '/allowance',
               classes:'nav-item',
               icon:'bi bi-currency-dollar',
               children:[
@@ -71,7 +73,7 @@ const NavigationItems = [
                   id :'allowance',
                   title:'Update',
                   type:'item',
-                  url:"/allowance/options",
+                  url:environment.routeadmin+ "/allowance/options",
                   classes:'nav-item',
                 },
               ]
@@ -80,7 +82,7 @@ const NavigationItems = [
               id:'allowance',
               title:'Employee With Allowance',
               type:'item',
-              url:'/ewa',
+              url:environment.routeadmin+ '/ewa',
               classes:'nav-item',
               icon:'bi bi-people',
               children:[
@@ -88,7 +90,7 @@ const NavigationItems = [
                   id :'ewa',
                   title:'Auto',
                   type:'item',
-                  url:"/ewa/add",
+                  url:environment.routeadmin+ "/ewa/add",
                   classes:'nav-item',
                 },
               ]
@@ -97,7 +99,7 @@ const NavigationItems = [
               id:'allowance',
               title:'Allowances and Employee Rules',
               type:'item',
-              url:'/allowancesemployeerules',
+              url:environment.routeadmin+ '/allowancesemployeerules',
               classes:'nav-item',
               icon:'bi bi-people',
               children:[
@@ -105,7 +107,7 @@ const NavigationItems = [
                 id :'aerules',
                 title:'Auto',
                 type:'item',
-                url:"/allowancesemployeerules/add",
+                url:environment.routeadmin+ "/allowancesemployeerules/add",
                 classes:'nav-item',
               }
             ]
@@ -123,7 +125,7 @@ const NavigationItems = [
               id:'employee',
               title:'Employee List',
               type:'item',
-              url:'admin/employee',
+              url:environment.routeadmin+ '/employee',
               classes:'nav-item',
               icon:'bi bi-file-person',
               children:[
@@ -131,21 +133,21 @@ const NavigationItems = [
                   id :'employee',
                   title:'Add',
                   type:'item',
-                  url:"/employee/add",
+                  url:environment.routeadmin+ "/employee/add",
                   classes:'nav-item',
                 },
                 {
                   id :'employee',
                   title:'Update',
                   type:'item',
-                  url:"/employee/update",
+                  url:environment.routeadmin+ "/employee/update",
                   classes:'nav-item',
                 },
                 {
                   id :'employee',
                   title:'Details',
                   type:'item',
-                  url:"/employee/details",
+                  url:environment.routeadmin+ "/employee/details",
                   classes:'nav-item',
                 }
               ]
@@ -154,7 +156,7 @@ const NavigationItems = [
               id:'position',
               title:'Position',
               type:'item',
-              url:'/position',
+              url:environment.routeadmin+ '/position',
               classes:'nav-item',
               icon:'bi bi-briefcase',
               children :[
@@ -162,7 +164,7 @@ const NavigationItems = [
                   id :'position',
                   title:'Update',
                   type:'item',
-                  url:"/position/options",
+                  url:environment.routeadmin+ "/position/options",
                   classes:'nav-item',
                 },
               ]
@@ -171,7 +173,7 @@ const NavigationItems = [
               id:'rank',
               title:'Rank',
               type:'item',
-              url:'/rank',
+              url:environment.routeadmin+ '/rank',
               classes:'nav-item',
               icon:'bi bi-card-checklist',
               children :[
@@ -179,7 +181,7 @@ const NavigationItems = [
                   id :'rank',
                   title:'Update',
                   type:'item',
-                  url:"/rank/options",
+                  url:environment.routeadmin+ "/rank/options",
                   classes:'nav-item',
                 },
               ]
@@ -188,7 +190,7 @@ const NavigationItems = [
               id:'salary',
               title:'Salary',
               type:'item',
-              url:'/salary',
+              url:environment.routeadmin+ '/salary',
               classes :'nav-item',
               icon :'bi bi-receipt',
               children :[
@@ -196,7 +198,7 @@ const NavigationItems = [
                   id :'salary',
                   title:'Update',
                   type:'item',
-                  url:"/salary/options",
+                  url:environment.routeadmin+ "/salary/options",
                   classes:'nav-item',
                 },
               ]
@@ -205,7 +207,7 @@ const NavigationItems = [
               id:'labourcontract',
               title:'Labour Contract',
               type:'item',
-              url:'/labourcontract',
+              url:environment.routeadmin+ '/labourcontract',
               classes :'nav-item',
               icon :'bi bi-clipboard',
               children :[
@@ -213,7 +215,7 @@ const NavigationItems = [
                   id :'labourcontract',
                   title:'Labour Options',
                   type:'item',
-                  url:"/labourcontract/options",
+                  url:environment.routeadmin+ "/labourcontract/options",
                   classes:'nav-item',
                 },
               ]
@@ -225,7 +227,7 @@ const NavigationItems = [
           id:'workhour',
           title:'Work Hour',
           type:'collapse',
-          url:'/workhour',
+          url:environment.routeadmin+ '/workhour',
           classes :'nav-item',
           icon :'bi bi-stopwatch',
           children:[
@@ -233,7 +235,7 @@ const NavigationItems = [
               id:'workhour',
               title:'Hours',
               type:'item',
-              url:'/workhour',
+              url:environment.routeadmin+ '/workhour',
               classes :'nav-item',
               icon :'bi bi-clock',
               children:[
@@ -241,7 +243,7 @@ const NavigationItems = [
                   id :'workhour',
                   title:'ADD OR EDIT',
                   type:'item',
-                  url:"/workhour/addoredit",
+                  url:environment.routeadmin+ "/workhour/addoredit",
                   classes:'nav-item',
                 },
               ]
@@ -250,7 +252,7 @@ const NavigationItems = [
               id:'workhour',
               title:'Labour Day',
               type:'item',
-              url:'/labourday',
+              url:environment.routeadmin+ '/labourday',
               classes :'nav-item',
               icon :'bi bi-calendar',
             }
@@ -269,7 +271,7 @@ const NavigationItems = [
         title: 'Work Hour',
         type: 'item',
         classes: 'nav-item',
-        url: '/statistic/workhour',
+        url:environment.routeadmin+  '/statistic/workhour',
         icon: 'bi bi-pie-chart',
 
       },{
@@ -277,7 +279,7 @@ const NavigationItems = [
         title: 'Salary',
         type: 'item',
         classes: 'nav-item',
-        url: '/statistic/salary',
+        url:environment.routeadmin+  '/statistic/salary',
         icon: 'bi bi-currency-dollar',
       }
     ]

@@ -1,7 +1,5 @@
 <!-- [Mobile Media Block end] -->
 <ul class="list-unstyled">
-
-
   <li class="dropdown pc-h-item header-user-profile" ngbDropdown>
     <a class="pc-head-link dropdown-toggle arrow-none me-0" ngbDropdownToggle>
       <img src="assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar" />
@@ -24,26 +22,17 @@
       <ul ngbNav  class="nav drp-tabs nav-fill nav-tabs">
         <li ngbNavItem="1">
           <a ngbNavLink><i class="ti ti-user"></i> Profile</a>
-          <ng-template ngbNavContent>
+          
+        
             <div *ngFor="let task of profile">
               <a href="javascript:" class="dropdown-item" (click)="handleclick(task.event)">
                 <i class="{{ task.icon }}" ></i>
                 <span>{{ task.title }}</span>
               </a>
             </div>
-          </ng-template>
+        
         </li>
-        <li ngbNavItem="2">
-          <a ngbNavLink><i class="ti ti-settings"></i> Setting</a>
-          <ng-template ngbNavContent>
-            <div *ngFor="let task of setting">
-              <a href="javascript:" class="dropdown-item">
-                <i class="{{ task.icon }}"></i>
-                <span>{{ task.title }}</span>
-              </a>
-            </div>
-          </ng-template>
-        </li>
+       
       </ul>
       <!-- <div [ngbNavOutlet]="nav"></div> -->
     </div>

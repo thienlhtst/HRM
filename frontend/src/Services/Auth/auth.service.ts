@@ -42,5 +42,6 @@ export class AuthService {
   onLogout() {
 
         this.tokenService.removeToken();
+        window.location.reload();
   }
 }

@@ -4,6 +4,7 @@
 import { Input, OnInit } from '@angular/core';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component } from '@angular/core';
+import { SystemService } from 'src/Services/System/System.service';
 
 @Component({
   selector: 'language-input',
@@ -11,27 +12,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./language-input.component.scss']
 })
 export class LanguageInputComponent implements OnInit {
-  @Input() FunctionID : any
-  @Input() LanguageClass : any
-  content : string = "loading..."
+  @Input() FunctionID: any;
+  @Input() LanguageClass: any;
+  @Input() DatasLanguague: any[];
+  data: any;
+  content: string = 'loading...';
+  constructor(private systemService: SystemService) {}
   ngOnInit(): void {
-    const lan = localStorage.getItem("language")
-    this.content = this.language.find(x=> x.functionid ==this.FunctionID && x.language == lan).content
-
-
+    let lan = localStorage.getItem('language');
+    if (lan == null) {
+      lan = '0';
+    }
+    /*this.systemService.GetLangugeFunction(this.FunctionID, lan).subscribe((res) => {
+      console.log(res)
+     this.content = res.label
+   });*/
+    this.data = this.DatasLanguague.find((x) => x.functionID == this.FunctionID);
+    if (this.data.label == null) {
+      this.data.label = this.content;
+    }
   }
-  language : any[] = [
-  {
-    functionid : 'P001',
-    content : 'Profile',
-    language : 'en',
-    layout : 'profile'
-  },
-  {
-    functionid : 'P001',
-    content : 'Trang ca nhan',
-    language : 'vi',
-    layout : 'profile'
-  },
-]
 }

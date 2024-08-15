@@ -30,7 +30,11 @@ tokenService.getRole().subscribe({
       }else
       if(parseInt(value.role) == 1){
         router.navigate(['/employee'])
+      
  }
+//  else{
+//   router.navigate(['/login'])
+//   }
   },
 });
 
