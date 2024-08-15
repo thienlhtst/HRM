@@ -37,7 +37,7 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\QLNS.Services\QLNS.Services.csproj" />
+		<ProjectReference Include="..\QLNS.Services\HRM.Services.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

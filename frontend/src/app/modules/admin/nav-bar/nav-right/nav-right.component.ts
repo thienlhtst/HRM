@@ -67,7 +67,10 @@ export class NavRightComponent {
 nav: any;
   constructor( private tokenService: TokenService,private auth:AuthService,private employeeSerivce : EmployeeService){
     this.isAuthenticated$ = this.tokenService.isAuthentication;
-    
+    this.employeeSerivce.GetEmployeebyID(this.tokenService.getTokenId()).subscribe((res)=>{
+      this.name = res.lastName
+      this.rank = res.rank
+    })
 
   }
   handleclick(event:any){

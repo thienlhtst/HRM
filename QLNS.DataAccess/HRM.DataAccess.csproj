@@ -31,8 +31,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChatApi\ChatApi.csproj" />
-    <ProjectReference Include="..\QLNS.Entity\QLNS.Entity.csproj" />
+    <ProjectReference Include="..\ChatApi\HRM.ChatAPI.csproj" />
+    <ProjectReference Include="..\QLNS.Entity\HRM.Entity.csproj" />
   </ItemGroup>
 
 </Project>

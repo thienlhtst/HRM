@@ -8,6 +8,9 @@ import { NavBarComponent } from './nav-bar.component';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from '../../shared/shared.module';
+import { PagingnavComponent } from '../../shared/components/pagingnav/pagingnav.component';
+import { NgbCollapseModule, NgbDropdownModule, NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -17,6 +20,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
+    SharedModule,NgbDropdownModule,
+    NgbNavModule,
+    NgbModule,
+    NgbCollapseModule,
   ],
 
   exports : [NavLeftComponent,NavRightComponent,NavBarComponent]

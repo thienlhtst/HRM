@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QLNS.Entity", "QLNS.Entity\QLNS.Entity.csproj", "{D711430F-1A82-4C61-8DEC-D338BBA3441F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRM.Entity", "QLNS.Entity\HRM.Entity.csproj", "{D711430F-1A82-4C61-8DEC-D338BBA3441F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QLNS.DataAccess", "QLNS.DataAccess\QLNS.DataAccess.csproj", "{CFA87DB2-AC3B-43FE-ADA3-CF81812B4BBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRM.DataAccess", "QLNS.DataAccess\HRM.DataAccess.csproj", "{CFA87DB2-AC3B-43FE-ADA3-CF81812B4BBC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QLNS.Services", "QLNS.Services\QLNS.Services.csproj", "{32CFBEA6-83D2-4481-B5F4-FF7AEC1A1EB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRM.Services", "QLNS.Services\HRM.Services.csproj", "{32CFBEA6-83D2-4481-B5F4-FF7AEC1A1EB4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QLNS.ViewModel", "QLNS.ViewModel\QLNS.ViewModel.csproj", "{2D32C429-B587-4A81-B4F3-1818D2CB259F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRM.ViewModel", "QLNS.ViewModel\HRM.ViewModel.csproj", "{2D32C429-B587-4A81-B4F3-1818D2CB259F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QLNSApiBackend", "QLNSApiBackend\QLNSApiBackend.csproj", "{3478487C-B62E-4B2D-B4C6-8D028B9C5F12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRM.ApiBackend", "QLNSApiBackend\HRM.ApiBackend.csproj", "{3478487C-B62E-4B2D-B4C6-8D028B9C5F12}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. infrastucture", "1. infrastucture", "{8D9BD1F6-C241-41B4-968C-6898E6BC2602}"
 EndProject
@@ -19,11 +19,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Domains", "2. Domains", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Host", "3. Host", "{99665BA1-6CD0-4E05-8F50-7F2993C061C0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApi", "ChatApi\ChatApi.csproj", "{6131A679-8395-43E5-83E7-EA33D2B3A740}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRM.ChatAPI", "ChatApi\HRM.ChatAPI.csproj", "{6131A679-8395-43E5-83E7-EA33D2B3A740}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeaveAwardAPI", "LeaveAwardAPI\LeaveAwardAPI.csproj", "{B92C7EE6-D67C-4560-BDB2-122B916DC47B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRM.LeaveAwardAPI", "LeaveAwardAPI\HRM.LeaveAwardAPI.csproj", "{B92C7EE6-D67C-4560-BDB2-122B916DC47B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQService", "RabbitMQService\RabbitMQService.csproj", "{0E7D03A1-00E5-48A5-BA07-5D3894424F84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HRM.RabbitMQService", "RabbitMQService\HRM.RabbitMQService.csproj", "{0E7D03A1-00E5-48A5-BA07-5D3894424F84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
