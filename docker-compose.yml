@@ -16,7 +16,7 @@ services:
     container_name: main-api
     build:
       context: ./
-      dockerfile: QLNSApiBackend\Dockerfile
+      dockerfile: HRMApiBackend\Dockerfile
     ports:
       - 3333:80
     networks :
@@ -24,7 +24,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT : Staging
     volumes:
-      - '../EmployeeManager/QLNSApiBackend:/app/data'
+      - '../EmployeeManager/HRMApiBackend:/app/data'
     depends_on:
       - db
     
