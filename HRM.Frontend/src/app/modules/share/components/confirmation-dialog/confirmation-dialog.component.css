@@ -1,0 +1,8 @@
+.close:hover {
+    background-color: #f2f2f2; /* Màu nền mờ khi hover */
+    color: #505050; /* Màu biểu tượng khi hover */
+  }
+  .close{
+    border: none;
+    background-color: white;
+  }

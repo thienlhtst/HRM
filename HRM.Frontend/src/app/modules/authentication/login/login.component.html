@@ -1,0 +1,49 @@
+<div class="w-100  d-flex justify-content-center align-items-center" style="height: 100vh;background-color:#f5f5f5 ;" [ngClass]="{'loading-spinner':data.length==0}">
+    <div class="d-flex flex-column login-form border h-auto p-3">
+      <form [formGroup]="loginForm">
+      <div class="d-flex justify-content-between align-items-end mb-4">
+        <h3 class="mb-0 align-items-end"><b><language-input   FunctionID="101001" [DatasLanguague]="datasLanguage" textExample="Login" /></b></h3>
+      </div>
+      <div class="form-group mb-3" [class.error]="loginForm.controls['account'].dirty && loginForm.hasError('required','account')">
+        <label class="form-label" for=""><language-input   FunctionID="101012" [DatasLanguague]="datasLanguage" textExample="Username" /></label>
+        <!--input #usernameInput formControlName="account" type="text" class="form-control" placeholder="Username : admin"  /-->
+        <text-input  formControlName="account" LanguageClass="form-control" FunctionID="101011"  [DatasLanguague]="datasLanguage"/>
+        <small *ngIf="loginForm.controls['account'].dirty && loginForm.hasError('required','account')" class="text-danger">*Username is required</small>
+      </div>
+      <div class="form-group mb-3" [class.error]="loginForm.controls['password'].dirty && loginForm.hasError('required','password')">
+        <label class="form-label" for="password"><language-input   FunctionID="101013" [DatasLanguague]="datasLanguage" textExample="Password" /></label>
+        <!--input formControlName="password" type="password" class="form-control" id="password" placeholder="Password : admin" /-->
+        <text-input  formControlName="password" LanguageClass="form-control" FunctionID="101014"  [DatasLanguague]="datasLanguage"/>
+        <small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')" class="text-danger">*password is required</small>
+      </div>
+      <div class="d-flex mt-1 justify-content-between">
+        <div class="form-check">
+          <input class="form-check-input input-primary" type="checkbox" id="customCheckc1" checked="" />
+          <label class="form-check-label text-muted" for="customCheckc1">Keep me sign in</label>
+        </div>
+        <h5 class="text-secondary f-w-400"><a href="javascript:">Forgot Password?</a></h5>
+      </div>
+      <div *ngIf="message===true">
+      <app-alert [alert]="alert" (flagchange)='flagchangeHandler($event)'></app-alert>
+      </div>
+      <div class="d-grid mt-4">
+        <button  (click)="onSubmit()"  type="submit" class="btn btn-primary">
+          <span class="spinner-border spinner-border-sm" role="status" *ngIf="flag==1; else login"  ></span>
+         <ng-template #login> <span ><language-input   FunctionID="101004" [DatasLanguague]="datasLanguage" textExample="Login" /></span>
+         </ng-template>
+        </button>
+      </div>
+    </form>
+    </div>
+
+
+
+
+</div>
+
+
+<app-spinner-alpha *ngIf="data.length==0">
+
+
+
+</app-spinner-alpha>

@@ -1,0 +1,38 @@
+.child-menu{
+    z-index: 100;
+    position: absolute;
+    top: 10%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    width: 18rem;
+    right: 1rem;
+    min-height: 100px;
+    border: 1px solid #e0e0e0;
+    background-color: white;
+    flex-direction: column;
+}
+.items-menu{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 0.2rem 0.8rem;
+    width: 100%;
+    cursor: pointer;
+    gap: 0.5rem;
+    i{
+        font-size: 20px;
+    }
+    span{
+        font-size: 16px;
+    }
+}
+.child-menu .items-menu:hover{
+    background-color: #f5f5f5;
+    i{
+        color: #007bff;
+    }
+    span{
+        color: #007bff;
+    }
+}

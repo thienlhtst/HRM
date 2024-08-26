@@ -1,0 +1,45 @@
+<div class="p-1 bg-white border d-flex justify-content-between">
+  <div>
+  <img src="../../../../assets/logo/t2pro-logo.png" alt="" style="height: 50px; width: 200px;" >  
+</div>
+<div class=" d-flex justify-content-center align-items-center me-4  "style="width: 50px;" >
+  <div (click)="toggleMenu()"  class=" w-100 h-100 " style="cursor: pointer;">
+  <div  class="user-select-none  bg-dark d-flex justify-content-center align-items-center w-100 h-100 p-2 " style="color: white; font-size:20px;border-radius: 50px;">
+   TT
+  </div>
+</div>
+  <div *ngIf="IsMenuCollapsed" class="child-menu rounded">
+    <div class="d-flex justify-content-between align-items-center  p-2 w-100">
+      <div>
+        Tran Minh Thien
+      </div>
+      <div class="d-flex justify-content-start align-items-start flex-column">
+        <div class="d-flex justify-content-start gap-2">
+          <div> Position: </div>
+          <span> IT </span>
+        </div>
+        <div class="d-flex justify-content-start gap-2">
+          <div> Level: </div>
+          <span> Leader </span>
+        </div>
+      </div>
+    </div>
+    <div class=" d-flex justify-content-start flex-column border-top w-100 ">
+        <div class="items-menu">
+          <i class="bi bi-people"></i>
+          <span> Profile </span>
+        </div>
+        <div class="items-menu">
+          <i class="bi bi-gear"></i>
+          <span> Setting  </span>
+        </div>
+        <div class="items-menu">
+          <i class="bi bi-box-arrow-left"></i>
+          <span> LogOut  </span>
+        </div>
+    </div>
+
+  </div>
+</div>
+
+</div>

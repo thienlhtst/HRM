@@ -9,6 +9,6 @@ namespace HRM.ViewModel.Catalogs.LabourContract
 {
     public class GetLabourContractPaging : PagedResultBase
     {
-        public string Keyword { get; set; }
+        public string Keyword { get; set; } = String.Empty;
     }
 }

@@ -8,6 +8,6 @@ namespace HRM.ViewModel.Catalogs.LabourContract
 {
     public class LabourContractDeleteRequest
     {
-        public string ID { get; set; }
+        public string ID { get; set; } = String.Empty;
     }
 }

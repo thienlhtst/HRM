@@ -1,5 +1,6 @@
 ﻿using HRM.Entity.Entities;
 using HRM.Entity.Enums;
+using HRM.ViewModel.Catalogs.SystemManagements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace HRM.Services.Catalog.Systems
     {
         Task<List<SystemManagement>> GetSystemManagement(language language, string FunctionID);
 
-        Task<SystemManagement> GetLanguage(language language, string FunctionID);
+        Task<SystemManagement> GetLanguage(language language, string layout);
+
+        Task<List<MenuSystems>> GetNavManagement(language language, string FuntionID)
     }
 }

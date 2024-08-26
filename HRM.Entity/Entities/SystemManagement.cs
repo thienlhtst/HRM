@@ -23,5 +23,6 @@ namespace HRM.Entity.Entities
         public string? Label { get; set; } = null;
         public string? Icon { get; set; } = null;
         public string? Values { get; set; } = null;
+        public string? Routes { get; set; } = null;
     }
 }

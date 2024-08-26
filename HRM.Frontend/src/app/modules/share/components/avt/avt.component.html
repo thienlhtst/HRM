@@ -1,0 +1,7 @@
+
+<div *ngIf="!flag" class="d-flex justify-content-center align-items-center w-100 h-100" style="color: white; font-size:20px">
+  {{nameavt}}
+</div>
+<div *ngIf="flag" class="d-flex justify-content-center align-items-center w-100 h-100">
+  <img style="object-fit: cover;" [ngStyle]="{'border-radius':borderimg}" src={{avt}}>
+</div>
