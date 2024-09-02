@@ -15,7 +15,7 @@ export class LanguageInputComponent implements OnInit {
   @Input() FunctionID: any;
   @Input() LanguageClass: any;
   @Input() DatasLanguague: any[] | undefined;
-  @Input() textExample:string =''
+  @Input() textExample: string ='';
   data: any;
   content: string = 'loading...';
   constructor(private systemService: SystemService) {}

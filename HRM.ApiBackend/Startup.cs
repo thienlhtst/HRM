@@ -42,6 +42,7 @@ using HRM.ViewModel.JwtOptions;
 using HRM.ViewModel.Mapper;
 using HRMApiBackend.Hub;
 using Swashbuckle.AspNetCore.Filters;
+using MassTransit;
 
 namespace HRMApiBackend.BackendApi
 {
@@ -92,7 +93,28 @@ namespace HRMApiBackend.BackendApi
             services.AddAutoMapper(typeof(LabourContractMapper));
             //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             //services.AddAutoMapper(typeof(AllowanceMapper).Assembly);
-
+            //masstransit
+            services.AddMassTransit(conf =>
+            {
+                // conf.AddRequestClient<CustomerP>();
+                conf.SetKebabCaseEndpointNameFormatter();
+                conf.SetInMemorySagaRepositoryProvider();
+                var asb = typeof(Program).Assembly;
+                conf.AddConsumers(asb);
+                conf.AddSagaStateMachines(asb);
+                conf.AddSagas(asb);
+                conf.AddActivities(asb);
+                conf.UsingRabbitMq((ctx, cfg) =>
+                {
+                    cfg.Host("localhost", "/", h =>
+                    {
+                        h.Username("guest");
+                        h.Password("guest");
+                    });
+                    cfg.ConfigureEndpoints(ctx);
+                });
+            });
+            //masstransit
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger Timekeeping Solution", Version = "v1" });

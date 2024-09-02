@@ -6,7 +6,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  listofheader : any[] =[{
+    id:1,
+    name:"ID",
+    column:'ID'
 
+
+  },{
+    id:2,
+    name:"Name",
+    column:'Name'
+  }
+]
+  listofdata : any[] =[
+    {
+      ID:1,
+      Name:"A"
+    }
+
+  ]
   constructor() { }
 
   ngOnInit() {

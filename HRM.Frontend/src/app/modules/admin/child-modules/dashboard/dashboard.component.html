@@ -1,3 +1,25 @@
-<p>
-  dashboard works!
-</p>
+<div class="w-100 h-100">
+  <div style="height: 20%;">
+    s
+  </div>
+  <div class="w-100 bg-white rounded h-75 p-2">
+    <div class="table2" >
+      <table class="table table-hover table-sm  ">
+        <thead>
+          <tr style="text-align: center;"  > 
+            <th *ngFor="let item of listofheader">{{item.name}}</th>  
+          
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of listofdata">
+            <td style="text-align: center;" *ngFor="let column of listofheader">
+               {{row[column.column]}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

@@ -11,8 +11,9 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     this.check()
   }
-  @Input() listofheader : any[]
-  @Input() listofdata : any[]
+  @Input() styleTable : any[] | undefined
+  @Input() listofheader : any[] | undefined
+  @Input() listofdata : any[] | undefined
 
   check(){
     console.log(this.listofheader)

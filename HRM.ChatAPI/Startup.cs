@@ -1,25 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using LeaveAwardAPI.DataAccess;
-using MassTransit;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
+﻿using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
-namespace HRMApiBackend.BackendApi
+namespace HRM.ChatAPI
 {
     public class Startup
     {
@@ -35,41 +20,41 @@ namespace HRMApiBackend.BackendApi
         {
             services.AddCors();
             services.AddControllers();
-            services.AddDbContext<DbLeaveAwardContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("LeaveAwardDB"))
+            /* services.AddDbContext<HRMDbContext>(options =>
+                 options.UseSqlServer(Configuration.GetConnectionString(SystemConstants.MainConnectionString))
 
-                );       //Declare
-
+                 );       //Declare
+            */
             services.AddEndpointsApiExplorer();
             services.AddHttpContextAccessor();
-            //masstransit
-            /*   services.AddMassTransit(conf =>
-               {
-                   // conf.AddRequestClient<CustomerP>();
-                   conf.SetKebabCaseEndpointNameFormatter();
-                   conf.SetInMemorySagaRepositoryProvider();
-                   var asb = typeof(Program).Assembly;
-                   conf.AddConsumers(asb);
-                   conf.AddSagaStateMachines(asb);
-                   conf.AddSagas(asb);
-                   conf.AddActivities(asb);
-                   conf.UsingRabbitMq((ctx, cfg) =>
-                   {
-                       cfg.Host("localhost", "/", h =>
-                       {
-                           h.Username("guest");
-                           h.Password("guest");
-                       });
-                       cfg.ConfigureEndpoints(ctx);
-                   });
-               });*/
-            //masstransit
+
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllersWithViews();
 
             //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             //services.AddAutoMapper(typeof(AllowanceMapper).Assembly);
-
+            //masstransit
+            services.AddMassTransit(conf =>
+            {
+                // conf.AddRequestClient<CustomerP>();
+                conf.SetKebabCaseEndpointNameFormatter();
+                conf.SetInMemorySagaRepositoryProvider();
+                var asb = typeof(Program).Assembly;
+                conf.AddConsumers(asb);
+                conf.AddSagaStateMachines(asb);
+                conf.AddSagas(asb);
+                conf.AddActivities(asb);
+                conf.UsingRabbitMq((ctx, cfg) =>
+                {
+                    cfg.Host("localhost", "/", h =>
+                    {
+                        h.Username("guest");
+                        h.Password("guest");
+                    });
+                    cfg.ConfigureEndpoints(ctx);
+                });
+            });
+            //masstransit
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger Timekeeping Solution", Version = "v1" });
@@ -80,6 +65,7 @@ namespace HRMApiBackend.BackendApi
                     Name = "Authorization",
                     Type = SecuritySchemeType.ApiKey
                 });
+                // options.OperationFilter<SecurityRequirementsOperationFilter>();
             });
             services.AddCors(o => o.AddPolicy("CorsPolicy", b =>
             {
@@ -87,19 +73,6 @@ namespace HRMApiBackend.BackendApi
                 .AllowAnyHeader()
                 .AllowAnyOrigin();
             }));
-            //    services.AddSignalR(options => { options.KeepAliveInterval = TimeSpan.FromSeconds(5); }).AddMessagePackProtocol();
-
-            /*    services.AddAuthentication().AddJwtBearer(options =>
-                {
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuerSigningKey = true,
-                        ValidateAudience = false,
-                        ValidateIssuer = false,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-                                Configuration.GetSection("JwtBearer:Token").Value!))
-                    };
-                });*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -138,7 +111,6 @@ namespace HRMApiBackend.BackendApi
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-
                 endpoints.MapControllers();
             });
         }
