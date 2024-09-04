@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
 
 declare var window:any;
 @Component({

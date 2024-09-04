@@ -10,7 +10,7 @@ export class PipeSharePipe implements PipeTransform {
 
   transform(collection: any[], property: string): any[] {
     if (!collection) {
-      return null;
+      return [];
     }
 
     const groupedCollection = collection.reduce((accumulator, currentValue) => {

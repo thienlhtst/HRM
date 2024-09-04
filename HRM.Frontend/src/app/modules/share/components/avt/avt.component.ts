@@ -1,3 +1,4 @@
+import { NgStyle } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/Services/Employee/employee.service';
 import { TokenService } from 'src/Services/Token/token.service';

@@ -11,7 +11,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class PagingnavComponent implements OnInit,OnChanges  {
 
-  @Input() pagesize :number
+  @Input() pagesize :number=1
   page =1;
   totalpage:number=1
    @Output() numberchange: EventEmitter<number> =   new EventEmitter();

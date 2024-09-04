@@ -1,0 +1,68 @@
+<div *ngIf="!spinner">
+  <h1 class="text-center text-primary"> Wait for Data </h1>
+<app-spinner-beta></app-spinner-beta>
+</div>
+<div class="card">
+  <div class="card-header">
+      <h3>Employee table</h3>
+      </div>
+  <div class="card-block table-border-style" >
+    <div class="d-flex justify-content-between">
+      <div class=" p-2 flex-grow-1 ">
+        <div  class="form align-items-center">
+          <i class="fa fa-search"></i>
+          <input type="text" name="search" [(ngModel)]="searchText" class="form-control form-input" (ngModelChange)="onSearchChange()" placeholder="Search anything..." #fill>
+        </div>
+
+        </div>
+        <div class="p-2" >
+          <button type="button" (click)="ButtonCickToAdd()" class="btn btn-outline-info mx-auto">Add new</button>
+
+        </div>
+    </div>
+      <div class="table-responsive" >
+          <table class="table table-inverse">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>First Name</th>
+                      <th>Middle Name</th>
+                      <th>Last Name</th>
+                      <th>Birth Day</th>
+                      <th>Sex</th>
+                      <th>Rank</th>
+                      <th>Position</th>
+                      <th>Active</th>
+                      <th>Options</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let item of datas ">
+                      <td>{{item.id}}</td>
+                      <td>{{item.firstName}}</td>
+                      <td>{{item.middleName}}</td>
+                      <td>{{item.lastName}}</td>
+                      <td>{{item.dob}}</td>
+                      <td>{{item.sex}}</td>
+                      <td>{{item.rank}}</td>
+                      <td>{{item.position}}</td>
+                      <td>{{item.active}}</td>
+                      <td>
+                        <button class="img-button-employee" (click)="ButtonClickToUpdate(item.id)" mat-icon-button [matTooltip]="'Edit'">
+                          <i  class="ti ti-edit"></i>
+                        </button>
+                        <button class="img-button-employee" (click)="Delete($event,item.id)" mat-icon-button [matTooltip]="'Delete'">
+                          <i  class="ti ti-circle-minus" src="" ></i>
+                        </button>
+                        <button class="img-button-employee" (click)=" ButtonClickToDetails(item.id)" mat-icon-button [matTooltip]="'Infomation'">
+                          <i  class="ti ti-info-circle" src="" ></i>
+                        </button>
+                      </td>
+                  </tr>
+
+              </tbody>
+          </table>
+          <app-pagingnav   class="d-flex justify-content-end" [pagesize]="PageCount" (numberchange)="PageChange($event)" #child></app-pagingnav>
+      </div>
+  </div>
+</div>

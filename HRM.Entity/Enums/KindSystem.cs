@@ -49,6 +49,12 @@ namespace HRM.Entity.Enums
         Checkbox,
 
         [Description("MUTLISELECT")]
-        MutliSelect
+        MutliSelect,
+
+        [Description("ImgSelect")]
+        ImgSelect,
+
+        [Description("Date")]
+        DateSelect,
     }
 }

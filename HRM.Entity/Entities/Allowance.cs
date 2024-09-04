@@ -10,7 +10,7 @@ namespace HRM.Entity.Entities
 {
     public class Allowance
     {
-        public string ID { get; set; } = "";
+        public Guid ID { get; set; } = Guid.NewGuid();
         public string Name { get; set; } = "";
         public int Money { get; set; }
         public List<EmployeesWithAllowances> EWA { get; } = new();

@@ -1,0 +1,38 @@
+<form class="form w-100 mx-2" #form="ngForm" (ngSubmit)="Add(form.value)">
+
+  <div class="d-flex flex-column w-100 p-1">
+    <div class="form-containner w-100 d-flex flex-column  "
+      *ngFor="let items of Datas">
+      <div class="tittle-header pb-2 d-flex flex-row gap-2 align-items-center ">
+        <div >
+          <i [className]="items.icon" style="font-size: 20px;" ></i>
+        </div>
+        <div>
+          {{items.label}}
+        </div>
+       
+      </div>
+      <div class="card">
+        <div class="card-body">
+            <div class="form-group row w-100"
+              *ngFor="let detailitems of items.detail_items">
+              <div class="col col-sm-4  d-flex flex-column"
+                *ngFor="let item of detailitems">
+                <div class="header-item compulsory-item">
+                  {{item.label}}
+                </div>
+                <div class="detail-item">
+                  <text-input ngModel name="{{item.name}}" typeInput="text" LanguageClass="form-control"
+                    [Data_input]="item"
+                     />
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+  
+    </div>
+  
+  </div>
+  <button class="btn btn-outline-info mx-auto"> Add </button>
+  </form>

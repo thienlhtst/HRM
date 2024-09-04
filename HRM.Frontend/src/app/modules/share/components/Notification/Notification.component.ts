@@ -6,7 +6,7 @@ import { ToastService } from './toast-service.service';
 import { ToastscontainerComponent} from './toastscontainer/toastscontainer.component';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 @Component({
-  selector: 'app-Notification',
+  selector: 'app-notification',
   standalone:true,
 	imports: [NgbTooltipModule, ToastscontainerComponent],
   templateUrl: './Notification.component.html',
@@ -15,11 +15,11 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 export class NotificationComponent implements OnInit,OnDestroy {
   toastService = inject(ToastService);
   @Input()
-    type:string
+    type:string =''
     @Input() message:string='test'
     public test ='sadasdasdads'
-    @ViewChild("successTpl") public successTpl: TemplateRef<any>;
-    @ViewChild("dangerTpl") public dangerTpl: TemplateRef<any>;
+    @ViewChild("successTpl") public successTpl: TemplateRef<any> | undefined;
+    @ViewChild("dangerTpl") public dangerTpl: TemplateRef<any> | undefined;
 
   constructor() { }
   showStandard(template: TemplateRef<any>) {

@@ -19,6 +19,7 @@ namespace HRM.Entity.Entities
         public Sex Sex { get; set; }
         public string CIC { get; set; } = "";
         public string NumberPhone { get; set; } = "";
+        public string Email { get; set; } = "";
         public string Address { get; set; } = "";
         public string SalaryID { get; set; } = "";
         public string Account { get; set; } = "";

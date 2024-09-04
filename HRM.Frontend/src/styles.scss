@@ -1,7 +1,8 @@
 @import "bootstrap/dist/css/bootstrap.css";
 @import "bootstrap-icons/font/bootstrap-icons.css";
 @import '../node_modules/@syncfusion/ej2-angular-popups/styles/material.css';
-
+@import './scss/shared/button.scss';
+@import './scss/shared/sreach.scss';
 
 
 .loading-spinner{

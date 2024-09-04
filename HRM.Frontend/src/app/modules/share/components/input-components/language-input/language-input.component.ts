@@ -9,7 +9,6 @@ import { SystemService } from 'src/Services/System/System.service';
 @Component({
   selector: 'language-input',
   templateUrl: './language-input.component.html',
-  styleUrls: ['./language-input.component.scss']
 })
 export class LanguageInputComponent implements OnInit {
   @Input() FunctionID: any;

@@ -1,0 +1,18 @@
+.tittle-header{
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgb(19, 19, 233);
+    
+}
+.header-item{
+    font-size: 14px;
+    font-weight: bold;
+    color: #726767;
+}
+
+.compulsory-item::after{
+    content: "*";
+    color: red;
+    margin-left: -0.2rem;
+}

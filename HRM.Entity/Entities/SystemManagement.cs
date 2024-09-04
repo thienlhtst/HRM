@@ -20,7 +20,12 @@ namespace HRM.Entity.Entities
         public KindSystem? KindSystem { get; set; }
         public KindInput? KindInput { get; set; }
 
+        public string? ClassName { get; set; } = null;
+        public string? Pattern { get; set; } = null;
+        public string? PatternName { get; set; } = null;
+        public bool? IsImportant { get; set; }
         public string? Label { get; set; } = null;
+
         public string? Icon { get; set; } = null;
         public string? Values { get; set; } = null;
         public string? Routes { get; set; } = null;

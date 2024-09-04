@@ -1,0 +1,157 @@
+
+<h1 class="text-center"> Information</h1>
+<div class="row">
+    <div class="card" style="width: auto; height: auto; overflow: auto;">
+        <img src="http://localhost:4200/assets/images/user/avatar-2.jpg" class="card-img-top" alt="Avatar">
+        <div class="card-body">
+          <h6 class="card-title">{{data?.firstName+ " " + data?.middleName + " " + data?.lastName}}</h6>
+          <p class="card-text">Full Stack Developer</p>
+
+          <div class="d-flex flex-column" style="width: 200px;">
+            <button type="button" class="btn btn-outline-secondary mb-2" (click)="ButtonClickToInfo()">Information</button>
+            <button type="button" class="btn btn-outline-secondary mb-2" (click)="ButtonClickToContract()" >Contract</button>
+            <button type="button" class="btn btn-outline-secondary mb-2" (click)="ButtonClickToAllowance()" >Allowance</button>
+          </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="flag===1" class="col-lg-10">
+      <div class="card">
+        <div class="card-body">
+                <div class="row mb-3">
+                <div class="col">
+                    <label class="form-label">ID</label>
+                    <input type="text" class="form-control" [value]="data?.id" disabled>
+                </div>
+                <div class="col">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-control" [value]="data?.firstName + ' ' + data?.middleName + ' ' + data?.lastName" disabled>
+                </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col">
+                <label  class="form-label">Birth Day</label>
+                <input type="text" class="form-control" [value]="data?.dob" disabled>
+                </div>
+              <div class="col">
+                <label  class="form-label">Sex</label>
+                <input type="text" class="form-control" [value]="data?.sex" disabled>
+                </div>
+            </div>
+
+
+            <div class="row mb-3">
+              <div class="col">
+                <label  class="form-label">Identity Card</label>
+                <input type="text" class="form-control" [value]="data?.cic" disabled>
+                </div>
+              <div class="col">
+                <label  class="form-label">Phone Number</label>
+                <input type="text" class="form-control" [value]="data?.numberPhone" disabled>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col">
+                <label  class="form-label">Address</label>
+                <input type="text" class="form-control" [value]="data?.address" disabled>
+                </div>
+              <div class="col">
+                <label  class="form-label">Rank</label>
+                <input type="text" class="form-control" [value]="data?.rank" disabled>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+              <div class="col">
+                <label  class="form-label">Position</label>
+                <input type="text" class="form-control" [value]="data?.position" disabled>
+                </div>
+              <div class="col">
+                <label  class="form-label">Account</label>
+                <input type="text" class="form-control" [value]="data?.account" disabled>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+              <div class="col">
+                <label  class="form-label">Password</label>
+                <input type="text" class="form-control" [value]="data?.password" disabled>
+                </div>
+              <div class="col">
+                <label  class="form-label">Active</label>
+                <input type="text" class="form-control" [value]="data?.active" disabled>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div *ngIf="flag===2" class="col-lg-10">
+      <div class="card">
+        <div class="card-body">
+                <div class="row mb-3">
+                <div class="col">
+                    <label class="form-label">ID</label>
+                    <input type="text" class="form-control" [value]="ContractData?.id" disabled>
+                </div>
+                <div class="col">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-control" [value]="ContractData?.employeeID" disabled>
+                </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col">
+                <label  class="form-label">Content</label>
+                <input type="text" class="form-control" [value]="ContractData?.content" disabled>
+                </div>
+              <div class="col">
+                <label  class="form-label">Date</label>
+                <input type="text" class="form-control" [value]="ContractData?.contractSigninDate" disabled>
+                </div>
+            </div>
+
+
+            <div class="row mb-3">
+              <div class="col">
+                <label  class="form-label">Term</label>
+                <input type="text" class="form-control" [value]="ContractData?.contractTerm" disabled>
+                </div>
+              <div class="col">
+                <label  class="form-label">Active</label>
+                <input type="text" class="form-control" [value]="ContractData?.active" disabled>
+                </div>
+            </div>
+
+
+        </div>
+      </div>
+    </div>
+
+
+    <div *ngIf="flag===3" class="col-lg-10">
+      <div class="card">
+        <div class="card-body">
+                <div class="row mb-3">
+                <div class="col">
+                    <label class="form-label">Name</label>
+                      <tr class="text-center align-middle" *ngFor="let item of AllowanceData">
+                        <input type="text" class="form-control" [value]="item.name" disabled>
+                      </tr>
+                </div>
+                <div class="col">
+                    <label class="form-label">Allowance Name</label>
+                    <tr class="text-center align-middle" *ngFor="let item of AllowanceData">
+                      <input type="text" class="form-control" [value]="item.allowances" disabled>
+                    </tr>
+                </div>
+            </div>
+
+
+
+        </div>
+      </div>
+    </div>
+</div>
