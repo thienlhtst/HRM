@@ -55,7 +55,7 @@ namespace HRMApiBackend.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(string id, [FromBody] LabourContractEditRequest request)
+        public async Task<IActionResult> Update(int id, [FromBody] LabourContractEditRequest request)
         {
             request.ID = id;
             var lb = await _labourContractService.Update(request);

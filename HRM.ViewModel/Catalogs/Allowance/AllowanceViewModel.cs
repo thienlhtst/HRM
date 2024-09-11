@@ -8,7 +8,7 @@ namespace HRM.ViewModel.Catalogs.Allowance
 {
     public class AllowanceViewModel
     {
-        public string ID { get; set; } = "";
+        public int ID { get; set; }
         public string Name { get; set; } = "";
         public int Money { get; set; }
     }

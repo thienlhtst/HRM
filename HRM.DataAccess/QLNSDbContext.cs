@@ -28,12 +28,10 @@ namespace HRM.DataAccess
             modelBuilder.ApplyConfiguration(new LabourHourConfiguration());
             modelBuilder.ApplyConfiguration(new PositionConfiguration());
             modelBuilder.ApplyConfiguration(new LevelConfiguration());
-            modelBuilder.ApplyConfiguration(new RewardConfiguration());
             modelBuilder.ApplyConfiguration(new SalaryConfiguration());
             modelBuilder.ApplyConfiguration(new WorkHourConfiguration());
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.ApplyConfiguration(new DescriptionRoleConfiguration());
-            modelBuilder.ApplyConfiguration(new DetailSalaryConfiguration());
             modelBuilder.ApplyConfiguration(new SystemManagementConfigruation());
             modelBuilder.Seed();
             base.OnModelCreating(modelBuilder);
@@ -49,10 +47,8 @@ namespace HRM.DataAccess
         public DbSet<Level> Levels { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<DescriptionRole> DescriptionRoles { get; set; }
-        public DbSet<Rewards> Rewards { get; set; }
         public DbSet<Salary> Salaries { get; set; }
 
-        public DbSet<DetailSalary> DetailsSalary { get; set; }
         public DbSet<EmployeesWithAllowances> EmployeesWithAllowances { get; set; }
         public DbSet<WorkHour> WorkHours { get; set; }
         public DbSet<SystemManagement> SystemManagements { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HRM.Entity.Shared;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace HRM.Entity.Entities
 {
-    public class Role
+    public class Role : LanguageID
     {
-        public string ID { get; set; } = "";
+        public int ID { get; set; }
 
         public string Name { get; set; } = "";
         public ICollection<Level> Level { get; } = new List<Level>();

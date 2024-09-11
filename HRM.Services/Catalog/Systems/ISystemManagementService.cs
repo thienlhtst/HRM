@@ -16,5 +16,7 @@ namespace HRM.Services.Catalog.Systems
         Task<SystemManagement> GetLanguage(language language, string layout);
 
         Task<List<MenuSystems>> GetNavManagement(language language, string FuntionID);
+
+        Task<List<MenuSystems>> GetMenuManagement(language language, string FuntionID);
     }
 }

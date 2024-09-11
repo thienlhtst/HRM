@@ -1,0 +1,9 @@
+<div class="d-flex flex-row align-items-center">
+  <div class="custom-file-upload">
+    <label for="file-upload" class="custom-file-label">Choose a file</label>
+    <input id="file-upload" type="file" (change)="onFileSelected($event)" />
+  </div>
+  <div>
+    {{fileName}}
+  </div>
+</div>

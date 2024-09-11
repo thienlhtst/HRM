@@ -11,9 +11,9 @@ namespace HRM.ViewModel.Catalogs.Salary
 {
     public class SalaryCreateRequest
     {
-        public string ID { get; set; }
-        public string LevelID { get; set; }
-        public string PositionID { get; set; }
+        public int ID { get; set; }
+        public int LevelID { get; set; }
+        public int PositionID { get; set; }
 
         [RegularExpression("^[0-9]+$")]
         public decimal Money { get; set; }

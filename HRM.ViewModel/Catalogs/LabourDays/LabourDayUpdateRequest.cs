@@ -9,7 +9,7 @@ namespace HRM.ViewModel.Catalogs.LabourDays
     public class LabourDayUpdateRequest
     {
         public string ID { get; set; }
-        public string IDLB { get; set; }
+        public int IDLB { get; set; }
         public string Name { get; set; }
         public int Days { get; set; }
         public int Months { get; set; }

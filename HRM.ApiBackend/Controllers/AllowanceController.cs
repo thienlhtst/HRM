@@ -18,7 +18,8 @@ namespace HRMApiBackend.Controllers
         private readonly ILogger<AllowanceController> _logger;
         private readonly IMapper _mapper;
         private readonly HRMDbContext _context;
-        public AllowanceController(IAllowanceService allowanceService, ILogger<AllowanceController> logger,IMapper mapper,HRMDbContext context)
+
+        public AllowanceController(IAllowanceService allowanceService, ILogger<AllowanceController> logger, IMapper mapper, HRMDbContext context)
         {
             _allowanceService = allowanceService;
             _logger = logger;
@@ -44,19 +45,15 @@ namespace HRMApiBackend.Controllers
             return Ok(newAllo);
         }
 
-
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAllowance(string id,[FromBody] AllowanceEditRequest request)
-        { 
+        public async Task<IActionResult> UpdateAllowance(int id, [FromBody] AllowanceEditRequest request)
+        {
             request.ID = id;
             var newAllo = _mapper.Map<Allowance>(request);
             _context.Allowances.Update(newAllo);
             await _context.SaveChangesAsync();
             return Ok(newAllo);
         }
-
-
-
 
         [HttpGet("{AllowanceID}")]
         public async Task<IActionResult> GetByID(string AllowanceID)
@@ -65,8 +62,6 @@ namespace HRMApiBackend.Controllers
             return Ok(allowance);
         }
 
-        
-
         [HttpPost("createallowancerules")]
         public async Task<IActionResult> CreateAllowanceRules([FromBody] List<AllowanceRulesCreateViewModel> request)
         {
@@ -74,15 +69,12 @@ namespace HRMApiBackend.Controllers
             return Ok(allowancerules);
         }
 
-       
-
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProcedure(string id)
         {
             await _allowanceService.DeleteAllowanceAndRulesByProcedure(id);
             return Ok();
         }
-
 
         [HttpGet("paging")]
         public async Task<IActionResult> GetAllPaging([FromQuery] GetAllowancePagingRequest request)
@@ -98,7 +90,6 @@ namespace HRMApiBackend.Controllers
             return Ok(rules);
         }
 
-
         /*
           [HttpGet]
         public async Task<IActionResult> Get()
@@ -106,7 +97,7 @@ namespace HRMApiBackend.Controllers
             var model = await _allowanceService.GetList();
             return Ok(model);
         }
-         
+
           [HttpPost("createallowance")]
        public async Task<IActionResult> Create([FromBody] AllowanceCreateRequest request)
        {
@@ -120,8 +111,6 @@ namespace HRMApiBackend.Controllers
             var allowance = await _allowanceService.Update(request);
             return Ok(allowance);
         }
-
-
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)

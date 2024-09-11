@@ -8,8 +8,8 @@ namespace HRM.ViewModel.Catalogs.AllowanceRules
 {
     public class AllowanceRulesCreateViewModel
     {
-        public string AllowanceID { get; set; } = String.Empty;
-        public string EmployeeID { get; set; } = String.Empty;
+        public int AllowanceID { get; set; }
+        public Guid EmployeeID { get; set; }
 
         public DateTime Date { get; set; }
     }

@@ -9,8 +9,8 @@ namespace HRM.Entity.RelationShips
 {
     public class AllowanceRules
     {
-        public string AllowanceID { get; set; }
-        public string EmployeeID { get; set; }
+        public int AllowanceID { get; set; }
+        public Guid EmployeeID { get; set; }
 
         public DateTime Date { get; set; }
 

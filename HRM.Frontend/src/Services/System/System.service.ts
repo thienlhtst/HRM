@@ -18,4 +18,8 @@ export class SystemService {
     return this.http.get<any>(this.apiurl + '/System/Language?FunctionId='+FunctionID+'&language='+language);
 
   }
+  GetNavLangugeFunction(FunctionID:string,language:any):Observable<any[]>{
+    return this.http.get<any>(this.apiurl + '/System/ChildLanguage?FunctionId='+FunctionID+'&language='+language);
+
+  }
 }

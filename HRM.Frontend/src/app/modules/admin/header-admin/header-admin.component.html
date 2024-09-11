@@ -1,12 +1,20 @@
 <div class="p-1 bg-white border d-flex justify-content-between">
-  <div>
-  <img src="../../../../assets/logo/t2pro-logo.png" alt="" style="height: 50px; width: 200px;" >  
+  <div class="logo_imgae"  style="height: 60px; width: 300px;" >
+  
 </div>
-<div class=" d-flex justify-content-center align-items-center me-4  "style="width: 50px;" >
-  <div (click)="toggleMenu()"  class=" w-100 h-100 " style="cursor: pointer;">
+<div class=" d-flex justify-content-end align-items-center  "style="width: 29%;" >
+ <div class="d-flex justify-content-start align-items-center gap-2">
+  <div >
+    <language-header/>
+  </div>
+  <div >
+    <nofication-header></nofication-header>
+  </div>
+  <div (click)="toggleMenu()"  class="  h-100 " style="cursor: pointer;width: 45px;">
   <div  class="user-select-none  bg-dark d-flex justify-content-center align-items-center w-100 h-100 p-2 " style="color: white; font-size:20px;border-radius: 50px;">
    TT
   </div>
+</div>
 </div>
   <div *ngIf="IsMenuCollapsed" class="child-menu rounded">
     <div class="d-flex justify-content-between align-items-center  p-2 w-100">
@@ -24,18 +32,10 @@
         </div>
       </div>
     </div>
-    <div class=" d-flex justify-content-start flex-column border-top w-100 ">
-        <div class="items-menu">
-          <i class="bi bi-people"></i>
-          <span> Profile </span>
-        </div>
-        <div class="items-menu">
-          <i class="bi bi-gear"></i>
-          <span> Setting  </span>
-        </div>
-        <div class="items-menu">
-          <i class="bi bi-box-arrow-left"></i>
-          <span> LogOut  </span>
+    <div *ngIf="flagAppear" class=" d-flex justify-content-start flex-column border-top w-100 ">
+        <div *ngFor="let item of data_items[0].sysList" class="items-menu">
+          <i class="{{item.icon}}"></i>
+          <span> {{item.label}} </span>
         </div>
     </div>
 

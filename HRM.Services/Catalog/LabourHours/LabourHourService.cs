@@ -25,7 +25,6 @@ namespace HRM.Services.Catalog.LabourHours
 
             LabourHour entity = new LabourHour
             {
-                ID=id.ToString(),
                 Name = request.Name,
                 Factor = request.Factor,
             };
@@ -35,8 +34,8 @@ namespace HRM.Services.Catalog.LabourHours
 
         public async Task<int> Delete(LabourHourDeleteRequest request)
         {
-            var entity = await _context.LabourHours.FirstOrDefaultAsync(x => x.ID ==request.ID);
-            var entity_day = await _context.Days.Where(x => x.IDLB==request.ID).ToListAsync();
+            var entity = await _context.LabourHours.FirstOrDefaultAsync(x => x.ID.ToString() ==request.ID);
+            var entity_day = await _context.Days.Where(x => x.IDLB.ToString()==request.ID).ToListAsync();
             if (entity!=null)
             {
                 _context.LabourHours.Remove(entity);
@@ -48,7 +47,7 @@ namespace HRM.Services.Catalog.LabourHours
 
         public async Task<int> Edit(LabourHourUpdateRequest request)
         {
-            var entity = await _context.LabourHours.FirstOrDefaultAsync(x => x.ID ==request.ID);
+            var entity = await _context.LabourHours.FirstOrDefaultAsync(x => x.ID.ToString() ==request.ID);
             if (entity!=null)
             {
                 entity.Name= request.Name;
@@ -61,7 +60,7 @@ namespace HRM.Services.Catalog.LabourHours
 
         public async Task<LabourHourDetailRequest> GetbyID(string request)
         {
-            var entity = await _context.LabourHours.FirstOrDefaultAsync(x => x.ID ==request);
+            var entity = await _context.LabourHours.FirstOrDefaultAsync(x => x.ID.ToString() ==request);
             if (entity!=null)
             {
                 LabourHourDetailRequest detail_request = new LabourHourDetailRequest
@@ -80,7 +79,7 @@ namespace HRM.Services.Catalog.LabourHours
             var query = await _context.LabourHours.ToListAsync();
             var result = query.Select(x => new GetListLabourHour
             {
-                ID=x.ID,
+                ID=x.ID.ToString(),
                 Name=x.Name,
                 Factor= x.Factor,
                 Days=x.Days

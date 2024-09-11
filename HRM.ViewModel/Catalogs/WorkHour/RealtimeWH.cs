@@ -8,7 +8,7 @@ namespace HRM.ViewModel.Catalogs.WorkHour
 {
     public class RealtimeWH
     {
-        public string EmployeesID { get; set; }
+        public Guid EmployeesID { get; set; }
         public int flag { get; set; }
         public int Day { get; set; }
         public int Month { get; set; }

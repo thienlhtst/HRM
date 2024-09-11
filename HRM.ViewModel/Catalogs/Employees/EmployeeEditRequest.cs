@@ -10,7 +10,7 @@ namespace HRM.ViewModel.Catalogs.Employees
 {
     public class EmployeeEditRequest
     {
-        public string ID { get; set; } = String.Empty;
+        public Guid ID { get; set; }
 
         [Required(ErrorMessage = "First Name is required"), StringLength(50, MinimumLength = 2)]
         [RegularExpression(@"^[A-Z][a-zA-Z""'\s-]*$"), Display(Name = "First Name")]
@@ -37,7 +37,7 @@ namespace HRM.ViewModel.Catalogs.Employees
 
         public string Address { get; set; } = String.Empty;
 
-        public string SalaryID { get; set; } = String.Empty;
+        public int SalaryID { get; set; }
 
         public string Account { get; set; } = String.Empty;
 

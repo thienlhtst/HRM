@@ -22,7 +22,7 @@ namespace HRM.Services.Catalog.Salary
             _context = context;
         }
 
-        public async Task<PagedResult<SalaryViewModel>> GetAllPage(GetSalaryPagingRequest Request)
+        public async Task<PagedResult<SalaryVM>> GetAllPage(GetSalaryPagingRequest Request)
         {
             var query = from p in _context.Salaries
                         join pt in _context.Levels on p.LevelID equals pt.ID
@@ -33,16 +33,16 @@ namespace HRM.Services.Catalog.Salary
                 query = query.Where(x => x.pt.Name.Contains(Request.Keyword) || x.pp.Name.Contains(Request.Keyword));
             }
             int totalRow = await query.CountAsync();
-            var data = await query.OrderBy(x=>Convert.ToInt32(x.p.ID)).Skip((Request.PageIndex - 1) * Request.PageSize)
+            var data = await query.OrderBy(x => Convert.ToInt32(x.p.ID)).Skip((Request.PageIndex - 1) * Request.PageSize)
                 .Take(Request.PageSize)
-                .Select(x => new SalaryViewModel()
+                .Select(x => new SalaryVM()
                 {
                     ID = x.p.ID,
                     LevelID = x.pt.Name,
                     PositionID = x.pp.Name,
                     Money = x.p.Money
                 }).ToListAsync();
-            var pagedView = new PagedResult<SalaryViewModel>()
+            var pagedView = new PagedResult<SalaryVM>()
             {
                 TotalRecords = totalRow,
                 PageIndex = Request.PageIndex,

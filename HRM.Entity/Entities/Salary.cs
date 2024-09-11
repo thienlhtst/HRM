@@ -1,12 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using HRM.Entity.Shared;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HRM.Entity.Entities
 {
     public class Salary
     {
-        public string ID { get; set; } = "";
-        public string LevelID { get; set; } = "";
-        public string PositionID { get; set; } = "";
+        public int ID { get; set; }
+        public int LevelID { get; set; }
+        public int PositionID { get; set; }
         public Level Level { get; set; } = null!;
         public Position Position { get; set; } = null!;
 
@@ -14,7 +15,5 @@ namespace HRM.Entity.Entities
         public decimal Money { get; set; }
 
         public List<Employees> Employees { get; } = new();
-
-        public List<DetailSalary> DetailSalary { get; } = new();
     }
 }

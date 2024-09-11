@@ -35,6 +35,8 @@ export class TextInputComponent implements OnInit, ControlValueAccessor {
         return 'checkbox';
       case 5:
         return 'mutliselect';
+      case 7:
+        return 'date';
       default:
         return 'text';
     }
@@ -61,6 +63,7 @@ export class TextInputComponent implements OnInit, ControlValueAccessor {
       this.placeholer = this.Data_input.description;
       this.typeInput = this.GetTypeInput(this.Data_input.kindInput);
       this.pattern = this.Data_input.pattern;
+      this.namepattern = this.Data_input.patternName;
       this.name = this.Data_input.name;
     }
   }
@@ -68,6 +71,7 @@ export class TextInputComponent implements OnInit, ControlValueAccessor {
   private innerValue: any = '';
   pattern: any = '';
   name:any=''
+  namepattern: any = '';
   // Các hàm dùng cho ControlValueAccessor
   onChange: (value: any) => void = () => {};
   onTouched: () => void = () => {};

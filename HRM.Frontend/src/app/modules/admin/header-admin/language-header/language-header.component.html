@@ -1,0 +1,24 @@
+<div class="language-header d-flex  justify-content-center align-items-center">
+  <div  #myDiv class="language-bg rounded-circle d-flex justify-content-center align-items-center " (click)="toggleMenu()">
+    <i class="{{selectedLanguage.icon}}"></i>
+  </div>
+</div>
+<div #myDiv *ngIf="IsMenuCollapsed"   style="z-index: 100;" class="dropdown-language border rounded shadow-sm p-2 d-flex align-items-center justify-content-start ">
+  <div class="d-flex flex-column align-items-start gap-1 w-100" >
+    <ng-template *ngIf="selectedLanguage.id=='1'"  ngFor let-item [ngForOf]="lanchangevn">
+      <div class="item-langugage d-flex align-items-center gap-1  p-1" (click)="changeLanguage(item)">
+        <i class="{{item.icon}}"></i>
+        <span> {{item.name}}</span>
+      </div>
+   </ng-template>
+   <ng-template *ngIf="selectedLanguage.id=='0'"  ngFor let-item [ngForOf]="lanchangeus">
+    <div class="item-langugage d-flex align-items-center gap-1  p-1" (click)="changeLanguage(item)">
+      <i class="{{item.icon}}"></i>
+      <span> {{item.name}}</span>
+    </div>
+ </ng-template>
+
+
+  </div>
+  
+</div>

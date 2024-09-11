@@ -11,6 +11,9 @@ import { LanguageInputComponent } from './components/input-components/language-i
 import { TextInputComponent } from './components/input-components/text-input/text-input.component';
 import { SpinnerAlphaComponent } from './components/spinner-alpha/spinner-alpha.component';
 import { CreateComponent } from './components/create/create.component';
+import { SelectInputComponent } from './components/input-components/select-input/select-input.component';
+import { FileInputComponent } from './components/input-components/file-input/file-input.component';
+import { DropDownButtonModule } from '@syncfusion/ej2-angular-splitbuttons'; // Import DropDownButtonModule from the correct package
 
 @NgModule({
   imports: [
@@ -20,10 +23,11 @@ import { CreateComponent } from './components/create/create.component';
     NgbDropdownModule,
     NgbNavModule,
     NgbModule,
+    DropDownButtonModule,
     NgbCollapseModule,
   ],providers: [provideHttpClient()],
-  declarations: [CreateComponent,SpinnerAlphaComponent,SpinnerComponent, SearchInputComponent, AvtComponent,LanguageInputComponent,TextInputComponent],
+  declarations: [FileInputComponent,SelectInputComponent,CreateComponent,SpinnerAlphaComponent,SpinnerComponent, SearchInputComponent, AvtComponent,LanguageInputComponent,TextInputComponent],
 
-  exports: [SpinnerAlphaComponent,LanguageInputComponent,TextInputComponent,CreateComponent]
+  exports: [DropDownButtonModule,FileInputComponent,SelectInputComponent,SpinnerAlphaComponent,LanguageInputComponent,TextInputComponent,CreateComponent]
 })
 export class ShareModule { }

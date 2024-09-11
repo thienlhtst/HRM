@@ -1,4 +1,6 @@
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
+import { ItemModel } from '@syncfusion/ej2-angular-splitbuttons';
+import { SystemService } from 'src/Services/System/System.service';
 
 @Component({
   selector: 'header-admin',
@@ -7,22 +9,38 @@ import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 })
 export class HeaderAdminComponent implements OnInit {
   IsMenuCollapsed = false;
-  data_items: any = [];
+  data_items: any = {};
+  flagAppear:boolean =false
 
-  constructor(private elementRef: ElementRef) { }
+
+
+
+
+  constructor(private elementRef: ElementRef, private _systemService: SystemService,) { }
 
   ngOnInit() {
-    this.data_items = [
-      {
-        Functionid:1,
-        icon: 'bi bi-people',
-        name: 'Trang chủ',
-      }
-    ]
+    let lan = localStorage.getItem("language")
+    if (lan == null) {
+      lan = '0'
+    }
+    
+    this._systemService.GetNavLangugeFunction('HA000000', lan).subscribe((res) => {
+     this.data_items = res;
+     
+     this.flagAppear =true
+    });
+    
   }
+
+
+
+
   toggleMenu() {
     this.IsMenuCollapsed = !this.IsMenuCollapsed;
   }
+
+
+
   @HostListener('document:mousedown', ['$event'])
   onGlobalClick(event: { target: any; }): void {
 

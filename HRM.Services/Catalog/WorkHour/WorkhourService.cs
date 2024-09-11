@@ -68,7 +68,7 @@ namespace HRM.Services.Catalog.WorkHour
                 x.Days == checkin.Day
                 );
                 if (LB == null)
-                    checkin.LBDID = "1";
+                    checkin.LBDID = 1;
                 else
                     checkin.LBDID = LB.IDLB;
 
@@ -222,7 +222,7 @@ namespace HRM.Services.Catalog.WorkHour
                 .Take(request.PageSize)
                 .Select(x => new WorkhourVMHome()
                 {
-                    Employee = x.pt.ID,
+                    Employee = x.pt.ID.ToString(),
                     Name = x.pt.FirstName + " " + x.pt.MiddleName + " " + x.pt.LastName,
                     HourCheckin = x.p.HourCheckin,
                     MinuteCheckin = x.p.MinuteCheckin,
@@ -288,7 +288,7 @@ namespace HRM.Services.Catalog.WorkHour
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<List<WorkHourofEmployeeViewModel>> GetByEmployeeId(string id)
+        public async Task<List<WorkHourofEmployeeViewModel>> GetByEmployeeId(Guid id)
         {
             var query = from wh in _context.WorkHours
                         join emp in _context.Employee on wh.EmployeesID equals emp.ID

@@ -8,21 +8,22 @@ using System.Threading.Tasks;
 
 namespace HRM.Entity.RelationShips
 {
-	public class WorkHour
-	{
-		[Key]
-		[Required]
-		public int ID { get; set; }
-		public string EmployeesID { get; set; }
-		public string LBDID { get; set; }
-		public Employees Employess { get; set; } = null!;
-		public LabourHour Labour { get; set; } = null!;
-		public int Day { get; set; }
-		public int Month { get; set; }
-		public int Year { get; set; }
-		public int HourCheckin { get; set; }
-		public int MinuteCheckin { get; set;}
-		public int HourCheckout { get; set; }
-		public int MinuteCheckout { get; set;}
-	}
+    public class WorkHour
+    {
+        [Key]
+        [Required]
+        public int ID { get; set; }
+
+        public Guid EmployeesID { get; set; }
+        public int LBDID { get; set; }
+        public Employees Employess { get; set; } = null!;
+        public LabourHour Labour { get; set; } = null!;
+        public int Day { get; set; }
+        public int Month { get; set; }
+        public int Year { get; set; }
+        public int HourCheckin { get; set; }
+        public int MinuteCheckin { get; set; }
+        public int HourCheckout { get; set; }
+        public int MinuteCheckout { get; set; }
+    }
 }

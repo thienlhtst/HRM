@@ -1,4 +1,5 @@
 ﻿using HRM.Entity.RelationShips;
+using HRM.Entity.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace HRM.Entity.Entities
 {
-    public class Allowance
+    public class Allowance : LanguageID
     {
-        public Guid ID { get; set; } = Guid.NewGuid();
+        public int ID { get; set; }
         public string Name { get; set; } = "";
         public int Money { get; set; }
         public List<EmployeesWithAllowances> EWA { get; } = new();

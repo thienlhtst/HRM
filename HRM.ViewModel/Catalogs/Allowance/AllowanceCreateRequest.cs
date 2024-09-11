@@ -9,7 +9,7 @@ namespace HRM.ViewModel.Catalogs.Allowance
 {
     public class AllowanceCreateRequest
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
 
         [Required(ErrorMessage = "Name is required"), StringLength(50, MinimumLength = 2)]
         [RegularExpression(@"^[A-Z][a-zA-Z""'\s-]*$"), Display(Name = "Name")]

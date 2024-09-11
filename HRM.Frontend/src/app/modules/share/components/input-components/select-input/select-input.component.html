@@ -1,0 +1,5 @@
+<select [(ngModel)]="model" (ngModelChange)="onModelChange($event)" (blur)="onTouched()"  class="form-control">
+  <option *ngFor="let option of options" [value]="option.id">
+    {{ option.name }}
+  </option>
+</select>

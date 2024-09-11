@@ -1,4 +1,5 @@
-﻿using HRM.Entity.Entities;
+﻿using HelpMate.Core.Extensions;
+using HRM.Entity.Entities;
 using HRM.Entity.Enums;
 using HRM.Entity.RelationShips;
 using Microsoft.EntityFrameworkCore;
@@ -12,57 +13,57 @@ namespace HRM.DataAccess.Extenstions
         public static void Seed(this ModelBuilder modelbuilder)
         {
             modelbuilder.Entity<Allowance>().HasData(
-                new Allowance() { ID = Guid.NewGuid(), Name = "Tiền ăn", Money = 30000 },
-                new Allowance() { ID = Guid.NewGuid(), Name = "Tiền xăng", Money = 20000 }
+                new Allowance() { ID =1, Name = "Tiền ăn", Money = 30000 },
+                new Allowance() { ID =2, Name = "Tiền xăng", Money = 20000 }
                 );
             modelbuilder.Entity<Employees>().HasData(
-                new Employees() { ID = "1", FirstName = "Nguyen", MiddleName = "Jonny", LastName = "Dang", Email="hrmemail@gmail.com", DOB = new DateTime(2004, 05, 01), Sex = Sex.Male, CIC = "000001", NumberPhone = "111", Address = "Texas", SalaryID = "1", Account = "admin", Password = "123456", Active = Active.Yes, URLImage = "" },
-                new Employees() { ID = "2", FirstName = "Nguyen", MiddleName = "Khoa", LastName = "Pug", Email="hrmemail1@gmail.com", DOB = new DateTime(2002, 09, 10), Sex = Sex.Male, CIC = "000002", NumberPhone = "222", Address = "New York", SalaryID = "2", Account = "admin1", Password = "admin", Active = Active.Yes, URLImage = "" },
-                new Employees() { ID = "3", FirstName = "Nguyen", MiddleName = "Tri", LastName = "Thanh", Email="hrmemail2@gmail.com", DOB = new DateTime(2002, 03, 04), Sex = Sex.Male, CIC = "000003", NumberPhone = "222", Address = "Thailand", SalaryID = "2", Account = "admin2", Password = "admin", Active = Active.Yes, URLImage = "" },
-                new Employees() { ID = "4", FirstName = "Tran", MiddleName = "Minh", LastName = "Thien", Email="hrmemail4@gmail.com", DOB = new DateTime(2002, 05, 10), Sex = Sex.Female, CIC = "000004", NumberPhone = "2211232", Address = "New York", SalaryID = "2", Account = "admin4", Password = "admin", Active = Active.Yes, URLImage = "" },
-                new Employees() { ID = "5", FirstName = "Bui", MiddleName = "Manh", LastName = "Tgabg", Email="hrmemail5@gmail.com", DOB = new DateTime(2002, 07, 10), Sex = Sex.Female, CIC = "000005", NumberPhone = "212322", Address = "Dubai", SalaryID = "2", Account = "admin5", Password = "admin", Active = Active.Yes, URLImage = "" }
+                new Employees() { ID = Guid.Parse("1d03f37f-92a4-44d9-9e98-e7302fd15a99"), FirstName = "Nguyen", MiddleName = "Jonny", LastName = "Dang", Email="hrmemail@gmail.com", DOB = new DateTime(2004, 05, 01), Sex = Sex.Male, CIC = "000001", NumberPhone = "111", Address = "Texas", SalaryID = 1, Account = "admin", Password = "123456", Active = Active.Yes, URLImage = "" },
+                new Employees() { ID = "0e29fbf4-0a48-452a-9482-7f7720695efc".ToGuid(), FirstName = "Nguyen", MiddleName = "Khoa", LastName = "Pug", Email="hrmemail1@gmail.com", DOB = new DateTime(2002, 09, 10), Sex = Sex.Male, CIC = "000002", NumberPhone = "222", Address = "New York", SalaryID = 2, Account = "admin1", Password = "admin", Active = Active.Yes, URLImage = "" },
+                new Employees() { ID = "5dce0a0f-387d-4c77-87bc-989e5d9af48c".ToGuid(), FirstName = "Nguyen", MiddleName = "Tri", LastName = "Thanh", Email="hrmemail2@gmail.com", DOB = new DateTime(2002, 03, 04), Sex = Sex.Male, CIC = "000003", NumberPhone = "222", Address = "Thailand", SalaryID = 4, Account = "admin2", Password = "admin", Active = Active.Yes, URLImage = "" },
+                new Employees() { ID = "e9a7af53-8973-418a-ab30-0147ab4d937b".ToGuid(), FirstName = "Tran", MiddleName = "Minh", LastName = "Thien", Email="hrmemail4@gmail.com", DOB = new DateTime(2002, 05, 10), Sex = Sex.Female, CIC = "000004", NumberPhone = "2211232", Address = "New York", SalaryID = 5, Account = "admin4", Password = "admin", Active = Active.Yes, URLImage = "" },
+                new Employees() { ID = "860469dc-0e6a-4bc9-bfce-c520b9d3ab73".ToGuid(), FirstName = "Bui", MiddleName = "Manh", LastName = "Tgabg", Email="hrmemail5@gmail.com", DOB = new DateTime(2002, 07, 10), Sex = Sex.Female, CIC = "000005", NumberPhone = "212322", Address = "Dubai", SalaryID = 6, Account = "admin5", Password = "admin", Active = Active.Yes, URLImage = "" }
                 );
             modelbuilder.Entity<Role>().HasData(
-                new Role() { ID = "1", Name = "Employee" },
-                 new Role() { ID = "2", Name = "Admin" }
+                new Role() { ID = 1, Name = "Employee" },
+                 new Role() { ID = 2, Name = "Admin" }
                 );
 
             modelbuilder.Entity<Position>().HasData(
-                new Position() { ID = "1", Name = "IT" },
-                new Position() { ID = "2", Name = "Kế toán" },
-                new Position() { ID = "3", Name = "Marketing" }
+                new Position() { ID = 1, Name = "IT" },
+                new Position() { ID = 2, Name = "Kế toán" },
+                new Position() { ID = 3, Name = "Marketing" }
                 );
             modelbuilder.Entity<Level>().HasData(
-                new Level() { ID = "1", Name = "Nhân viên", RoleID = "1" },
-                new Level() { ID = "2", Name = "Trưởng phòng", RoleID = "2" },
-                new Level() { ID = "3", Name = "Phó phòng", RoleID = "2" },
-                new Level() { ID = "4", Name = "Tổ trưởng", RoleID = "1" }
+                new Level() { ID = 1, Name = "Nhân viên", RoleID = 1 },
+                new Level() { ID =  2, Name = "Trưởng phòng", RoleID = 2 },
+                new Level() { ID = 3, Name = "Phó phòng", RoleID = 2 },
+                new Level() { ID = 4, Name = "Tổ trưởng", RoleID = 1 }
                 );
             modelbuilder.Entity<Salary>().HasData(
-                new Salary() { ID = "1", PositionID = "1", LevelID = "1", Money = 80000 },
-                new Salary() { ID = "2", PositionID = "1", LevelID = "2", Money = 100000 },
-                new Salary() { ID = "3", PositionID = "1", LevelID = "3", Money = 70000 },
-                new Salary() { ID = "4", PositionID = "1", LevelID = "4", Money = 75000 },
-                new Salary() { ID = "5", PositionID = "2", LevelID = "1", Money = 50000 },
-                new Salary() { ID = "6", PositionID = "2", LevelID = "2", Money = 110000 },
-                new Salary() { ID = "7", PositionID = "2", LevelID = "3", Money = 80000 },
-                new Salary() { ID = "8", PositionID = "2", LevelID = "4", Money = 70000 },
-                new Salary() { ID = "9", PositionID = "3", LevelID = "1", Money = 60000 },
-                new Salary() { ID = "10", PositionID = "3", LevelID = "2", Money = 100000 },
-                new Salary() { ID = "11", PositionID = "3", LevelID = "3", Money = 95000 },
-                new Salary() { ID = "12", PositionID = "3", LevelID = "4", Money = 70000 }
+                new Salary() { ID = 1, PositionID = 1, LevelID = 1, Money = 80000 },
+                new Salary() { ID = 2, PositionID =1, LevelID = 2, Money = 100000 },
+                new Salary() { ID = 3, PositionID = 3, LevelID = 3, Money = 70000 },
+                new Salary() { ID = 4, PositionID = 1, LevelID = 4, Money = 75000 },
+                new Salary() { ID = 5, PositionID = 2, LevelID = 1, Money = 50000 },
+                new Salary() { ID =6, PositionID = 2, LevelID = 2, Money = 110000 },
+                new Salary() { ID = 7, PositionID = 2, LevelID = 3, Money = 80000 },
+                new Salary() { ID =8, PositionID = 2, LevelID = 4, Money = 70000 },
+                new Salary() { ID = 9, PositionID = 3, LevelID = 1, Money = 60000 },
+                new Salary() { ID = 10, PositionID = 3, LevelID = 2, Money = 100000 },
+                new Salary() { ID = 11, PositionID = 3, LevelID = 3, Money = 95000 },
+                new Salary() { ID = 12, PositionID = 3, LevelID = 4, Money = 70000 }
                 );
             modelbuilder.Entity<Day>().HasData(
-                new Day() { ID = "1", IDLB = "3", Name = "30/4", Days = 30, Months = 4 },
-                new Day() { ID = "2", IDLB = "3", Name = "1/5", Days = 1, Months = 5 },
-                new Day() { ID = "3", IDLB = "2", Name = "20/11", Days = 20, Months = 11 },
-                new Day() { ID = "4", IDLB = "3", Name = "2/9", Days = 2, Months = 9 },
-                new Day() { ID = "5", IDLB = "3", Name = "1/1", Days = 1, Months = 1 }
+                new Day() { ID = 1, IDLB = 3, Name = "30/4", Days = 30, Months = 4 },
+                new Day() { ID = 2, IDLB = 3, Name = "1/5", Days = 1, Months = 5 },
+                new Day() { ID = 3, IDLB = 2, Name = "20/11", Days = 20, Months = 11 },
+                new Day() { ID = 4, IDLB = 3, Name = "2/9", Days = 2, Months = 9 },
+                new Day() { ID = 5, IDLB = 3, Name = "1/1", Days = 1, Months = 1 }
                 );
             modelbuilder.Entity<LabourHour>().HasData(
-                new LabourHour() { ID = "1", Name = "Ngày Thường", Factor = 1 },
-                new LabourHour() { ID = "2", Name = "Ngày Lễ Nhỏ", Factor = 2 },
-                new LabourHour() { ID = "3", Name = "Ngày Lễ ", Factor = 4 }
+                new LabourHour() { ID = 1, Name = "Ngày Thường", Factor = 1 },
+                new LabourHour() { ID = 2, Name = "Ngày Lễ Nhỏ", Factor = 2 },
+                new LabourHour() { ID = 3, Name = "Ngày Lễ ", Factor = 4 }
 
                 );
 
@@ -129,7 +130,7 @@ namespace HRM.DataAccess.Extenstions
                    new SystemManagement() { ID=50, FunctionID="CE000105", ParentID="CE000001", KindSystem=KindSystem.Input, KindInput=KindInput.Select, Language=language.vn, Layout="create-employee", Icon=null, Values=null, Description="Nhập: Giới tính", Name="sex", Label="Giới tính", Routes =null, ClassName=null, Pattern=null, PatternName="Sai Định dạng", IsImportant=true, },
                    new SystemManagement() { ID=51, FunctionID="CE000106", ParentID="CE000001", KindSystem=KindSystem.Input, KindInput=KindInput.Text, Language=language.vn, Layout="create-employee", Icon=null, Values=null, Description="Nhập: Căn cước công dân", Name="cic", Label="Căn cước công dân", Routes =null, ClassName=null, Pattern=null, PatternName="Sai Định dạng", IsImportant=true, },
                    new SystemManagement() { ID=52, FunctionID="CE000107", ParentID="CE000001", KindSystem=KindSystem.Input, KindInput=KindInput.Text, Language=language.vn, Layout="create-employee", Icon=null, Values=null, Description="Nhập: Số điện thoại", Name="numberPhone", Label="Số điện thoại", Routes =null, ClassName=null, Pattern="[0-9]+", PatternName="Sai Định dạng", IsImportant=true, },
-                   new SystemManagement() { ID=53, FunctionID="CE000108", ParentID="CE000001", KindSystem=KindSystem.Input, KindInput=KindInput.Email, Language=language.en, Layout="create-employee", Icon=null, Values=null, Description="Nhập: Email", Name="email", Label="Email", Routes =null, ClassName=null, Pattern="", PatternName="Email sai định dạng", IsImportant=true, },
+                   new SystemManagement() { ID=53, FunctionID="CE000108", ParentID="CE000001", KindSystem=KindSystem.Input, KindInput=KindInput.Email, Language=language.vn, Layout="create-employee", Icon=null, Values=null, Description="Nhập: Email", Name="email", Label="Email", Routes =null, ClassName=null, Pattern="", PatternName="Email sai định dạng", IsImportant=true, },
                    new SystemManagement() { ID=54, FunctionID="CE000201", ParentID="CE000002", KindSystem=KindSystem.Input, KindInput=KindInput.Select, Language=language.vn, Layout="create-employee", Icon=null, Values=null, Description="Nhập: Vị trí", Name="position", Label="Vị trí", Routes =null, ClassName=null, Pattern=null, PatternName="Sai Định dạng", IsImportant=true, },
                    new SystemManagement() { ID=55, FunctionID="CE000202", ParentID="CE000002", KindSystem=KindSystem.Input, KindInput=KindInput.Select, Language=language.vn, Layout="create-employee", Icon=null, Values=null, Description="Nhập: Chức vụ", Name="level", Label="Chức vụ", Routes =null, ClassName=null, Pattern=null, PatternName="Sai Định dạng", IsImportant=true, },
                    new SystemManagement() { ID=56, FunctionID="CE000203", ParentID="CE000002", KindSystem=KindSystem.Input, KindInput=KindInput.Text, Language=language.vn, Layout="create-employee", Icon=null, Values=null, Description="Nhập: Lương", Name="money", Label="Lương", Routes =null, ClassName=null, Pattern="[0-9]+", PatternName="Sai Định dạng", IsImportant=true, },

@@ -80,7 +80,7 @@ namespace HRM.Services.Catalog.EmployeesWithAllowances
                         select new { p, pt, px };
             if (!string.IsNullOrEmpty(request.Keyword))
             {
-                query = query.Where(x => x.p.EmployeeID.Contains(request.Keyword));
+                query = query.Where(x => x.p.EmployeeID.ToString().Contains(request.Keyword));
             }
             var totalRow = await query.CountAsync();
             var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
@@ -120,7 +120,7 @@ namespace HRM.Services.Catalog.EmployeesWithAllowances
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<PagedResult<EmployeesWithAllowancesViewModel>> GetAllPage(GetEmployeesWithAllowancesPagingRequest request)
+        public async Task<PagedResult<EmployeesWithAllowancesVM>> GetAllPage(GetEmployeesWithAllowancesPagingRequest request)
         {
             var query = from p in _context.EmployeesWithAllowances
                         join pt in _context.Employee on p.EmployeeID equals pt.ID
@@ -129,19 +129,19 @@ namespace HRM.Services.Catalog.EmployeesWithAllowances
                         ;
             if (!string.IsNullOrEmpty(request.Keyword))
             {
-                query = query.Where(x => x.p.EmployeeID.Contains(request.Keyword) || (x.pt.FirstName + x.pt.MiddleName + x.pt.LastName).Contains(request.Keyword));
+                query = query.Where(x => x.p.EmployeeID.ToString().Contains(request.Keyword) || (x.pt.FirstName + x.pt.MiddleName + x.pt.LastName).Contains(request.Keyword));
             }
             var totalRow = await query.CountAsync();
             var data = await query.OrderBy(x => Convert.ToInt32(x.p.ID)).Skip((request.PageIndex - 1) * request.PageSize)
                 .Take(request.PageSize)
-                .Select(x => new EmployeesWithAllowancesViewModel()
+                .Select(x => new EmployeesWithAllowancesVM()
                 {
                     ID = x.p.ID,
-                    EmployeeID = x.pt.LastName,
-                    AllowanceID = x.px.Name,
+                    Employee = x.pt.LastName,
+                    Allowance = x.px.Name,
                     Date = x.p.Date
                 }).ToListAsync();
-            var pagedView = new PagedResult<EmployeesWithAllowancesViewModel>()
+            var pagedView = new PagedResult<EmployeesWithAllowancesVM>()
             {
                 TotalRecords = totalRow,
                 PageIndex = request.PageIndex,

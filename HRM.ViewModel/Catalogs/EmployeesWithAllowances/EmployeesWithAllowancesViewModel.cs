@@ -9,8 +9,17 @@ namespace HRM.ViewModel.Catalogs.EmployeesWithAllowances
     public class EmployeesWithAllowancesViewModel
     {
         public int ID { get; set; }
-        public string EmployeeID { get; set; } = String.Empty;
-        public string AllowanceID { get; set; } = String.Empty;
+        public Guid EmployeeID { get; set; }
+        public int AllowanceID { get; set; }
+
+        public DateTime Date { get; set; }
+    }
+
+    public class EmployeesWithAllowancesVM
+    {
+        public int ID { get; set; }
+        public string Employee { get; set; }
+        public string Allowance { get; set; }
 
         public DateTime Date { get; set; }
     }

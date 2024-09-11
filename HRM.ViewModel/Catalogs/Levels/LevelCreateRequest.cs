@@ -11,11 +11,10 @@ namespace HRM.ViewModel.Catalogs.Levels
 {
     public class LevelCreateRequest
     {
-        public string ID { get; set; }
-        public string RoleID { get; set; }
+        public int ID { get; set; }
+        public int RoleID { get; set; }
 
         [Required(ErrorMessage = "Name is required"), StringLength(50, MinimumLength = 2)]
-     
         public string Name { get; set; }
     }
 }

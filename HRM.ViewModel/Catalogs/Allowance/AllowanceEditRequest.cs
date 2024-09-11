@@ -9,7 +9,7 @@ namespace HRM.ViewModel.Catalogs.Allowance
 {
     public class AllowanceEditRequest
     {
-        public string ID { get; set; } = "";
+        public int ID { get; set; }
 
         [RegularExpression(@"^[A-Z][a-zA-Z""'\s-]*$"), Display(Name = "Name")]
         public string Name { get; set; } = "";

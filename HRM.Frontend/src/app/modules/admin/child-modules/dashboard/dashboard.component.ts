@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemModel } from '@syncfusion/ej2-angular-splitbuttons';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,6 +19,7 @@ export class DashboardComponent implements OnInit {
     column:'Name'
   }
 ]
+
   listofdata : any[] =[
     {
       ID:1,

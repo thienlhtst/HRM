@@ -94,26 +94,26 @@ namespace HRMApiBackend.BackendApi
             //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             //services.AddAutoMapper(typeof(AllowanceMapper).Assembly);
             //masstransit
-            services.AddMassTransit(conf =>
-            {
-                // conf.AddRequestClient<CustomerP>();
-                conf.SetKebabCaseEndpointNameFormatter();
-                conf.SetInMemorySagaRepositoryProvider();
-                var asb = typeof(Program).Assembly;
-                conf.AddConsumers(asb);
-                conf.AddSagaStateMachines(asb);
-                conf.AddSagas(asb);
-                conf.AddActivities(asb);
-                conf.UsingRabbitMq((ctx, cfg) =>
-                {
-                    cfg.Host("localhost", "/", h =>
-                    {
-                        h.Username("guest");
-                        h.Password("guest");
-                    });
-                    cfg.ConfigureEndpoints(ctx);
-                });
-            });
+            /*  services.AddMassTransit(conf =>
+              {
+                  // conf.AddRequestClient<CustomerP>();
+                  conf.SetKebabCaseEndpointNameFormatter();
+                  conf.SetInMemorySagaRepositoryProvider();
+                  var asb = typeof(Program).Assembly;
+                  conf.AddConsumers(asb);
+                  conf.AddSagaStateMachines(asb);
+                  conf.AddSagas(asb);
+                  conf.AddActivities(asb);
+                  conf.UsingRabbitMq((ctx, cfg) =>
+                  {
+                      cfg.Host("localhost", "/", h =>
+                      {
+                          h.Username("guest");
+                          h.Password("guest");
+                      });
+                      cfg.ConfigureEndpoints(ctx);
+                  });
+              });*/
             //masstransit
             services.AddSwaggerGen(options =>
             {

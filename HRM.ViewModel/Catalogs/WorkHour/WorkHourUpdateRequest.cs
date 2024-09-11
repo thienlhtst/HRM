@@ -10,9 +10,9 @@ namespace HRM.ViewModel.Catalogs.WorkHour
     public class WorkHourUpdateRequest
     {
         public int ID { get; set; }
-        public string EmployeesID { get; set; }
+        public Guid EmployeesID { get; set; }
         public string EmployeesName { get; set; }
-        public string LBDID { get; set; }
+        public int LBDID { get; set; }
         public string namelb { get; set; }
         public int Day { get; set; }
         public int Month { get; set; }

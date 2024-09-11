@@ -49,7 +49,7 @@ namespace HRMApiBackend.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(string id, [FromBody] LevelEditRequest request)
+        public async Task<IActionResult> Update(int id, [FromBody] LevelEditRequest request)
         {
             request.ID = id;
             var level = _mapper.Map<Level>(request);

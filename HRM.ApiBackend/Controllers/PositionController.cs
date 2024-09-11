@@ -42,7 +42,7 @@ namespace HRM.BackendApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(string id, [FromBody] PositionUpdateRequest request)
+        public async Task<IActionResult> Update(int id, [FromBody] PositionUpdateRequest request)
         {
             request.ID = id;
             var newPosi = _mapper.Map<Position>(request);

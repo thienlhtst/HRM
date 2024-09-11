@@ -29,5 +29,19 @@ namespace HRMApiBackend.Controllers
             var result = await _systemManagementService.GetLanguage(language, FunctionId);
             return Ok(result);
         }
+
+        [HttpGet("ChildLanguage")]
+        public async Task<IActionResult> GetChildLanguage([FromQuery] string FunctionId, [FromQuery] language language)
+        {
+            var result = await _systemManagementService.GetNavManagement(language, FunctionId);
+            return Ok(result);
+        }
+
+        [HttpGet("MenuLanguage")]
+        public async Task<IActionResult> GetMenuLanguage([FromQuery] string FunctionId, [FromQuery] language language)
+        {
+            var result = await _systemManagementService.GetMenuManagement(language, FunctionId);
+            return Ok(result);
+        }
     }
 }

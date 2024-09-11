@@ -4,6 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home.component';
 import { NavAdminComponent } from './nav-admin/nav-admin.component';
 import { HeaderAdminComponent } from './header-admin/header-admin.component';
+import { ShareModule } from "../share/share.module";
+import { NoficationHeaderComponent } from './header-admin/nofication-header/nofication-header.component';
+import { LanguageHeaderComponent } from './header-admin/language-header/language-header.component';
 
 const routes: Routes = [
   {
@@ -30,10 +33,9 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
-
-
-  ],
-  declarations: [HomeComponent, NavAdminComponent, HeaderAdminComponent]
+    RouterModule.forChild(routes),
+    ShareModule
+],
+  declarations: [LanguageHeaderComponent,NoficationHeaderComponent,HomeComponent, NavAdminComponent, HeaderAdminComponent]
 })
 export class AdminModule { }

@@ -8,10 +8,12 @@ import { Component, Input, input, OnInit } from '@angular/core';
 export class CreateComponent implements OnInit {
   @Input() Datas: any[] = [
     {
-      FunctionID: 1,
-      label: 'Basic Information',
-      icon: 'bi bi-person-square',
-      detail_items: [
+      sys:{
+        FunctionID: 1,
+        label: 'Basic Information',
+        icon: 'bi bi-person-square',
+      },
+      sysList: [
         {
           FunctionID: 1,
           label: 'Thông tin cơ bản',
@@ -47,9 +49,12 @@ export class CreateComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.Datas)
     this.Datas.forEach((element) => {
-      const data = this.separateData(element.detail_items)
-      element.detail_items = data
+      const data = this.separateData(element.sysList)
+      
+
+      element.sysList = data
     })
   }
   separateData(array: any[]): any[][] {

@@ -34,8 +34,6 @@ namespace HRM.Services.Catalog.Allowance
             _context.Allowances.Add(allowance);
             await _context.SaveChangesAsync();
             return Convert.ToInt32(allowance.ID);
-
-
         }
 
         public async Task<int> CreateAllowanceRules(List<AllowanceRulesCreateViewModel> request)
@@ -69,7 +67,7 @@ namespace HRM.Services.Catalog.Allowance
             var query = from p in _context.Allowances select new { p };
             if (!string.IsNullOrEmpty(request.Keyword))
             {
-                query = query.Where(x => x.p.ID.Contains(request.Keyword) || x.p.Name.Contains(request.Keyword));
+                query = query.Where(x => x.p.ID.ToString().Contains(request.Keyword) || x.p.Name.Contains(request.Keyword));
             }
             int totalRow = await query.CountAsync();
             var data = await query.OrderBy(x => Convert.ToInt32(x.p.ID)).Skip((request.PageIndex - 1) * request.PageSize)
@@ -142,6 +140,5 @@ namespace HRM.Services.Catalog.Allowance
             _context.Allowances.Update(allowance);
             return await _context.SaveChangesAsync();
         }
-
     }
 }

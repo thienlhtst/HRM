@@ -64,7 +64,7 @@ namespace HRM.Services.Catalog.Positions
         {
             var query = from p in _context.Positions select p;
             if (!string.IsNullOrEmpty(request.Keyword))
-                query = query.Where(x => x.ID.Contains(request.Keyword) || x.Name.Contains(request.Keyword));
+                query = query.Where(x => x.ID.ToString().Contains(request.Keyword) || x.Name.Contains(request.Keyword));
             int totalRow = await query.CountAsync();
             var data = await query.OrderBy(x => Convert.ToInt32(x.ID)).Skip((request.PageIndex - 1) * request.PageSize)
                 .Take(request.PageSize)
@@ -85,13 +85,13 @@ namespace HRM.Services.Catalog.Positions
 
         public async Task<PositionViewModel> GetByID(string PositionID)
         {
-            var rank = await _context.Positions.FindAsync(PositionID);
-            var rankvm = new PositionViewModel()
+            var position = await _context.Positions.FindAsync(PositionID);
+            var positionvm = new PositionViewModel()
             {
-                ID = rank.ID,
-                Name = rank.Name
+                ID = position.ID,
+                Name = position.Name
             };
-            return rankvm;
+            return positionvm;
         }
 
         public async Task<int> Update(PositionUpdateRequest request)

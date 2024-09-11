@@ -14,7 +14,9 @@ export const environment = {
   routeadmin:'admin',
   routeemployee:'employee',
 };
-
+export const Functionid = {
+  AddEmployee:'CE000000'
+}
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

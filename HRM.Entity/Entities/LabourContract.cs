@@ -1,4 +1,5 @@
 ﻿using HRM.Entity.Enums;
+using HRM.Entity.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace HRM.Entity.Entities
 {
-    public class LabourContract
+    public class LabourContract : LanguageID
     {
         [Key]
-        public string ID { get; set; } = "";
+        public int ID { get; set; }
 
-        public string EmployeeID { get; set; } = "";
+        public Guid EmployeeID { get; set; }
         public Employees? Employess { get; set; } = null!;
         public string Content { get; set; } = "";
         public DateTime ContractSigninDate { get; set; }

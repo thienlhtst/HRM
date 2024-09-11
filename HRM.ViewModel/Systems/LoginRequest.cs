@@ -14,6 +14,6 @@ namespace HRM.ViewModel.Systems
         public string Password { get; set; }
 
         public string accessToken { get; set; }
-        public string RankRole { get; set; }
+        public int RankRole { get; set; }
     }
 }

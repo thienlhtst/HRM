@@ -3,7 +3,7 @@ import { HomeComponent } from './modules/admin/home.component';
 
 export const routes: Routes = [
     {
-        path: '',
+        path: 'a',
         loadChildren: () => import('./modules/authentication/authentication.module').then(m => m.AuthenticationModule),
     },
     {
@@ -16,7 +16,7 @@ export const routes: Routes = [
     },
     {
         path:'',
-        redirectTo:'login',
+        redirectTo:'admin',
         pathMatch:'full'
     }
 

@@ -40,7 +40,7 @@ namespace HRMApiBackend.Controllers
         }
 
         [HttpGet("GetEmployeeWorkHour/{id}")]
-        public async Task<IActionResult> GetByEmployeeID(string id)
+        public async Task<IActionResult> GetByEmployeeID(Guid id)
         {
             var model = await _workHourService.GetByEmployeeId(id);
             return Ok(model);

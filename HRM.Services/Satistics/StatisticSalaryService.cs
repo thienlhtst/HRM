@@ -38,14 +38,14 @@ namespace HRM.Services.Satistics
                                  };
             if (!string.IsNullOrEmpty(request.Keyword))
             {
-                query_employee = query_employee.Where(x => x.Name.Contains(request.Keyword) || x.ID.Contains(request.Keyword));
+                query_employee = query_employee.Where(x => x.Name.Contains(request.Keyword) || x.ID.ToString().Contains(request.Keyword));
             }
             int totalRow = await query_employee.CountAsync();
             var data = await query_employee.Skip((request.PageIndex - 1) * request.PageSize)
                 .Take(request.PageSize)
                 .Select(x => new SalaryListStatistic
                 {
-                    ID = x.ID,
+                    ID = x.ID.ToString(),
                     Name = x.Name,
                     BasicSalary = x.Salary
                 }).ToListAsync();

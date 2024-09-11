@@ -8,7 +8,7 @@ namespace HRM.ViewModel.Catalogs.Position
 {
     public class PositionCreateRequest
     {
-        public string ID {  get; set; }
-        public string Name {  get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
     }
 }

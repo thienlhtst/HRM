@@ -43,7 +43,7 @@ namespace HRMApiBackend.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(string id, [FromBody] SalaryEditRequest request)
+        public async Task<IActionResult> Update(int id, [FromBody] SalaryEditRequest request)
         {
             request.ID = id;
             var newSalary = _mapper.Map<Salary>(request);

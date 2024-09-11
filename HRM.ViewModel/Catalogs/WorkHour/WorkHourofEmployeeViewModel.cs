@@ -9,8 +9,8 @@ namespace HRM.ViewModel.Catalogs.WorkHour
     public class WorkHourofEmployeeViewModel
     {
         public int ID { get; set; }
-        public string EmployeeID { get; set; }
-        public string LBD { get; set; }
+        public Guid EmployeeID { get; set; }
+        public int LBD { get; set; }
         public int Day { get; set; }
         public int Month { get; set; }
         public int Year { get; set; }

@@ -20,6 +20,14 @@ namespace HRM.DataAccess.Extenstions
 
         private int idEWA = 1;
 
+        private List<Guid> list = new List<Guid> {
+                Guid.Parse("1d03f37f-92a4-44d9-9e98-e7302fd15a99"),
+                Guid.Parse("0e29fbf4-0a48-452a-9482-7f7720695efc"),
+                Guid.Parse("5dce0a0f-387d-4c77-87bc-989e5d9af48c"),
+                Guid.Parse("e9a7af53-8973-418a-ab30-0147ab4d937b"),
+                Guid.Parse("860469dc-0e6a-4bc9-bfce-c520b9d3ab73"),
+            };
+
         public List<WorkHour> WorkHourSeedData()
         {
             List<WorkHour> workHoursList = new List<WorkHour>();
@@ -30,15 +38,14 @@ namespace HRM.DataAccess.Extenstions
                 int maxDay = (i == 2) ? 28 : (i == 4 || i == 6 || i == 9 || i == 11) ? 30 : 31;
                 for (int j = 1; j <= maxDay; j++)
                 {
-                    for (int z = 1; z <= 5; z++)
+                    foreach (var item in list)
                     {
-                        
                         Random random = new Random();
                         WorkHour workHour = new WorkHour
                         {
                             ID= idWork,
-                            EmployeesID = z.ToString(),
-                            LBDID = random.Next(1, 2).ToString(),
+                            EmployeesID = item,
+                            LBDID = random.Next(1, 2),
                             Day=j,
                             Month=i,
                             Year=2023,
@@ -64,13 +71,13 @@ namespace HRM.DataAccess.Extenstions
                 int maxDay = (i == 2) ? 28 : (i == 4 || i == 6 || i == 9 || i == 11) ? 30 : 31;
                 for (int j = 1; j <= maxDay; j++)
                 {
-                    for (int z = 1; z <= 5; z++)
+                    foreach (var item in list)
                     {
                         DateTime startDate = new DateTime(2023, i, j);
                         EWAFake = new Faker<EmployeesWithAllowances>()
                             .RuleFor(u => u.ID, f => idEWA++)
-                            .RuleFor(u => u.EmployeeID, f => z.ToString())
-                            .RuleFor(u => u.AllowanceID, f => f.Random.Int(min: 1, max: 2).ToString())
+                            .RuleFor(u => u.EmployeeID, f => item)
+                            .RuleFor(u => u.AllowanceID, f => f.Random.Int(min: 1, max: 2))
                             .RuleFor(u => u.Date, f => startDate);
 
                         EWAList.Add(EWAFake);

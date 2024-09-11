@@ -42,7 +42,7 @@ namespace HRM.Services.Catalog.Employees
             int id = await _context.Employee.CountAsync();
             var Employee = new Entity.Entities.Employees()
             {
-                ID = (id + 1).ToString(),
+                ID = Guid.NewGuid(),
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 MiddleName = request.MiddleName,
@@ -80,13 +80,13 @@ namespace HRM.Services.Catalog.Employees
             var query = from p in _context.Employee select p;
             if (!string.IsNullOrEmpty(request.Keyword))
             {
-                query = query.Where(x => x.ID.Contains(request.Keyword) || x.LastName.Contains(request.Keyword));
+                query = query.Where(x => x.ID.ToString().Contains(request.Keyword) || x.LastName.Contains(request.Keyword));
             }
             int totalRow = await query.CountAsync();
             var data = await query.OrderBy(x => Convert.ToInt32(x.ID)).Skip((request.PageIndex - 1) * request.PageSize)
                 .Take(request.PageSize).Select(x => new EmployeeVMStatistic()
                 {
-                    ID = x.ID,
+                    ID = x.ID.ToString(),
                     Name = x.FirstName + " " + x.MiddleName + " " + x.LastName,
                 }).ToListAsync();
             var pagedView = new PagedResult<EmployeeVMStatistic>()
@@ -109,14 +109,14 @@ namespace HRM.Services.Catalog.Employees
                         ;
             if (!string.IsNullOrEmpty(request.Keyword))
             {
-                query = query.Where(x => x.p.ID.Contains(request.Keyword) || x.p.NumberPhone.Contains(request.Keyword) || (x.p.FirstName + x.p.MiddleName + x.p.LastName).Contains(request.Keyword));
+                query = query.Where(x => x.p.ID.ToString().Contains(request.Keyword) || x.p.NumberPhone.Contains(request.Keyword) || (x.p.FirstName + x.p.MiddleName + x.p.LastName).Contains(request.Keyword));
             }
             int totalRow = await query.CountAsync();
             var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
                 .Take(request.PageSize)
                 .Select(x => new EmployeeViewModel()
                 {
-                    ID = x.p.ID,
+                    ID = x.p.ID.ToString(),
                     FirstName = x.p.FirstName,
                     MiddleName = x.p.MiddleName,
                     LastName = x.p.LastName,
@@ -148,11 +148,11 @@ namespace HRM.Services.Catalog.Employees
                         join ps in _context.Salaries on p.SalaryID equals ps.ID
                         join pr in _context.Levels on ps.LevelID equals pr.ID
                         join pp in _context.Positions on ps.PositionID equals pp.ID
-                        where ps.ID == SalaryID
+                        where ps.ID.ToString() == SalaryID
                         select new { p, ps, pr, pp };
             var employeerules = await query.Select(x => new EmployeeViewModel()
             {
-                ID = x.p.ID,
+                ID = x.p.ID.ToString(),
                 FirstName = x.p.FirstName,
                 LastName = x.p.LastName,
                 MiddleName = x.p.MiddleName,
@@ -161,8 +161,8 @@ namespace HRM.Services.Catalog.Employees
                 CIC = x.p.CIC,
                 NumberPhone = x.p.NumberPhone,
                 Address = x.p.Address,
-                Position = x.ps.PositionID,
-                Rank = x.ps.LevelID,
+                Position = x.ps.PositionID.ToString(),
+                Rank = x.ps.LevelID.ToString(),
                 Account = x.p.Account,
                 Password = x.p.Password
             }).ToListAsync();
@@ -185,7 +185,7 @@ namespace HRM.Services.Catalog.Employees
             var employee = await _context.Employee.FindAsync(EmployeeID);
             var employeeviewmodel = new EmployeeViewModel()
             {
-                ID = employee.ID,
+                ID = employee.ID.ToString(),
                 FirstName = employee.FirstName,
                 LastName = employee.LastName,
                 MiddleName = employee.MiddleName,
@@ -288,7 +288,7 @@ namespace HRM.Services.Catalog.Employees
                         join pp in _context.Positions on ps.PositionID equals pp.ID
                         select new EmployeeViewModel()
                         {
-                            ID = p.ID,
+                            ID = p.ID.ToString(),
                             FirstName = p.FirstName,
                             MiddleName = p.MiddleName,
                             LastName = p.LastName,
@@ -374,12 +374,12 @@ namespace HRM.Services.Catalog.Employees
         public async Task<List<EmployeeInAllowanceRulesViewModel>> GetByAllowance(string AllowanceID)
         {
             var query = from p in _context.Employee
-                        where !_context.AllowanceRules.Any(ad => ad.EmployeeID == p.ID && ad.AllowanceID == AllowanceID)
+                        where !_context.AllowanceRules.Any(ad => ad.EmployeeID == p.ID && ad.AllowanceID.ToString() == AllowanceID)
                         select p;
 
             var data = await query.Select(x => new EmployeeInAllowanceRulesViewModel()
             {
-                ID = x.ID,
+                ID = x.ID.ToString(),
                 FirstName = x.FirstName,
                 MiddleName = x.MiddleName,
                 LastName = x.LastName,
@@ -402,7 +402,7 @@ namespace HRM.Services.Catalog.Employees
             var query = from p in _context.Employee
                         join pt in _context.AllowanceRules on p.ID equals pt.EmployeeID
                         join px in _context.Allowances on pt.AllowanceID equals px.ID
-                        where p.ID == id
+                        where p.ID.ToString() == id
                         select new { p, pt, px };
 
             var data = await query.GroupBy(a => a.p.ID)
@@ -419,7 +419,7 @@ namespace HRM.Services.Catalog.Employees
             var query = from p in _context.Employee select p;
             var data = await query.Select(x => new EmployeeViewModelHasSalaryID()
             {
-                ID = x.ID,
+                ID = x.ID.ToString(),
                 FirstName = x.FirstName,
                 LastName = x.LastName,
                 MiddleName = x.MiddleName,
@@ -428,7 +428,7 @@ namespace HRM.Services.Catalog.Employees
                 CIC = x.CIC,
                 NumberPhone = x.NumberPhone,
                 Address = x.Address,
-                SalaryID = x.SalaryID,
+                SalaryID = x.SalaryID.ToString(),
                 Account = x.Account,
                 Password = x.Password
             }).ToListAsync();

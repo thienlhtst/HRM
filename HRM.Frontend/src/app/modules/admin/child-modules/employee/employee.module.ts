@@ -14,6 +14,7 @@ import { PipeSharePipe } from 'src/app/modules/share/components/Pipe/pipe-share.
 import { SpinnerBetaComponent } from 'src/app/modules/share/components/spinner-beta/spinner-beta.component';
 import { MatTooltipModule } from '@angular/material/tooltip'; // Add this line
 import { ShareModule } from 'src/app/modules/share/share.module';
+import { SystemService } from 'src/Services/System/System.service';
 
 const route : Routes = [
   {
@@ -34,7 +35,7 @@ const route : Routes = [
         EmployeeUpdateComponent,
         EmployeeDetailsComponent,
     ],
-    providers: [EmployeeService,ConfirmationDialogService],
+    providers: [EmployeeService,ConfirmationDialogService,SystemService],
     imports: [
         CommonModule,
         RouterModule.forChild(route),

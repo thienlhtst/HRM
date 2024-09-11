@@ -1,0 +1,10 @@
+<div class="nofication-header d-flex  justify-content-center align-items-center">
+  <div class="nofication-bg rounded-circle d-flex justify-content-center align-items-center " (click)="toggleMenu()">
+    <i class="bi bi-bell-fill"></i>
+  </div>
+  <div *ngIf="IsMenuCollapsed" class="active-nofication  rounded-circle  bg-danger">
+  </div>
+</div>
+<div *ngIf="IsMenuCollapsed"  class="dropdown-nofication">
+
+</div>

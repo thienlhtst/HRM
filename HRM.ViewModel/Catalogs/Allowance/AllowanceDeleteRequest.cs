@@ -8,6 +8,6 @@ namespace HRM.ViewModel.Catalogs.Allowance
 {
     public class AllowanceDeleteRequest
     {
-        public string ID { get; set; } = "";
+        public int ID { get; set; }
     }
 }

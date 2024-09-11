@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HelpMate.Core.Extensions;
 
 namespace HRM.Services.Catalog.LabourContract
 {
@@ -23,7 +24,6 @@ namespace HRM.Services.Catalog.LabourContract
         {
             var lb = new HRM.Entity.Entities.LabourContract()
             {
-                ID = request.ID,
                 EmployeeID = request.EmployeeID,
                 Content = request.Content,
                 ContractSigninDate = request.ContractSigninDate,
@@ -50,7 +50,7 @@ namespace HRM.Services.Catalog.LabourContract
 
             if (!string.IsNullOrEmpty(request.Keyword))
             {
-                query = query.Where(x => x.p.ID.Contains(request.Keyword));
+                query = query.Where(x => x.p.ID.ToString().Contains(request.Keyword));
             }
             int totalRow = await query.CountAsync();
 
@@ -59,7 +59,7 @@ namespace HRM.Services.Catalog.LabourContract
                     .Select(x => new LabourContractViewModel()
                     {
                         ID = x.p.ID,
-                        EmployeeID = x.pt.FirstName + " " + x.pt.MiddleName + " " + x.pt.LastName,
+                        NameEmployee = x.pt.FirstName + " " + x.pt.MiddleName + " " + x.pt.LastName,
                         Content = x.p.Content,
                         ContractSigninDate = x.p.ContractSigninDate.Date.ToString(),
                         Active = x.p.Active,
@@ -80,13 +80,13 @@ namespace HRM.Services.Catalog.LabourContract
         {
             var employeeID = (from p in _context.LabourContracts
                               join pt in _context.Employee on p.EmployeeID equals pt.ID
-                              where p.ID == labourID
+                              where p.ID == Convert.ToUInt32(labourID)
                               select pt.FirstName + " " + pt.MiddleName + " " + pt.MiddleName).First();
             var lbct = await _context.LabourContracts.FindAsync(labourID);
             var lb = new LabourContractViewModel()
             {
                 ID = lbct.ID,
-                EmployeeID = employeeID,
+                NameEmployee = employeeID,
                 Content = lbct.Content,
                 ContractSigninDate = lbct.ContractSigninDate.Date.ToString(),
                 Active = lbct.Active,
@@ -98,7 +98,7 @@ namespace HRM.Services.Catalog.LabourContract
         public async Task<List<LabourContractViewModel>> GetByIDEmployee(string EmployeeID)
         {
             var query = from p in _context.LabourContracts
-                        where p.EmployeeID == EmployeeID
+                        where p.EmployeeID == EmployeeID.ToGuid()
                         select new { p };
             var lb = await query.Select(x => new LabourContractViewModel()
             {

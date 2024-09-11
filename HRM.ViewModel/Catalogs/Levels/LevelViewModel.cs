@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace HRM.ViewModel.Catalogs.Levels
 {
-	public class LevelViewModel
-	{
-		public string ID { get; set; }
-		public string RoleName { get; set; }
+    public class LevelViewModel
+    {
+        public int ID { get; set; }
+        public string RoleName { get; set; }
         public string Name { get; set; }
-		
-	}
+    }
 }

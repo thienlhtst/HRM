@@ -38,7 +38,7 @@ namespace HRM.Services.Catalog.Login
                         select new { p, pt };
             var data = await query.Select(x => new LoginRequest()
             {
-                ID = x.p.ID,
+                ID = x.p.ID.ToString(),
                 Name = x.p.LastName + " " + x.p.FirstName,
                 Account = x.p.Account,
                 Password = x.p.Password,
@@ -64,7 +64,7 @@ namespace HRM.Services.Catalog.Login
         {
             List<Claim> claims = new List<Claim> {
                 new Claim(ClaimTypes.Name, user.Account),
-                new Claim(ClaimTypes.Role, user.RankRole),
+                new Claim(ClaimTypes.Role, user.RankRole.ToString()),
                 new Claim(ClaimTypes.Actor, user.ID),
             };
 

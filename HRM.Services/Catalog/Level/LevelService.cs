@@ -29,7 +29,7 @@ namespace HRM.Services.Catalog.Levels
                         select new { p, pt };
             if (!string.IsNullOrEmpty(Request.Keyword))
             {
-                query = query.Where(x => x.p.ID.Contains(Request.Keyword) || x.p.Name.Contains(Request.Keyword));
+                query = query.Where(x => x.p.ID.ToString().Contains(Request.Keyword) || x.p.Name.Contains(Request.Keyword));
             }
             int totalRow = await query.CountAsync();
             var data = await query.OrderBy(x => Convert.ToInt32(x.p.ID)).Skip((Request.PageIndex - 1) * Request.PageSize)
@@ -75,7 +75,7 @@ namespace HRM.Services.Catalog.Levels
             var rankvm = new LevelViewModel()
             {
                 ID = rank.ID,
-                RoleName = rank.RoleID,
+                RoleName = rank.Name,
                 Name = rank.Name
             };
             return rankvm;
@@ -99,7 +99,7 @@ namespace HRM.Services.Catalog.Levels
             var data = await query.Select(x => new LevelViewModel()
             {
                 ID = x.ID,
-                RoleName = x.RoleID,
+                RoleName = x.RoleID.ToString(),
                 Name = x.Name
             }).ToListAsync();
             return data;

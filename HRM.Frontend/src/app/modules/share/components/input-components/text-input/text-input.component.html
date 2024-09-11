@@ -1,5 +1,5 @@
 <input [type]="typeInput" [pattern]="pattern"   #pname="ngModel" [(ngModel)]="value" (blur)="onTouched()" [placeholder]="placeholer" [className]="LanguageClass" />
 <div >
-    <small class="text-danger" *ngIf="pname.errors?.['require']">Name is require</small>
-    <small class="text-danger" *ngIf="pname.errors?.['pattern']">User should be text</small>
+    <small class="text-danger" *ngIf="pname.errors?.['require']"></small>
+    <small class="text-danger" *ngIf="pname.errors?.['pattern']">{{namepattern}}</small>
 </div>

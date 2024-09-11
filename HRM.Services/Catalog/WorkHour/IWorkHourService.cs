@@ -21,7 +21,7 @@ namespace HRM.Services.Catalog.WorkHour
 
         Task<WorkHourUpdateRequest> GetById(int id);
 
-        Task<List<WorkHourofEmployeeViewModel>> GetByEmployeeId(string id);
+        Task<List<WorkHourofEmployeeViewModel>> GetByEmployeeId(Guid id);
 
         Task<PagedResult<WorkHourVM>> GetAllPage(GetWorkHourAllPage request);
 

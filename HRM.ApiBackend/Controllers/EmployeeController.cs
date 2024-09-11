@@ -95,7 +95,7 @@ namespace HRMApiBackend.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(string id, [FromBody] EmployeeEditRequest request)
+        public async Task<IActionResult> Update(Guid id, [FromBody] EmployeeEditRequest request)
         {
             request.ID = id;
             var employee = await _employeeService.Update(request);

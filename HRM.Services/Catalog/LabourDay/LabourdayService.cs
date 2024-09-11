@@ -24,7 +24,6 @@ namespace HRM.Services.Catalog.LabourDay
             int id = await _context.Days.CountAsync()+1;
             Day entity = new Day
             {
-                ID= id.ToString(),
                 IDLB =request.IDLB,
                 Name = request.Name,
                 Days = request.Days,
@@ -36,7 +35,7 @@ namespace HRM.Services.Catalog.LabourDay
 
         public async Task<int> Delete(LabourDayDeleteRequest request)
         {
-            var entity = await _context.Days.FirstOrDefaultAsync(x => x.ID == request.ID);
+            var entity = await _context.Days.FirstOrDefaultAsync(x => x.ID.ToString() == request.ID);
             if (entity != null)
             {
                 _context.Days.Remove(entity);
@@ -47,7 +46,7 @@ namespace HRM.Services.Catalog.LabourDay
 
         public async Task<int> Edit(LabourDayUpdateRequest request)
         {
-            var entity = await _context.Days.FirstOrDefaultAsync(x => x.ID == request.ID);
+            var entity = await _context.Days.FirstOrDefaultAsync(x => x.ID.ToString() == request.ID);
             if (entity != null)
             {
                 entity.IDLB =request.IDLB;
@@ -62,7 +61,7 @@ namespace HRM.Services.Catalog.LabourDay
 
         public async Task<LabourDayDetailRequest> GetbyID(string request)
         {
-            var entity = await _context.Days.FirstOrDefaultAsync(x => x.ID == request);
+            var entity = await _context.Days.FirstOrDefaultAsync(x => x.ID.ToString() == request);
             if (entity!=null)
             {
                 LabourDayDetailRequest detail_request = new LabourDayDetailRequest

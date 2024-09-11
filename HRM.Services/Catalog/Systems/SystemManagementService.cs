@@ -29,7 +29,7 @@ namespace HRM.Services.Catalog.Systems
         public async Task<List<SystemManagement>> GetSystemManagement(language language, string layout)
         {
             var data = from p in _context.SystemManagements
-                       where (p.Language == language && p.Layout == layout) || (p.ParentID == layout && p.KindSystem == KindSystem.Group)
+                       where ((p.Language == language && p.Layout == layout) || (p.ParentID == layout && p.KindSystem == KindSystem.Group))
                        select p;
             return await data.ToListAsync();
         }
@@ -37,7 +37,7 @@ namespace HRM.Services.Catalog.Systems
         public async Task<List<MenuSystems>> GetNavManagement(language language, string FuntionID)
         {
             var data = from p in _context.SystemManagements
-                       where ((p.ParentID == FuntionID) && p.KindSystem==KindSystem.Group) || (((p.ParentID == null) && p.KindSystem==KindSystem.Group && p.FunctionID==FuntionID))
+                       where ((p.ParentID == FuntionID) && p.KindSystem==KindSystem.Group && p.Language ==language) || (((p.ParentID == null) && p.KindSystem==KindSystem.Group && p.FunctionID==FuntionID && p.Language ==language))
                        select p;
             var resultdata = await data.Select(x => new MenuSystems()
             {
@@ -46,7 +46,27 @@ namespace HRM.Services.Catalog.Systems
             }).ToListAsync();
             foreach (var item in resultdata)
             {
-                var result = await _context.SystemManagements.Where(x => x.ParentID ==item.sys.FunctionID).ToListAsync();
+                var result = new List<SystemManagement>();
+                result = await _context.SystemManagements.Where(x => x.ParentID ==item.sys.FunctionID && x.Language ==language).ToListAsync();
+                item.sysList.AddRange(result);
+            }
+            return resultdata;
+        }
+
+        public async Task<List<MenuSystems>> GetMenuManagement(language language, string FuntionID)
+        {
+            var data = from p in _context.SystemManagements
+                       where ((p.ParentID == FuntionID) && p.KindSystem==KindSystem.Group && p.Language ==language) || (((p.ParentID == null) && p.KindSystem==KindSystem.Group && p.FunctionID==FuntionID && p.Language==null))
+                       select p;
+            var resultdata = await data.Select(x => new MenuSystems()
+            {
+                sys= x,
+                sysList = new List<SystemManagement>()
+            }).ToListAsync();
+            foreach (var item in resultdata)
+            {
+                var result = new List<SystemManagement>();
+                result = await _context.SystemManagements.Where(x => x.ParentID ==item.sys.FunctionID && x.Language ==language).ToListAsync();
                 item.sysList.AddRange(result);
             }
             return resultdata;

@@ -37,7 +37,7 @@ namespace HRM.ViewModel.Catalogs.Employees
         public string NumberPhone { get; set; } = String.Empty;
 
         public string Address { get; set; } = String.Empty;
-        public string SalaryID { get; set; } = String.Empty;
+        public int SalaryID { get; set; }
         public string Account { get; set; } = String.Empty;
         public string Password { get; set; } = String.Empty;
         public Active Active { get; set; }

@@ -8,7 +8,7 @@ namespace HRM.ViewModel.Catalogs.Satictis
 {
     public class TopSalary
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string PositionName { get; set; }
         public string RankName { get; set; }
         public double Salary { get; set; }

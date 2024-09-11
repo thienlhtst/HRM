@@ -10,7 +10,7 @@ namespace HRM.ViewModel.Catalogs.LabourContract
     public class LabourContractCreateRequest
     {
         public string ID { get; set; } = String.Empty;
-        public string EmployeeID { get; set; } = String.Empty;
+        public Guid EmployeeID { get; set; }
         public string Content { get; set; } = String.Empty;
         public DateTime ContractSigninDate { get; set; }
         public int ContractTerm { get; set; }

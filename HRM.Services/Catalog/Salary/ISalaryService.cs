@@ -11,7 +11,7 @@ namespace HRM.Services.Catalog.Salary
 {
     public interface ISalaryService
     {
-        Task<PagedResult<SalaryViewModel>> GetAllPage(GetSalaryPagingRequest Request);
+        Task<PagedResult<SalaryVM>> GetAllPage(GetSalaryPagingRequest Request);
 
         Task<int> Create(SalaryCreateRequest request);
 
