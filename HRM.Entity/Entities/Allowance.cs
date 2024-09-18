@@ -1,5 +1,4 @@
 ﻿using HRM.Entity.RelationShips;
-using HRM.Entity.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HRM.Entity.Entities
 {
-    public class Allowance : LanguageID
+    public class Allowance
     {
         public int ID { get; set; }
         public string Name { get; set; } = "";
