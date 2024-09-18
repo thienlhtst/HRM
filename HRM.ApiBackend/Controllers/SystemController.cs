@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using HRM.Entity.Enums;
 using HRM.Services.Catalog.Systems;
+using HRM.Entity.Entities;
 
 namespace HRMApiBackend.Controllers
 {
@@ -48,6 +49,13 @@ namespace HRMApiBackend.Controllers
         public async Task<IActionResult> GetSelect([FromQuery] string nameSelect)
         {
             var result = await _systemManagementService.GetSelect(nameSelect);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] SystemManagement system)
+        {
+            var result = await _systemManagementService.Create(system);
             return Ok(result);
         }
     }

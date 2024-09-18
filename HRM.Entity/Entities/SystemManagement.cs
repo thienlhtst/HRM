@@ -9,7 +9,7 @@ namespace HRM.Entity.Entities
 {
     public class SystemManagement
     {
-        public int ID { get; set; }
+        public int? ID { get; set; }
         public string? FunctionID { get; set; } = null;
         public string? ParentID { get; set; } = null;
         public language? Language { get; set; }
@@ -29,5 +29,26 @@ namespace HRM.Entity.Entities
         public string? Icon { get; set; } = null;
         public string? Values { get; set; } = null;
         public string? Routes { get; set; } = null;
+
+        public SystemManagement()
+        {
+            ID=null;
+            FunctionID=null;
+            ParentID=null;
+            Language=null;
+            Layout=null;
+            Name=null;
+            Description=null;
+            KindSystem=null;
+            KindInput=null;
+            ClassName=null;
+            Pattern=null;
+            PatternName=null;
+            IsImportant=null;
+            Label=null;
+            Icon=null;
+            Values=null;
+            Routes=null;
+        }
     }
 }

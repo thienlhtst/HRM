@@ -20,5 +20,7 @@ namespace HRM.Services.Catalog.Systems
         Task<List<MenuSystems>> GetMenuManagement(language language, string FuntionID);
 
         Task<List<SelectVM>> GetSelect(string nameSelect);
+
+        Task<SystemManagement> Create(SystemManagement request);
     }
 }
