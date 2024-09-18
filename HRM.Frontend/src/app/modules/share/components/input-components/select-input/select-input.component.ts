@@ -1,4 +1,11 @@
-import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  forwardRef,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -9,14 +16,14 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => SelectInputComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
-export class SelectInputComponent implements OnInit,ControlValueAccessor {
+export class SelectInputComponent implements OnInit, ControlValueAccessor {
   options: any[] = [];
   private innerValue: any = '';
-  constructor() { }
+  constructor() {}
   onChange: (value: any) => void = () => {};
   onTouched: () => void = () => {};
   set value(val: any) {
@@ -40,18 +47,20 @@ export class SelectInputComponent implements OnInit,ControlValueAccessor {
   selectedOption: number | null = null;
   @Input() model: number | null = null;
   @Input() nameoptions: string = '';
-
+  sexlan =localStorage.getItem("language")
   ngOnInit() {
-    this.options = [
-      { id: 1, name: 'Option 1' },
-      { id: 2, name: 'Option 2' },
-      { id: 3, name: 'Option 3' }
-    ];
+
+    if (this.nameoptions != 'sex') {
+      this.options = [
+        { id: 1, name: 'Option 1' },
+        { id: 2, name: 'Option 2' },
+        { id: 3, name: 'Option 3' },
+      ];
+    }
   }
   onModelChange(value: number): void {
     this.innerValue = value;
     this.onChange(value);
     console.log(this.innerValue);
   }
-
 }

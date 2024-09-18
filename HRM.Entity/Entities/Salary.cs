@@ -1,5 +1,4 @@
-﻿using HRM.Entity.Shared;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HRM.Entity.Entities
 {

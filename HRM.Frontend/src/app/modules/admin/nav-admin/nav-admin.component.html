@@ -4,16 +4,16 @@
     <div *ngFor="let items of datas; let i = index" class="w-100 item-menu">
       <div class="header-item d-flex justify-content-between align-items-center" >
         <span>
-          {{items.name}}
+          {{items.sys.label}}
         </span>
-        <div (click)="onDivClick(items.id)"  class="icon-custom">
-          <i  [ngClass]="{'bi bi-chevron-down':items.collapse,'bi bi-chevron-right':!items.collapse}"></i>
+        <div (click)="onDivClick(items.sys.FunctionID)"  class="icon-custom">
+          <i  [ngClass]="{'bi bi-chevron-down':items.sys.isImportant,'bi bi-chevron-right':!items.sys.isImportant}"></i>
         </div>
       </div>
-      <div #itemDiv [id]="items.id" class="detail-item-menu">
-        <div *ngFor="let item of items.children" class="detail-items d-flex justify-content-start align-items-center gap-2 p-2">
+      <div #itemDiv [id]="items.FunctionID" class="detail-item-menu">
+        <div *ngFor="let item of items.sysList" class="detail-items d-flex justify-content-start align-items-center gap-2 p-2" [routerLink]="item.routes">
           <i class="{{item.icon}}"></i>
-          <span> {{item.name}} </span>
+          <span> {{item.label}} </span>
         </div>
        
       </div>

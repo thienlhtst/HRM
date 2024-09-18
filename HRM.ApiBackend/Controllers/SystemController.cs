@@ -43,5 +43,12 @@ namespace HRMApiBackend.Controllers
             var result = await _systemManagementService.GetMenuManagement(language, FunctionId);
             return Ok(result);
         }
+
+        [HttpGet("Select")]
+        public async Task<IActionResult> GetSelect([FromQuery] string nameSelect)
+        {
+            var result = await _systemManagementService.GetSelect(nameSelect);
+            return Ok(result);
+        }
     }
 }

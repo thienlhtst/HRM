@@ -1,5 +1,4 @@
-﻿using HRM.Entity.Shared;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HRM.Entity.Entities
 {
-    public class Position : LanguageID
+    public class Position
     {
         public int ID { get; set; }
         public string Name { get; set; } = "";

@@ -71,5 +71,34 @@ namespace HRM.Services.Catalog.Systems
             }
             return resultdata;
         }
+
+        public async Task<List<SelectVM>> GetSelect(string nameSelect)
+        {
+            var result = new List<SelectVM>();
+            switch (nameSelect)
+            {
+                case "employee":
+                    {
+                        result= await _context.Employee.Select(x => new SelectVM() { Id=x.ID.ToString(), Name = x.LastName+" "+x.MiddleName+" "+x.FirstName }).ToListAsync();
+                        break;
+                    }
+                case "level":
+                    {
+                        result= await _context.Levels.Select(x => new SelectVM() { Id=x.ID.ToString(), Name = x.Name }).ToListAsync();
+                        break;
+                    }
+                case "position":
+                    {
+                        result= await _context.Positions.Select(x => new SelectVM() { Id=x.ID.ToString(), Name = x.Name }).ToListAsync();
+                        break;
+                    }
+                case "allowance":
+                    {
+                        result= await _context.Allowances.Select(x => new SelectVM() { Id=x.ID.ToString(), Name = x.Name }).ToListAsync();
+                        break;
+                    }
+            }
+            return result;
+        }
     }
 }
