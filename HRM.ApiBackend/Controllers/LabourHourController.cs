@@ -4,6 +4,7 @@ using HRM.Services.Catalog.LabourDay;
 using HRM.Services.Catalog.LabourHours;
 using HRM.ViewModel.Catalogs.LabourDays;
 using HRM.ViewModel.Catalogs.LabourHours;
+using HRM.Entity.Enums;
 
 namespace HRMApiBackend.Controllers
 {
@@ -19,9 +20,9 @@ namespace HRMApiBackend.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(language lan)
         {
-            var result = await _labourhourService.GetList();
+            var result = await _labourhourService.GetList(lan);
             return Ok(result);
         }
 

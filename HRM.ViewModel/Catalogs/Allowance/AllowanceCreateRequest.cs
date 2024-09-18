@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HRM.Entity.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,5 +18,7 @@ namespace HRM.ViewModel.Catalogs.Allowance
 
         [RegularExpression("^[0-9]+$")]
         public int Money { get; set; }
+
+        public language language { get; set; }
     }
 }

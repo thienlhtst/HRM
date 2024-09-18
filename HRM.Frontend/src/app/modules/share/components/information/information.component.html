@@ -1,0 +1,34 @@
+
+<div class="dash">
+    <div class="main-content">
+      <div class="p-4 rounded bg-white mt-2 border" *ngFor="let items of list_items">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex text-header justify-content-start align-items-center">
+            <i class=" {{items.sys.icon}} "> </i>
+            <span>{{items.sys.label}}</span>
+          </div>
+          <div>
+            <i class="hcs-icon edit-no-background-icon "></i>
+          </div>
+        </div>
+  
+        <div class="d-flex flex-row justify-content-start w-100 body-card " *ngFor="let group of getGroups(items.sysList, 3)">
+          <div class="col-sm-4" *ngFor="let item of group" >
+            <div class="label-input-header" >
+             {{item.label}}
+            </div>
+            <div class="d-flex text-input-1" *ngIf="item.text_body!='yes-icon'">
+              {{item.name}}
+            </div>
+            <div class="d-flex text-input-1" *ngIf="item.text_body=='yes-icon'">
+              <i class="yes-icon"></i>
+            </div>
+          </div>
+  
+        </div>
+  
+  
+      </div>
+  
+    </div>
+  </div>

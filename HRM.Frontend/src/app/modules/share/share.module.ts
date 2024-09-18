@@ -13,7 +13,7 @@ import { SpinnerAlphaComponent } from './components/spinner-alpha/spinner-alpha.
 import { CreateComponent } from './components/create/create.component';
 import { SelectInputComponent } from './components/input-components/select-input/select-input.component';
 import { FileInputComponent } from './components/input-components/file-input/file-input.component';
-import { DropDownButtonModule } from '@syncfusion/ej2-angular-splitbuttons'; // Import DropDownButtonModule from the correct package
+import { InformationComponent } from './components/information/information.component';
 
 @NgModule({
   imports: [
@@ -23,11 +23,11 @@ import { DropDownButtonModule } from '@syncfusion/ej2-angular-splitbuttons'; // 
     NgbDropdownModule,
     NgbNavModule,
     NgbModule,
-    DropDownButtonModule,
     NgbCollapseModule,
-  ],providers: [provideHttpClient()],
-  declarations: [FileInputComponent,SelectInputComponent,CreateComponent,SpinnerAlphaComponent,SpinnerComponent, SearchInputComponent, AvtComponent,LanguageInputComponent,TextInputComponent],
 
-  exports: [DropDownButtonModule,FileInputComponent,SelectInputComponent,SpinnerAlphaComponent,LanguageInputComponent,TextInputComponent,CreateComponent]
+  ],providers: [provideHttpClient()],
+  declarations: [FileInputComponent,SelectInputComponent,CreateComponent,SpinnerAlphaComponent,SpinnerComponent, SearchInputComponent, AvtComponent,LanguageInputComponent,TextInputComponent,InformationComponent],
+
+  exports: [FileInputComponent,SelectInputComponent,SpinnerAlphaComponent,LanguageInputComponent,TextInputComponent,CreateComponent,InformationComponent]
 })
 export class ShareModule { }

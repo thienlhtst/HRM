@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using HRM.Services.Catalog.LabourDay;
 using HRM.ViewModel.Catalogs.LabourDays;
+using HRM.Entity.Enums;
 
 namespace HRMApiBackend.Controllers
 {
@@ -17,9 +18,9 @@ namespace HRMApiBackend.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(language lan)
         {
-            var result = await _labourDayService.GetList();
+            var result = await _labourDayService.GetList(lan);
             return Ok(result);
         }
 

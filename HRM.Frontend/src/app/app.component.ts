@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http'; // Import the correct provide
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgbModule, ShareModule],
+  imports: [RouterOutlet, NgbModule],
   providers: [HttpClient], // Use the correct provider
   templateUrl: './app.component.html',
 })

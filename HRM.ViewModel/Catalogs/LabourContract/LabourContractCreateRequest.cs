@@ -15,5 +15,7 @@ namespace HRM.ViewModel.Catalogs.LabourContract
         public DateTime ContractSigninDate { get; set; }
         public int ContractTerm { get; set; }
         public Active Active { get; set; }
+
+        public language Language { get; set; }
     }
 }

@@ -1,0 +1,95 @@
+.dash {
+    height: 590px;
+    min-height: 590px;
+    margin-top:8px; ;
+    overflow: auto;
+    &:hover {
+        &::-webkit-scrollbar-thumb {
+          background-color: #ccc !important;
+        }
+      }
+}
+.dash::-webkit-scrollbar {
+    height: 10px;
+    width: 5px;
+  
+  }
+  .dash::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 5px;
+  }
+  .dash::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+.main-content {
+    width: 100%;
+   
+}
+.edit-no-background-icon{
+  width: 18px;
+height: 18px;
+  color: #005DC7;
+  cursor: pointer;
+}
+.text-header {
+
+  i {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      color: #005DC7;
+      margin-right: 4px;
+  }
+
+  span {
+      color: var(--Theme-Primary-Darker, #005DC7);
+      text-align: center;
+      margin-top: 2px;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 20px;
+      /* 125% */
+  }
+}
+.yes-icon{
+  background-image: url(/assets/svg/i-done.svg);
+  background-size: contain; /* đảm bảo rằng SVG fit đúng kích thước của phần tử */
+  background-repeat: no-repeat;
+  width: 15px;
+  height: 15px;
+}
+.margin_text{
+  margin-top: -19px !important;
+}
+
+.label-input-header {
+  color: var(--Base2, #666);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+
+  span {
+      color: var(--Status-Error, #F64E60);
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+  }
+}
+.text-input-1 {
+  padding-right: 20px;
+  margin-top: 8px;
+  color: var(--Text-Default, #161719);
+font-feature-settings: 'clig' off, 'liga' off;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+  
+}
+.body-card{
+  margin-left: 0.3%;
+  margin-top: 10px;
+}

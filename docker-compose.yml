@@ -16,7 +16,7 @@ services:
     container_name: main-api
     build:
       context: ./
-      dockerfile: HRMApiBackend\Dockerfile
+      dockerfile: HRM.ApiBackend\Dockerfile
     ports:
       - 3333:80
     networks :
@@ -24,7 +24,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT : Staging
     volumes:
-      - '../EmployeeManager/HRMApiBackend:/app/data'
+      - '../EmployeeManager/HRM.ApiBackend:/app/data'
     depends_on:
       - db
     

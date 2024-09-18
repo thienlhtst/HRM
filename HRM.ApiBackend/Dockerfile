@@ -8,21 +8,21 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["HRMApiBackend/HRMApiBackend.csproj", "HRMApiBackend/"]
+COPY ["HRM.ApiBackend/gitHRM.ApiBackend.csproj", "HRM.ApiBackend/"]
 COPY ["HRM.Services/HRM.Services.csproj", "HRM.Services/"]
 COPY ["HRM.DataAccess/HRM.DataAccess.csproj", "HRM.DataAccess/"]
 COPY ["HRM.Entity/HRM.Entity.csproj", "HRM.Entity/"]
 COPY ["HRM.ViewModel/HRM.ViewModel.csproj", "HRM.ViewModel/"]
-RUN dotnet restore "./HRMApiBackend/./HRMApiBackend.csproj"
+RUN dotnet restore "./HRM.ApiBackend/HRM.ApiBackend.csproj"
 COPY . .
-WORKDIR "/src/HRMApiBackend"
-RUN dotnet build "./HRMApiBackend.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/HRM.ApiBackend"
+RUN dotnet build "./HRM.ApiBackend.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./HRMApiBackend.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./HRM.ApiBackend.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "HRMApiBackend.dll"]
+ENTRYPOINT ["dotnet", "HRM.ApiBackend.dll"]

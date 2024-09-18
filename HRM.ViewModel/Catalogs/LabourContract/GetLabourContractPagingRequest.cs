@@ -1,4 +1,5 @@
-﻿using HRM.ViewModel.Dtos;
+﻿using HRM.Entity.Enums;
+using HRM.ViewModel.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace HRM.ViewModel.Catalogs.LabourContract
     public class GetLabourContractPagingRequest : PagingRequestBase
     {
         public string Keyword { get;set; } = string.Empty;
+        public language language { get; set; }
     }
 }

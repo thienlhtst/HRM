@@ -1,0 +1,62 @@
+<div class="w-100 d-flex flex-column main-container mt-3 ">
+  <div class="avt">
+    <div class="avt-image">
+      <div class="avt-item">
+        
+      </div>
+    </div>
+  </div>
+  <div class="infor">
+<div class="d-flex flex-column justify-content-center align-items-center mt-5 mb-2">
+      <span> Nguyễn Trí Thanh </span>
+      <span> Phân tích </span>
+      <span> Hồ Chí Minh </span>
+    </div>
+  </div>
+
+  <div class="d-flex flex-column contact mt-2 gap-1">
+    <div class="contact-in">
+      <div>
+        <i class="bi bi-telephone"></i>
+        <span> 0123456789 </span>
+      </div>
+      
+      <div>
+        <i class="bi bi-envelope"></i>
+        <span> hrm&#64;example.com </span>
+      </div>
+  
+      <div>
+        <i class="bi bi-calendar-event"></i>
+        <span> 01/05/2024 </span>
+      </div>
+    </div>
+    </div>
+    
+
+    <div class="d-flex flex-column manage mt-2 gap-1">
+      <div class="manage-in">
+        <div>
+          <div class="text-manager">
+            Người quản lí: 
+          </div>
+          <div>
+            <span> Mr.Pattrick </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="d-flex flex-column menu-container gap-1">
+      <div class="item-menu d-flex justity-content-start align-items-center" *ngFor="let item of menuItem" [routerLink]="item.route" routerLinkActive="item-menu-active">
+        <div>
+          <i class="{{item.icon}}"></i>
+        </div>
+        <div>
+          {{item.title}}
+        </div>
+      </div>
+
+    </div>
+</div>

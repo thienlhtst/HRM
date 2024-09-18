@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HRM.Entity.Enums;
 
 namespace HRM.Services.Catalog.Allowance
 {
@@ -24,7 +25,7 @@ namespace HRM.Services.Catalog.Allowance
 
         Task<PagedResult<AllowanceViewModel>> GetAllPage(GetAllowancePagingRequest request);
 
-        Task<List<AllowanceViewModel>> GetList();
+        Task<List<AllowanceViewModel>> GetList(language lan);
 
         Task<int> CreateAllowanceRules(List<AllowanceRulesCreateViewModel> request);
 

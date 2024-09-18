@@ -7,6 +7,7 @@ using HRM.Entity.Entities;
 using HRM.Services.Catalog.Allowance;
 using HRM.ViewModel.Catalogs.Allowance;
 using HRM.ViewModel.Catalogs.AllowanceRules;
+using HRM.Entity.Enums;
 
 namespace HRMApiBackend.Controllers
 {
@@ -28,9 +29,9 @@ namespace HRMApiBackend.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetMapper()
+        public async Task<IActionResult> GetMapper(language lan)
         {
-            var model = await _allowanceService.GetList();
+            var model = await _allowanceService.GetList(lan);
             var returnAllowance = _mapper.Map<List<AllowanceViewModel>>(model);
 
             return Ok(returnAllowance);

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HelpMate.Core.Extensions;
+using HRM.Entity.Enums;
 
 namespace HRM.Services.Catalog.LabourContract
 {
@@ -28,11 +29,16 @@ namespace HRM.Services.Catalog.LabourContract
                 Content = request.Content,
                 ContractSigninDate = request.ContractSigninDate,
                 ContractTerm = request.ContractTerm,
-                Active = request.Active
+                Active = request.Active,
+                Language = request.Language,
             };
             _context.LabourContracts.Add(lb);
-            await _context.SaveChangesAsync();
-            return Convert.ToInt32(lb.ID);
+            var lbentity = _context.LabourContracts.FirstOrDefault(x => x.FunctionID == lb.FunctionID);
+            if (lbentity == null)
+            {
+                return -1;
+            }
+            return await _context.SaveChangesAsync();
         }
 
         public async Task<int> Delete(string labourId)
@@ -46,6 +52,7 @@ namespace HRM.Services.Catalog.LabourContract
         {
             var query = from p in _context.LabourContracts
                         join pt in _context.Employee on p.EmployeeID equals pt.ID
+                        where p.Language == request.language
                         select new { p, pt };
 
             if (!string.IsNullOrEmpty(request.Keyword))
@@ -112,20 +119,27 @@ namespace HRM.Services.Catalog.LabourContract
             return lb;
         }
 
-        public async Task<List<LabourContractViewModel>> GetList()
+        public async Task<List<LabourContractViewModel>> GetList(language lan)
         {
             var query = from p in _context.LabourContracts select p;
-            var data = await query.Select(x => new LabourContractViewModel()
+            var data = query.GroupBy(x => x.FunctionID).AsEnumerable().Select(g =>
             {
-                ID = x.ID,
-                EmployeeID = x.EmployeeID,
-                Content = x.Content,
-                ContractSigninDate = x.ContractSigninDate.Date.ToString(),
-                ContractTerm = x.ContractTerm,
-                Active = x.Active
-            }).ToListAsync();
-            return data;
+                var obj = g.FirstOrDefault(e => e.Language == lan);
+                return new LabourContractViewModel()
+                {
+                    ID = obj != null ? obj.ID : 0,
+                    EmployeeID = obj.EmployeeID,
+                    Content = obj != null ? obj.Content : "",
+                    ContractSigninDate = obj.ContractSigninDate.Date.ToString(),
+                    ContractTerm = obj != null ? obj.ContractTerm : 0,
+                    Active = obj != null ? obj.Active : 0,
+                };
+            });
+            return data.ToList();
+
         }
+
+
 
         public async Task<int> Update(LabourContractEditRequest request)
         {
@@ -142,3 +156,4 @@ namespace HRM.Services.Catalog.LabourContract
         }
     }
 }
+

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HRM.Entity.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,7 @@ namespace HRM.ViewModel.Catalogs.LabourDays
         public string Name { get; set; }
         public int Days { get; set; }
         public int Months { get; set; }
+
+        public language language { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using HRM.ViewModel.Dtos;
+﻿using HRM.Entity.Enums;
+using HRM.ViewModel.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace HRM.ViewModel.Catalogs.Allowance
     public class GetAllowancePagingRequest : PagingRequestBase
     {
         public string Keyword { get; set; } = String.Empty;
+        public language Language { get; set;}
     }
 }

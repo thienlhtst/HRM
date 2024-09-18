@@ -1,0 +1,65 @@
+.main-container{
+    margin-left: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.175); 
+    border-radius: 0.375rem;
+    height: calc(100vh - 80px);
+}
+.avt-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+    height: 4rem;
+    border-radius: 0.375rem;
+}
+.avt-item{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: relative;
+    top : 45%;
+    background-color: black;
+}
+.text-manager{
+    filter: blur(0.2px);
+    font-size: 12px;
+}
+.avt-manage{
+    background-color: black;
+    width: 20px;
+    height: 20px;
+}
+.infor
+{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.175); 
+}
+.contact
+{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.175); 
+    
+}
+.contact-in{
+    margin-left: 10px;
+}
+.manage
+{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.175); 
+}
+.manage-in{
+    margin-left: 10px;
+}
+.item-menu{
+    cursor: pointer;
+    margin-top: 5px;
+    height: 40px;
+    padding-left: 30px;
+    gap: 10px;
+    font-size: 20px;
+    border-radius: 20px;
+    background-color: white;
+    align-items: center;
+}
+.item-menu-active{
+    background-color:  blanchedalmond;
+  
+  }

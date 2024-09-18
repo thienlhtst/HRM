@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HRM.Entity.Enums;
 
 namespace HRM.Services.Catalog.Allowance
 {
@@ -29,11 +30,18 @@ namespace HRM.Services.Catalog.Allowance
             {
                 ID = request.ID,
                 Name = request.Name,
-                Money = request.Money
+                Money = request.Money,
+                Language = request.language,
+                
             };
             _context.Allowances.Add(allowance);
-            await _context.SaveChangesAsync();
-            return Convert.ToInt32(allowance.ID);
+            var alloentity = _context.Allowances.FirstOrDefault(x => x.FunctionID == allowance.FunctionID);
+            if(alloentity == null)
+            {
+                return -1;
+            }
+            return await _context.SaveChangesAsync();
+    
         }
 
         public async Task<int> CreateAllowanceRules(List<AllowanceRulesCreateViewModel> request)
@@ -43,6 +51,7 @@ namespace HRM.Services.Catalog.Allowance
                 AllowanceID = x.AllowanceID,
                 EmployeeID = x.EmployeeID,
                 Date = x.Date,
+                
             }).ToList();
             _context.AllowanceRules.AddRange(allowancerules);
             await _context.SaveChangesAsync();
@@ -64,7 +73,7 @@ namespace HRM.Services.Catalog.Allowance
 
         public async Task<PagedResult<AllowanceViewModel>> GetAllPage(GetAllowancePagingRequest request)
         {
-            var query = from p in _context.Allowances select new { p };
+            var query = from p in _context.Allowances where p.Language == request.Language select new { p };
             if (!string.IsNullOrEmpty(request.Keyword))
             {
                 query = query.Where(x => x.p.ID.ToString().Contains(request.Keyword) || x.p.Name.Contains(request.Keyword));
@@ -95,8 +104,9 @@ namespace HRM.Services.Catalog.Allowance
                         join px in _context.Employee on pp.EmployeeID equals px.ID
                         select new { p, px, pp };
 
-            var data = await query.GroupBy(x => x.pp.AllowanceID)
-             .Select(e => new AllowanceRulesViewModel()
+
+
+            var data = await query.GroupBy(x => x.pp.AllowanceID).Select(e => new AllowanceRulesViewModel()
              {
                  AllowanceName = e.First().p.Name,
                  EmployeeName = String.Join(",", e.Select(t => t.px.FirstName + " " + t.px.MiddleName + " " + t.px.LastName)),
@@ -118,16 +128,20 @@ namespace HRM.Services.Catalog.Allowance
             return allo;
         }
 
-        public async Task<List<AllowanceViewModel>> GetList()
+        public async Task<List<AllowanceViewModel>> GetList(language lan)
         {
-            var query = from p in _context.Allowances select p;
-            var data = await query.Select(x => new AllowanceViewModel()
+            var query = from p in _context.Allowances  select p;
+            var data = query.GroupBy(x => x.FunctionID).AsEnumerable().Select(g =>
             {
-                ID = x.ID,
-                Name = x.Name,
-                Money = x.Money
-            }).ToListAsync();
-            return data;
+                var obj = g.FirstOrDefault(e => e.Language == lan);
+                return new AllowanceViewModel()
+                {
+                    ID = obj != null ? obj.ID : 0,
+                    Name = obj != null ? obj?.Name : "not exist",
+                    Money = obj != null ? obj.Money : 0,
+                };
+            });
+            return data.ToList();
         }
 
         public async Task<int> Update(AllowanceEditRequest request)

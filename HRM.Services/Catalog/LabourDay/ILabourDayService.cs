@@ -1,4 +1,5 @@
-﻿using HRM.ViewModel.Catalogs.LabourDays;
+﻿using HRM.Entity.Enums;
+using HRM.ViewModel.Catalogs.LabourDays;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace HRM.Services.Catalog.LabourDay
 {
     public interface ILabourDayService
     {
-        Task<List<GetListLabourDay>> GetList();
+        Task<List<GetListLabourDay>> GetList(language lan);
 
         Task<int> Create(LabourDayCreateRequest request);
 

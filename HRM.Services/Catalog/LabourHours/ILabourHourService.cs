@@ -1,4 +1,5 @@
-﻿using HRM.ViewModel.Catalogs.LabourHours;
+﻿using HRM.Entity.Enums;
+using HRM.ViewModel.Catalogs.LabourHours;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace HRM.Services.Catalog.LabourHours
 {
     public interface ILabourHourService
     {
-        Task<List<GetListLabourHour>> GetList();
+        Task<List<GetListLabourHour>> GetList(language lan);
 
         Task<int> Create(LabourHourCreateRequest request);
 

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HRM.Entity.Enums;
 
 namespace HRM.Services.Catalog.LabourDay
 {
@@ -28,8 +29,10 @@ namespace HRM.Services.Catalog.LabourDay
                 Name = request.Name,
                 Days = request.Days,
                 Months = request.Months,
+                Language = request.language,
             };
             _context.Days.Add(entity);
+            var dayentity = _context.Days.FirstOrDefault(x=>x.FunctionID == entity.FunctionID);
             return await _context.SaveChangesAsync();
         }
 
@@ -77,9 +80,9 @@ namespace HRM.Services.Catalog.LabourDay
             return null;
         }
 
-        public async Task<List<GetListLabourDay>> GetList()
+        public async Task<List<GetListLabourDay>> GetList(language lan)
         {
-            var query = await _context.Days.ToListAsync();
+            var query = from p in _context.Days where p.Language == lan select p;
             var result = query.Select(x => new GetListLabourDay
             {
                 ID = x.ID,

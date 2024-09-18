@@ -1,0 +1,68 @@
+.work{
+    border: 1px solid rgba(0, 0, 0, 0.175);
+    border-radius: 0.375rem;
+    height: calc(100vh - 520px);
+}
+.work-infor{
+    margin-left: 10px;
+}
+.work-hour{
+    margin-left: 10px;
+}
+.hour-1{
+    border: 1px solid rgba(0, 0, 0, 0.175);
+    border-radius: 0.375rem;
+    width: 9rem;
+    height: 5rem;
+}
+.hour-2{
+    border: 1px solid rgba(0, 0, 0, 0.175);
+    border-radius: 0.375rem;
+    width: 9rem;
+    height: 5rem;
+}
+.hour-3{
+    border: 1px solid rgba(0, 0, 0, 0.175);
+    border-radius: 0.375rem;
+    width: 9rem;
+    height: 5rem;
+}
+.hour-4{
+    border: 1px solid rgba(0, 0, 0, 0.175);
+    border-radius: 0.375rem;
+    width: 9rem;
+    height: 5rem;
+}
+
+.timekeeping-permit-container
+{
+    height: calc(100vh - 400px);
+}
+.timekeeping{
+    border: 1px solid rgba(0, 0, 0, 0.175);
+    border-radius: 0.375rem;
+    width: 63vh;
+    
+}
+.timekeeping-nearest-date
+{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.175);
+    margin-left: 10px;
+    margin-right: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+.permit{
+    border: 1px solid rgba(0, 0, 0, 0.175);
+    border-radius: 0.375rem;
+    width: 63vh;
+    margin-left: 10px;
+}
+.permit-statistic{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.175);
+    margin-left: 10px;
+    margin-right: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+

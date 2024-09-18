@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HRM.Entity.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,6 @@ namespace HRM.ViewModel.Catalogs.AllowanceRules
         public Guid EmployeeID { get; set; }
 
         public DateTime Date { get; set; }
+
     }
 }

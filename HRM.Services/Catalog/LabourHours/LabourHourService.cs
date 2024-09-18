@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HRM.Entity.Enums;
 
 namespace HRM.Services.Catalog.LabourHours
 {
@@ -74,9 +75,9 @@ namespace HRM.Services.Catalog.LabourHours
             return null;
         }
 
-        public async Task<List<GetListLabourHour>> GetList()
+        public async Task<List<GetListLabourHour>> GetList(language lan)
         {
-            var query = await _context.LabourHours.ToListAsync();
+            var query = from p in _context.LabourHours where p.Language ==lan select p ;
             var result = query.Select(x => new GetListLabourHour
             {
                 ID=x.ID.ToString(),

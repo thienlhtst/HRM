@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HRM.Entity.Enums;
 
 namespace HRM.Services.Catalog.LabourContract
 {
@@ -23,6 +24,6 @@ namespace HRM.Services.Catalog.LabourContract
 
         Task<PagedResult<LabourContractViewModel>> GetAllPage(GetLabourContractPagingRequest request);
 
-        Task<List<LabourContractViewModel>> GetList();
+        Task<List<LabourContractViewModel>> GetList(language lan);
     }
 }

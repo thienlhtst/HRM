@@ -1,0 +1,28 @@
+<div class="main-container d-flex flex-column mt-3">
+  <div class="contract-title mt-2">
+      <div class="title">Hợp đồng của nhân viên</div>
+  </div> 
+  <div class="contract-content mt-2">
+    <div class="contract-date d-flex flex-row justify-content-end gap-4">
+      <div class="date-month">
+        <select class="form-select" (change)="onChangeMonth($event)">
+          <ng-container *ngFor="let number of [].constructor(12); let i = index">
+            <option [value]="i + 1" [selected]="i + 1 === date.month">{{ i + 1 }}</option>
+          </ng-container>
+        </select>
+      </div>
+      <div class="date-year">
+        <select class="form-select" (change)="onChangeYear($event)">
+          <option selected disabled>Select Year</option>
+          <ng-container *ngFor="let year of yearoptions">
+            <option [value]="year" [selected]="year === date.year">{{ year }}</option>
+          </ng-container>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="contract-table mt-2">
+    <app-table *ngIf="dataloaded"  [listofheader]="columns" [listofdata]="datas"></app-table>
+  </div>
+</div>
+

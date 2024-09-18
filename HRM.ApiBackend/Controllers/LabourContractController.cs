@@ -5,6 +5,7 @@ using HRM.DataAccess;
 using HRM.Entity.Entities;
 using HRM.Services.Catalog.LabourContract;
 using HRM.ViewModel.Catalogs.LabourContract;
+using HRM.Entity.Enums;
 
 namespace HRMApiBackend.Controllers
 {
@@ -24,9 +25,9 @@ namespace HRMApiBackend.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(language lan)
         {
-            var model = await _labourContractService.GetList();
+            var model = await _labourContractService.GetList(lan);
             var labour = _mapper.Map<List<LabourContractViewModel>>(model);
             return Ok(model);
         }
