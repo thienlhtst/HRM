@@ -100,5 +100,12 @@ namespace HRM.Services.Catalog.Systems
             }
             return result;
         }
+
+        public async Task<SystemManagement> Create(SystemManagement request)
+        {
+            var respone = _context.SystemManagements.Add(request);
+            await _context.SaveChangesAsync();
+            return respone.Entity;
+        }
     }
 }

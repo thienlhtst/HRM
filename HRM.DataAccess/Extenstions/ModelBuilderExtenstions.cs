@@ -96,9 +96,7 @@ namespace HRM.DataAccess.Extenstions
                    new SystemManagement() { ID=21, FunctionID="HA100003", ParentID="HA000000", KindSystem=KindSystem.Label, Language=language.en, Layout="nav-header-admin", Icon="bi bi-box-arrow-left", Values=null, Description=null, KindInput=null, Name="Nav header Admin", Label="Logout", Routes =null, ClassName=null, Pattern=null, PatternName=null, IsImportant=null, },
                    new SystemManagement() { ID=22, FunctionID="HA100003", ParentID="HA000000", KindSystem=KindSystem.Label, Language=language.vn, Layout="nav-header-admin", Icon="bi bi-box-arrow-left", Values=null, Description=null, KindInput=null, Name="Nav header Admin", Label="Đăng Xuất", Routes =null, ClassName=null, Pattern=null, PatternName=null, IsImportant=null, },
                    //nav-header
-                   //nav-admin
 
-                   //nav-admin
                    //add--employee
                    new SystemManagement() { ID=23, FunctionID="CE000000", ParentID=null, KindSystem=KindSystem.Group, Language=null, Layout="create-employee", Icon=null, Values=null, Description=null, KindInput=null, Name="Create-employee", Label=null, Routes =null, ClassName=null, Pattern=null, PatternName=null, IsImportant=null, },
                    new SystemManagement() { ID=24, FunctionID="CE000001", ParentID="CE000000", KindSystem=KindSystem.Group, Language=language.en, Layout="create-employee", Icon=null, Values=null, Description=null, KindInput=null, Name="Create-employee", Label="Basic Information", Routes =null, ClassName=null, Pattern=null, PatternName=null, IsImportant=null, },
@@ -136,8 +134,12 @@ namespace HRM.DataAccess.Extenstions
                    new SystemManagement() { ID=56, FunctionID="CE000203", ParentID="CE000002", KindSystem=KindSystem.Input, KindInput=KindInput.Text, Language=language.vn, Layout="create-employee", Icon=null, Values=null, Description="Nhập: Lương", Name="money", Label="Lương", Routes =null, ClassName=null, Pattern="[0-9]+", PatternName="Sai Định dạng", IsImportant=true, },
                    new SystemManagement() { ID=57, FunctionID="CE000302", ParentID="CE000003", KindSystem=KindSystem.Input, KindInput=KindInput.Text, Language=language.vn, Layout="create-employee", Icon=null, Values=null, Description="Nhập: Tài khoản", Name="account", Label="Tài khoản", Routes =null, ClassName=null, Pattern=null, PatternName="Sai Định dạng", IsImportant=true, },
                    new SystemManagement() { ID=58, FunctionID="CE000302", ParentID="CE000003", KindSystem=KindSystem.Input, KindInput=KindInput.Text, Language=language.vn, Layout="create-employee", Icon=null, Values=null, Description="Nhập: Mật khẩu", Name="password", Label="Mật khẩu", Routes =null, ClassName=null, Pattern=null, PatternName="Sai Định dạng", IsImportant=true, },
-                   new SystemManagement() { ID=59, FunctionID="CE000401", ParentID="CE000004", KindSystem=KindSystem.Input, KindInput=KindInput.ImgSelect, Language=language.vn, Layout="create-employee", Icon=null, Values=null, Description="Nhập: Name Image", Name="urlImage", Label="Chọn hình ảnh", Routes =null }
-                //add--employee
+                   new SystemManagement() { ID=59, FunctionID="CE000401", ParentID="CE000004", KindSystem=KindSystem.Input, KindInput=KindInput.ImgSelect, Language=language.vn, Layout="create-employee", Icon=null, Values=null, Description="Nhập: Name Image", Name="urlImage", Label="Chọn hình ảnh", Routes =null },
+                 //add--employee
+                 //nav-admin
+                 new SystemManagement() { ID=60, FunctionID="NA000000", ParentID=null, KindSystem=KindSystem.Group, Language=null, Layout="nav-admin", Icon=null, Values=null, Description="Nav Admin", KindInput=null, Name="nav-admin", Label=null, Routes =null, ClassName=null, Pattern=null, PatternName=null, IsImportant=null, }
+
+                //nav-admin
                 ); ;
             /* modelbuilder.Entity<EmployeesWithAllowances>().HasData(
                  Seeder.EWASeedData());*/
