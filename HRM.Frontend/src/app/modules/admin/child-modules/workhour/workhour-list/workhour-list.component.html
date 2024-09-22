@@ -1,0 +1,30 @@
+<!-- eslint-disable @angular-eslint/template/eqeqeq -->
+<app-notification [message]="message" ></app-notification>
+<div class="card">
+  <div class="card-header">
+      <h3>List Workhour</h3>
+  </div>
+  <div class="d-flex justify-content-between">
+    <div class=" p-2 flex-grow-1 ">
+      <div  class="form align-items-center">
+        <i class="fa fa-search"></i>
+        <input type="text" name="filter" [(ngModel)]="searchText" (ngModelChange)="onSearchChange()" class="form-control form-input" placeholder="Search anything..." #fill>
+      </div>
+
+      </div>
+      <div class="p-2" >
+        <button type="button" (click)="nagivativeAdd()" class="btn btn-outline-info mx-auto">Add new</button>
+
+      </div>
+  </div>
+
+  <div class="card-block table-border-style" >
+      <div class="table-responsive" >
+        <app-workhour-list-detail [listitems]="listitems"(OnChooseid)="EventChooseId($event)" ></app-workhour-list-detail>
+        <div class=" d-flex justify-content-center"  >       <app-spinner-beta *ngIf="!flagspiner"></app-spinner-beta>
+          <p *ngIf="messageerr=='errorrrr'"> loiii</p>
+        </div>
+          <app-pagingnav class="d-flex justify-content-end"   [pagesize]="pageCount"  (numberchange)="numberchange($event)"></app-pagingnav>
+      </div>
+  </div>
+</div>

@@ -27,7 +27,8 @@
     "paths": {
       "src/*": ["src/*"],
       "@environments/*": ["src/environments/*"],
-      "assets/*": ["src/assets/*"]
+      "assets/*": ["src/assets/*"],
+      "css/*": ["src/scss/*"]
     }
   },
   "angularCompilerOptions": {

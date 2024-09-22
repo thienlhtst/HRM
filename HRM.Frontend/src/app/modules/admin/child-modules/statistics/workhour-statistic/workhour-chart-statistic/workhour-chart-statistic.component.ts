@@ -129,7 +129,6 @@ export class WorkhourChartStatisticComponent implements OnInit {
 
 
     this.services.GetEmployeeOff(currentdate.getFullYear()+'-'+(currentdate.getMonth()+1)+'-'+currentdate.getDate() ).subscribe((res)=>{
-      console.log(currentdate,new Date(res.day[0]))
       for(let i=0;i<7;i++){
         let day= new Date(res.day[i])
 

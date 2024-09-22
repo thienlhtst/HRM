@@ -15,8 +15,8 @@ export class LabourHourService {
   GetAll(): Observable<HomelistLabour[]> {
     return forkJoin([this.http.get(this.apiurl), this.http.get(this.apiurlday)]).pipe(
       map((data: any[]) => {
-        data[0].forEach((labourhour) => {
-          labourhour.days = data[1].filter((item) => item.idlb.includes(labourhour.id));
+        data[0].forEach((labourhour:any) => {
+          labourhour.days = data[1].filter((item:any) =>  item.idlb ==labourhour.id);
         });
         return data[0];
       })

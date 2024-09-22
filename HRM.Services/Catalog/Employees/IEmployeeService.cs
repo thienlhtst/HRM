@@ -19,11 +19,11 @@ namespace HRM.Services.Catalog.Employees
 
         Task<int> Update(EmployeeEditRequest request);
 
-        Task<int> Delete(string EmployeeID);
+        Task<int> Delete(Guid EmployeeID);
 
-        Task<EmployeeViewModel> GetById(string EmployeeID);
+        Task<EmployeeViewModel> GetById(Guid EmployeeID);
 
-        Task<EmployeeEditRequest> GetByIdEdit(string EmployeeID);
+        Task<EmployeeEditRequest> GetByIdEdit(Guid EmployeeID);
 
         Task<PagedResult<EmployeeViewModel>> GetAllPage(GetEmployeePagingRequest request);
 

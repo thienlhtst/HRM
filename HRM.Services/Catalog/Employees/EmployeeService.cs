@@ -68,7 +68,7 @@ namespace HRM.Services.Catalog.Employees
             return Convert.ToInt32(Employee.ID);
         }
 
-        public async Task<int> Delete(string EmployeeID)
+        public async Task<int> Delete(Guid EmployeeID)
         {
             var employee = await _context.Employee.FindAsync(EmployeeID);
             _context.Employee.Remove(employee);
@@ -169,7 +169,7 @@ namespace HRM.Services.Catalog.Employees
             return employeerules;
         }
 
-        public async Task<EmployeeViewModel> GetById(string EmployeeID)
+        public async Task<EmployeeViewModel> GetById(Guid EmployeeID)
         {
             var rank = (from p in _context.Employee
                         join ps in _context.Salaries on p.SalaryID equals ps.ID
@@ -204,7 +204,7 @@ namespace HRM.Services.Catalog.Employees
             return employeeviewmodel;
         }
 
-        public async Task<EmployeeEditRequest> GetByIdEdit(string EmployeeID)
+        public async Task<EmployeeEditRequest> GetByIdEdit(Guid EmployeeID)
         {
             var x = await _context.Employee.FindAsync(EmployeeID);
             if (x == null) return null;

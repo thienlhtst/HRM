@@ -1,0 +1,74 @@
+<app-notification [message]="message" ></app-notification>
+<div class="row">
+  <div [ngClass]="{ 'col-md-12': !ShowForm, 'col-md-12 col-xl-8': ShowForm }">
+    <div class="card tbl-card">
+      <div class="card-header">
+        <h3>Rank Table</h3>
+      </div>
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div class=" p-2 flex-grow-1 ">
+            <div  class="form align-items-center">
+              <i class="fa fa-search"></i>
+              <input type="text" name="search" [(ngModel)]="searchText" class="form-control form-input" (ngModelChange)="onSearchChange()" placeholder="Search anything..." #fill>
+            </div>
+
+            </div>
+            <div class="p-2" >
+              <button type="button" (click)="ClicktoShowFormAdd()" class="btn btn-outline-info mx-auto">Add new</button>
+
+            </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover table-borderless mb-0">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Rank Role</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of datas ">
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.roleName }}</td>
+
+                <td>
+                  <button class="img-button" (click)="ButtonClickToUpdate(item.id)"  mat-icon-button [matTooltip]="'Edit'">
+                    <img  class="ti ti-edit"   src="" />
+                  </button>
+                  <button class="img-button" (click)="Delete($event,item.id)"  mat-icon-button [matTooltip]="'Delete'">
+                    <img  class="ti ti-circle-minus" src="" />
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <app-pagingnav
+            class="d-flex justify-content-end"
+            [pagesize]="PageCount"
+            (numberchange)="PageChange($event)"
+            #child
+          ></app-pagingnav>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!spinner">
+      <h1 class="text-center text-primary"> Wait for Data </h1>
+      <app-spinner-beta></app-spinner-beta>
+    </div>
+  </div>
+
+
+  <div class="col-md-12 col-xl-4" [ngClass]="{ 'col-md-7': ShowFormOptions, 'd-none': !ShowFormOptions }" *ngIf="ShowFormOptions">
+    <div class="card">
+      <div class="card-body">
+        <div class="list-group list-group-flush">
+          <app-rank-options [selectedID]="selectedID" (onConfirm)="NoficationAlert($event)" (onCancel)="onCancel()"></app-rank-options>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

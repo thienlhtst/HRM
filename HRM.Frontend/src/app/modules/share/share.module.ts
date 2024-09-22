@@ -28,6 +28,6 @@ import { DropDownButtonModule } from '@syncfusion/ej2-angular-splitbuttons'; // 
   ],providers: [provideHttpClient()],
   declarations: [FileInputComponent,SelectInputComponent,CreateComponent,SpinnerAlphaComponent,SpinnerComponent, SearchInputComponent, AvtComponent,LanguageInputComponent,TextInputComponent],
 
-  exports: [DropDownButtonModule,FileInputComponent,SelectInputComponent,SpinnerAlphaComponent,LanguageInputComponent,TextInputComponent,CreateComponent]
+  exports: [DropDownButtonModule,FileInputComponent,SelectInputComponent,SpinnerAlphaComponent,LanguageInputComponent,TextInputComponent,CreateComponent,SpinnerComponent]
 })
 export class ShareModule { }

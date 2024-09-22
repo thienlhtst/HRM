@@ -11,7 +11,7 @@ import { EmployeeService } from 'src/Services/Employee/employee.service';
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
-  styleUrls: ['./employee-list.component.scss']
+  styleUrls: ['./employee-list.component.scss','../../../../../../scss/shared/button.scss']
 })
 export class EmployeeListComponent implements OnInit {
   constructor(private service : EmployeeService,
@@ -37,11 +37,11 @@ export class EmployeeListComponent implements OnInit {
   }
 
   ButtonClickToUpdate(id : string){
-    this.router.navigate(['/emp/update',id ])
+    this.router.navigate(['admin/emp/update',id ])
   }
 
   ButtonClickToDetails(id:string){
-    this.router.navigate(['emp/details',id])
+    this.router.navigate(['admin/emp/details',id])
   }
 
   GetAll(){
