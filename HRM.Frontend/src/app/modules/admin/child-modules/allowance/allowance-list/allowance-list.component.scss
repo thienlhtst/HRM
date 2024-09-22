@@ -1,0 +1,28 @@
+
+#flex-container {
+  display: flex;
+}
+
+#left-form {
+  flex: 1; /* Chiếm hết không gian còn lại trong container */
+  margin-right: 10px; /* Khoảng cách giữa form bên trái và bên phải */
+}
+
+#right-form {
+  flex: 1; /* Chiếm hết không gian còn lại trong container */
+}
+
+.selected{
+  background-color:cyan;
+  color : white;
+}
+
+tr {
+  transition: background-color 0.3s ease;
+
+}
+
+#div-style {
+
+  color: black;
+}

@@ -16,7 +16,7 @@ export class WorkhourStatisticsServiceService {
   apiurl : string = environment.apiurl +'/Statistic'
   apiurle : string = environment.apiurl +'/Employee'
 
-  GetpagingWorkhour(day,requestpaing: RequestpagingStatistic):Observable<any>{
+  GetpagingWorkhour(day:any,requestpaing: RequestpagingStatistic):Observable<any>{
     let url:string;
      if(requestpaing.keyword=='')
      url =this.apiurle+'/estatisticpaging?&PageIndex='+requestpaing.pageindex+'&PageSize='+requestpaing.year
@@ -39,7 +39,7 @@ export class WorkhourStatisticsServiceService {
         }
         let resultquery:any[]=[]
 
-        employees.items.forEach(employee => {
+        employees.items.forEach((employee: { name: any; id: any; }) => {
           let total1=0
           let ResultInForeach :any={
             name:employee.name,

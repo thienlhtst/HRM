@@ -7,6 +7,7 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { routes } from 'src/app/app.routes';
+import { SystemService } from 'src/Services/System/System.service';
 
 @Component({
   selector: 'nav-admin',
@@ -15,6 +16,8 @@ import { routes } from 'src/app/app.routes';
 })
 export class NavAdminComponent implements OnInit, AfterViewInit {
   @ViewChildren('itemDiv') myDivElements!: QueryList<ElementRef>;
+  flagAppear:boolean =false
+
   datas: any = [
     {
       sys: {
@@ -39,17 +42,30 @@ export class NavAdminComponent implements OnInit, AfterViewInit {
     },
    
   ];
-  constructor() {}
+  constructor(private _systemService: SystemService) {}
   ngAfterViewInit(): void {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    let lan = localStorage.getItem("language")
+    if (lan == null) {
+      lan = '0'
+    }
+    
+    this._systemService.GetNavLangugeFunction('NA000000', lan).subscribe((res) => {
+     this.datas = res;
+     console.log(this.datas)
+     this.flagAppear =true
+    });
+
+
+  }
   onafterViewInit() {}
 
-  onDivClick(index: number) {
-    this.datas[index - 1].sys.isImportant = !this.datas[index - 1].sys.isImportant;
-    const selectedDiv = this.myDivElements.toArray()[index - 1];
+  onDivClick(index: any) {
+    this.datas[index ].sys.isImportant = !this.datas[index ].sys.isImportant;
+    const selectedDiv = this.myDivElements.toArray()[index ];
 
-    if (this.datas[index - 1].sys.isImportant) {
+    if (this.datas[index ].sys.isImportant) {
       selectedDiv.nativeElement.style.display = 'block';
       selectedDiv.nativeElement.style.height = 'auto';
       selectedDiv.nativeElement.style.opacity = '1';

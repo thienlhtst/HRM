@@ -31,6 +31,7 @@ import { TokenService } from 'src/Services/Token/token.service';
   ],providers: [provideHttpClient(),SystemService,EmployeeService,TokenService],
   declarations: [FileInputComponent,SelectInputComponent,CreateComponent,SpinnerAlphaComponent,SpinnerComponent, SearchInputComponent, AvtComponent,LanguageInputComponent,TextInputComponent,InformationComponent],
 
+  exports: [DropDownButtonModule,FileInputComponent,SelectInputComponent,SpinnerAlphaComponent,LanguageInputComponent,TextInputComponent,CreateComponent,SpinnerComponent]
   exports: [FileInputComponent,SelectInputComponent,SpinnerAlphaComponent,LanguageInputComponent,TextInputComponent,CreateComponent,InformationComponent]
 })
 export class ShareModule { }

@@ -1,24 +1,77 @@
-<div class="w-100 h-100">
-  <div style="height: 10%;">
-  </div>
-  <div class="w-100 bg-white rounded h-75 p-2">
-    <div class="table2" >
-      <table class="table table-hover table-sm  ">
-        <thead>
-          <tr style="text-align: center;"  > 
-            <th *ngFor="let item of listofheader">{{item.name}}</th>  
-          
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let row of listofdata">
-            <td style="text-align: center;" *ngFor="let column of listofheader">
-               {{row[column.column]}}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+<div class="row">
+  <div class="row d-flex justify-content-center">
+    <div class="col-xl-3 col-md-6 flex-fill">
+      <div class="card mb-4 border-full border-primary">
+        <div class="card-body"><h6 class="mb-2 f-w-400 ">Total Hours:</h6></div>
+        <h2 *ngIf="spinner; else loaddata" class="text-center f-w-400 text-primary">{{ HomeDetail.totalworkhour }}</h2>
+        <ng-template #loaddata>
+          <app-spinner-beta class="d-flex justify-content-center"></app-spinner-beta>
+        </ng-template>
+        <div (click)="changeFlag(0)" class="card-footer d-flex align-items-center justify-content-between border-top border-primary custom-cursor">
+          <a  class="small text_hover " style="text-decoration: underline">View Details</a>
+          <div class="small"><i class="fas fa-angle-right text_hover"></i></div>
+        </div>
+      </div>
     </div>
+    <div class="col-xl-3 col-md-6 flex-fill">
+      <div class="card mb-4 border-full border-info">
+        <div class="card-body"><h6 class="mb-2 f-w-400">Employee Work:</h6></div>
+        <h2 *ngIf="spinner; else loaddata1" class="text-center text-info f-w-400"> {{ HomeDetail.employeeWork }}</h2>
+        <ng-template #loaddata1>
+          <app-spinner-beta class="d-flex justify-content-center"></app-spinner-beta>
+        </ng-template>
+        <div class="card-footer d-flex align-items-center justify-content-between border-top border-info bg-white custom-cursor" (click)="changeFlag(3)">
+          <a  class="small text_hover "  style="text-decoration: underline">View Details</a>
+          <div class="small "><i class="fas fa-angle-right text_hover"></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 flex-fill">
+      <div class="card border-full border-danger mb-4">
+        <div class="card-body"><h6 class="mb-2 f-w-400">Employee Off:</h6></div>
+        <h2 *ngIf="spinner; else loaddata2" class="text-center text-danger f-w-400">{{ HomeDetail.employeeOff }} </h2>
+        <ng-template #loaddata2>
+          <app-spinner-beta class="d-flex justify-content-center"></app-spinner-beta>
+        </ng-template>
+        <div (click)="changeFlag(1)" class="card-footer d-flex align-items-center border-danger justify-content-between border-top bg-white custom-cursor">
+          <a  class="small text_hover" style="text-decoration: underline">View Details</a>
+          <div class="small"><i class="fas fa-angle-right text_hover"></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6 flex-fill">
+      <div class="card border-full border-warning mb-4">
+        <div class="card-body"> <h6 class="mb-2 f-w-400">Employee Late:</h6></div>
+        <div *ngIf="spinner; else loaddata3">
+          <h2 class="text-center text-warning f-w-400"> {{ HomeDetail.employyLate }}</h2>
+        </div>
 
+        <ng-template #loaddata3>
+          <app-spinner-beta class="d-flex justify-content-center"></app-spinner-beta>
+        </ng-template>
+        <div (click)="changeFlag(2)" class="card-footer d-flex align-items-center justify-content-between border-warning border-top bg-white custom-cursor">
+          <a  class="small text_hover" style="text-decoration: underline">View Details</a>
+          <div class="small"><i class="fas fa-angle-right text_hover"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm">
+    <div class="card">
+      <div class="d-flex card-header">{{ textHeader }} </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <dashboard-list-details [items]="reponsedata.items" *ngIf="flagdetail === 0"></dashboard-list-details>
+          <dashboard-list-employees *ngIf="flagdetail !== 0" [items]="reponsedata.items"></dashboard-list-employees>
+          <app-spinner-beta *ngIf="!spinner" class="d-flex justify-content-center"></app-spinner-beta>
+          <app-pagingnav
+            class="d-flex justify-content-end"
+            [pagesize]="pagecount"
+            (numberchange)="numberchange($event)"
+            #child
+          ></app-pagingnav>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

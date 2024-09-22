@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+}
+
+#left-grid {
+  flex: 2;
+}
+
+#right-grid {
+  flex: 1;
+  margin-left: 20px; /* Khoảng cách giữa hai grid */
+}

@@ -21,6 +21,30 @@ const routes: Routes = [
         loadChildren: () => import('./child-modules/employee/employee.module').then(m => m.EmployeeModule)
       },
       {
+        path:'statistic',
+        loadChildren: () => import('./child-modules/statistics/statistics.module').then(m => m.StatisticsModule)
+      },
+      {
+        path:'postion',
+        loadChildren:() => import('./child-modules/position/position.module').then(m=>m.PositionModule)
+      },
+      {
+        path:'level',
+        loadChildren:() => import('./child-modules/rank/rank.module').then(m=>m.RankModule)
+      },
+      {
+        path:'salary',
+        loadChildren:() => import ('./child-modules/salary/salary.module').then(m=>m.SalaryModule)
+      },
+      {
+        path:'workhour',
+        loadChildren:() => import ('./child-modules/workhour/workhour.module').then(m=>m.WorkhourModule)
+      },
+      {
+        path:'labourday',
+        loadChildren:() => import ('./child-modules/labourday/labourday.module').then(m=>m.LabourdayModule)
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: 'dashboard',

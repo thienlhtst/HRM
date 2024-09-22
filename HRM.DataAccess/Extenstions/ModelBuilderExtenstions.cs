@@ -2,6 +2,7 @@
 using HRM.Entity.Entities;
 using HRM.Entity.Enums;
 using HRM.Entity.RelationShips;
+using Microsoft.AspNetCore.Routing.Tree;
 using Microsoft.EntityFrameworkCore;
 
 namespace HRM.DataAccess.Extenstions
@@ -138,6 +139,43 @@ namespace HRM.DataAccess.Extenstions
                  //add--employee
                  //nav-admin
                  new SystemManagement() { ID = 60, FunctionID = "NA000000", ParentID = null, KindSystem = KindSystem.Group, Language = null, Layout = "nav-admin", Icon = null, Values = null, Description = "Nav Admin", KindInput = null, Name = "nav-admin", Label = null, Routes = null, ClassName = null, Pattern = null, PatternName = null, IsImportant = null, },
+                 new SystemManagement() { ID=60, FunctionID="NA000000", ParentID=null, KindSystem=KindSystem.Group, Language=null, Layout="nav-admin", Icon=null, Values=null, Description="Nav Admin", KindInput=null, Name=null, Label=null, Routes =null, ClassName=null, Pattern=null, PatternName=null, IsImportant=null, },
+                 new SystemManagement() { ID=62, FunctionID="NA000001", ParentID="NA000000", KindSystem=KindSystem.Group, Label="Home", Language=language.en, Layout="nav-admin", Description="Nav Admin", IsImportant=true },
+                 new SystemManagement() { ID=63, FunctionID="NA000002", ParentID="NA000000", KindSystem=KindSystem.Group, Label="Employee", Language=language.en, Layout="nav-admin", Description="Nav Admin", IsImportant=true },
+                 new SystemManagement() { ID=64, FunctionID="NA000003", ParentID="NA000000", KindSystem=KindSystem.Group, Label="Workhour", Language=language.en, Layout="nav-admin", Description="Nav Admin", IsImportant=true },
+                 new SystemManagement() { ID=65, FunctionID="NA000004", ParentID="NA000000", KindSystem=KindSystem.Group, Label="Alowance", Language=language.en, Layout="nav-admin", Description="Nav Admin", IsImportant=true },
+                 new SystemManagement() { ID=66, FunctionID="NA000101", ParentID="NA000001", KindSystem=KindSystem.Label, Label="Dashboard", Language=language.en, Layout="nav-admin", Description="Nav Admin", Routes="dashboard", Icon="bi bi-book" },
+                 new SystemManagement() { ID=67, FunctionID="NA000102", ParentID="NA000001", KindSystem=KindSystem.Label, Label="Workhour's Satistic", Language=language.en, Layout="nav-admin", Description="Nav Admin", Routes="statistic/workhour", Icon="bi bi-book" },
+                 new SystemManagement() { ID=68, FunctionID="NA000103", ParentID="NA000001", KindSystem=KindSystem.Label, Label="Salary's Statistic", Language=language.en, Layout="nav-admin", Description="Nav Admin", Routes="statistic/salary", Icon="bi bi-book" },
+                 new SystemManagement() { ID=69, FunctionID="NA000104", ParentID="NA000001", KindSystem=KindSystem.Label, Label="QR test", Language=language.en, Layout="nav-admin", Description="Nav Admin", Routes="qrcode", Icon="bi bi-book" },
+                 new SystemManagement() { ID=70, FunctionID="NA000201", ParentID="NA000002", KindSystem=KindSystem.Label, Label="List Employee", Language=language.en, Layout="nav-admin", Description="Nav Admin", Routes="emp", Icon="bi bi-book" },
+                 new SystemManagement() { ID=71, FunctionID="NA000202", ParentID="NA000002", KindSystem=KindSystem.Label, Label="Position", Language=language.en, Layout="nav-admin", Description="Nav Admin", Routes="postion", Icon="bi bi-book" },
+                 new SystemManagement() { ID=72, FunctionID="NA000203", ParentID="NA000002", KindSystem=KindSystem.Label, Label="Level", Language=language.en, Layout="nav-admin", Description="Nav Admin", Routes="level", Icon="bi bi-book" },
+                 new SystemManagement() { ID=73, FunctionID="NA000204", ParentID="NA000002", KindSystem=KindSystem.Label, Label="Salary", Language=language.en, Layout="nav-admin", Description="Nav Admin", Routes="salary", Icon="bi bi-book" },
+                 new SystemManagement() { ID=74, FunctionID="NA000205", ParentID="NA000002", KindSystem=KindSystem.Label, Label="Labour Contract", Language=language.en, Layout="nav-admin", Description="Nav Admin", Routes="labourcontract", Icon="bi bi-book" },
+                 new SystemManagement() { ID=75, FunctionID="NA000301", ParentID="NA000003", KindSystem=KindSystem.Label, Label="Work Hours", Language=language.en, Layout="nav-admin", Description="Nav Admin", Routes="workhour", Icon="bi bi-book" },
+                 new SystemManagement() { ID=76, FunctionID="NA000302", ParentID="NA000003", KindSystem=KindSystem.Label, Label="Labour Day", Language=language.en, Layout="nav-admin", Description="Nav Admin", Routes="labourday", Icon="bi bi-book" },
+                 new SystemManagement() { ID=77, FunctionID="NA000401", ParentID="NA000004", KindSystem=KindSystem.Label, Label="List Allowances", Language=language.en, Layout="nav-admin", Description="Nav Admin", Routes="allowance", Icon="bi bi-book" },
+                 new SystemManagement() { ID=78, FunctionID="NA000402", ParentID="NA000004", KindSystem=KindSystem.Label, Label="Employees's Allowance", Language=language.en, Layout="nav-admin", Description="Nav Admin", Routes="ewa", Icon="bi bi-book" },
+                 new SystemManagement() { ID=79, FunctionID="NA000403", ParentID="NA000004", KindSystem=KindSystem.Label, Label="Employees's Allowance Rules", Language=language.en, Layout="nav-admin", Description="Nav Admin", Routes="allowancesemployeerules", Icon="bi bi-book" },
+                 new SystemManagement() { ID=81, FunctionID="NA000001", ParentID="NA000000", KindSystem=KindSystem.Group, Label="Trang Chủ", Language=language.vn, Layout="nav-admin", Description="Nav Admin", IsImportant=true },
+                 new SystemManagement() { ID=82, FunctionID="NA000002", ParentID="NA000000", KindSystem=KindSystem.Group, Label="Nhân Viên", Language=language.vn, Layout="nav-admin", Description="Nav Admin", IsImportant=true },
+                 new SystemManagement() { ID=83, FunctionID="NA000003", ParentID="NA000000", KindSystem=KindSystem.Group, Label="Giờ công", Language=language.vn, Layout="nav-admin", Description="Nav Admin", IsImportant=true },
+                 new SystemManagement() { ID=84, FunctionID="NA000004", ParentID="NA000000", KindSystem=KindSystem.Group, Label="Phụ Cấp", Language=language.vn, Layout="nav-admin", Description="Nav Admin", IsImportant=true },
+                 new SystemManagement() { ID=85, FunctionID="NA000101", ParentID="NA000001", KindSystem=KindSystem.Label, Label="Trang chủ", Language=language.vn, Layout="nav-admin", Description="Nav Admin", Routes="dashboard", Icon="bi bi-book" },
+                 new SystemManagement() { ID=86, FunctionID="NA000102", ParentID="NA000001", KindSystem=KindSystem.Label, Label="Thống kê giờ công", Language=language.vn, Layout="nav-admin", Description="Nav Admin", Routes="statistic/workhour", Icon="bi bi-book" },
+                 new SystemManagement() { ID=87, FunctionID="NA000103", ParentID="NA000001", KindSystem=KindSystem.Label, Label="Thông kê Lương", Language=language.vn, Layout="nav-admin", Description="Nav Admin", Routes="statistic/salary", Icon="bi bi-book" },
+                 new SystemManagement() { ID=88, FunctionID="NA000104", ParentID="NA000001", KindSystem=KindSystem.Label, Label="Quét mã QR", Language=language.vn, Layout="nav-admin", Description="Nav Admin", Routes="qrcode", Icon="bi bi-book" },
+                 new SystemManagement() { ID=89, FunctionID="NA000201", ParentID="NA000002", KindSystem=KindSystem.Label, Label="Danh sách nhân viên", Language=language.vn, Layout="nav-admin", Description="Nav Admin", Routes="emp", Icon="bi bi-book" },
+                 new SystemManagement() { ID=90, FunctionID="NA000202", ParentID="NA000002", KindSystem=KindSystem.Label, Label="Vị trí", Language=language.vn, Layout="nav-admin", Description="Nav Admin", Routes="postion", Icon="bi bi-book" },
+                 new SystemManagement() { ID=91, FunctionID="NA000203", ParentID="NA000002", KindSystem=KindSystem.Label, Label="Cấp bậc", Language=language.vn, Layout="nav-admin", Description="Nav Admin", Routes="level", Icon="bi bi-book" },
+                 new SystemManagement() { ID=92, FunctionID="NA000204", ParentID="NA000002", KindSystem=KindSystem.Label, Label="Lương", Language=language.vn, Layout="nav-admin", Description="Nav Admin", Routes="salary", Icon="bi bi-book" },
+                 new SystemManagement() { ID=93, FunctionID="NA000205", ParentID="NA000002", KindSystem=KindSystem.Label, Label="Hợp đồng", Language=language.vn, Layout="nav-admin", Description="Nav Admin", Routes="labourcontract", Icon="bi bi-book" },
+                 new SystemManagement() { ID=94, FunctionID="NA000301", ParentID="NA000003", KindSystem=KindSystem.Label, Label="Danh sách Giờ công", Language=language.vn, Layout="nav-admin", Description="Nav Admin", Routes="workhour", Icon="bi bi-book" },
+                 new SystemManagement() { ID=95, FunctionID="NA000302", ParentID="NA000003", KindSystem=KindSystem.Label, Label="Quản lý Ngày Làm", Language=language.vn, Layout="nav-admin", Description="Nav Admin", Routes="labourday", Icon="bi bi-book" },
+                 new SystemManagement() { ID=96, FunctionID="NA000401", ParentID="NA000004", KindSystem=KindSystem.Label, Label="Danh Sách Phụ cấp", Language=language.vn, Layout="nav-admin", Description="Nav Admin", Routes="allowance", Icon="bi bi-book" },
+                 new SystemManagement() { ID=97, FunctionID="NA000402", ParentID="NA000004", KindSystem=KindSystem.Label, Label="Phụ cấp Nhân Viên", Language=language.vn, Layout="nav-admin", Description="Nav Admin", Routes="ewa", Icon="bi bi-book" },
+                 new SystemManagement() { ID=98, FunctionID="NA000403", ParentID="NA000004", KindSystem=KindSystem.Label, Label="Luật Phụ cấp ", Language=language.vn, Layout="nav-admin", Description="Nav Admin", Routes="allowancesemployeerules", Icon="bi bi-book" }
 
                 //nav-admin
 

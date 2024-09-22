@@ -47,8 +47,8 @@ namespace HRMApiBackend.Controllers
             return Ok(newEmployee);
         }
 
-        [HttpGet("getbyid/{employeeID}")]
-        public async Task<IActionResult> GetById(string employeeID)
+        [HttpGet("{employeeID}")]
+        public async Task<IActionResult> GetById(Guid employeeID)
         {
             var employee = await _employeeService.GetById(employeeID);
             if (employee == null)
@@ -71,7 +71,7 @@ namespace HRMApiBackend.Controllers
         }
 
         [HttpGet("edit/{employeeID}")]
-        public async Task<IActionResult> GetByIdEdit(string employeeID)
+        public async Task<IActionResult> GetByIdEdit(Guid employeeID)
         {
             var employee = await _employeeService.GetByIdEdit(employeeID);
             if (employee == null)
@@ -103,7 +103,7 @@ namespace HRMApiBackend.Controllers
         }
 
         [HttpDelete("{employeeID}")]
-        public async Task<IActionResult> Delete(string employeeID)
+        public async Task<IActionResult> Delete(Guid employeeID)
         {
             var emp = await _employeeService.Delete(employeeID);
             return Ok(emp);

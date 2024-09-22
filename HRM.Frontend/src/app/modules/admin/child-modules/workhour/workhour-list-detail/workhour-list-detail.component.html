@@ -1,0 +1,34 @@
+<table class="table table-inverse">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Employee Name</th>
+      <th>LBDID</th>
+      <th>Date</th>
+      <th>Time Check In</th>
+      <th>Time Check Out</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let item of listitems">
+      <td>{{ item.id }}</td>
+      <td>{{ item.firstName }} {{ item.lastName }}</td>
+      <td>{{ item.lbd }}</td>
+      <td>{{ item.day }}/ {{ item.month }}/{{ item.year }}</td>
+      <td>{{ item.hourCheckin }} : {{ item.minuteCheckin }}</td>
+      <td>{{ item.hourCheckout }} : {{ item.minuteCheckout }}</td>
+      <td >
+        <div class="d-flex ">
+        <button class="img-button" (click)="EventUpdateorDelete(item.id,1)"  mat-icon-button [matTooltip]="'Edit'">
+          <i  class="ti ti-edit"   ></i>
+        </button>
+        <button class="img-button" (click)="EventUpdateorDelete(item.id,2)"  mat-icon-button [matTooltip]="'Delete'">
+          <i class="ti ti-circle-minus"></i>
+        </button>
+      </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

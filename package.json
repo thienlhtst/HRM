@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@microsoft/signalr": "^8.0.7",
+    "ng-apexcharts": "^1.12.0"
+  }
+}

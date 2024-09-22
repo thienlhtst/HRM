@@ -24,7 +24,6 @@
           <table class="table table-inverse">
               <thead>
                   <tr>
-                      <th>ID</th>
                       <th>First Name</th>
                       <th>Middle Name</th>
                       <th>Last Name</th>
@@ -38,7 +37,6 @@
               </thead>
               <tbody>
                   <tr *ngFor="let item of datas ">
-                      <td>{{item.id}}</td>
                       <td>{{item.firstName}}</td>
                       <td>{{item.middleName}}</td>
                       <td>{{item.lastName}}</td>
@@ -46,16 +44,16 @@
                       <td>{{item.sex}}</td>
                       <td>{{item.rank}}</td>
                       <td>{{item.position}}</td>
-                      <td>{{item.active}}</td>
+                      <td>{{item.active}}  </td>
                       <td>
                         <button class="img-button-employee" (click)="ButtonClickToUpdate(item.id)" mat-icon-button [matTooltip]="'Edit'">
-                          <i  class="ti ti-edit"></i>
+                          <i  class="bi bi-pencil-square"> </i>
                         </button>
                         <button class="img-button-employee" (click)="Delete($event,item.id)" mat-icon-button [matTooltip]="'Delete'">
-                          <i  class="ti ti-circle-minus" src="" ></i>
+                          <i  class="bi bi-x-lg" src="" ></i>
                         </button>
                         <button class="img-button-employee" (click)=" ButtonClickToDetails(item.id)" mat-icon-button [matTooltip]="'Infomation'">
-                          <i  class="ti ti-info-circle" src="" ></i>
+                          <i  class="bi bi-info-circle" src="" ></i>
                         </button>
                       </td>
                   </tr>
