@@ -30,14 +30,8 @@ namespace HRM.Services.Catalog.LabourContract
                 ContractSigninDate = request.ContractSigninDate,
                 ContractTerm = request.ContractTerm,
                 Active = request.Active,
-                Language = request.Language,
             };
             _context.LabourContracts.Add(lb);
-            var lbentity = _context.LabourContracts.FirstOrDefault(x => x.FunctionID == lb.FunctionID);
-            if (lbentity == null)
-            {
-                return -1;
-            }
             return await _context.SaveChangesAsync();
         }
 
@@ -52,7 +46,6 @@ namespace HRM.Services.Catalog.LabourContract
         {
             var query = from p in _context.LabourContracts
                         join pt in _context.Employee on p.EmployeeID equals pt.ID
-                        where p.Language == request.language
                         select new { p, pt };
 
             if (!string.IsNullOrEmpty(request.Keyword))
@@ -119,23 +112,19 @@ namespace HRM.Services.Catalog.LabourContract
             return lb;
         }
 
-        public async Task<List<LabourContractViewModel>> GetList(language lan)
+        public async Task<List<LabourContractViewModel>> GetList()
         {
             var query = from p in _context.LabourContracts select p;
-            var data = query.GroupBy(x => x.FunctionID).AsEnumerable().Select(g =>
+            var data = await query.Select(x => new LabourContractViewModel()
             {
-                var obj = g.FirstOrDefault(e => e.Language == lan);
-                return new LabourContractViewModel()
-                {
-                    ID = obj != null ? obj.ID : 0,
-                    EmployeeID = obj.EmployeeID,
-                    Content = obj != null ? obj.Content : "",
-                    ContractSigninDate = obj.ContractSigninDate.Date.ToString(),
-                    ContractTerm = obj != null ? obj.ContractTerm : 0,
-                    Active = obj != null ? obj.Active : 0,
-                };
-            });
-            return data.ToList();
+                ID = x.ID,
+                EmployeeID = x.EmployeeID,
+                Content = x.Content,
+                ContractSigninDate = x.ContractSigninDate.ToString(),
+                ContractTerm = x.ContractTerm,
+                Active = x.Active
+            }).ToListAsync();
+            return data;
 
         }
 

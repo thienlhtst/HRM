@@ -25,7 +25,7 @@ namespace HRM.Services.Catalog.Allowance
 
         Task<PagedResult<AllowanceViewModel>> GetAllPage(GetAllowancePagingRequest request);
 
-        Task<List<AllowanceViewModel>> GetList(language lan);
+        Task<List<AllowanceViewModel>> GetList();
 
         Task<int> CreateAllowanceRules(List<AllowanceRulesCreateViewModel> request);
 

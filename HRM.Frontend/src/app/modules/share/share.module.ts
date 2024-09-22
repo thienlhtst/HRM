@@ -14,6 +14,9 @@ import { CreateComponent } from './components/create/create.component';
 import { SelectInputComponent } from './components/input-components/select-input/select-input.component';
 import { FileInputComponent } from './components/input-components/file-input/file-input.component';
 import { InformationComponent } from './components/information/information.component';
+import { SystemService } from 'src/Services/System/System.service';
+import { EmployeeService } from 'src/Services/Employee/employee.service';
+import { TokenService } from 'src/Services/Token/token.service';
 
 @NgModule({
   imports: [
@@ -25,7 +28,7 @@ import { InformationComponent } from './components/information/information.compo
     NgbModule,
     NgbCollapseModule,
 
-  ],providers: [provideHttpClient()],
+  ],providers: [provideHttpClient(),SystemService,EmployeeService,TokenService],
   declarations: [FileInputComponent,SelectInputComponent,CreateComponent,SpinnerAlphaComponent,SpinnerComponent, SearchInputComponent, AvtComponent,LanguageInputComponent,TextInputComponent,InformationComponent],
 
   exports: [FileInputComponent,SelectInputComponent,SpinnerAlphaComponent,LanguageInputComponent,TextInputComponent,CreateComponent,InformationComponent]

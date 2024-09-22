@@ -8,7 +8,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["HRM.ApiBackend/gitHRM.ApiBackend.csproj", "HRM.ApiBackend/"]
+COPY ["HRM.ApiBackend/HRM.ApiBackend.csproj", "HRM.ApiBackend/"]
 COPY ["HRM.Services/HRM.Services.csproj", "HRM.Services/"]
 COPY ["HRM.DataAccess/HRM.DataAccess.csproj", "HRM.DataAccess/"]
 COPY ["HRM.Entity/HRM.Entity.csproj", "HRM.Entity/"]

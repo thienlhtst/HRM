@@ -75,9 +75,9 @@ namespace HRM.Services.Catalog.LabourHours
             return null;
         }
 
-        public async Task<List<GetListLabourHour>> GetList(language lan)
+        public async Task<List<GetListLabourHour>> GetList()
         {
-            var query = from p in _context.LabourHours where p.Language ==lan select p ;
+            var query = from p in _context.LabourHours select p ;
             var result = query.Select(x => new GetListLabourHour
             {
                 ID=x.ID.ToString(),

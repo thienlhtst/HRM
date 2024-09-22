@@ -19,7 +19,12 @@ export class SystemService {
 
   }
   GetNavLangugeFunction(FunctionID:string,language:any):Observable<any[]>{
+    console.log(FunctionID,language)
     return this.http.get<any>(this.apiurl + '/System/ChildLanguage?FunctionId='+FunctionID+'&language='+language);
 
+  }
+
+  GetSelectType(nameSelect : string):Observable<any[]>{
+    return this.http.get<any>(this.apiurl + '/System/Select?nameSelect='+nameSelect )
   }
 }

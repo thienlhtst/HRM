@@ -13,6 +13,7 @@ namespace HRM.Entity.Entities
         public int ID { get; set; }
         public string Name { get; set; } = "";
         public int Money { get; set; }
+
         public List<EmployeesWithAllowances> EWA { get; } = new();
 
         public List<AllowanceRules> Rules { get; } = new();

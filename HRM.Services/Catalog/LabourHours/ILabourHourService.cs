@@ -10,7 +10,7 @@ namespace HRM.Services.Catalog.LabourHours
 {
     public interface ILabourHourService
     {
-        Task<List<GetListLabourHour>> GetList(language lan);
+        Task<List<GetListLabourHour>> GetList();
 
         Task<int> Create(LabourHourCreateRequest request);
 

@@ -29,9 +29,9 @@ namespace HRMApiBackend.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetMapper(language lan)
+        public async Task<IActionResult> GetMapper()
         {
-            var model = await _allowanceService.GetList(lan);
+            var model = await _allowanceService.GetList();
             var returnAllowance = _mapper.Map<List<AllowanceViewModel>>(model);
 
             return Ok(returnAllowance);

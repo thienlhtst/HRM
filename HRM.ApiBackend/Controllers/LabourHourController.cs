@@ -20,9 +20,9 @@ namespace HRMApiBackend.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(language lan)
+        public async Task<IActionResult> Get()
         {
-            var result = await _labourhourService.GetList(lan);
+            var result = await _labourhourService.GetList();
             return Ok(result);
         }
 

@@ -10,7 +10,7 @@ namespace HRM.Services.Catalog.LabourDay
 {
     public interface ILabourDayService
     {
-        Task<List<GetListLabourDay>> GetList(language lan);
+        Task<List<GetListLabourDay>> GetList();
 
         Task<int> Create(LabourDayCreateRequest request);
 

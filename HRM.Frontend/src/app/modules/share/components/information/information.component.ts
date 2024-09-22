@@ -9,34 +9,12 @@ import { Component, Input, OnInit } from '@angular/core';
 export class InformationComponent implements OnInit {
   
   constructor() { }
-  @Input() titleinput : string = ""
-  @Input() iconinput : string = ""
-  @Input() datainput : any[] = []
-  //@Input() list_items : any[] = []
-  list_items : any[] = [ {
-    sys:{
-      FunctionID: 1,
-      label: 'Basic Information',
-      icon: 'bi bi-person-square',
-    },
-    sysList: [
-      {
-        FunctionID: 1,
-        label: 'Thông tin cơ bản',
-        name: 'name',
-        description:'Nhập tên',
-        kindInput: 0,
-        pattern: '[0-9]+',
-      },
-      {
-        FunctionID: 2,
-        label: 'Thông tin cơ bản',
-        name: 'name',
-      }
-    ]
-  }]
+  @Input() list_data_input : any[] = []
+  
+
+
   ngOnInit() {
-    
+    console.log(this.list_data_input)
   }
 
   getGroups(arr: any[], groupSize: number): any[][] {

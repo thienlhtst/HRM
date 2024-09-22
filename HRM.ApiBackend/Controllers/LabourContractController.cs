@@ -25,9 +25,9 @@ namespace HRMApiBackend.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(language lan)
+        public async Task<IActionResult> Get()
         {
-            var model = await _labourContractService.GetList(lan);
+            var model = await _labourContractService.GetList();
             var labour = _mapper.Map<List<LabourContractViewModel>>(model);
             return Ok(model);
         }

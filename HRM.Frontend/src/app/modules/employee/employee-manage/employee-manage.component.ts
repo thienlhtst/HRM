@@ -8,8 +8,33 @@ import { Component, OnInit } from '@angular/core';
 export class EmployeeManageComponent implements OnInit {
 
   constructor() { }
+  listofdata : any[] = [
+    {
+      id : 1,
+      name : "Thanh",
+      img : "",
+      active : "",
+    },
+    {
+      id : 2,
+      name : "Thinh",
+      img : "",
+      active : ""
+    },
+    {
+      id : 3,
+      name : "Thien",
+      img : "",
+      active : ""
+    }
+  ]
+  listofdatatopush : any[] = []
 
   ngOnInit() {
+    
   }
+
+  
+
 
 }

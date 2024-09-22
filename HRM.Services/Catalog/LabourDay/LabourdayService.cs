@@ -29,10 +29,8 @@ namespace HRM.Services.Catalog.LabourDay
                 Name = request.Name,
                 Days = request.Days,
                 Months = request.Months,
-                Language = request.language,
             };
             _context.Days.Add(entity);
-            var dayentity = _context.Days.FirstOrDefault(x=>x.FunctionID == entity.FunctionID);
             return await _context.SaveChangesAsync();
         }
 
@@ -80,17 +78,17 @@ namespace HRM.Services.Catalog.LabourDay
             return null;
         }
 
-        public async Task<List<GetListLabourDay>> GetList(language lan)
+        public async Task<List<GetListLabourDay>> GetList()
         {
-            var query = from p in _context.Days where p.Language == lan select p;
-            var result = query.Select(x => new GetListLabourDay
+            var query = from p in _context.Days  select p;
+            var result = await query.Select(x => new GetListLabourDay
             {
                 ID = x.ID,
                 IDLB = x.IDLB,
                 Name = x.Name,
                 Days = x.Days,
                 Months = x.Months,
-            }).ToList();
+            }).ToListAsync();
             return result;
         }
     }
