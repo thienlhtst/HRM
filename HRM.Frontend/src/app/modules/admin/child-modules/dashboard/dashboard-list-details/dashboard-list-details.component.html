@@ -1,0 +1,16 @@
+<table class="table table-hover table-borderless mb-0">
+  <thead>
+    <tr>
+      <th>Employee Name</th>
+      <th>Time Checkin</th>
+      <th>Time Checkout</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items">
+      <td>{{item.name}}</td>
+      <td>{{item.hourCheckin}} : {{item.minuteCheckin}}</td>
+      <td>{{item.hourCheckout}} : {{item.minuteCheckout}}</td>
+    </tr>
+  </tbody>
+</table>

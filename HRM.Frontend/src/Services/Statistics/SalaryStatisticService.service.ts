@@ -18,10 +18,10 @@ constructor(private http : HttpClient) { }
       apiurlpaing= this.apiurl+'/salarypaging?Keyword='+request.keyword+'&Month='+request.month+'&Year='+request.year+'&PageIndex='+request.pageindex+'&PageSize='+request.pagesize
     return this.http.get(apiurlpaing)
   }
-  GetChartMonthlyinYear(year):Observable<any>{
+  GetChartMonthlyinYear(year:any):Observable<any>{
     return this.http.get(this.apiurl+'/monthlyinyear?year='+year)
   }
-  GetTopSalary(top):Observable<any>{
+  GetTopSalary(top:any):Observable<any>{
     return this.http.get(this.apiurl+'/topsalary?top='+top)
   }
 

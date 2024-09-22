@@ -1,0 +1,78 @@
+
+
+<div class="col-md-12 col-xl">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <h5 class="mb-0">Total WorkHour</h5>
+    <ul ngbNav aria-busy="true" #nav="ngbNav"
+      class="nav-pills justify-content-end mb-0"
+      (navChange)="onNavChange($event)">
+      <li [ngbNavItem]="1">
+        <a ngbNavLink>Week</a>
+        <ng-template ngbNavContent>
+          <div id="visitor-chart"></div>
+        </ng-template>
+      </li>
+      <li [ngbNavItem]="2">
+        <a ngbNavLink>Month</a>
+        <ng-template ngbNavContent>
+          <div id="visitor-chart-1"></div>
+        </ng-template>
+      </li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <div class="d-flex  justify-content-between ">
+        <div class=" p-2 flex-grow-1 " *ngIf="flagdate === 0; else monthBlock">
+          <h5>Week {{currentMonth}}/{{currentYear}} </h5>
+        </div>
+        <ng-template #monthBlock class="text-lg"><h5> Year {{currentYear}}</h5></ng-template>
+
+        <div class="p-2" *ngIf="flagdate===0">
+          <select class="form-select" (change)="onChangeMonth($event)">
+            <ng-container
+              *ngFor="let number of [].constructor(12); let i = index">
+              <option [value]="i+1"  [selected]="i+1 === currentMonth" >{{i+1}}</option>
+            </ng-container>
+          </select>
+        </div>
+        <div class="p-2 ">
+          <select class="form-select" (change)="onChangeYear($event)">
+            <option selected disabled>Select Year</option>
+            <ng-container *ngFor="let year of yearOptions">
+              <option [value]="year" [selected]="year === currentYear">{{ year}}</option>
+            </ng-container>
+          </select>
+        </div>
+      </div>
+      <div [ngbNavOutlet]="nav"></div>
+    </div>
+  </div>
+
+</div>
+<div class="col-md-12 col-xl">
+  <h5 class="mb-3">On/OFF</h5>
+  <div class="card">
+    <div class="card-body">
+      <div class="d-flex  justify-content-between">
+        <div class=" p-2 flex-grow-1 ">
+        <h6 class="mb-2 f-w-400 text-muted">This Week Statistics</h6>
+      </div>
+      <div class="p-2">
+        <app-date-picker (Datechange)="OnChangeDate($event)" ></app-date-picker>
+      </div>
+      </div>
+      <apx-chart *ngIf="chartOptions_4"
+        [series]="chartOptions_4.series"
+        [chart]="chartOptions_4.chart"
+        [plotOptions]="chartOptions_4.plotOptions"
+        [dataLabels]="chartOptions_4.dataLabels"
+        [xaxis]="chartOptions_4.xaxis"
+        [colors]="chartOptions_4.colors"
+        [stroke]="chartOptions_4.stroke"
+        [yaxis]="chartOptions_4.yaxis"
+        [tooltip]="chartOptions_4.tooltip"
+        [grid]="chartOptions_4.grid"></apx-chart>
+    </div>
+  </div>
+</div>

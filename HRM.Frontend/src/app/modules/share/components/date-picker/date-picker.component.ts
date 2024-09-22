@@ -12,7 +12,7 @@ import { JsonPipe } from '@angular/common';
   styleUrls: ['./date-picker.component.css']
 })
 export class DatePickerComponent implements OnInit {
-  model: NgbDateStruct;
+  model: NgbDateStruct | undefined;
   today= new Date()
   @Input() day:string='yyyy-mm-dd'
   @Output() Datechange: EventEmitter<NgbDateStruct> =   new EventEmitter();

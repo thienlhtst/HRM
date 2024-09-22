@@ -12,9 +12,25 @@ export class TableComponent implements OnInit {
     this.check()
   }
   @Input() styleTable : any[] | undefined
-  @Input() listofheader : any[] | undefined
-  @Input() listofdata : any[] | undefined
+  @Input() listofheader : any[] = [{
+    id:1,
+    name:"ID",
+    column:'ID'
 
+
+  },{
+    id:2,
+    name:"Name",
+    column:'Name'
+  }
+] 
+  @Input() listofdata : any[] =[
+    {
+      ID:1,
+      Name:"A"
+    }
+
+  ]
   check(){
     console.log(this.listofheader)
     console.log(this.listofdata)
