@@ -2,10 +2,10 @@
 import { OnInit, ViewChild } from '@angular/core';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component } from '@angular/core';
+import { NotificationComponent } from 'src/app/modules/share/components/Notification/Notification.component';
+import { PagingnavComponent } from 'src/app/modules/share/components/pagingnav/pagingnav.component';
 import { AllowanceRulesModel } from 'src/Model/AllowancesAndEmployeeRules/AllowanceRulesModel';
 import { AllowancesAndEmployeeRulesService } from 'src/Services/AllowancesAndEmployeeRules/allowances-and-employee-rules.service';
-import { NotificationComponent } from '../../../../shared/components/Notification/Notification.component';
-import { PagingnavComponent } from '../../../../shared/components/pagingnav/pagingnav.component';
 
 @Component({
   selector: 'app-allowancesemployeerules-list',
@@ -15,14 +15,14 @@ import { PagingnavComponent } from '../../../../shared/components/pagingnav/pagi
 export class AllowancesemployeerulesListComponent implements OnInit {
   constructor(private service : AllowancesAndEmployeeRulesService){}
 
-  datas : AllowanceRulesModel[]
+  datas : AllowanceRulesModel[]=[]
   searchText : string = ''
-  message : string
+  message : string=''
   ShowForm : boolean = false
   ShowFormOptions : boolean = false
 
-  @ViewChild(PagingnavComponent) child: PagingnavComponent;
-  @ViewChild(NotificationComponent) childnoti: NotificationComponent;
+  @ViewChild(PagingnavComponent) child: PagingnavComponent | undefined;
+  @ViewChild(NotificationComponent) childnoti: NotificationComponent | undefined;
   ngOnInit(): void {
     this.GetAll()
   }
@@ -34,6 +34,7 @@ export class AllowancesemployeerulesListComponent implements OnInit {
 
   OnConfirm(event : any){
     this.message = 'success'
+    if(this.childnoti && this.childnoti.successTpl)
       this.childnoti.showSuccess(this.childnoti.successTpl)
       this.ShowForm = false
       this.service.GetAll().subscribe((res)=>{

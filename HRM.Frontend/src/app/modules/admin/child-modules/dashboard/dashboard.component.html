@@ -1,47 +1,50 @@
-<div class="row">
+<app-spinner-alpha *ngIf="!flagAppear">
+</app-spinner-alpha>
+
+<div *ngIf="flagAppear" class="row">
   <div class="row d-flex justify-content-center">
     <div class="col-xl-3 col-md-6 flex-fill">
       <div class="card mb-4 border-full border-primary">
-        <div class="card-body"><h6 class="mb-2 f-w-400 ">Total Hours:</h6></div>
+        <div class="card-body"><h6 class="mb-2 f-w-400 "><language-input  [DatasLanguague]="dataslanguage" FunctionID="DA000101"  /></h6></div>
         <h2 *ngIf="spinner; else loaddata" class="text-center f-w-400 text-primary">{{ HomeDetail.totalworkhour }}</h2>
         <ng-template #loaddata>
           <app-spinner-beta class="d-flex justify-content-center"></app-spinner-beta>
         </ng-template>
         <div (click)="changeFlag(0)" class="card-footer d-flex align-items-center justify-content-between border-top border-primary custom-cursor">
-          <a  class="small text_hover " style="text-decoration: underline">View Details</a>
+          <a  class="small text_hover " style="text-decoration: underline"><language-input  [DatasLanguague]="dataslanguage" FunctionID="DA000105"  /></a>
           <div class="small"><i class="fas fa-angle-right text_hover"></i></div>
         </div>
       </div>
     </div>
     <div class="col-xl-3 col-md-6 flex-fill">
       <div class="card mb-4 border-full border-info">
-        <div class="card-body"><h6 class="mb-2 f-w-400">Employee Work:</h6></div>
+        <div class="card-body"><h6 class="mb-2 f-w-400"><language-input  [DatasLanguague]="dataslanguage" FunctionID="DA000102"  /></h6></div>
         <h2 *ngIf="spinner; else loaddata1" class="text-center text-info f-w-400"> {{ HomeDetail.employeeWork }}</h2>
         <ng-template #loaddata1>
           <app-spinner-beta class="d-flex justify-content-center"></app-spinner-beta>
         </ng-template>
         <div class="card-footer d-flex align-items-center justify-content-between border-top border-info bg-white custom-cursor" (click)="changeFlag(3)">
-          <a  class="small text_hover "  style="text-decoration: underline">View Details</a>
+          <a  class="small text_hover "  style="text-decoration: underline"><language-input  [DatasLanguague]="dataslanguage" FunctionID="DA000105"  /></a>
           <div class="small "><i class="fas fa-angle-right text_hover"></i></div>
         </div>
       </div>
     </div>
     <div class="col-xl-3 col-md-6 flex-fill">
       <div class="card border-full border-danger mb-4">
-        <div class="card-body"><h6 class="mb-2 f-w-400">Employee Off:</h6></div>
+        <div class="card-body"><h6 class="mb-2 f-w-400"><language-input  [DatasLanguague]="dataslanguage" FunctionID="DA000103"  /></h6></div>
         <h2 *ngIf="spinner; else loaddata2" class="text-center text-danger f-w-400">{{ HomeDetail.employeeOff }} </h2>
         <ng-template #loaddata2>
           <app-spinner-beta class="d-flex justify-content-center"></app-spinner-beta>
         </ng-template>
         <div (click)="changeFlag(1)" class="card-footer d-flex align-items-center border-danger justify-content-between border-top bg-white custom-cursor">
-          <a  class="small text_hover" style="text-decoration: underline">View Details</a>
+          <a  class="small text_hover" style="text-decoration: underline"><language-input  [DatasLanguague]="dataslanguage" FunctionID="DA000105"  /></a>
           <div class="small"><i class="fas fa-angle-right text_hover"></i></div>
         </div>
       </div>
     </div>
     <div class="col-xl-3 col-md-6 flex-fill">
       <div class="card border-full border-warning mb-4">
-        <div class="card-body"> <h6 class="mb-2 f-w-400">Employee Late:</h6></div>
+        <div class="card-body"> <h6 class="mb-2 f-w-400"><language-input  [DatasLanguague]="dataslanguage" FunctionID="DA000104"  /></h6></div>
         <div *ngIf="spinner; else loaddata3">
           <h2 class="text-center text-warning f-w-400"> {{ HomeDetail.employyLate }}</h2>
         </div>
@@ -50,7 +53,7 @@
           <app-spinner-beta class="d-flex justify-content-center"></app-spinner-beta>
         </ng-template>
         <div (click)="changeFlag(2)" class="card-footer d-flex align-items-center justify-content-between border-warning border-top bg-white custom-cursor">
-          <a  class="small text_hover" style="text-decoration: underline">View Details</a>
+          <a  class="small text_hover" style="text-decoration: underline"><language-input  [DatasLanguague]="dataslanguage" FunctionID="DA000105"  /></a>
           <div class="small"><i class="fas fa-angle-right text_hover"></i></div>
         </div>
       </div>

@@ -45,6 +45,22 @@ const routes: Routes = [
         loadChildren:() => import ('./child-modules/labourday/labourday.module').then(m=>m.LabourdayModule)
       },
       {
+        path:'labourcontract',
+        loadChildren:() => import ('./child-modules/labourcontract/labourcontract.module').then(m=>m.LabourcontractModule)
+      },
+      {
+        path:'ewa',
+        loadChildren:() => import ('./child-modules/employeewithallowance/ewa.module').then(m=>m.EwaModule)
+      },
+      {
+        path:'allowancesemployeerules',
+        loadChildren:() => import ('./child-modules/allowancesemployeerules/allowancesemployeerules.module').then(m=>m.AllowancesemployeerulesModule)
+      },
+      {
+        path:'allowance',
+        loadChildren : () => import('./child-modules/allowance/allowance.module').then(m=>m.AllowanceModule)
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: 'dashboard',

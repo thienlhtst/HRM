@@ -9,6 +9,7 @@ import { DashboardListDetailsComponent } from './dashboard-list-details/dashboar
 import { DashboardListEmployeesComponent } from './dashboard-list-employees/dashboard-list-employees.component';
 import { HomeService } from 'src/Services/Home/homeService.service';
 import { EmployeeService } from 'src/Services/Employee/employee.service';
+import { SystemService } from 'src/Services/System/System.service';
 const routes: Routes = [
   {
     path:'',
@@ -30,7 +31,7 @@ const routes: Routes = [
     SpinnerBetaComponent,
     PagingnavComponent
 ],
-providers: [HomeService,EmployeeService],
+providers: [HomeService,EmployeeService,SystemService],
   declarations: [DashboardComponent,DashboardListDetailsComponent,DashboardListEmployeesComponent]
 })
 export class DashboardModule { }

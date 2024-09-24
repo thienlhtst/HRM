@@ -16,17 +16,16 @@ import { EwaAutoModel } from 'src/Model/EmployeeWithAllowance/EwaAutoModel';
 })
 export class EwaListComponent implements OnInit {
   constructor(private service : EWAServiceService,private EmployeeService : EmployeeService,private AllowanceService : AllowanceServiceService){}
-  private _hubConnection : signalR.HubConnection
   paging : Requestpaging ={
     keyword :'',
     pageindex : 1,
     pagesize :10
   }
   PageCount : number = 1
-  datas : EWAModel[]
+  datas : EWAModel[]=[]
   ShowFormAdd : boolean = false
   ShowForm : boolean = false
-  textHeader : string
+  textHeader : string=''
   DataAllowance : any ={}
   searchText : string = ""
 

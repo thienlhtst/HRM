@@ -9,7 +9,6 @@
 import { Component, Input, OnInit, Output, ViewChild,EventEmitter } from '@angular/core';
 import { FormControl, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { error } from 'console';
 import { ConfirmationDialogService } from 'src/app/modules/share/components/confirmation-dialog/confirmation-dialog.service';
 import { NotificationComponent } from 'src/app/modules/share/components/Notification/Notification.component';
 import { Alert } from 'src/Model/Alert';

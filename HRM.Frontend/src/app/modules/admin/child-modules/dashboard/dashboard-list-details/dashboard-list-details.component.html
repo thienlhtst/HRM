@@ -1,9 +1,11 @@
-<table class="table table-hover table-borderless mb-0">
+<app-spinner-alpha *ngIf="!flagAppear"></app-spinner-alpha>
+
+<table  *ngIf="flagAppear" class="table table-hover table-borderless mb-0">
   <thead>
     <tr>
-      <th>Employee Name</th>
-      <th>Time Checkin</th>
-      <th>Time Checkout</th>
+      <th><language-input  [DatasLanguague]="dataslanguage" FunctionID="DA000201"  /></th>
+      <th><language-input  [DatasLanguague]="dataslanguage" FunctionID="DA000202"  /></th>
+      <th><language-input  [DatasLanguague]="dataslanguage" FunctionID="DA000203"  /></th>
     </tr>
   </thead>
   <tbody>

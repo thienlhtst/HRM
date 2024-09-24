@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './modules/admin/home.component';
+import QrcodeComponent from './modules/authentication/qrcode/qrcode.component';
 
 export const routes: Routes = [
     {
@@ -13,6 +14,10 @@ export const routes: Routes = [
     {
         path: 'profile',
         loadChildren: () => import('./modules/employee/employee.module').then(m => m.EmployeeModule),
+    },
+    {
+        path:'qrcode',
+        component:QrcodeComponent
     },
     {
         path:'',

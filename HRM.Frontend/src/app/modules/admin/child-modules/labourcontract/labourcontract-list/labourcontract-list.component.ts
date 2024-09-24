@@ -1,11 +1,11 @@
  /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ConfirmationDialogService } from 'src/app/modules/share/components/confirmation-dialog/confirmation-dialog.service';
+import { NotificationComponent } from 'src/app/modules/share/components/Notification/Notification.component';
 import { LabourContractModel } from 'src/Model/LabourContract/LabourContractModel';
 import { Requestpaging } from 'src/Model/other/requestpaging';
 import { LabourContractServiceService } from 'src/Services/LabourContract/labour-contract-service.service';
-import { NotificationComponent } from '../../../../shared/components/Notification/Notification.component';
-import { ConfirmationDialogService } from '../../../../shared/components/confirmation-dialog/confirmation-dialog.service';
 
 @Component({
   selector: 'app-labourcontract-list',
@@ -13,7 +13,7 @@ import { ConfirmationDialogService } from '../../../../shared/components/confirm
   styleUrls: ['./labourcontract-list.component.scss','../../../../../../scss/shared/sreach.scss','../../../../../../scss/shared/button.scss']
 })
 export class LabourcontractListComponent implements OnInit {
-  @ViewChild(NotificationComponent) child: NotificationComponent;
+  @ViewChild(NotificationComponent) child: NotificationComponent | undefined;
   message:any
   constructor(private service : LabourContractServiceService,
               private confirm : ConfirmationDialogService
@@ -22,10 +22,10 @@ export class LabourcontractListComponent implements OnInit {
     this.GetPaging()
   }
   searchText : any
-  datas : LabourContractModel[]
+  datas : LabourContractModel[]=[]
   ShowFormOption : boolean = false
   ShowForm : boolean = false
-  selectedID : string
+  selectedID : string=''
   spinner : boolean = false
   paging : Requestpaging = {
     keyword : '',
@@ -82,12 +82,14 @@ export class LabourcontractListComponent implements OnInit {
     if (flag == 1) {
       this.message = 'success';
       setTimeout(() => {
+        if(this.child && this.child.successTpl)
         this.child.showSuccess(this.child.successTpl);
       }, 1);
       this.OnSuccess()
 
     } else {
       this.message = 'faill';
+      if (this.child && this.child.dangerTpl) 
       this.child.showDanger(this.child.dangerTpl);
     }
   }
