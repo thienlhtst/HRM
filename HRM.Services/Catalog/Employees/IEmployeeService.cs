@@ -40,5 +40,7 @@ namespace HRM.Services.Catalog.Employees
         Task<PagedResult<EmployeeVMStatistic>> GetemployeeVMStatistics(GetEmployeePagingRequest request);
 
         Task<List<EmployeeHasAllowance>> GetEmployeeHasAllowance(string id);
+
+        Task<EmployeeViewModelHasSalaryID> GetIdHaveSalary(Guid EmployeeID);
     }
 }

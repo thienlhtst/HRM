@@ -62,14 +62,14 @@ namespace HRM.Services.Catalog.Levels
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<int> Delete(string rankID)
+        public async Task<int> Delete(int rankID)
         {
             var rank = await _context.Levels.FindAsync(rankID);
             _context.Levels.Remove(rank);
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<LevelViewModel> GetById(string RankID)
+        public async Task<LevelViewModel> GetById(int RankID)
         {
             var rank = await _context.Levels.FindAsync(RankID);
             var rankvm = new LevelViewModel()
@@ -126,7 +126,7 @@ namespace HRM.Services.Catalog.Levels
             return data;
         }
 
-        public async Task DeleteRankByProcedure(string id)
+        public async Task DeleteRankByProcedure(int id)
         {
             var ID = new SqlParameter(@"ID", id);
             await _context.Database.ExecuteSqlRawAsync("EXEC DeleteRank @ID", ID);

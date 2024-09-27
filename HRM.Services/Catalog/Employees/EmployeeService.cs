@@ -50,6 +50,7 @@ namespace HRM.Services.Catalog.Employees
                 Sex = request.Sex,
                 CIC = request.CIC,
                 NumberPhone = request.NumberPhone,
+                Email = request.Email,
                 Address = request.Address,
                 Account = request.Account,
                 Password = request.Password,
@@ -121,9 +122,10 @@ namespace HRM.Services.Catalog.Employees
                     MiddleName = x.p.MiddleName,
                     LastName = x.p.LastName,
                     Sex = x.p.Sex,
-                    NumberPhone = x.p.NumberPhone,
                     DOB = x.p.DOB,
                     CIC = x.p.CIC,
+                    NumberPhone = x.p.NumberPhone,
+                    Email = x.p.Email,
                     Address = x.p.Address,
                     Rank = x.pr.Name,
                     Position = x.pp.Name,
@@ -160,6 +162,7 @@ namespace HRM.Services.Catalog.Employees
                 Sex = x.p.Sex,
                 CIC = x.p.CIC,
                 NumberPhone = x.p.NumberPhone,
+                Email = x.p.Email,
                 Address = x.p.Address,
                 Position = x.ps.PositionID.ToString(),
                 Rank = x.ps.LevelID.ToString(),
@@ -190,10 +193,37 @@ namespace HRM.Services.Catalog.Employees
                 LastName = employee.LastName,
                 MiddleName = employee.MiddleName,
                 DOB = employee.DOB,
+                Email = employee.Email,
                 Account = employee.Account,
                 Password = employee.Password,
                 Position = position,
                 Rank = rank,
+                CIC = employee.CIC,
+                NumberPhone = employee.NumberPhone,
+                Address = employee.Address,
+                Active = employee.Active,
+                Sex = employee.Sex,
+                URLImage = employee.URLImage,
+            };
+            return employeeviewmodel;
+        }
+
+        public async Task<EmployeeViewModelHasSalaryID> GetIdHaveSalary(Guid EmployeeID)
+        {
+            
+
+            var employee = await _context.Employee.FindAsync(EmployeeID);
+            var employeeviewmodel = new EmployeeViewModelHasSalaryID()
+            {
+                ID = employee.ID.ToString(),
+                FirstName = employee.FirstName,
+                LastName = employee.LastName,
+                MiddleName = employee.MiddleName,
+                DOB = employee.DOB,
+                Email = employee.Email,
+                Account = employee.Account,
+                Password = employee.Password,
+                SalaryID = employee.SalaryID,
                 CIC = employee.CIC,
                 NumberPhone = employee.NumberPhone,
                 Address = employee.Address,
@@ -218,6 +248,7 @@ namespace HRM.Services.Catalog.Employees
                 Sex = x.Sex,
                 CIC = x.CIC,
                 NumberPhone = x.NumberPhone,
+                Email = x.Email,
                 Address = x.Address,
                 SalaryID = x.SalaryID,
                 Account = x.Account,
@@ -241,6 +272,7 @@ namespace HRM.Services.Catalog.Employees
                 Sex = x.Sex,
                 CIC = x.CIC,
                 NumberPhone = x.NumberPhone,
+                Email = x.Email,
                 Address = x.Address,
                 SalaryID = x.SalaryID,
                 Account = x.Account,
@@ -262,6 +294,7 @@ namespace HRM.Services.Catalog.Employees
             employee.Sex = request.Sex;
             employee.CIC = request.CIC;
             employee.NumberPhone = request.NumberPhone;
+            employee.Email = request.Email;
             employee.Address = request.Address;
             employee.SalaryID = request.SalaryID;
             employee.Account = request.Account;
@@ -296,6 +329,7 @@ namespace HRM.Services.Catalog.Employees
                             NumberPhone = p.NumberPhone,
                             DOB = p.DOB,
                             CIC = p.CIC,
+                            Email = p.Email,
                             Address = p.Address,
                             Rank = pr.Name,
                             Position = pp.Name,
@@ -353,6 +387,7 @@ namespace HRM.Services.Catalog.Employees
                     NumberPhone = x.NumberPhone,
                     DOB = x.DOB,
                     CIC = x.CIC,
+                    Email = x.Email,
                     Address = x.Address,
                     Rank = x.Rank,
                     Position = x.Position,
@@ -427,8 +462,9 @@ namespace HRM.Services.Catalog.Employees
                 Sex = x.Sex,
                 CIC = x.CIC,
                 NumberPhone = x.NumberPhone,
+                Email = x.Email,
                 Address = x.Address,
-                SalaryID = x.SalaryID.ToString(),
+                SalaryID = x.SalaryID,
                 Account = x.Account,
                 Password = x.Password
             }).ToListAsync();

@@ -35,6 +35,8 @@ namespace HRM.ViewModel.Catalogs.Employees
         [RegularExpression("^[0-9]+$")]
         public string NumberPhone { get; set; } = String.Empty;
 
+        public string Email { get; set; } = "";
+
         public string Address { get; set; } = String.Empty;
 
         public int SalaryID { get; set; }

@@ -6,12 +6,12 @@
         <table class="table table-hover table-sm  ">
           <thead>
             <tr style="text-align: center;"  > 
-              <th *ngFor="let item of listofheader" class="{{item.class}}">{{item.name}}</th>  
+              <th *ngFor="let item of listofheader">{{item.name}}</th>  
             
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let row of listofdata" class="{{row.class}}">
+            <tr *ngFor="let row of listofdata" >
               <td style="text-align: center;" *ngFor="let column of listofheader" >
                  {{row[column.column]}}
               </td>

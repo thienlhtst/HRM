@@ -60,9 +60,9 @@ namespace HRM.Services.Catalog.LabourDay
             return -1;
         }
 
-        public async Task<LabourDayDetailRequest> GetbyID(string request)
+        public async Task<LabourDayDetailRequest> GetbyID(int request)
         {
-            var entity = await _context.Days.FirstOrDefaultAsync(x => x.ID.ToString() == request);
+            var entity = await _context.Days.FirstOrDefaultAsync(x => x.ID == request);
             if (entity!=null)
             {
                 LabourDayDetailRequest detail_request = new LabourDayDetailRequest

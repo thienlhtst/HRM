@@ -11,6 +11,5 @@ namespace HRM.ViewModel.Catalogs.LabourHours
     {
         public string Name { get; set; }
         public int Factor { get; set; }
-        public language Language { get; set; }
     }
 }

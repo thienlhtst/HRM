@@ -16,9 +16,9 @@ namespace HRM.Services.Catalog.LabourContract
 
         Task<int> Update(LabourContractEditRequest request);
 
-        Task<int> Delete(string labourId);
+        Task<int> Delete(int labourId);
 
-        Task<LabourContractViewModel> GetByID(string labourID);
+        Task<LabourContractViewModel> GetByID(int labourID);
 
         Task<List<LabourContractViewModel>> GetByIDEmployee(string EmployeeID);
 

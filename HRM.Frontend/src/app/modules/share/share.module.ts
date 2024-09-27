@@ -17,6 +17,10 @@ import { InformationComponent } from './components/information/information.compo
 import { SystemService } from 'src/Services/System/System.service';
 import { EmployeeService } from 'src/Services/Employee/employee.service';
 import { TokenService } from 'src/Services/Token/token.service';
+import { DropDownButtonModule } from '@syncfusion/ej2-angular-splitbuttons';
+import { PositionServiceService } from 'src/Services/Position/PositionService.service';
+import { RankServiceService } from 'src/Services/Rank/RankService.service';
+import { SalaryService } from 'src/Services/Salary/salary.service';
 
 @NgModule({
   imports: [
@@ -28,10 +32,10 @@ import { TokenService } from 'src/Services/Token/token.service';
     NgbModule,
     NgbCollapseModule,
 
-  ],providers: [provideHttpClient(),SystemService,EmployeeService,TokenService],
+  ],providers: [provideHttpClient()],
   declarations: [FileInputComponent,SelectInputComponent,CreateComponent,SpinnerAlphaComponent,SpinnerComponent, SearchInputComponent, AvtComponent,LanguageInputComponent,TextInputComponent,InformationComponent],
 
-  exports: [DropDownButtonModule,FileInputComponent,SelectInputComponent,SpinnerAlphaComponent,LanguageInputComponent,TextInputComponent,CreateComponent,SpinnerComponent]
-  exports: [FileInputComponent,SelectInputComponent,SpinnerAlphaComponent,LanguageInputComponent,TextInputComponent,CreateComponent,InformationComponent]
+  exports: [DropDownButtonModule,FileInputComponent,SelectInputComponent,SpinnerAlphaComponent,LanguageInputComponent,TextInputComponent,CreateComponent,SpinnerComponent,InformationComponent]
+
 })
 export class ShareModule { }

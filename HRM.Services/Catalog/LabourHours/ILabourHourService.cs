@@ -18,6 +18,6 @@ namespace HRM.Services.Catalog.LabourHours
 
         Task<int> Delete(LabourHourDeleteRequest request);
 
-        Task<LabourHourDetailRequest> GetbyID(string request);
+        Task<LabourHourDetailRequest> GetbyID(int request);
     }
 }

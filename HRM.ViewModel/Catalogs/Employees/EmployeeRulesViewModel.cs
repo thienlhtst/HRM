@@ -17,6 +17,8 @@ namespace HRM.ViewModel.Catalogs.Employees
         public Sex Sex { get; set; }
         public string CIC { get; set; } = String.Empty;
         public string NumberPhone { get; set; } = String.Empty;
+
+        public string Email { get; set; } = "";
         public string Address { get; set; } = String.Empty;
         public string SalaryID { get; set; } = String.Empty;
 

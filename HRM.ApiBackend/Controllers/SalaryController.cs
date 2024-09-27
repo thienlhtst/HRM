@@ -36,9 +36,7 @@ namespace HRMApiBackend.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] SalaryCreateRequest request)
         {
-            var newSalary = _mapper.Map<Salary>(request);
-            _context.Salaries.Add(newSalary);
-            await _context.SaveChangesAsync();
+            var newSalary = await _salaryService.Create(request);
             return Ok(newSalary);
         }
 
@@ -46,14 +44,12 @@ namespace HRMApiBackend.Controllers
         public async Task<IActionResult> Update(int id, [FromBody] SalaryEditRequest request)
         {
             request.ID = id;
-            var newSalary = _mapper.Map<Salary>(request);
-            _context.Salaries.Update(newSalary);
-            await _context.SaveChangesAsync();
+            var newSalary = await _salaryService.Update(request);
             return Ok(newSalary);
         }
 
         [HttpGet("{salaryID}")]
-        public async Task<IActionResult> GetById(string salaryID)
+        public async Task<IActionResult> GetById(int salaryID)
         {
             var salary = await _salaryService.GetById(salaryID);
             if (salary == null)
@@ -62,7 +58,7 @@ namespace HRMApiBackend.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
             var affectedResult = await _salaryService.Delete(id);
             if (affectedResult == 0)

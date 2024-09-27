@@ -10,6 +10,7 @@ export interface EmployeeModel {
   sex : Sex
   cic : string
   numberPhone : string
+  email : string
   address : string
   position : string
   rank : string

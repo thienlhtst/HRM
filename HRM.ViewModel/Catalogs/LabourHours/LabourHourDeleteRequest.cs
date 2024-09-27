@@ -8,6 +8,6 @@ namespace HRM.ViewModel.Catalogs.LabourHours
 {
     public class LabourHourDeleteRequest
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
     }
 }

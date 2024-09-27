@@ -13,6 +13,13 @@ import { EmployeeInforComponent } from './employee-right/employee-infor/employee
 import { EmployeeManageComponent } from './employee-manage/employee-manage.component';
 import { InformationComponent } from '../share/components/information/information.component';
 import { ShareModule } from '../share/share.module';
+import { SystemService } from 'src/Services/System/System.service';
+import { EmployeeService } from 'src/Services/Employee/employee.service';
+import { TokenService } from 'src/Services/Token/token.service';
+import { PositionServiceService } from 'src/Services/Position/PositionService.service';
+import { RankServiceService } from 'src/Services/Rank/RankService.service';
+import { SalaryService } from 'src/Services/Salary/salary.service';
+
 
 
 const routes: Routes = [
@@ -43,6 +50,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ShareModule
   ],
+  providers : [SystemService,EmployeeService,TokenService,PositionServiceService,RankServiceService,SalaryService],
   declarations: [NavEmployeeComponent, EmployeeLeftComponent, EmployeeHomeComponent,EmployeeManageComponent,EmployeeInforComponent]
 })
 export class EmployeeModule { }

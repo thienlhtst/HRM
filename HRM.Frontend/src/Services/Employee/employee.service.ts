@@ -29,6 +29,12 @@ export class EmployeeService {
   GetEmployeebyID(id:string):Observable<EmployeeModel>{
     return this.http.get<EmployeeModel>(this.ApiUrl + '/Employee/'+id);
   }
+
+  GetEmployeehasSalaryByID(id:string):Observable<EmployeeModelHasSalary>{
+    return this.http.get<EmployeeModelHasSalary>(this.ApiUrl + '/Employee/getemployeehassalary/' + id)
+  }
+  
+
   GetEmployeePaging(paging : Requestpaging) : Observable<Pagingreponse>{
     if(paging.keyword != '')
     return this.http.get<Pagingreponse>(this.ApiUrl +'/Employee/paging?Keyword='+paging.keyword+'&PageIndex='+paging.pageindex+'&PageSize='+paging.pagesize+'');
@@ -46,6 +52,8 @@ export class EmployeeService {
   GetAllowanceByEmployeeID(id : string) : Observable<EmployeeHasAllowanceModel[]>{
     return this.http.get<EmployeeHasAllowanceModel[]>(this.ApiUrl + '/Employee/GetAllowanceByEmployee/' + id)
   }
+
+
 
   CreateEmployee(data : EmployeeCreateModel){
       return this.http.post(this.ApiUrl + '/Employee/createemployee',data)

@@ -35,9 +35,7 @@ namespace HRM.BackendApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] PositionCreateRequest request)
         {
-            var newPosi = _mapper.Map<Position>(request);
-            _context.Positions.Add(newPosi);
-            await _context.SaveChangesAsync();
+            var newPosi = await _managePositionService.Create(request);
             return Ok(newPosi);
         }
 
@@ -45,9 +43,7 @@ namespace HRM.BackendApi.Controllers
         public async Task<IActionResult> Update(int id, [FromBody] PositionUpdateRequest request)
         {
             request.ID = id;
-            var newPosi = _mapper.Map<Position>(request);
-            _context.Positions.Update(newPosi);
-            await _context.SaveChangesAsync();
+            var newPosi = await _managePositionService.Update(request);
             return Ok(newPosi);
         }
 
@@ -59,7 +55,7 @@ namespace HRM.BackendApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByID(string id)
+        public async Task<IActionResult> GetByID(int id)
         {
             var day = await _managePositionService.GetByID(id);
             if (day == null)
@@ -68,7 +64,7 @@ namespace HRM.BackendApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
             await _managePositionService.DeletePositionByProceDure(id);
             return Ok();

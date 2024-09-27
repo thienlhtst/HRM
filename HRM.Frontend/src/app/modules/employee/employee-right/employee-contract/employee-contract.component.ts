@@ -59,7 +59,7 @@ export class EmployeeContractComponent implements OnInit {
       this.date.month=12
     }
     this.yearoptions =  this.generateYearOptions(this.date.year, this.date.year - 20)
- 
+    this.GetLabourContractData()
   }
 
   generateYearOptions(startYear: number, endYear: number): number[] {
@@ -73,19 +73,21 @@ export class EmployeeContractComponent implements OnInit {
     this.listofday.splice(0,50)
     this.date.month = parseInt(event.target.value);
  
-    
+    console.log(this.date.month)
 
   }
   onChangeYear(event:any){
     this.listofday.splice(0,50)
     this.date.year = parseInt(event.target.value);
-
+    
     }
 
   GetLabourContractData(){
-    this.contractservice.GetContractByEmployeeID("1").subscribe((res)=>{
+    this.contractservice.GetContractByEmployeeID("E9A7AF53-8973-418A-AB30-0147AB4D937B").subscribe((res)=>{
       this.datas = res
       this.dataloaded = true
+      
     })
+    console.log(this.datas)
   }
 }

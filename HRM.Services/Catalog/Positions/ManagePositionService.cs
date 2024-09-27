@@ -34,14 +34,14 @@ namespace HRM.Services.Catalog.Positions
             return 1;
         }
 
-        public async Task<int> Delete(string PositionID)
+        public async Task<int> Delete(int PositionID)
         {
             var position = await _context.Positions.FindAsync(PositionID);
             _context.Positions.Remove(position);
             return await _context.SaveChangesAsync();
         }
 
-        public async Task DeletePositionByProceDure(string id)
+        public async Task DeletePositionByProceDure(int id)
         {
             var ID = new SqlParameter(@"ID", id);
             await _context.Database.ExecuteSqlRawAsync("EXEC DeletePosition @ID", id);
@@ -83,7 +83,7 @@ namespace HRM.Services.Catalog.Positions
             return pagedView;
         }
 
-        public async Task<PositionViewModel> GetByID(string PositionID)
+        public async Task<PositionViewModel> GetByID(int PositionID)
         {
             var position = await _context.Positions.FindAsync(PositionID);
             var positionvm = new PositionViewModel()

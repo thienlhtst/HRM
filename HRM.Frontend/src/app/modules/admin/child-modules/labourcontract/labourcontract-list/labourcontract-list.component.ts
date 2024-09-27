@@ -22,10 +22,10 @@ export class LabourcontractListComponent implements OnInit {
     this.GetPaging()
   }
   searchText : any
-  datas : LabourContractModel[]
+  datas : LabourContractModel[] = []
   ShowFormOption : boolean = false
   ShowForm : boolean = false
-  selectedID : string
+  selectedID : string = ""
   spinner : boolean = false
   paging : Requestpaging = {
     keyword : '',
@@ -57,7 +57,7 @@ export class LabourcontractListComponent implements OnInit {
 
   Delete(event:any,id : string){
     this.confirm.confirm('Please Confirm','You wanna delete id : ' + id)
-   .then((confirmed)=>{
+   .then((confirmed : any)=>{
     if(confirmed){
       this.service.DeleteContract(id).subscribe((res)=>{
           this.NoficationAlert(res)

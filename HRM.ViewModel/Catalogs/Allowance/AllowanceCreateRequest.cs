@@ -19,6 +19,5 @@ namespace HRM.ViewModel.Catalogs.Allowance
         [RegularExpression("^[0-9]+$")]
         public int Money { get; set; }
 
-        public language language { get; set; }
     }
 }

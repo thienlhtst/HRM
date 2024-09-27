@@ -35,14 +35,12 @@ namespace HRMApiBackend.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] LabourContractCreateRequest request)
         {
-            var labour = _mapper.Map<LabourContract>(request);
-            _context.LabourContracts.Add(labour);
-            await _context.SaveChangesAsync();
+            var labour = await _labourContractService.Create(request);
             return Ok(labour);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByID(string id)
+        public async Task<IActionResult> GetByID(int id)
         {
             var labour = await _labourContractService.GetByID(id);
             return Ok(labour);
@@ -71,7 +69,7 @@ namespace HRMApiBackend.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
             var result = await _labourContractService.Delete(id);
             return Ok(result);

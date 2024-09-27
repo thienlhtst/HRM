@@ -23,6 +23,7 @@ namespace HRM.DataAccess.Configurations
             builder.Property(x => x.DOB).HasDefaultValue(DateTime.Now);
             builder.Property(x => x.Sex).HasDefaultValue(Sex.Male);
             builder.Property(x => x.CIC).HasMaxLength(20);
+            builder.Property(x => x.Email).HasMaxLength(20);
             builder.Property(x => x.Address).HasMaxLength(20);
             builder.HasOne(x => x.Salary).WithMany(x => x.Employees).HasForeignKey(x => x.SalaryID);
             builder.Property(x => x.Account).IsRequired().HasMaxLength(100);

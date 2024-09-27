@@ -18,6 +18,6 @@ namespace HRM.Services.Catalog.LabourDay
 
         Task<int> Delete(LabourDayDeleteRequest request);
 
-        Task<LabourDayDetailRequest> GetbyID(string request);
+        Task<LabourDayDetailRequest> GetbyID(int request);
     }
 }

@@ -42,9 +42,7 @@ namespace HRMApiBackend.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] LevelCreateRequest request)
         {
-            var level = _mapper.Map<Level>(request);
-            _context.Levels.Add(level);
-            await _context.SaveChangesAsync();
+            var level = await _Service.Create(request);
             return Ok(level);
         }
 
@@ -52,14 +50,12 @@ namespace HRMApiBackend.Controllers
         public async Task<IActionResult> Update(int id, [FromBody] LevelEditRequest request)
         {
             request.ID = id;
-            var level = _mapper.Map<Level>(request);
-            _context.Levels.Update(level);
-            await _context.SaveChangesAsync();
+            var level = await _Service.Update(request);
             return Ok(level);
         }
 
         [HttpGet("{rankID}")]
-        public async Task<IActionResult> GetById(string rankID)
+        public async Task<IActionResult> GetById(int rankID)
         {
             var rank = await _Service.GetById(rankID);
             if (rank == null)
@@ -84,7 +80,7 @@ namespace HRMApiBackend.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
             await _Service.DeleteRankByProcedure(id);
 

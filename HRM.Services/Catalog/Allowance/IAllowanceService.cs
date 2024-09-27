@@ -19,9 +19,9 @@ namespace HRM.Services.Catalog.Allowance
 
         Task<int> Delete(string AllowanceId);
 
-        Task DeleteAllowanceAndRulesByProcedure(string AllowanceID);
+        Task DeleteAllowanceAndRulesByProcedure(int AllowanceID);
 
-        Task<AllowanceViewModel> GetByID(string AllowanceID);
+        Task<AllowanceViewModel> GetByID(int AllowanceID);
 
         Task<PagedResult<AllowanceViewModel>> GetAllPage(GetAllowancePagingRequest request);
 

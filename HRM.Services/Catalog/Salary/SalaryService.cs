@@ -65,14 +65,14 @@ namespace HRM.Services.Catalog.Salary
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<int> Delete(string rankID)
+        public async Task<int> Delete(int rankID)
         {
             var rank = await _context.Salaries.FindAsync(rankID);
             _context.Salaries.Remove(rank);
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<SalaryViewModel> GetById(string SalaryID)
+        public async Task<SalaryViewModel> GetById(int SalaryID)
         {
             var salary = await _context.Salaries.FindAsync(SalaryID);
             var salaryvm = new SalaryViewModel()

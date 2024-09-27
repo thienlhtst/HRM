@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace HRM.DataAccess.Configurations
 {
     public class AllowanceConfiguration : IEntityTypeConfiguration<Allowance>
-	{
+	{   
         public void Configure(EntityTypeBuilder<Allowance> builder)
         {
             builder.ToTable("Allowance");

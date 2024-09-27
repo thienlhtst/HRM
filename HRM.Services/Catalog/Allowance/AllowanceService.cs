@@ -59,7 +59,7 @@ namespace HRM.Services.Catalog.Allowance
             return await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAllowanceAndRulesByProcedure(string AllowanceID)
+        public async Task DeleteAllowanceAndRulesByProcedure(int AllowanceID)
         {
             var id = new SqlParameter("@ID", AllowanceID);
             await _context.Database.ExecuteSqlRawAsync("EXEC DeleteAllowanceAndRule @ID", id);
@@ -110,7 +110,7 @@ namespace HRM.Services.Catalog.Allowance
             return data;
         }
 
-        public async Task<AllowanceViewModel> GetByID(string AllowanceID)
+        public async Task<AllowanceViewModel> GetByID(int AllowanceID)
         {
             var allowance = await _context.Allowances.FindAsync(AllowanceID);
             var allo = new AllowanceViewModel()

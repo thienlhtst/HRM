@@ -10,7 +10,6 @@ namespace HRM.Entity.Entities
 {
     public class LabourContract
     {
-        [Key]
         public int ID { get; set; }
 
         public Guid EmployeeID { get; set; }

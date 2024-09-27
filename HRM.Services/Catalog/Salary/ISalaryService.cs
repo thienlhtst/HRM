@@ -17,9 +17,9 @@ namespace HRM.Services.Catalog.Salary
 
         Task<int> Update(SalaryEditRequest request);
 
-        Task<int> Delete(string SalaryID);
+        Task<int> Delete(int SalaryID);
 
-        Task<SalaryViewModel> GetById(string SalaryID);
+        Task<SalaryViewModel> GetById(int SalaryID);
 
         Task<List<SalaryViewModel>> GetList();
 

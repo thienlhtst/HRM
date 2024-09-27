@@ -45,6 +45,10 @@ const routes: Routes = [
         loadChildren:() => import ('./child-modules/labourday/labourday.module').then(m=>m.LabourdayModule)
       },
       {
+        path:'labourcontract',
+        loadChildren:() => import ('./child-modules/labourcontract/labourcontract.module').then(m=>m.LabourcontractModule)
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: 'dashboard',

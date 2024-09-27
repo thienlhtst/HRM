@@ -13,12 +13,12 @@
 
           
           <div class="d-flex flex-row justify-content-start w-100 body-card" *ngFor="let group of getGroups(items.sysList, 3)">
-              <div class="col-sm-4" *ngFor="let item of group">
+              <div class="col-sm-4" *ngFor="let item of group"> 
                   <div class="label-input-header">
-                      {{item.label}}
-                  </div>
+                    {{item.label}}
+                </div>
                   <div class="d-flex text-input-1" *ngIf="item.text_body != 'yes-icon'">
-                      {{item.name}}
+                      {{item.value}}
                   </div>
                   <div class="d-flex text-input-1" *ngIf="item.text_body == 'yes-icon'">
                       <i class="yes-icon"></i>

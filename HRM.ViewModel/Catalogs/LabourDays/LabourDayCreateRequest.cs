@@ -14,6 +14,5 @@ namespace HRM.ViewModel.Catalogs.LabourDays
         public int Days { get; set; }
         public int Months { get; set; }
 
-        public language language { get; set; }
     }
 }

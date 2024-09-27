@@ -40,9 +40,8 @@ namespace HRMApiBackend.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAllowance([FromBody] AllowanceCreateRequest request)
         {
-            var newAllo = _mapper.Map<Allowance>(request);
-            _context.Allowances.Add(newAllo);
-            await _context.SaveChangesAsync();
+            var newAllo = await _allowanceService.Create(request);
+            
             return Ok(newAllo);
         }
 
@@ -57,7 +56,7 @@ namespace HRMApiBackend.Controllers
         }
 
         [HttpGet("{AllowanceID}")]
-        public async Task<IActionResult> GetByID(string AllowanceID)
+        public async Task<IActionResult> GetByID(int AllowanceID)
         {
             var allowance = await _allowanceService.GetByID(AllowanceID);
             return Ok(allowance);
@@ -71,7 +70,7 @@ namespace HRMApiBackend.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProcedure(string id)
+        public async Task<IActionResult> DeleteProcedure(int id)
         {
             await _allowanceService.DeleteAllowanceAndRulesByProcedure(id);
             return Ok();

@@ -5,16 +5,18 @@ import { LabourcontractListComponent } from './labourcontract-list/labourcontrac
 import { LabourcontractOptionsComponent } from './labourcontract-options/labourcontract-options.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { PagingnavComponent } from '../../../shared/components/pagingnav/pagingnav.component';
-import { NotificationComponent } from '../../../shared/components/Notification/Notification.component';
+
 import { FormsModule } from '@angular/forms';
-import { PipeSharePipe } from '../../../shared/components/Pipe/pipe-share.pipe';
-import { SpinnerBetaComponent } from '../../../shared/components/spinner-beta/spinner-beta.component';
-import { SharedModule } from '../../../shared/shared.module';
+
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { LabourContractServiceService } from 'src/Services/LabourContract/labour-contract-service.service';
 import { RegexService } from 'src/Services/Regex/regex.service';
-import { ConfirmationDialogService } from '../../../shared/components/confirmation-dialog/confirmation-dialog.service';
+import { PagingnavComponent } from 'src/app/modules/share/components/pagingnav/pagingnav.component';
+import { NotificationComponent } from 'src/app/modules/share/components/Notification/Notification.component';
+import { PipeSharePipe } from 'src/app/modules/share/components/Pipe/pipe-share.pipe';
+import { SpinnerBetaComponent } from 'src/app/modules/share/components/spinner-beta/spinner-beta.component';
+import { ConfirmationDialogService } from 'src/app/modules/share/components/confirmation-dialog/confirmation-dialog.service';
+
 
 const routes : Routes =[
   {
@@ -31,11 +33,13 @@ const routes : Routes =[
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    HttpClientModule, PagingnavComponent, NotificationComponent,
+    HttpClientModule,
+    PagingnavComponent, 
+    NotificationComponent,
     FormsModule,
     PipeSharePipe,
     SpinnerBetaComponent,
-    SharedModule,MatTooltipModule
+    MatTooltipModule
 ],
 providers :[LabourContractServiceService,RegexService,ConfirmationDialogService,DatePipe]
 })

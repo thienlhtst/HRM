@@ -26,6 +26,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Rank Role</th>
+                <th>Options</th>
               </tr>
             </thead>
             <tbody>
@@ -36,10 +37,10 @@
 
                 <td>
                   <button class="img-button" (click)="ButtonClickToUpdate(item.id)"  mat-icon-button [matTooltip]="'Edit'">
-                    <img  class="ti ti-edit"   src="" />
+                    <img  class="bi bi-pencil"   src="" />
                   </button>
                   <button class="img-button" (click)="Delete($event,item.id)"  mat-icon-button [matTooltip]="'Delete'">
-                    <img  class="ti ti-circle-minus" src="" />
+                    <img  class="bi bi-x-circle" src="" />
                   </button>
                 </td>
               </tr>

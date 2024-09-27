@@ -25,7 +25,7 @@ namespace HRMApiBackend.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetbyID(string id)
+        public async Task<IActionResult> GetbyID(int id)
         {
             var result = await _labourDayService.GetbyID(id);
             return Ok(result);

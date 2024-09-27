@@ -18,15 +18,15 @@ namespace HRM.Services.Catalog.Ranks
 
         Task<int> Update(LevelEditRequest request);
 
-        Task<int> Delete(string EmployeeID);
+        Task<int> Delete(int EmployeeID);
 
-        Task<LevelViewModel> GetById(string EmployeeID);
+        Task<LevelViewModel> GetById(int id);
 
         Task<List<LevelViewModel>> GetList();
         Task<LevelEditRequest> GetByIdForEdit(string RankID);
 
         Task<List<Role>> GetRoleList();
 
-        Task DeleteRankByProcedure(string id);
+        Task DeleteRankByProcedure(int id);
     }
 }

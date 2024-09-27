@@ -30,12 +30,13 @@ namespace HRM.Services.Catalog.LabourContract
                 ContractSigninDate = request.ContractSigninDate,
                 ContractTerm = request.ContractTerm,
                 Active = request.Active,
+                
             };
             _context.LabourContracts.Add(lb);
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<int> Delete(string labourId)
+        public async Task<int> Delete(int labourId)
         {
             var lb = await _context.LabourContracts.FindAsync(labourId);
             _context.LabourContracts.Remove(lb);
@@ -76,7 +77,7 @@ namespace HRM.Services.Catalog.LabourContract
             return pagedView;
         }
 
-        public async Task<LabourContractViewModel> GetByID(string labourID)
+        public async Task<LabourContractViewModel> GetByID(int labourID)
         {
             var employeeID = (from p in _context.LabourContracts
                               join pt in _context.Employee on p.EmployeeID equals pt.ID

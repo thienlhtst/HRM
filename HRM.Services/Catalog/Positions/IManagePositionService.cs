@@ -16,14 +16,14 @@ namespace HRM.Services.Catalog.Positions
 
         Task<int> Update(PositionUpdateRequest request);
 
-        Task<int> Delete(string PositionID);
+        Task<int> Delete(int PositionID);
 
-        Task<PositionViewModel> GetByID(string PositionID);
+        Task<PositionViewModel> GetByID(int PositionID);
 
         Task<List<PositionViewModel>> GetAll();
 
         Task<PagedResult<PositionViewModel>> GetAllPaging(GetPositionPagingRequest request);
 
-        Task DeletePositionByProceDure (string id);
+        Task DeletePositionByProceDure (int id);
     }
 }

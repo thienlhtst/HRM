@@ -14,7 +14,7 @@ export class InformationComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.list_data_input)
+  
   }
 
   getGroups(arr: any[], groupSize: number): any[][] {

@@ -56,6 +56,13 @@ namespace HRMApiBackend.Controllers
             return Ok(employee);
         }
 
+        [HttpGet("getemployeehassalary/{employeeid}")]
+        public async Task<IActionResult> GetIDHaveSalaryID(Guid employeeid)
+        {
+            var emp = await _employeeService.GetIdHaveSalary(employeeid);
+            return Ok(emp);
+        }
+
         [HttpGet("bypositionandrank/{salaryID}")]
         public async Task<IActionResult> GetEmployeeBySalary(string salaryID)
         {
