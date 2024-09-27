@@ -20,7 +20,7 @@ export class LabourcontractOptionsComponent implements OnInit {
     private confirmationDialogService: ConfirmationDialogService,
     private datePipe: DatePipe
   ) {}
-  @Input() selectedID: string = "";
+  @Input() selectedID: string='';
   @Output() onUpdate: EventEmitter<string> = new EventEmitter();
   @Output() onSuccess: EventEmitter<any> = new EventEmitter();
   data: any = {
@@ -31,9 +31,9 @@ export class LabourcontractOptionsComponent implements OnInit {
     contractTerm: 0,
     active: 1
   };
-  selectedDate: string = "";
-  selectedEmployeeID: string = "";
-  DataofEmployee: EmployeeModel[] = [];
+  selectedDate: string='';
+  selectedEmployeeID: string='';
+  DataofEmployee: EmployeeModel[]=[];
 
   ngOnInit(): void {
     if (this.selectedID != '') this.GetLabourContractID();
@@ -43,7 +43,7 @@ export class LabourcontractOptionsComponent implements OnInit {
   GetLabourContractID() {
     this.service.GetAllContractByID(this.selectedID).subscribe((res) => {
       let date = new Date(res.contractSigninDate);
-      res.contractSigninDate = formatDate(res.contractSigninDate,'MM/dd/yyyy',"en-US")
+      res.contractSigninDate = this.datePipe.transform(date, 'yyyy-MM-dd')!;
       this.data = res;
     });
   }
@@ -58,7 +58,7 @@ export class LabourcontractOptionsComponent implements OnInit {
     return this.selectedEmployeeID;
   }
 
-  onDateChange(event: { target: { value: string; }; }): void {
+  onDateChange(event:any): void {
     this.selectedDate = event.target.value;
   }
 

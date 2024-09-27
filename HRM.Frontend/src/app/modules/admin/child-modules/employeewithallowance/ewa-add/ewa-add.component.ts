@@ -13,9 +13,9 @@ import { GeneralService } from 'src/Services/General/general.service';
 export class EwaAddComponent implements OnInit {
   constructor(private ewaService : EWAServiceService,private generalSerive : GeneralService){}
   @Output() onSuccess : EventEmitter<void> = new EventEmitter()
-  DataofAllowance : Allowancemodel[]
+  DataofAllowance : Allowancemodel[]=[]
   CurrentTime = new Date()
-  SelectedAllowance : string
+  SelectedAllowance : string=''
 
 
   ngOnInit(): void {

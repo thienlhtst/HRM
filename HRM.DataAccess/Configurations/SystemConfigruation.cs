@@ -15,7 +15,7 @@ namespace HRM.DataAccess.Configurations
         {
             builder.ToTable("SystemManagement");
             builder.HasKey(x => x.ID);
-            builder.Property(e => e.ID).IsRequired().UseIdentityColumn();
+            builder.Property(e => e.ID).IsRequired().ValueGeneratedOnAdd();
         }
     }
 }

@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { HomeService } from 'src/Services/Home/homeService.service';
 import { EmployeeService } from 'src/Services/Employee/employee.service';
+import { SystemService } from 'src/Services/System/System.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,6 +14,8 @@ import { EmployeeService } from 'src/Services/Employee/employee.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  flagAppear: boolean = false;
+  dataslanguage:any[]=[]
   flagdetail:number | undefined
   private _hubConnection: signalR.HubConnection | undefined;
   textHeader:string | undefined
@@ -32,11 +35,20 @@ export class DashboardComponent implements OnInit {
   HomeDetail :any={}
   reponsedata:any={}
   spinner : boolean = false
-  constructor(private router: Router,private service:HomeService,private service_employee:EmployeeService) { }
+  constructor(private router: Router,private service:HomeService,private service_employee:EmployeeService,private systemServices : SystemService) { }
 
   ngOnInit() {
+    this.systemServices.GetLangugeLayout('card-dashboard-admin',this.systemServices.getLanguage()).subscribe((res) => {
+      this.dataslanguage = res;
+      console.log(this.dataslanguage)
+      this.textHeader=this.dataslanguage.find((x)=>x.functionID=='DA000109').label
+      this.flagAppear = true
+      
+    });
+
+
     this.flagdetail=0
-    this.textHeader="List Work Hours Today"
+    
     this.ChangeDataWorkhour(this.paging)
     this._hubConnection = new signalR.HubConnectionBuilder()
     .withUrl(this.apisignar+'/signar', {
@@ -132,14 +144,14 @@ export class DashboardComponent implements OnInit {
     this.paginghome.flag=flag
 
     if(flag==0){
-      this.textHeader="List Work Hours Today"
+      this.textHeader=this.dataslanguage.find(x=>x.functionID=='DA000109').label
 
       this.ChangeDataWorkhour(this.paging)
     }else {
 
-      this.textHeader=flag===1? "List Employee Off Today":
-                      flag===2? "List Employee Late Today":
-                      flag===3? "List Employee Work Today":
+      this.textHeader=flag===1?this.dataslanguage.find(x=>x.functionID=='DA000107').label:
+                      flag===2? this.dataslanguage.find(x=>x.functionID=='DA000108').label:
+                      flag===3? this.dataslanguage.find(x=>x.functionID=='DA000106').label:
                       "";
       this.ChangeDataEmployee(this.paginghome)
     }

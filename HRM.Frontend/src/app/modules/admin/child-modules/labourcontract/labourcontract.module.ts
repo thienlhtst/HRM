@@ -5,9 +5,7 @@ import { LabourcontractListComponent } from './labourcontract-list/labourcontrac
 import { LabourcontractOptionsComponent } from './labourcontract-options/labourcontract-options.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
 import { FormsModule } from '@angular/forms';
-
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { LabourContractServiceService } from 'src/Services/LabourContract/labour-contract-service.service';
 import { RegexService } from 'src/Services/Regex/regex.service';
@@ -16,7 +14,7 @@ import { NotificationComponent } from 'src/app/modules/share/components/Notifica
 import { PipeSharePipe } from 'src/app/modules/share/components/Pipe/pipe-share.pipe';
 import { SpinnerBetaComponent } from 'src/app/modules/share/components/spinner-beta/spinner-beta.component';
 import { ConfirmationDialogService } from 'src/app/modules/share/components/confirmation-dialog/confirmation-dialog.service';
-
+import { ShareModule } from 'src/app/modules/share/share.module';
 
 const routes : Routes =[
   {
@@ -39,7 +37,7 @@ const routes : Routes =[
     FormsModule,
     PipeSharePipe,
     SpinnerBetaComponent,
-    MatTooltipModule
+   MatTooltipModule,ShareModule
 ],
 providers :[LabourContractServiceService,RegexService,ConfirmationDialogService,DatePipe]
 })

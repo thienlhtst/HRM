@@ -24,7 +24,7 @@ export class HeaderAdminComponent implements OnInit {
       lan = '0'
     }
     
-    this._systemService.GetNavLangugeFunction('HA000000', lan).subscribe((res) => {
+    this._systemService.GetMenuLanguage('HA000000', lan).subscribe((res) => {
      this.data_items = res;
      
      this.flagAppear =true

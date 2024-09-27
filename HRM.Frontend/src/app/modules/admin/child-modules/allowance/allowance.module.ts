@@ -34,7 +34,7 @@ const routes : Routes =[
     declarations: [
         AllowanceListComponent,
         AllowanceOptionsComponent,
-        AllowanceRulesComponent
+        
     ],
     providers: [AllowanceServiceService,RegexService,ConfirmationDialogService],
     imports: [

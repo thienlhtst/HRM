@@ -9,7 +9,7 @@ namespace HRM.Entity.Entities
 {
     public class SystemManagement
     {
-        public int? ID { get; set; }
+        public Guid ID { get; set; }
         public string? FunctionID { get; set; } = null;
         public string? ParentID { get; set; } = null;
         public language? Language { get; set; }
@@ -32,7 +32,7 @@ namespace HRM.Entity.Entities
 
         public SystemManagement()
         {
-            ID=null;
+            ID=Guid.NewGuid();
             FunctionID=null;
             ParentID=null;
             Language=null;

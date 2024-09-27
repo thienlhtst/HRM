@@ -1,0 +1,65 @@
+<app-notification [message]="messageRequest"></app-notification>
+
+<div class="auth-main">
+  <div class="auth-wrapper v3">
+    <div class="auth-form d-flex justify-content-between">
+      <div class="auth-header">
+      </div>
+      <div class="card" style="height: 450px; width: 600px">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6 " style="margin-top: 20%;"> 
+              <div class="d-flex justify-content-center">
+                <div class="test"> 
+              <zxing-scanner [formats]="formatsEnabled" (scanSuccess)="onCodeResult($event)">
+              </zxing-scanner>
+              <div class="text-overlay" *ngIf="!spinner">
+                <app-spinner-beta></app-spinner-beta> </div>              
+             </div>
+            </div>
+            </div>
+              <div class="col-6">
+              <div class="d-flex justify-content-center btn-group">
+                <input
+                  mdbRadio
+                  type="radio"
+                  class="btn-check"
+                  name="options"
+                  id="option1"
+                  autocomplete="off"
+                  [checked]="true"
+                  (click)="ChangeCheck(1)"
+                />
+                <label class="btn btn-secondary" for="option1">Check In </label>
+                <input mdbRadio type="radio" class="btn-check" name="options" id="option2" autocomplete="off" (click)="ChangeCheck(2)" />
+                <label class="btn btn-secondary" for="option2">Check Out</label>
+              </div>
+              <form> 
+                <div class="form-group">
+                  <label for="exampleInputEmail1">ID</label>
+                  <input type="email" [(ngModel)]="data.id" readonly  name="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Full Name</label>
+                  <input type="text" [(ngModel)]="data.name" readonly  name="name" class="form-control" >
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Date {{NameChange}}</label>
+                  <input type="text" [(ngModel)]="data.date" readonly  name="date" class="form-control" >
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Time {{NameChange}}</label>
+                  <input type="text" [(ngModel)]="data.time" readonly  name="time" class="form-control" >
+                </div>
+                <div class="d-flex justify-content-center">
+                <button type="submit" [disabled]="!data.id" (click)="Confirm()" class="btn btn-primary m-2">Confirm</button>
+                <button type="submit" [disabled]="!data.id" (click)="Cancel()" class="btn btn-primary m-2"> Cancel</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
